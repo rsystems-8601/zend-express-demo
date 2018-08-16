@@ -1,0 +1,60 @@
+<?php $this->headTitle('Home'); ?>
+
+<div class="jumbotron">
+    <h1>Welcome to <span class="zf-green">GroupHEALTH</span></h1>
+    <p>
+        <?php echo $this->siteName; ?>
+        <a href="https://github.com/zendframework/zend-expressive-skeleton" target="_blank">team detail</a>.
+        Use below form for get the doctor timimg
+    </p>
+    
+</div>
+<form action="savedoctor" method="get" >
+<div class="row">
+    <div class="col-md-8">
+        <h2>
+            <a href="https://docs.zendframework.com/zend-expressive/getting-started/features/" target="_blank">
+                <i class="fa fa-dot-circle-o"></i> Username
+            </a>
+			<input type="text"> 
+        </h2>
+    </div>
+	
+	<div class="col-md-8">
+        <h2>
+            <a href="https://docs.zendframework.com/zend-expressive/getting-started/features/" target="_blank">
+                <i class="fa fa-dot-circle-o"></i> Reason for visiting
+            </a>
+			<input type="text"> 
+        </h2>
+    </div>
+</div>	
+<div class="row">	
+	<div class="col-md-4">
+        <h2>
+            <a href="https://docs.zendframework.com/zend-expressive/getting-started/features/" target="_blank">
+                <i class="fa fa-dot-circle-o"></i> Start Time
+            </a>
+			<input type="date"> 
+        </h2>
+    </div>
+	<div class="col-md-4">
+        <h2>
+            <a href="https://docs.zendframework.com/zend-expressive/getting-started/features/" target="_blank">
+                <i class="fa fa-dot-circle-o"></i> End Time
+            </a>
+			<input type="date">
+        </h2>		        
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>
+            <input type="submit">			
+			
+        </h2>
+    </div>
+
+</div>
+</form>

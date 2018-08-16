@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Book Appointment</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="Keywords" content="">
+<meta name="Description" content="Book Appointment">
+<link rel="stylesheet" href="style.css">
+<script src='jquery.min.js'></script>
+<script src='appointment.js'></script>
+</head>
+<body>
+
+<div class='container'>
+
+<div class='header'>
+
+</div> <!-- header -->
+
+<div class='content'>
+<div class='appointment_form'>
+<h2>Book Your Appointment</h2>
+
+<div class='row'>
+<div class='label'>Full Name</div>
+<div class='input_field'><input type='text' id='full_name'></div>
+</div> <!-- row -->
+
+<div class='row'>
+<div class='label'>Time of Appointment</div>
+<div class='input_field'><input type='datetime-local' id='appointment_time'></div>
+</div> <!-- row -->
+
+
+
+<div class='row'>
+<div class='label'>Reason of Appointment</div>
+<div class='input_field'><textarea rows='9' cols='50' id='appointment_reason'></textarea></div>
+</div> <!-- row -->
+
+<div class='row'>
+<div class='label'>&nbsp;</div>
+<div class='input_field'><input type='button' value='Submit' id='submit'></div>
+</div> <!-- row -->
+
+<div class='row'>
+<div class='label'>&nbsp;</div>
+<div class='input_field' id='response_container'>&nbsp;</div>
+</div> <!-- row -->
+
+</div> <!-- appointment_form -->
+
+<div class='appointment_detail'>
+<h2>Appointment booked successfully</h2>
+<h3 id='confirmed_name'></h3>
+<h3 id='confirmed_date'></h3>
+</div> <!-- appointment_detail -->
+
+</div> <!-- content -->
+
+</div> <!-- container -->
+
+</body>
+</html>

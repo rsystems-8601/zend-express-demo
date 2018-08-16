@@ -1,0 +1,34 @@
+body{
+font-family: arial;
+}
+
+.row{
+	margin-bottom: 17px;
+}
+
+.container{
+
+}
+
+.content{
+
+}
+
+.label{
+    float: left;
+    width: 183px;
+	font-size: 15px;
+}
+
+.input_field{
+
+}
+
+.input_field input{
+	
+}
+
+.appointment_detail{
+	display:none;
+}
+

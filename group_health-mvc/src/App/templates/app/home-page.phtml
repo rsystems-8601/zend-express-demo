@@ -1,0 +1,64 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="Keywords" content="">
+<meta name="Description" content="Book Appointment">
+
+<link rel="stylesheet" href="media/style.css">
+<script src='media/jquery.min.js'></script>
+<script src='media/appointment.js'></script>
+
+<div class='container'>
+
+<div class='header'>
+<div class='btn' id='btn_view_appts' onclick="view_appointments()">View Appointments</div>
+<div class='btn' id='btn_book_appt' onclick="book_appointment()">Book Appointment</div>
+</div> <!-- header -->
+
+<div class='content'>
+
+		
+<div class='view_appointments' >
+<!-- records loaded asynchronously -->
+</div> <!-- view_appointments -->
+
+<div class='appointment_form' >
+<h2>Enter Appointment Details</h2>
+
+<form id="request_form" action="#" method="get">
+
+<input type='hidden' id='appointment_id' name='appointment_id' value="">
+<div class='row'>
+<div class='label'>Full Name</div>
+<div class='input_field'><input type='text' id='full_name' name='full_name'></div>
+</div> <!-- row -->
+
+<div class='row'>
+<div class='label'>Time of Appointment</div>
+<!--<div class='input_field'><input type='datetime-local' id='appointment_time'></div>-->
+<div class='input_field'><input type='date' id='appointment_time' name='appointment_time'></div>
+</div> <!-- row -->
+
+<div class='row'>
+<div class='label'>Reason of Appointment</div>
+<div class='input_field'><textarea rows='9' cols='50' id='appointment_reason' name='appointment_reason'></textarea></div>
+</div> <!-- row -->
+
+<div class='row'>
+<div class='label'>&nbsp;</div>
+<div class='input_field form_update'><input type='button' value='Update' id='btn_update'></div>
+<div class='input_field form_submit'><input type='button' value='Submit' id='btn_submit'></div>
+</div> <!-- row -->
+
+<div class='row'>
+<div class='label'>&nbsp;</div>
+<div class='input_field' id='response_container'>&nbsp;</div>
+</div> <!-- row -->
+
+</form>
+
+</div> <!-- appointment_form -->
+
+
+</div> <!-- content -->
+
+</div> <!-- container -->
