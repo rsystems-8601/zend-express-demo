@@ -1,0 +1,10 @@
+
+step for run the application:
+
+-- create database group_health on your mysql on localhost
+-- upload group_health.sql in your databse and start that mysql on localhost
+-- download the package form git
+-- open terminal go inside the folder 
+-- run command composer serve
+-- then open link on browser http://127.0.0.1:8080
+
