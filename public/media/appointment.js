@@ -4,7 +4,7 @@ $(function() {
 		** API_URL: server API location
 		*/
 		
-		API_URL = "http://127.0.0.1:8080/";
+		API_URL = "http://10.131.40.109:8080/";
 		
 		/**
 		** Function call: prepare() - 
@@ -130,16 +130,16 @@ function get_appointments()
 				  record = JSON.parse(JSON.stringify(value));
 				  records = records + '<div class="row record">'
 				  +'<div class="col-md-2">'+record.username+'</div>'
-				  +'<div class="col-md-2">'+record.reason+'</div>'
-				  +'<div class="col-md-2">'+record.booking_date+'</div>'
-				  +'<div  class="col-md-2" value='+record.id+' onclick="update_appointment('+record.id+')">Edit</div>'
-				  +'<div  class="col-md-2" value='+record.id+' onclick="cancel_appointment('+record.id+')">Cancel</div>'
+				  +'<div class="col-md-4">'+record.reason+'</div>'
+				  +'<div class="col-md-3">'+record.booking_date+'</div>'
+				  +'<div  class="col-md-2 icon" alt="Edit appointment" title="Edit appointment" value='+record.id+' onclick="update_appointment('+record.id+')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>'
+				  +'<div  class="col-md-2 icon" alt="Cancel appointment" title="Cancel appointment" value='+record.id+' onclick="cancel_appointment('+record.id+')"><i class="fa fa-times" aria-hidden="true"></i></div>'
 				  +'</div>';
 				});
 				records = '<div class="row record reocrd-bold">'
 				  +'<div class="col-md-2">Name</div>'
-				  +'<div class="col-md-2">Reason</div>'
-				  +'<div class="col-md-2">Booking Date</div>'
+				  +'<div class="col-md-4">Reason</div>'
+				  +'<div class="col-md-3">Booking Date</div>'
 				  +'</div>'
 				+records;
 				$('.view_appointments').html(records);

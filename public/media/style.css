@@ -4,7 +4,7 @@ font-family: arial;
 }
 
 .row{
-	margin-bottom: 17px;
+	margin-bottom: 10px;
 }
 
 .header{
@@ -45,27 +45,38 @@ font-family: arial;
 
 .view_appointments{
 	border: 1px solid #ccc;
-    padding: 22px;
-    margin-top: 20px;
+    padding: 14px;
+    margin-top: 1px;
 }
 
 .records{
-	    min-height: 550px;
+	    
+}
+
+.icon{
+	width:20px !important;
+	cursor: pointer;
 }
 
 .record{
-	border: 1px solid #ccc;
+	
     padding: 8px;
 	clear: both;
-	    height: 57px;
+	 
 }
 
 .reocrd-bold{
 	font-weight:bold;
+	background:#cfcfcf;
 }
 
 .record div{	    
-    border: 1px solid #ccc;
+  
     margin: 7px;
     padding: 3px;
+}
+
+.navbar-brand {
+   padding:0 !important;
+   padding-top:3px;
 }
