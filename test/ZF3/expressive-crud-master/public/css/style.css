@@ -1,0 +1,114 @@
+
+body{
+font-family: arial;
+ padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.row{
+	margin-bottom: 10px;
+}
+
+.header{
+	    border: 1px solid #ccc;
+		padding:22px;
+}
+
+.container{
+
+}
+
+.content{
+
+}
+
+.label{
+    float: left;
+    width: 195px;
+	font-size: 15px;
+	color: #555;
+}
+
+.input_field{
+
+}
+
+.input_field input{
+	
+}
+
+.appointment_detail{
+	display:none;
+}
+
+
+.view_appointments{
+	border: 1px solid #ccc;
+    padding: 14px;
+    margin-top: 1px;
+}
+
+.records{
+	    
+}
+
+.icon{
+	width:20px !important;
+	cursor: pointer;
+}
+
+.record{
+	
+    padding: 8px;
+	clear: both;
+	 
+}
+
+.reocrd-bold{
+	font-weight:bold;
+	background:#cfcfcf;
+}
+
+.record div{	    
+  
+    margin: 7px;
+    padding: 3px;
+}
+
+.navbar-brand {
+   padding:0px 0px !important;
+   padding-top:3px;
+}
+
+
+.zf-green {
+    color: #68b604;
+}
+
+.btn-success {
+  background-color: #57a900;
+  background-image: -moz-linear-gradient(top, #70d900, #57a900);
+  background-image: -ms-linear-gradient(top, #70d900, #57a900);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#70d900), to(#57a900));
+  background-image: -webkit-linear-gradient(top, #70d900, #57a900);
+  background-image: -o-linear-gradient(top, #70d900, #57a900);
+  background-image: linear-gradient(top, #70d900, #57a900);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70d900', endColorstr='#57a900', GradientType=0);
+}
+
+.btn-success:hover,
+.btn-success:active,
+.btn-success.active,
+.btn-success.disabled,
+.btn-success[disabled] {
+  background-color: #57a900;
+}
+
+.btn-success:active, .btn-success.active {
+  background-color: #57a900;
+}
+
+div.container a.navbar-brand > img {
+    display: inline;
+    margin-right: 4px;
+}

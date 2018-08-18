@@ -1,0 +1,41 @@
+<h1>Appointments List</h1>
+
+<div class="btn-group" role="group" aria-label="Post actions">
+    <a class="btn btn-primary" href="<?= $this->url('appointment/add') ?>">Add new appointment</a>
+</div>
+
+<div class='content'>
+<div class='view_appointments records' >
+<div class="row record reocrd-bold">'
+				  <div class="col-md-2">Name</div>
+				  <div class="col-md-4">Reason</div>
+				  <div class="col-md-3">Booking Date</div>
+				  </div>
+				  
+	<?php foreach ($this->posts as $post): ?>
+		<div class="row record reocrd-bold">
+				<div class="col-md-2"> <a href="<?= $this->url('appointment/detail', ['id' => $post->getId()]) ?>">
+                    <?= $post->getUsername() ?>
+                </a></div>
+				
+				<div class="col-md-2"> 
+                    <?= $post->getReason() ?>
+                </div>
+				
+				<div class="col-md-3"> 
+                    <?= $post->getBookingdate() ?>
+                 </div>
+				
+				<div class="col-md-2"> <a class="btn btn-xs btn-default" href="<?= $this->url('appointment/edit', ['id' => $post->getId()]) ?>">Update</a> </div>
+				
+				<div class="col-md-2"> <a class="btn btn-xs btn-danger" href="<?= $this->url('appointment/delete', ['id' => $post->getId()]) ?>">Cancel</a> </div>
+		</div>
+	<?php endforeach ?>
+</div>				  
+
+
+</div>	
+
+<div class="btn-group" role="group" aria-label="Post actions">
+    <a class="btn btn-primary" href="<?= $this->url('appointment/add') ?>">Add new appointment</a>
+</div>

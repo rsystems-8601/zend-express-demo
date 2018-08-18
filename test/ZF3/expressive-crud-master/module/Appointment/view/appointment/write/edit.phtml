@@ -1,0 +1,9 @@
+<h1>Update Appointment</h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('appointment/edit', [], true));
+echo $this->partial('appointment/write/form', [
+    'form' => $form,
+    'submitLabel' => 'Update Appointment',
+]);

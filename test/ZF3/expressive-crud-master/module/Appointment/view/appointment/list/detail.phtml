@@ -1,0 +1,18 @@
+<h1>Apointment Details</h1>
+
+<dl>
+    <dt>User Name</dt>
+    <dd><?= $this->escapeHtml($this->post->getUsername()) ?></dd>
+
+    <dt>Reason</dt>
+    <dd><?= $this->escapeHtml($this->post->getReason()) ?></dd>
+	
+	<dt>Booking Date</dt>
+    <dd><?= $this->escapeHtml($this->post->getBookingdate()) ?></dd>
+</dl>
+
+<div class="btn-group" role="group" aria-label="Post actions">
+                <a class="btn btn-xs btn-default" href="<?= $this->url('appointment') ?>">Home</a>
+                <a class="btn btn-xs btn-default" href="<?= $this->url('appointment/edit', ['id' => $post->getId()]) ?>">Update</a>
+                <a class="btn btn-xs btn-danger" href="<?= $this->url('appointment/delete', ['id' => $post->getId()]) ?>">Cancel</a>
+            </div>

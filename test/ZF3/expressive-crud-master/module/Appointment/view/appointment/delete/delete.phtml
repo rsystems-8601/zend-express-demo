@@ -1,0 +1,13 @@
+<h1>Cancel Appointment</h1>
+
+<p>Are you sure you want to cancel the following appointment?</p>
+
+<ul class="list-group">
+    <li class="list-group-item"><?= $this->escapeHtml($this->post->getUsername()) ?></li>
+</ul>
+
+<form action="<?php $this->url('appointment/delete', [], true) ?>" method="post">
+    <input type="hidden" name="id" value="<?= $this->escapeHtmlAttr($this->post->getId()) ?>" />
+    <button class="btn btn-default" type="submit" name="confirm" value="Cancel" /> No </button>
+    <button class="btn btn-danger" type="submit" name="confirm" value="Delete" /> Yes </button>
+</form>
