@@ -1,4 +1,8 @@
 <?php
+/*
+* Author : Pradeep Srivastav 
+* Date Created: 08-16-2018
+*/
 
 namespace App\Action;
 
@@ -11,7 +15,7 @@ class UpdateAppointmentFactory
 {
 	/*
 	* Function __invoke
-	* Recieves update appointment request
+	* Purpose: Recieves update appointment request
 	* @params : appointment id
 	* @returns : bool status
 	*/

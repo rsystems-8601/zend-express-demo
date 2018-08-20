@@ -1,7 +1,7 @@
 <?php
 /**
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @link      https://github.com/rsystems-8601/zend-express-demo for the canonical source repository
+ * @copyright Copyright (c) 2005-2016 RSystems Inc. (http://www.rsystems..com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 

@@ -1,4 +1,8 @@
 <?php
+/*
+* Author : Anil Sharma 
+* Date Created: 16-08-2018
+*/
 
 namespace App\Action;
 
@@ -11,7 +15,7 @@ class DeleteAppointmentFactory
 {
 	/*
 	* Function __invoke
-	* recieves cancel (delete) appointment request
+	* Purpose: recieves cancel (delete) appointment request
 	* @params : appointment id
 	* @returns : bool status
 	*/

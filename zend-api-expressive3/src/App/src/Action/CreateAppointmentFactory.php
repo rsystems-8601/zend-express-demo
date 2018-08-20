@@ -1,4 +1,8 @@
 <?php
+/*
+	* Author : Anil Sharma -Rsystems
+	* Date Created: 16-08-2018
+*/
 
 namespace App\Action;
 
@@ -11,7 +15,7 @@ class CreateAppointmentFactory
 {
 	/*
 	* Function __invoke
-	* Recieves book appointment request
+	* Purpose: Recieves book appointment request	* 
 	* @params : username, appointment date, appointment reason
 	* @returns : bool status
 	*/

@@ -1,4 +1,8 @@
 <?php
+/*
+* Author : Pradeep Srivastav 
+* Date Created: 08-16-2018
+*/
 
 namespace App\Action;
 
@@ -27,7 +31,7 @@ class UpdateAppointmentAction implements ServerMiddlewareInterface
 
 	/*
 	* Function process
-	* Returns updated appointment response
+	* Purpose: Returns updated appointment response
 	* @params : int appointment id
 	* @returns : bool status
 	*/

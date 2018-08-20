@@ -1,5 +1,9 @@
 <?php
-		
+/*
+* Author : Anil Sharma 
+* Date Created: 16-08-2018
+*/	
+
 namespace App\Action;
 
 use Interop\Http\ServerMiddleware\DelegateInterface;
@@ -32,7 +36,7 @@ class CreateAppointmentAction implements ServerMiddlewareInterface
 	
 	/*
 	* Function Process
-	* New appointment confirmation response
+	* Purpose : New appointment confirmation response
 	* @params : username, appointment date, reason
 	* @returns : bool status
 	*/

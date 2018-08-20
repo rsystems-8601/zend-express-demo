@@ -1,7 +1,7 @@
 <?php
 /**
- * Created by Damien G. (damien.galicher@gmail.com)
- * Date: 08/08/2016 - Time: 18:10
+ * Created by Pradeep Srivastav (pradeep.srivastav@rsystems.com)
+ * Date: 08/16/2018 - Time: 18:10
  */
 
 namespace Blog\Model;

@@ -1,4 +1,8 @@
 <?php	
+/*
+* Author : Pradeep Srivastav 
+* Date Created: 08-16-2018
+*/
 
 namespace App\Action;
 
@@ -11,7 +15,7 @@ class ViewAppointmentFactory
 {
 	/*
 	* Function __invoke
-	* Recieves view appointment request
+	* Purpose: Recieves view appointment request
 	* @returns : string appointments string
 	*/
     public function __invoke(ContainerInterface $container)

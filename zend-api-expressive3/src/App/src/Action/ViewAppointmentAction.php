@@ -1,4 +1,8 @@
 <?php
+/*
+* Author : Pradeep Srivastav 
+* Date Created: 08-16-2018
+*/
 
 namespace App\Action;
 
@@ -27,7 +31,7 @@ class ViewAppointmentAction implements ServerMiddlewareInterface
 
 	/*
 	* Function process
-	* Returns list of appointments response
+	* Purpose: Returns list of appointments response
 	* @returns : string json
 	*/
     public function process(ServerRequestInterface $request, DelegateInterface $delegate)
