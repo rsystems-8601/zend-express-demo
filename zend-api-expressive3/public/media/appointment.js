@@ -9,10 +9,13 @@ $(function() {
 		/**
 		** Function call: prepare() - 
 		** Function call: get_appointments() - load all active appointments
-		*/
+		*/		
 		
 		prepare();
 		get_appointments();	
+		
+		
+	
 
 		/**
 		** @event : book appointment
@@ -74,6 +77,8 @@ $(function() {
 	
 });
 
+
+
 /**
 ** reset the book appointment form
 ** @params : 
@@ -98,6 +103,15 @@ function book_appointment()
 	$("input:text:visible:first").focus();	
 	$(".view_appointments").hide();
 	$(".appointment_form").show();
+	
+		/**
+		** Function call: on load() - 
+		** Function call: current_date() - 
+		*/
+		
+		$("#appointment_time").val(current_date()); //yyyy-MM-ddThh:mm
+	
+	
 }
 
 /**
@@ -155,6 +169,7 @@ function get_appointments()
 
 function update_appointment(id) 
 {
+	
 	$(".view_appointments").hide();
 	$.ajax({
 		type: 'GET',
@@ -168,7 +183,21 @@ function update_appointment(id)
 				$('#full_name').val(data.username);
 				$('#appointment_id').val(data.id);						
 				$('#appointment_reason').val(data.reason);
-				$('#appointment_time').val(data.booking_date);
+				
+						// format booking_date //2018-08-14T14:31
+						var year = data.booking_date.substr(0,4);
+						var mon = data.booking_date.substr(5,2);
+						var day = data.booking_date.substr(8,2);
+						var hr = data.booking_date.substr(11,2);
+						var min = data.booking_date.substr(14,2);
+						
+						var am_pm = 'AM';
+						if(hr > 12) {
+							hr = hr -12; // 12 hr format
+							am_pm = 'PM';
+						}
+						data.booking_date = year+'-'+mon+'-'+day+'T'+hr+':'+min;														
+				$('#appointment_time').attr('value',data.booking_date);
 				$('.form_update').show();
 				$('.form_submit').hide();						
 			}					
@@ -196,3 +225,20 @@ function cancel_appointment(id)
 		}
 	});		
 }
+
+
+
+/*
+** For setting current date at booking appointment 
+** @type : return date with time
+*/
+
+function current_date() {
+		var dt = new Date($.now());
+		var today_date = ("0" + dt.getDate()).slice(-2);
+		var current_month = ("0" + (dt.getMonth() + 1)).slice(-2);
+		var current_hour = ("0" + dt.getHours()).slice(-2);
+		var current_minutes = ("0" + dt.getMinutes()).slice(-2);		
+		return  dt.getFullYear()+'-'+current_month+'-'+today_date+'T'+current_hour + ":" + current_minutes;
+	}
+	
