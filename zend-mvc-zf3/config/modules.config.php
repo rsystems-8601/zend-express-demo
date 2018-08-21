@@ -21,6 +21,5 @@ return [
     'Zend\Db', // Db Adapter
     'Zend\Form', // Form Element
     'Application',
-    'Blog',
     'Appointment'
 ];

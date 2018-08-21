@@ -14,7 +14,7 @@
 return [
     'db' => [
         'driver'    => 'Pdo',
-        'dsn'       => 'mysql:dbname=zf2;host=localhost;charset=utf8',
+        'dsn'       => 'mysql:dbname=zf3mvc;host=localhost;charset=utf8',
 
         // WARNING move in the local.php file
         'username'  => 'root',

@@ -32,10 +32,11 @@ class PostFieldset extends Fieldset
         ]);
 		
 		$this->add([
-            'type' => 'date',
+            'type' => 'DateTimeLocal',
             'name' => 'bookingdate',
             'options' => [
                 'label' => 'Booking Date',
+				'format' => 'Y-m-d\TH:i'
             ],
         ]);
 
