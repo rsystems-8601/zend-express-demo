@@ -1,10 +1,23 @@
 
-step for run the application:
+Step for run the application:
 
--- create database group_health on your mysql on localhost
--- upload group_health.sql in your databse and start that mysql on localhost
--- download the package form git
--- open terminal go inside the folder 
--- run command composer serve
--- then open link on browser http://127.0.0.1:8080
+-- Install Composer as instructed in https://getcomposer.org/download/
+-- After install composer, check the composer status  in system terminal for your confirmation.
+-- Create database group_health on mysql on your localhost
+-- Upload SQL Files in your databse and start that mysql on your localhost
+
+	https://github.com/rsystems-8601/zend-express-demo/blob/master/zend-mvc-zf3/zf3mvc.sql
+	https://github.com/rsystems-8601/zend-express-demo/tree/master/zend-api-expressive3/group_health.sql
+	
+-- Download the php application form git
+	1st package - https://github.com/rsystems-8601/zend-express-demo/tree/master/zend-mvc-zf3
+	2nd package - https://github.com/rsystems-8601/zend-express-demo/tree/master/zend-api-expressive3
+-- Open terminal go inside the folder of any package
+-- Run command in your system terminal-- "composer serve"
+	e.g.
+	c:\rsystems-8601/zend-express-demo/tree/master/zend-mvc-zf3> composer serve
+	
+-- Then open link on browser http://127.0.0.1:8080
+-- Change your loacl IP in the file 
+https://github.com/rsystems-8601/zend-express-demo/blob/master/zend-api-expressive3/public/media/appointment.js
 
