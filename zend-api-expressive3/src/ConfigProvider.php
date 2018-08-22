@@ -38,7 +38,6 @@ class ConfigProvider
             ],
             'factories'  => [
                 Action\HomePageAction::class => Action\HomePageFactory::class,
-				Action\SaveDoctorAction::class => Action\SaveDoctorFactory::class,
 				Action\CreateAppointmentAction::class => Action\CreateAppointmentFactory::class,
 				Action\ViewAppointmentAction::class => Action\ViewAppointmentFactory::class,
 				Action\UpdateAppointmentAction::class => Action\UpdateAppointmentFactory::class,

@@ -43,10 +43,5 @@ class UpdateAppointmentAction implements ServerMiddlewareInterface
                 'result' => $this->router->setQueryResponse,
             ]);
         }
-
-        $data = [];
-		$data['siteName']= 'GroupHEALTH';        
-
-        return new HtmlResponse($this->template->render('app::save-doctor', $data));
     }
 }

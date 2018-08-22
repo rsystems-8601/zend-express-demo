@@ -149,16 +149,18 @@ function get_appointments()
 				  record = JSON.parse(JSON.stringify(value));
 				  records = records + '<div class="row record">'
 				  +'<div class="col-md-2">'+record.username+'</div>'
-				  +'<div class="col-md-4">'+record.reason+'</div>'
-				  +'<div class="col-md-3">'+record.booking_date+'</div>'
-				  +'<div  class="col-md-2 icon" alt="Edit appointment" title="Edit appointment" value='+record.id+' onclick="update_appointment('+record.id+')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>'
-				  +'<div  class="col-md-2 icon" alt="Cancel appointment" title="Cancel appointment" value='+record.id+' onclick="cancel_appointment('+record.id+')"><i class="fa fa-times" aria-hidden="true"></i></div>'
+				  +'<div class="col-md-3">'+record.reason+'</div>'
+				  +'<div class="col-md-2">'+record.booking_date+'</div>'
+				  +'<div class="col-md-2">'+record.end_time+'</div>'
+				  +'<div  class="col-md-1 icon" alt="Edit appointment" title="Edit appointment" value='+record.id+' onclick="update_appointment('+record.id+')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>'
+				  +'<div  class="col-md-1 icon" alt="Cancel appointment" title="Cancel appointment" value='+record.id+' onclick="cancel_appointment('+record.id+')"><i class="fa fa-times" aria-hidden="true"></i></div>'
 				  +'</div>';
 				});
 				records = '<div class="row record reocrd-bold">'
 				  +'<div class="col-md-2">Name</div>'
-				  +'<div class="col-md-4">Reason</div>'
-				  +'<div class="col-md-3">Booking Date</div>'
+				  +'<div class="col-md-3">Reason</div>'
+				  +'<div class="col-md-2">Booking Date</div>'
+				  +'<div class="col-md-2">End Time</div>'
 				  +'</div>'
 				+records;
 				$('.view_appointments').html(records);

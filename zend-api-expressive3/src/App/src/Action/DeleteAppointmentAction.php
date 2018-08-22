@@ -42,11 +42,6 @@ class DeleteAppointmentAction implements ServerMiddlewareInterface
                 'status' => true,
                 'result' => $this->router->setQueryResponse,
             ]);
-        }
-
-        $data = [];
-		$data['siteName']= 'GroupHEALTH';        
-
-        return new HtmlResponse($this->template->render('app::save-doctor', $data));
+        }       
     }
 }

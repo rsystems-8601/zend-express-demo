@@ -28,9 +28,9 @@ class CreateAppointmentFactory
 		if($username  && $username!=''){						
 			$reason = $this->getParam('appointment_reason');
 			$booking_date = $this->getParam('appointment_time');	
-			
+			$endTime = date("Y-m-d H:i",strtotime($booking_date)+900);
 			try{
-				$stmt = $con->query("INSERT INTO `Appointments` ( `username`, `reason`, `booking_date`) VALUES ('$username', '$reason', '$booking_date')");
+				$stmt = $con->query("INSERT INTO `Appointments` ( `username`, `reason`, `booking_date`) VALUES ('$username', '$reason', '$booking_date','$endTime')");
 				$result = $stmt->execute();
 				$updateStatus= true;
 			}catch(Exception $e){

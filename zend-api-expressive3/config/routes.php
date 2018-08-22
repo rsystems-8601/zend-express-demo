@@ -29,7 +29,6 @@
 /** @var \Zend\Expressive\Application $app */
 
 $app->get('/', App\Action\HomePageAction::class, 'home');
-$app->get('/savedoctor', App\Action\SaveDoctorAction::class, 'savedoctor');
 $app->post('/createappointment', App\Action\CreateAppointmentAction::class, 'createappointment');
 $app->get('/viewappointment', App\Action\ViewAppointmentAction::class, 'viewappointment');
 $app->post('/updateappointment', App\Action\UpdateAppointmentAction::class, 'updateappointment');
