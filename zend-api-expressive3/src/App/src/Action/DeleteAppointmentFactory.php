@@ -22,18 +22,8 @@ class DeleteAppointmentFactory
     public function __invoke(ContainerInterface $container)
     {
 		$con = $container->get(AdapterInterface::class);	
-		$appointment_id = $this->getParam('id');		
-		$where='';
-		$updateStatus= false;
-		if($appointment_id  && is_numeric($appointment_id)){			
-			try{
-				$stmt = $con->query("UPDATE `Appointments` SET `is_deleted` =1 WHERE `id` =?");
-				$stmt->execute(array($appointment_id));
-				$updateStatus= true;
-			}catch(Exception $e){
-				// Exception to be handled here
-			}
-		}
+		$model= new \App\Model\Appointment($con);
+		$updateStatus = $model->deleteAppointment();
 		
         $router   = $container->get(RouterInterface::class);
 		
@@ -43,8 +33,4 @@ class DeleteAppointmentFactory
 		$template->setQueryResponse= $updateStatus;
         return new DeleteAppointmentAction($router, $template);
     }
-	
-	function getParam($key){
-		return isset($_POST[$key])? $_POST[$key]:false;
-	}
 }

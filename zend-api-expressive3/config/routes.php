@@ -30,7 +30,7 @@
 
 $app->get('/', App\Action\HomePageAction::class, 'home');
 $app->post('/createappointment', App\Action\CreateAppointmentAction::class, 'createappointment');
-$app->get('/viewappointment', App\Action\ViewAppointmentAction::class, 'viewappointment');
+$app->route('/viewappointment', App\Action\ViewAppointmentAction::class, ['get', 'post'], 'viewappointment');
 $app->post('/updateappointment', App\Action\UpdateAppointmentAction::class, 'updateappointment');
 $app->post('/deleteappointment', App\Action\DeleteAppointmentAction::class, 'deleteappointment');
 $app->get('/api/ping', App\Action\PingAction::class, 'api.ping');
