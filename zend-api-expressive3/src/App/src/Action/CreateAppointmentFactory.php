@@ -30,8 +30,8 @@ class CreateAppointmentFactory
 			$booking_date = $this->getParam('appointment_time');	
 			$endTime = date("Y-m-d H:i",strtotime($booking_date)+900);
 			try{
-				$stmt = $con->query("INSERT INTO `Appointments` ( `username`, `reason`, `booking_date`) VALUES ('$username', '$reason', '$booking_date','$endTime')");
-				$result = $stmt->execute();
+				$stmt = $con->query("INSERT INTO `Appointments` ( `username`, `reason`, `booking_date`,`end_time`) VALUES (?,?,?,?)");
+				$stmt->execute(array($username, $reason, $booking_date,$endTime));
 				$updateStatus= true;
 			}catch(Exception $e){
 				// Exception to be handled here		

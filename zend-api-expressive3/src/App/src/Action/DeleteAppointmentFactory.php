@@ -27,8 +27,8 @@ class DeleteAppointmentFactory
 		$updateStatus= false;
 		if($appointment_id  && is_numeric($appointment_id)){			
 			try{
-				$stmt = $con->query("UPDATE `Appointments` SET `is_deleted` =1 WHERE `id` =$appointment_id");
-				$result = $stmt->execute();
+				$stmt = $con->query("UPDATE `Appointments` SET `is_deleted` =1 WHERE `id` =?");
+				$stmt->execute(array($appointment_id));
 				$updateStatus= true;
 			}catch(Exception $e){
 				// Exception to be handled here

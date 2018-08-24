@@ -28,7 +28,12 @@ class ViewAppointmentFactory
 			$where = " and id=$appointment_id ";
 		}
 		$stmt = $con->query("SELECT id, username, reason, DATE_FORMAT(booking_date,'%Y-%m-%d %h:%i') as booking_date, DATE_FORMAT(end_time,'%Y-%m-%d %h:%i') as end_time, is_deleted FROM `Appointments` where is_deleted!=1 ".$where);
-		$result = $stmt->execute();
+		if($appointment_id  && is_numeric($appointment_id)){			
+			$result = $stmt->execute(array($appointment_id));
+		}else{
+			$result = $stmt->execute();
+		}
+		
 		$result->getResource()->setFetchMode(\PDO::FETCH_ASSOC);
 		$rows = $result->getResource()->fetchAll();
 		

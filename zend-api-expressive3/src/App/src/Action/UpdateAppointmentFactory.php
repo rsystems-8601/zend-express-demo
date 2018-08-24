@@ -30,8 +30,8 @@ class UpdateAppointmentFactory
 			$reason = $this->getParam('appointment_reason');
 			$booking_date = $this->getParam('appointment_time');	
 			try{
-				$stmt = $con->query("UPDATE `Appointments` SET `username` = '$username', `reason` = '$reason', `booking_date` = '$booking_date' WHERE `id` = $appointment_id");
-				$result = $stmt->execute();
+				$stmt = $con->query("UPDATE `Appointments` SET `username` = ?, `reason` = ?, `booking_date` = ? WHERE `id` = ?" );
+				$stmt->execute(array($username,$reason,$booking_date,$appointment_id));
 				$updateStatus= true;
 			}catch(Exception $e){
 				// Exception to be handled here 
