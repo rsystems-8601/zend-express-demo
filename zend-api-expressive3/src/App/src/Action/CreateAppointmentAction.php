@@ -43,7 +43,7 @@ class CreateAppointmentAction implements ServerMiddlewareInterface
 
     public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
-        if (! $this->template) {
+        if ( $this->template) {
             return new JsonResponse([
                 'status' => true,
                 'result' => $this->template->setQueryResponse,

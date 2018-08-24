@@ -38,7 +38,7 @@ class ViewAppointmentFactory
 		$rows = $result->getResource()->fetchAll();
 		
         $router   = $container->get(RouterInterface::class);
-		$router->setQueryResponse= $rows;
+		
         $template = $container->has(TemplateRendererInterface::class)
             ? $container->get(TemplateRendererInterface::class)
             : null;

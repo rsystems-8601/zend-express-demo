@@ -40,7 +40,7 @@ class DeleteAppointmentFactory
         $template = $container->has(TemplateRendererInterface::class)
             ? $container->get(TemplateRendererInterface::class)
             : null;
-		$template->setQueryResponse= $rows;
+		$template->setQueryResponse= $updateStatus;
         return new DeleteAppointmentAction($router, $template);
     }
 	
