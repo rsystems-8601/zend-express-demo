@@ -26,7 +26,7 @@ class UpdateAppointmentAction implements ServerMiddlewareInterface
     public function __construct(Router\RouterInterface $router, Template\TemplateRendererInterface $template = null)
     {
         $this->router   = $router;
-        $this->template = false; 
+        $this->template = $template;
     }
 
 	/*
@@ -40,7 +40,7 @@ class UpdateAppointmentAction implements ServerMiddlewareInterface
         if (! $this->template) {
             return new JsonResponse([
                 'status' => true,
-                'result' => $this->router->setQueryResponse,
+                'result' => $this->template->setQueryResponse,
             ]);
         }
     }

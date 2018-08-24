@@ -25,7 +25,7 @@ class ViewAppointmentFactory
 		$appointment_id = $this->getParam('id');		
 		$where='';
 		if($appointment_id  && is_numeric($appointment_id)){
-			$where = " and id=$appointment_id ";
+			$where = " and id=? ";
 		}
 		$stmt = $con->query("SELECT id, username, reason, DATE_FORMAT(booking_date,'%Y-%m-%d %h:%i') as booking_date, DATE_FORMAT(end_time,'%Y-%m-%d %h:%i') as end_time, is_deleted FROM `Appointments` where is_deleted!=1 ".$where);
 		if($appointment_id  && is_numeric($appointment_id)){			
@@ -42,7 +42,8 @@ class ViewAppointmentFactory
         $template = $container->has(TemplateRendererInterface::class)
             ? $container->get(TemplateRendererInterface::class)
             : null;
-
+		$template->setQueryResponse= $rows;
+		
         return new ViewAppointmentAction($router, $template);
     }
 	

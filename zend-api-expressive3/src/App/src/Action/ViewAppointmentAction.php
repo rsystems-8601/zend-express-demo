@@ -26,7 +26,7 @@ class ViewAppointmentAction implements ServerMiddlewareInterface
     public function __construct(Router\RouterInterface $router, Template\TemplateRendererInterface $template = null)
     {
         $this->router   = $router;
-        $this->template = false;
+        $this->template = $template;
     }
 
 	/*
@@ -36,10 +36,10 @@ class ViewAppointmentAction implements ServerMiddlewareInterface
 	*/
     public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
-        if (! $this->template) {
+        if ( $this->template) {
             return new JsonResponse([
                 'status' => true,
-                'result' => $this->router->setQueryResponse,
+                'result' => $this->template->setQueryResponse,
             ]);
         }
     }
