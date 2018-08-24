@@ -24,13 +24,13 @@ class DeleteAppointmentFactory
 		$con = $container->get(AdapterInterface::class);	
 		$model= new \App\Model\Appointment($con);
 		$updateStatus = $model->deleteAppointment();
-		
-        $router   = $container->get(RouterInterface::class);
-		
-        $template = $container->has(TemplateRendererInterface::class)
-            ? $container->get(TemplateRendererInterface::class)
-            : null;
+
+		$router   = $container->get(RouterInterface::class);
+
+		$template = $container->has(TemplateRendererInterface::class)
+			? $container->get(TemplateRendererInterface::class)
+			: null;
 		$template->setQueryResponse= $updateStatus;
-        return new DeleteAppointmentAction($router, $template);
+		return new DeleteAppointmentAction($router, $template);
     }
 }

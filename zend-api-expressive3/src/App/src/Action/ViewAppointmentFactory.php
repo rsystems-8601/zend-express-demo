@@ -23,18 +23,18 @@ class ViewAppointmentFactory
     {
 		
 		$con = $container->get(AdapterInterface::class);			
-		
+
 		$model= new \App\Model\Appointment($con);
 		$rows = $model->getAppointment();
-		
-        $router   = $container->get(RouterInterface::class);
-		
-        $template = $container->has(TemplateRendererInterface::class)
-            ? $container->get(TemplateRendererInterface::class)
-            : null;
+
+		$router   = $container->get(RouterInterface::class);
+
+		$template = $container->has(TemplateRendererInterface::class)
+			? $container->get(TemplateRendererInterface::class)
+			: null;
 		$template->setQueryResponse= $rows;
-		
-        return new ViewAppointmentAction($router, $template);
+
+		return new ViewAppointmentAction($router, $template);
     }
 	
 }

@@ -25,12 +25,12 @@ class CreateAppointmentFactory
 		$model= new \App\Model\Appointment($con);
 		$updateStatus = $model->createAppointment();
 		
-        $router   = $container->get(RouterInterface::class);
-		
-        $template = $container->has(TemplateRendererInterface::class)
-            ? $container->get(TemplateRendererInterface::class)
-            : null;
+		$router   = $container->get(RouterInterface::class);
+
+		$template = $container->has(TemplateRendererInterface::class)
+			? $container->get(TemplateRendererInterface::class)
+			: null;
 		$template->setQueryResponse= $updateStatus;
-        return new CreateAppointmentAction($router, $template);
+		return new CreateAppointmentAction($router, $template);
     }
 }
