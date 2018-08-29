@@ -10,6 +10,7 @@ use Psr\Container\ContainerInterface;
 use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 use Zend\Db\Adapter\AdapterInterface;
+use App\Model\Appointment;
 
 class CreateAppointmentFactory
 {
@@ -22,7 +23,7 @@ class CreateAppointmentFactory
     public function __invoke(ContainerInterface $container)
     {
 		$con = $container->get(AdapterInterface::class);	
-		$model= new \App\Model\Appointment($con);
+		$model= new Appointment($con);
 		$updateStatus = $model->createAppointment();
 		
 		$router   = $container->get(RouterInterface::class);

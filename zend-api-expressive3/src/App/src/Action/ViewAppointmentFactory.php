@@ -10,7 +10,7 @@ use Psr\Container\ContainerInterface;
 use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 use Zend\Db\Adapter\AdapterInterface;
-use App\Model;
+use App\Model\Appointment;
 
 class ViewAppointmentFactory
 {
@@ -24,7 +24,7 @@ class ViewAppointmentFactory
 		
 		$con = $container->get(AdapterInterface::class);			
 
-		$model= new \App\Model\Appointment($con);
+		$model= new Appointment($con);
 		$rows = $model->getAppointment();
 
 		$router   = $container->get(RouterInterface::class);
