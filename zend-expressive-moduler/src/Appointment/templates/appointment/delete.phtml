@@ -23,14 +23,18 @@ $this->headTitle('Delete appointment');
         <th>Id</th>
         <td><?= $appointment->getId() ?></td>
     </tr>
-    <tr>
-        <th>Artist</th>
-        <td><?= $appointment->getArtist() ?></td>
+	
+	<tr>
+        <th>Username</th>
+        <td><?= $appointment->getUsername() ?></td>
     </tr>
+	
+	
     <tr>
-        <th>Title</th>
-        <td><?= $appointment->getTitle() ?></td>
+        <th>Reason</th>
+        <td><?= $appointment->getReason() ?></td>
     </tr>
+    
 </table>
 
 <div class="alert alert-danger">

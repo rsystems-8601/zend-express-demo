@@ -1,9 +1,11 @@
 <?php
 $this->headLink()
+	->prependStylesheet('/media/style.css')
     ->prependStylesheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
     ->prependStylesheet('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
 
 $this->inlineScript()
+	->prependFile('/media/appointment.js')
     ->prependFile('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
     ->prependFile('https://code.jquery.com/jquery-2.1.4.min.js');
 ?>
@@ -69,7 +71,7 @@ $this->inlineScript()
         <div class="container">
             <hr />
             <p>
-                &copy; 2005 - <?= date('Y') ?> by Zend Technologies Ltd. All rights reserved.
+                &copy; 2005 - <?= date('Y') ?> by RSystems Pvt. Ltd. All rights reserved.
             </p>
         </div>
     </footer>

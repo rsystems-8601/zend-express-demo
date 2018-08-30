@@ -16,7 +16,7 @@ class AppointmentInputFilter extends InputFilter
     public function init()
     {
         $this->add([
-            'name'     => 'artist',
+            'name'     => 'reason',
             'required' => true,
             'filters'  => [
                 ['name' => 'StripTags'],
@@ -34,7 +34,7 @@ class AppointmentInputFilter extends InputFilter
         ]);
 
         $this->add([
-            'name'     => 'title',
+            'name'     => 'username',
             'required' => true,
             'filters'  => [
                 ['name' => 'StripTags'],

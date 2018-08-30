@@ -13,8 +13,9 @@ $this->headTitle('Appointments');
     <thead>
     <tr>
         <th>Id</th>
-        <th>Artist</th>
-        <th>Title</th>
+		<th>Username</th>
+        <th>Reason</th>
+        <th> Action </th>
     </tr>
     </thead>
     <tbody>
@@ -27,8 +28,8 @@ $this->headTitle('Appointments');
         ?>
         <tr>
             <td><?= $appointmentEntity->getId() ?></td>
-            <td><?= $appointmentEntity->getArtist() ?></td>
-            <td><?= $appointmentEntity->getTitle() ?></td>
+            <td><?= $appointmentEntity->getReason() ?></td>
+            <td><?= $appointmentEntity->getUsername() ?></td>
             <td>
                 <a href="<?= $updateUrl ?>" class="btn btn-success">
                     <i class="fa fa-pencil"></i>

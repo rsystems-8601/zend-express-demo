@@ -24,20 +24,23 @@ $this->headTitle('Edit appointment');
 
 <div class="well">
     <?= $this->form()->openTag($form) ?>
+    
     <div class="form-group">
-        <?= $this->formLabel($form->get('artist')) ?>
+        <?= $this->formLabel($form->get('username')) ?>
         <div class="col-sm-10">
-            <?= $this->formElement($form->get('artist')) ?>
-            <?= $this->formElementErrors($form->get('artist')) ?>
+            <?= $this->formElement($form->get('username')) ?>
+            <?= $this->formElementErrors($form->get('username')) ?>
         </div>
     </div>
-    <div class="form-group">
-        <?= $this->formLabel($form->get('title')) ?>
+	
+	<div class="form-group">
+        <?= $this->formLabel($form->get('reason')) ?>
         <div class="col-sm-10">
-            <?= $this->formElement($form->get('title')) ?>
-            <?= $this->formElementErrors($form->get('title')) ?>
+            <?= $this->formElement($form->get('reason')) ?>
+            <?= $this->formElementErrors($form->get('reason')) ?>
         </div>
     </div>
+	
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <?= $this->formElement($form->get('save_appointment')) ?>

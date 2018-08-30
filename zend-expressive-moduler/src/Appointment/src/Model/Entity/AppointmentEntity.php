@@ -15,12 +15,12 @@ class AppointmentEntity implements ArraySerializableInterface
     /**
      * @var string
      */
-    private $artist;
+    private $reason;
 
     /**
      * @var string
      */
-    private $title;
+    private $username;
 
     /**
      * @return int
@@ -33,17 +33,17 @@ class AppointmentEntity implements ArraySerializableInterface
     /**
      * @return string
      */
-    public function getArtist()
+    public function getReason()
     {
-        return $this->artist;
+        return $this->reason;
     }
 
     /**
      * @return string
      */
-    public function getTitle()
+    public function getUsername()
     {
-        return $this->title;
+        return $this->username;
     }
 
     /**
@@ -61,31 +61,31 @@ class AppointmentEntity implements ArraySerializableInterface
     }
 
     /**
-     * @param string $artist
+     * @param string $reason
      */
-    public function setArtist($artist)
+    public function setReason($reason)
     {
-        if (empty($artist) || strlen($artist) > 100) {
+        if (empty($reason) || strlen($reason) > 100) {
             throw new DomainException(
-                'Appointment artist must be between 1 and 100 chars!'
+                'Appointment reason must be between 1 and 100 chars!'
             );
         }
 
-        $this->artist = $artist;
+        $this->reason = $reason;
     }
 
     /**
-     * @param string $title
+     * @param string $username
      */
-    public function setTitle($title)
+    public function setUsername($username)
     {
-        if (empty($title) || strlen($title) > 100) {
+        if (empty($username) || strlen($username) > 100) {
             throw new DomainException(
-                'Appointment title must be between 1 and 100 chars!'
+                'Appointment username must be between 1 and 100 chars!'
             );
         }
 
-        $this->title = $title;
+        $this->username = $username;
     }
 
     /**

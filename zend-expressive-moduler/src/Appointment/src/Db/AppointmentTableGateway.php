@@ -16,7 +16,7 @@ class AppointmentTableGateway extends TableGateway implements AppointmentStorage
      */
     public function __construct(AdapterInterface $adapter, ResultSetInterface $resultSet)
     {
-        parent::__construct('album', $adapter, null, $resultSet);
+        parent::__construct('user_booking', $adapter, null, $resultSet);
     }
 
     /**

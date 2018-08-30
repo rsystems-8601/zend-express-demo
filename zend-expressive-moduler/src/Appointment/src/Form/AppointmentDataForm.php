@@ -20,13 +20,13 @@ class AppointmentDataForm extends Form
 
         $this->add(
             [
-                'name'       => 'artist',
+                'name'       => 'reason',
                 'type'       => 'Text',
                 'attributes' => [
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'label'            => 'Artist',
+                    'label'            => 'Reason',
                     'label_attributes' => [
                         'class' => 'col-sm-2 control-label',
                     ],
@@ -36,13 +36,13 @@ class AppointmentDataForm extends Form
 
         $this->add(
             [
-                'name'       => 'title',
+                'name'       => 'username',
                 'type'       => 'Text',
                 'attributes' => [
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'label' => 'Title',
+                    'label' => 'Username',
                     'label_attributes' => [
                         'class' => 'col-sm-2 control-label',
                     ],
