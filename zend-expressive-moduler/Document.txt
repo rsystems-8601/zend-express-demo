@@ -1,0 +1,56 @@
+module Setting
+D:\POC\zend-express-demo\zend-expressive-moduler\src\App\templates\layout\default.phtml
+D:\POC\zend-express-demo\zend-expressive-moduler\composer.json
+D:\POC\zend-express-demo\zend-expressive-moduler\vendor\composer\autoload_static.php
+D:\POC\zend-express-demo\zend-expressive-moduler\vendor\composer\autoload_psr4.php
+D:\POC\zend-express-demo\zend-expressive-moduler\config\routes.php
+D:\POC\zend-express-demo\zend-expressive-moduler\config\config.php
+
+
+Local Setting
+D:\POC\zend-express-demo\zend-expressive-moduler\config\autoload\phpsettings.local.php
+D:\POC\zend-express-demo\zend-expressive-moduler\config\autoload\development.local.php
+D:\POC\zend-express-demo\zend-expressive-moduler\config\autoload\templates.global.php
+
+
+
+database name
+D:\POC\zend-express-demo\zend-expressive-moduler\config\autoload\database.global.php
+
+database setting
+D:\POC\zend-express-demo\zend-expressive-moduler\config\autoload\zend-db.global.php
+<?php
+use Zend\Db\ConfigProvider;
+
+return (new ConfigProvider())();
+D:\POC\zend-express-demo\zend-expressive-moduler\config\autoload\global.php
+<?php
+
+use Zend\Db\Adapter\AdapterAbstractServiceFactory;
+return [
+    'service_manager' => [
+        'abstract_factories' => [
+            AdapterAbstractServiceFactory::class,
+        ],
+    ],
+];
+
+Table Name
+D:\POC\zend-express-demo\zend-expressive-moduler\src\Appointment\src\Db\AppointmentTableGateway.php
+
+route
+D:\POC\zend-express-demo\zend-expressive-moduler\config\routes.php
+
+
+composer require zendframework/zend-db
+composer require zendframework/zend-hydrator
+composer require zendframework/zend-i18n
+composer require zendframework/zend-inputfilter
+composer require zendframework/zend-log
+
+
+"scripts": {        
+        "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
+        "test": "phpunit --colors=always",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+    }
