@@ -1,0 +1,49 @@
+<?php
+
+use Album\Model\Entity\AlbumEntity;
+
+$this->headTitle('Albums');
+?>
+
+<div class="jumbotron">
+    <h1>Album list</h1>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Artist</th>
+        <th>Title</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php /** @var AlbumEntity $albumEntity */ ?>
+    <?php foreach ($this->albumList as $albumEntity) : ?>
+        <?php
+        $urlParams = ['id' => $albumEntity->getId()];
+        $updateUrl = $this->url('album-update', $urlParams);
+        $deleteUrl = $this->url('album-delete', $urlParams);
+        ?>
+        <tr>
+            <td><?= $albumEntity->getId() ?></td>
+            <td><?= $albumEntity->getArtist() ?></td>
+            <td><?= $albumEntity->getTitle() ?></td>
+            <td>
+                <a href="<?= $updateUrl ?>" class="btn btn-success">
+                    <i class="fa fa-pencil"></i>
+                </a>
+                <a href="<?= $deleteUrl ?>" class="btn btn-success">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
+<p>
+    <a href="<?= $this->url('album-create') ?>" class="btn btn-success">
+        Create new album
+    </a>
+</p>

@@ -1,0 +1,49 @@
+<?php
+
+use Appointment\Model\Entity\AppointmentEntity;
+
+$this->headTitle('Appointments');
+?>
+
+<div class="jumbotron">
+    <h1>Appointment list</h1>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Artist</th>
+        <th>Title</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php /** @var AppointmentEntity $appointmentEntity */ ?>
+    <?php foreach ($this->appointmentList as $appointmentEntity) : ?>
+        <?php
+        $urlParams = ['id' => $appointmentEntity->getId()];
+        $updateUrl = $this->url('appointment-update', $urlParams);
+        $deleteUrl = $this->url('appointment-delete', $urlParams);
+        ?>
+        <tr>
+            <td><?= $appointmentEntity->getId() ?></td>
+            <td><?= $appointmentEntity->getArtist() ?></td>
+            <td><?= $appointmentEntity->getTitle() ?></td>
+            <td>
+                <a href="<?= $updateUrl ?>" class="btn btn-success">
+                    <i class="fa fa-pencil"></i>
+                </a>
+                <a href="<?= $deleteUrl ?>" class="btn btn-success">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
+<p>
+    <a href="<?= $this->url('appointment-create') ?>" class="btn btn-success">
+        Create new appointment
+    </a>
+</p>

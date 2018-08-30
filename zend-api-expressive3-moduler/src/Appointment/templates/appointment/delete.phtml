@@ -1,0 +1,55 @@
+<?php
+use Appointment\Form\AppointmentDeleteForm;
+use Appointment\Model\Entity\AppointmentEntity;
+
+/** @var AppointmentEntity $appointment */
+$appointment = $this->appointmentEntity;
+
+/** @var AppointmentDataForm $form */
+$form = $this->appointmentForm;
+$form->setAttribute(
+    'action', $this->url('appointment-delete-handle', ['id' => $appointment->getId()])
+);
+
+$this->headTitle('Delete appointment');
+?>
+
+<div class="jumbotron">
+    <h1>Delete appointment</h1>
+</div>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <td><?= $appointment->getId() ?></td>
+    </tr>
+    <tr>
+        <th>Artist</th>
+        <td><?= $appointment->getArtist() ?></td>
+    </tr>
+    <tr>
+        <th>Title</th>
+        <td><?= $appointment->getTitle() ?></td>
+    </tr>
+</table>
+
+<div class="alert alert-danger">
+    <strong><?= $this->message ?></strong>
+</div>
+
+<div class="well">
+    <?= $this->form()->openTag($form) ?>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <?= $this->formElement($form->get('delete_appointment_yes')) ?>
+            <?= $this->formElement($form->get('delete_appointment_no')) ?>
+        </div>
+    </div>
+    <?= $this->form()->closeTag() ?>
+</div>
+
+<p>
+    <a href="<?= $this->url('appointment') ?>" class="btn btn-success">
+        Back to appointment list
+    </a>
+</p>
