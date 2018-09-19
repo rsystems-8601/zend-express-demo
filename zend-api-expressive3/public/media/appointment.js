@@ -9,7 +9,7 @@ $(function() {
 		** API_URL: server API location
 		*/
 		
-		API_URL = "http://10.131.40.109:8080/";
+		API_URL = "http://127.0.0.1:8080/";
 		
 		/**
 		** Function call: prepare() - 

@@ -8,6 +8,7 @@ use Zend\Expressive\Router\Middleware\ImplicitOptionsMiddleware;
 use Zend\Expressive\Router\Middleware\RouteMiddleware;
 use Zend\Expressive\Middleware\NotFoundHandler;
 use Zend\Stratigility\Middleware\ErrorHandler;
+use App\Action\Middleware;
 
 /**
  * Setup middleware pipeline:
@@ -57,3 +58,5 @@ $app->pipe(DispatchMiddleware::class);
 // NotFoundHandler kicks in; alternately, you can provide other fallback
 // middleware to execute.
 $app->pipe(NotFoundHandler::class);
+//$app->pipe(App\Action\AuthAction::class);
+$app->pipe(App\Action\AuthAction::class);
