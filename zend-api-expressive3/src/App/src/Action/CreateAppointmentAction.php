@@ -44,6 +44,7 @@ class CreateAppointmentAction implements ServerMiddlewareInterface
     public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
         if ( $this->template) {
+			header('Access-Control-Allow-Origin: *');
             return new JsonResponse([
                 'status' => true,
                 'result' => $this->template->setQueryResponse,
