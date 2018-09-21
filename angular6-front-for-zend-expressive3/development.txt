@@ -1,0 +1,9 @@
+ng new groupHealth --routing
+ng g c home
+ng g c employees
+https://www.youtube.com/watch?v=x8UR5DZcts8
+
+
+npm install bootstrap@3 --save
+ng serve --open
+ng generate service hero
