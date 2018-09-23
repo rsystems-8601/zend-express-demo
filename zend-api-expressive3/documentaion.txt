@@ -21,3 +21,14 @@ Step for run the application:
 -- Change your loacl IP in the file 
 https://github.com/rsystems-8601/zend-express-demo/blob/master/zend-api-expressive3/public/media/appointment.js
 
+composer clear-config-cache
+$ composer development-enable  # enable development mode
+$ composer development-disable # disable development mode
+$ composer development-status  # show development status
+composer run --timeout=86400 serve
+
+E:\rsystems\zend-api-expressive3\composer.json
+"config": {
+        "sort-packages": true,
+        "process-timeout": 0
+    },
