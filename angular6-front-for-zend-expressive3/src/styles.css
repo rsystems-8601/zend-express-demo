@@ -54,6 +54,11 @@ font-family: arial;
 	    
 }
 
+.nav-tabs>li>a, .nav-tabs>li>a:focus, .nav-tabs>li>a:hover{background-color:#fff;}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{background-color:lightsalmon}
+
+.app-content{margin-top: 12px;}
+
 .icon{
 	width:20px !important;
 	cursor: pointer;
@@ -81,3 +86,5 @@ font-family: arial;
    padding:0px 0px !important;
    padding-top:3px;
 }
+
+h3{border-bottom: 1px black solid;}

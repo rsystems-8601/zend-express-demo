@@ -1,27 +1,6 @@
 <h3>
-   Appointment List
+  Book Appointment 
 </h3>
-
-<div class='view_appointments records' >
-	<div class="row record reocrd-bold">
-	<div class="col-md-2">Name</div>
-	<div class="col-md-3">Reason</div>
-	<div class="col-md-2">Booking Date</div>
-	<div class="col-md-2">End Time</div>
-	<div class="col-md-2">Action</div>
-	</div>
-	<div *ngFor='let rowset of records'>
-	
-	<div class="row record" >
-				  <div class="col-md-2">{{rowset.username}}</div>
-				  <div class="col-md-3">{{rowset.reason}}</div>
-				  <div class="col-md-2">{{rowset.booking_date}}</div>
-				  <div class="col-md-2">{{rowset.end_time}}</div>
-				  <div  class="col-md-1 icon" alt="Edit appointment" title="Edit appointment" id="edit_{{rowset.id}}" ><a class="fa fa-pencil-square-o" aria-hidden="true" routerLink="/bookappointment"> Edit </a></div>
-				  <div  class="col-md-1 icon" alt="Cancel appointment" title="Cancel appointment" id="cancel_{{rowset.id}}" ><a class="fa fa-times" aria-hidden="true" routerLink="/bookappointment"> X </a></div>
-				  </div>
-	</div>			  
-</div> <!-- view_appointments -->
 
 <div class='appointment_form' >
 <h2>Enter Appointment Details</h2>
@@ -58,4 +37,3 @@
 </form>
 
 </div> <!-- appointment_form -->
-

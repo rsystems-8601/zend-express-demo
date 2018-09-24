@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ViewappointmentService } from './viewappointment.service';
 import { HeaderpartComponent } from './headerpart/headerpart.component';
 import { FooterpartpartComponent } from './footerpartpart/footerpartpart.component';
+import { BookappointmentComponent } from './bookappointment/bookappointment.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FooterpartpartComponent } from './footerpartpart/footerpartpart.compone
     EmployeesComponent,
     PageNotFoundComponent,
     HeaderpartComponent,
-    FooterpartpartComponent
+    FooterpartpartComponent,
+    BookappointmentComponent
   ],
   imports: [
     BrowserModule,
