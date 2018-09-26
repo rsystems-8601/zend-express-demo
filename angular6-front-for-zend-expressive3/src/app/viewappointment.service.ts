@@ -14,7 +14,17 @@ interface user {
 
 interface myData {
 	status : boolean,
-	result: Array<user>
+	result: Array<>
+}
+
+interface delData {
+	status : boolean,
+	result:boolean
+}
+
+interface upData {
+	status : boolean,
+	result:boolean
 }
 
 @Injectable({
@@ -26,10 +36,27 @@ export class ViewappointmentService {
 
 	constructor(private http: HttpClient) { }
   
-	getData(): Observable<myData> {
-		return this.http.get<myData>('http://127.0.0.1:8080/viewappointment');
-		
-		
+	getData(id): Observable<myData>{
+		if(id){			
+			return this.http.get<myData>('http://127.0.0.1:8080/viewappointment?id='+id);
+		}else{
+			return this.http.get<myData>('http://127.0.0.1:8080/viewappointment');
+		}
+	}
+	
+	deleteData(id): Observable<delData>{
+		let body = new FormData();
+			body.append('id', id);
+		return this.http.post<delData>('http://127.0.0.1:8080/deleteappointment', body);
+	}
+	
+	updateData(id,username,reason,booking_date): Observable<upData>{
+		let body = new FormData();
+			body.append('appointment_id', id);
+			body.append('full_name', username);
+			body.append('appointment_time', booking_date);
+			body.append('appointment_reason', reason);
+		return this.http.post<upData>('http://127.0.0.1:8080/updateappointment', body);
 	}
 	
 	getData2(){

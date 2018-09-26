@@ -11,6 +11,7 @@ import { ViewappointmentService } from './viewappointment.service';
 import { HeaderpartComponent } from './headerpart/headerpart.component';
 import { FooterpartpartComponent } from './footerpartpart/footerpartpart.component';
 import { BookappointmentComponent } from './bookappointment/bookappointment.component';
+import { UpdateappointmentComponent } from './updateappointment/updateappointment.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BookappointmentComponent } from './bookappointment/bookappointment.comp
     PageNotFoundComponent,
     HeaderpartComponent,
     FooterpartpartComponent,
-    BookappointmentComponent
+    BookappointmentComponent,
+    UpdateappointmentComponent
   ],
   imports: [
     BrowserModule,

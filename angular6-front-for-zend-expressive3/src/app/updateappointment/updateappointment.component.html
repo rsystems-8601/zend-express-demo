@@ -1,0 +1,34 @@
+<h3>
+  Update Appointment 
+</h3>
+
+<div class='appointment_form' >
+<h2>Enter Appointment Details</h2>
+
+<form id="request_form" action="#" method="get">
+
+<input type='hidden' id='appointment_id' name='appointment_id' value="{{this.update_id}}">
+<div class='row'>
+<div class='label'>Full Name</div>
+<div class='input_field '><input type='text' id='full_name' name='full_name' value='{{this.username}}'></div>
+</div> <!-- row -->
+
+<div class='row'>
+<div class='label'>Select Date and Time</div>
+<div class='input_field'><input type='datetime-local' id='appointment_time' name='appointment_time' value='{{this.booking_date | date :  "y-MM-ddThh:mm" }}'></div>
+</div> <!-- row -->
+
+<div class='row'>
+<div class='label'>Reason of Appointment</div>
+<div class='input_field'><textarea rows='9' cols='50' id='appointment_reason' name='appointment_reason' value="{{this.reason}}"></textarea></div>
+</div> <!-- row -->
+
+<div class='row'>
+<div class='label'>&nbsp;</div>
+<div class='input_field form_update'><input type='button' value='Update' id='btn_update' (click)="update_appointment(this.update_id,this.username,this.reason,this.booking_date)"></div>
+</div> <!-- row -->
+
+
+</form>
+
+</div> <!-- appointment_form -->

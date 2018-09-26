@@ -88,3 +88,15 @@ font-family: arial;
 }
 
 h3{border-bottom: 1px black solid;}
+
+.popup {
+    border: 1px solid black;
+    width: 50%;
+    box-shadow: 13px -8px 7px 2px;
+    padding: 11px 97px;
+    position: fixed;
+    laft: 49%;
+    margin: -25% 12%;
+    background-color: sandybrown;
+    border-radius: 19px;
+}

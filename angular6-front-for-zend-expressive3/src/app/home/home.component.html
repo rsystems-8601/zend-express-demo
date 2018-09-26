@@ -10,52 +10,49 @@
 	<div class="col-md-2">End Time</div>
 	<div class="col-md-2">Action</div>
 	</div>
-	<div *ngFor='let rowset of records'>
-	
-	<div class="row record" >
+	<div *ngFor='let rowset of records'>	
+		<div class="row record" >
 				  <div class="col-md-2">{{rowset.username}}</div>
 				  <div class="col-md-3">{{rowset.reason}}</div>
 				  <div class="col-md-2">{{rowset.booking_date}}</div>
 				  <div class="col-md-2">{{rowset.end_time}}</div>
-				  <div  class="col-md-1 icon" alt="Edit appointment" title="Edit appointment" id="edit_{{rowset.id}}" ><a class="fa fa-pencil-square-o" aria-hidden="true" routerLink="/bookappointment"> Edit </a></div>
-				  <div  class="col-md-1 icon" alt="Cancel appointment" title="Cancel appointment" id="cancel_{{rowset.id}}" ><a class="fa fa-times" aria-hidden="true" routerLink="/bookappointment"> X </a></div>
-				  </div>
+				  
+				  <div  class="col-md-1 icon" alt="Edit appointment" title="Edit appointment" id="edit_{{rowset.id}}" ><a class="fa fa-pencil-square-o" aria-hidden="true" routerLink="/updateappointment/{{rowset.id}}">Edit </a></div>
+				  
+				  <div  class="col-md-1 icon" alt="Cancel appointment" title="Cancel appointment" id="cancel_{{rowset.id}}" ><a class="fa fa-times" aria-hidden="true" (click)="show_delete=true; delete_id=rowset.id;"> Delete  </a></div>
+		</div>
 	</div>			  
 </div> <!-- view_appointments -->
 
-<div class='appointment_form' >
-<h2>Enter Appointment Details</h2>
+<button (click)="toggle()" id="bt">
+    {{buttonName}}
+</button>
 
-<form id="request_form" action="#" method="get">
 
-<input type='hidden' id='appointment_id' name='appointment_id' value="">
-<div class='row'>
-<div class='label'>Full Name</div>
-<div class='input_field'><input type='text' id='full_name' name='full_name'></div>
-</div> <!-- row -->
 
-<div class='row'>
-<div class='label'>Select Date and Time</div>
-<div class='input_field'><input type='datetime-local' id='appointment_time' name='appointment_time'></div>
-</div> <!-- row -->
 
-<div class='row'>
-<div class='label'>Reason of Appointment</div>
-<div class='input_field'><textarea rows='9' cols='50' id='appointment_reason' name='appointment_reason'></textarea></div>
-</div> <!-- row -->
+<div class='press_release popup' *ngIf="show_news">
+<h2>Group health Press Release:</h2>
+	<div>
+	© 2005 - by Rsystems Ltd. All rights reserved.
+		<div>
+			New version launch by August'2018!
+		</div>
+	</div>
+</div>
 
-<div class='row'>
-<div class='label'>&nbsp;</div>
-<div class='input_field form_update'><input type='button' value='Update' id='btn_update'></div>
-<div class='input_field form_submit'><input type='button' value='Submit' id='btn_submit'></div>
-</div> <!-- row -->
-
-<div class='row'>
-<div class='label'>&nbsp;</div>
-<div class='input_field' id='response_container'>&nbsp;</div>
-</div> <!-- row -->
-
-</form>
-
+<div class='delete_form popup' *ngIf="show_delete">
+<h2>Delete Appointment Details</h2>
+	<div>
+	Are you sure to delete  Appointment No. {{this.delete_id}}?
+		<div>
+			<button (click)="delete_appointment(this.delete_id)" id="bt_yes">
+				Yes 
+			</button>
+			<button (click)="show_delete=false" id="bt_no">
+				No
+			</button>
+		</div>
+	</div>
 </div> <!-- appointment_form -->
 
