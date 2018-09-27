@@ -5,33 +5,34 @@
 <div class='appointment_form' >
 <h2>Enter Appointment Details</h2>
 
-<form id="request_form" action="#" method="get">
+<form [formGroup]="loginForm" (ngSubmit)="register()">
 
-<input type='hidden' id='appointment_id' name='appointment_id' value="">
 <div class='row'>
 <div class='label'>Full Name</div>
-<div class='input_field'><input type='text' id='full_name' name='full_name'></div>
+<div class='input_field '><input type='text' required [formControl]="full_name"  id='full_name' name='full_name' >
+
+</div>
 </div> <!-- row -->
 
 <div class='row'>
 <div class='label'>Select Date and Time</div>
-<div class='input_field'><input type='datetime-local' id='appointment_time' name='appointment_time'></div>
+<div class='input_field'><input type='text'  [formControl]="appointment_time" name="appointment_time" id='appointment_time' value="2018-09-26 03:53"></div>
+
 </div> <!-- row -->
 
 <div class='row'>
 <div class='label'>Reason of Appointment</div>
-<div class='input_field'><textarea rows='9' cols='50' id='appointment_reason' name='appointment_reason'></textarea></div>
+<div class='input_field'><textarea rows='9' cols='50' required [formControl]="appointment_reason"  id='appointment_reason' name='appointment_reason' ></textarea></div>
+
 </div> <!-- row -->
 
 <div class='row'>
 <div class='label'>&nbsp;</div>
-<div class='input_field form_submit'><input type='button' value='Submit' id='btn_submit'></div>
+<div class='input_field form_update'>
+	 <button type="submit">Submit</button>
+</div>
 </div> <!-- row -->
 
-<div class='row'>
-<div class='label'>&nbsp;</div>
-<div class='input_field' id='response_container'>&nbsp;</div>
-</div> <!-- row -->
 
 </form>
 

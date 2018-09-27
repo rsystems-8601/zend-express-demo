@@ -59,6 +59,14 @@ export class ViewappointmentService {
 		return this.http.post<upData>('http://127.0.0.1:8080/updateappointment', body);
 	}
 	
+	createData(username,reason,booking_date): Observable<upData>{
+		let body = new FormData();			
+			body.append('full_name', username);
+			body.append('appointment_time', booking_date);
+			body.append('appointment_reason', reason);
+		return this.http.post<upData>('http://127.0.0.1:8080/createappointment', body);
+	}
+	
 	getData2(){
 	  return [{
 		  "heroesUrl": "api/heroes",

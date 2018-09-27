@@ -1,40 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewappointmentService } from '../viewappointment.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-updateappointment',
   templateUrl: './updateappointment.component.html',
-  styleUrls: ['./updateappointment.component.css']
+  styleUrls: ['./updateappointment.component.css'],
+  
 })
 export class UpdateappointmentComponent implements OnInit {
 
-	public update_id:number = 0;
-	public records=[];
-	public username:String = "";
-	public reason:String = "";
-	public booking_date:Date = "";
-	
+	public appointment_id:number = 0;	
+	public full_name:String = "";
+	public appointment_reason:String = "";
+	public appointment_time:Date ;	
 
-  constructor(private getViewAppintmentService : ViewappointmentService, private route: ActivatedRoute ) { 
+
+	constructor(private getViewAppintmentService : ViewappointmentService, private route: ActivatedRoute, private router: Router ) { 
   
-		this.update_id = this.route.snapshot.paramMap.get('id');
+		this.appointment_id = this.route.snapshot.paramMap.get('id');
 		
-		this.view_appointment(this.update_id);
+		this.view_appointment(this.appointment_id);
 	}
 
-  ngOnInit() {
-  }
-  
+	ngOnInit() {
+		
+	}  
   
 	view_appointment(id=false){
 		this.getViewAppintmentService.getData(id).subscribe(data =>{
-			console.log(data);
+			//console.log(data);
 			if(data && data.result) {
 				//console.log(data.result);				
-				this.username= data.result[0].username;
-				this.reason = data.result[0].reason;
-				this.booking_date = data.result[0].booking_date;
+				this.full_name= data.result[0].username;
+				this.appointment_reason = data.result[0].reason;
+				this.appointment_time = data.result[0].booking_date;
 			}
 			
 		});
@@ -42,13 +43,26 @@ export class UpdateappointmentComponent implements OnInit {
 	
 	update_appointment(id,username,reason,booking_date){
 		this.getViewAppintmentService.updateData(id,username,reason,booking_date).subscribe(data =>{
-			console.log(data);
+			//console.log(data);
 			if(data && data.result) {
-				//console.log(data.result);
-				this.records = data.result[0];
+				console.log(data.result);
+				if(data.result){
+					//self.router.navigate(['/home']);
+					this.router.navigate(['/home']);
+				}
 			}
 			
 		});
+	}
+	
+	onSubmit(form: NgForm) {
+		if (form.valid) {
+		 // console.log(form.value.appointment_id);
+		  this.update_appointment(form.value.appointment_id,
+		  form.value.full_name,
+		  form.value.appointment_reason,
+		  form.value.appointment_time)
+		}
 	}
 
 }

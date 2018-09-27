@@ -12,6 +12,7 @@ import { HeaderpartComponent } from './headerpart/headerpart.component';
 import { FooterpartpartComponent } from './footerpartpart/footerpartpart.component';
 import { BookappointmentComponent } from './bookappointment/bookappointment.component';
 import { UpdateappointmentComponent } from './updateappointment/updateappointment.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { UpdateappointmentComponent } from './updateappointment/updateappointmen
   imports: [
     BrowserModule,
     AppRoutingModule,
-	HttpClientModule
+	HttpClientModule,
+	FormsModule,
+	ReactiveFormsModule
   ],
   providers: [
 	ViewappointmentService
