@@ -12,7 +12,7 @@
 <div class='row'>
 <div class='label'>Full Name</div>
 <div class='input_field '><input type='text' required [(ngModel)]="full_name"  id='full_name' name='full_name' value='{{this.full_name}}'>
-<div *ngIf="!full_name.valid && full_name.touched">Full Name is required!</div>
+
 </div>
 </div> <!-- row -->
 
@@ -25,7 +25,7 @@
 <div class='row'>
 <div class='label'>Reason of Appointment</div>
 <div class='input_field'><textarea rows='9' cols='50' required [(ngModel)]="appointment_reason"  id='appointment_reason' name='appointment_reason' value="{{this.appointment_reason}}"></textarea></div>
-<div *ngIf="!appointment_reason.valid && appointment_reason.touched">Reason is required!</div>
+
 </div> <!-- row -->
 
 <div class='row'>

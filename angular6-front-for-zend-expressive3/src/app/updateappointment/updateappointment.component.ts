@@ -11,17 +11,18 @@ import { NgForm } from '@angular/forms';
 })
 export class UpdateappointmentComponent implements OnInit {
 
-	public appointment_id:number = 0;	
-	public full_name:String = "";
-	public appointment_reason:String = "";
+	public appointment_id:number;	
+	public full_name:String;
+	public appointment_reason:String;
 	public appointment_time:Date ;	
 
 
 	constructor(private getViewAppintmentService : ViewappointmentService, private route: ActivatedRoute, private router: Router ) { 
-  
-		this.appointment_id = this.route.snapshot.paramMap.get('id');
+		if(this.route.snapshot.paramMap.get('id')){
+			this.appointment_id = this.route.snapshot.paramMap.get('id');
 		
-		this.view_appointment(this.appointment_id);
+			this.view_appointment(this.appointment_id);
+		}
 	}
 
 	ngOnInit() {
