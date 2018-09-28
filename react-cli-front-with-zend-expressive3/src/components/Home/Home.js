@@ -5,7 +5,6 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
-
 //import Bookappointment from './components/Bookappointment';
 
 class Home extends Component {
@@ -24,12 +23,26 @@ class Home extends Component {
 		})	
 	}
 	
-	confirmDelete(id){		
+	showDelete(id){		
 		this.setState({
 			popupdelete:true,
 			deleteID:id
 		})	
 	}
+	
+	confirmDelete(id){		
+	let body = new FormData();
+			body.append('id', id);
+	axios.post(`http://127.0.0.1:8080/deleteappointment`, body)
+      .then(res => {
+			console.log(res);        
+			this.setState({
+				popupdelete:!res.data.status,
+				deleteID:0
+			});
+			this.componentDidMount();
+      })
+	}  
 	
 	hideDelete(){		
 		this.setState({
@@ -77,7 +90,7 @@ class Home extends Component {
 				  </div>
 				  
 				  <div  className="col-md-1 icon" alt="Cancel appointment" title="Cancel appointment"  >
-					<span  style={{cursor:'pointer'}} onClick={()=>this.confirmDelete(record.id)}
+					<span  style={{cursor:'pointer'}} onClick={()=>this.showDelete(record.id)}
 					>Delete</span>				  
 				  </div>
 		</div>
@@ -110,7 +123,7 @@ class Home extends Component {
 	<div>
 Are you sure to delete  Appointment No. {this.state.deleteID}?
 		<div>
-			<button  id="bt_yes">
+			<button  onClick={()=>this.confirmDelete(this.state.deleteID)} id="bt_yes">
 				Yes 
 			</button>
 			<button  onClick={()=>this.hideDelete()} id="bt_no">

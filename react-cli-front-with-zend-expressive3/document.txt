@@ -6,9 +6,11 @@ create-react-app hello-world
 npx create-react-app hello-world
 npm start
 npm i react-cli-tool
-npx react-cli -c Button
+npx react-cli -c Componentname
+npx react-cli -l Modulename
 npm i react-router
 npm i react-router-dom
 npm i react-router-native
 npm i axios
 npm i react-native
+npm i isomorphic-fetch
