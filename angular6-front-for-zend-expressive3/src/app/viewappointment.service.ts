@@ -14,7 +14,7 @@ interface user {
 
 interface myData {
 	status : boolean,
-	result: Array<>
+	result: Array<user>
 }
 
 interface delData {

@@ -19,7 +19,7 @@ export class UpdateappointmentComponent implements OnInit {
 
 	constructor(private getViewAppintmentService : ViewappointmentService, private route: ActivatedRoute, private router: Router ) { 
 		if(this.route.snapshot.paramMap.get('id')){
-			this.appointment_id = this.route.snapshot.paramMap.get('id');
+			this.appointment_id = parseInt(this.route.snapshot.paramMap.get('id'));
 		
 			this.view_appointment(this.appointment_id);
 		}
@@ -29,7 +29,7 @@ export class UpdateappointmentComponent implements OnInit {
 		
 	}  
   
-	view_appointment(id=false){
+	view_appointment(id=0){
 		this.getViewAppintmentService.getData(id).subscribe(data =>{
 			//console.log(data);
 			if(data && data.result) {

@@ -28,7 +28,7 @@ font-family: arial;
     float: left;
     width: 195px;
 	font-size: 15px;
-	color: #555;
+	color: #555 !important;
 }
 
 .input_field{

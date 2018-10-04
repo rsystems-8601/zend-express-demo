@@ -10,7 +10,7 @@ import { ViewappointmentService } from '../viewappointment.service';
 export class HomeComponent implements OnInit {
 
 	records = [];	
-	fixrecord = {};
+	fixrecord = {}; 
 	public show_news:boolean = false;
     public buttonName:any = 'Show News';
 	public show_delete:boolean = false;

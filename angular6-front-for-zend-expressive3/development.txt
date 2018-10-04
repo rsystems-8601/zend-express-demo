@@ -2,7 +2,7 @@ ng new groupHealth --routing
 ng g c home
 ng g c employees
 https://www.youtube.com/watch?v=x8UR5DZcts8
-
+http://127.0.0.1:4200/home
 
 npm install bootstrap@3 --save
 ng serve --open
