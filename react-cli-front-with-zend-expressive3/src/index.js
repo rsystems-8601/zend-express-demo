@@ -19,7 +19,8 @@ ReactDOM.render(
 				<div className="container">
 					<Router>
 						  <div>
-							<Route exact path="/" component={App} />       
+							<Route exact path="/" component={App} />   
+							<Route exact path="/home" component={App} />  							
 							<Route exact path="/bookappointment" component={Bookappointment} />                		
 							<Route exact path="/Updateappointment/:id" component={Updateappointment} />                		
 						  </div>

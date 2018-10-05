@@ -14,7 +14,8 @@ npm i react-router-native
 npm i axios
 npm i react-native
 npm i isomorphic-fetch
-
+npm install redux
+npm install redux-thunk
 
 routing
 D:\POC\zend-express-demo\react-cli-front-with-zend-expressive3\src\index.js
