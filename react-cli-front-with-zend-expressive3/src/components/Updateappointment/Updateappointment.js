@@ -1,9 +1,9 @@
 // @flow
 import React, { Component} from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import axios from 'axios';
-import ReactDOM from 'react-dom';
-import { Link  } from 'react-router-dom';
+//import ReactDOM from 'react-dom';
+//import { Link  } from 'react-router-dom';
 
 
 
@@ -17,7 +17,7 @@ class Updateappointment extends Component {
 		appointment_time:'',
 		appointment_reason:'',
 		popupUpdate:'',
-		updateID:'',
+		updateID:''
 	};
 	
 	confirmUpdate(data){

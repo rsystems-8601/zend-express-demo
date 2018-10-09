@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Home from './components/Home';
+
 import Bookappointment from './components/Bookappointment';
 import Headerpart from './components/Headerpart';
 import Footerpart from './components/Footerpart';
