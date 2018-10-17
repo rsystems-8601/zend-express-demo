@@ -13,6 +13,8 @@ var updateappointmentRouter = require('./routes/updateappointment');
 
 var app = express();
 
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -23,12 +25,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+//app.use('/', indexRouter);
+app.use('/', viewappointmentRouter);
 app.use('/users', usersRouter);
-app.use('/deleteappointment', deleteappointmentRouter);
+
+
+app.use('/', deleteappointmentRouter);
 app.use('/createappointment', createappointmentRouter);
 app.use('/viewappointment', viewappointmentRouter);
-app.use('/updateappointment', updateappointmentRouter);
+app.use('/', updateappointmentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

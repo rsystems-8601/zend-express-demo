@@ -1,21 +1,26 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-
+var moment = require('moment');
 
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '',
-  database : 'zf3mvc'
+  database : 'group_health'
 });
 
-connection.connect()
+connection.connect();
 
-connection.query('SELECT * FROM `user_booking`', function (err, rows, fields) {
+var obj = {};
+obj.title='Appointment List';
+obj.moment = moment;
+
+connection.query('SELECT * FROM `appointments`', function (err, rows, fields) {
   if (err) throw err
-
-  console.log('The solution is: ', rows)
+	
+	obj.applist= rows;
+	//console.log('The solution isee: ', rows)
 })
 
 connection.end();
@@ -25,11 +30,9 @@ connection.end();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	
 
-
-
-  res.render('viewappointment', { title: 'Express' });
+  res.render('viewappointment', { title: obj.title, applist:obj.applist , moment:obj.moment  });
+  
 });
 
 module.exports = router;
