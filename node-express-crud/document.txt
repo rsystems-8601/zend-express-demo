@@ -1,0 +1,14 @@
+npm i express -g
+npm install express-generator -g
+express --view=ejs node-express-crud
+cd node-express-crud
+npm install
+npm i nodemon , minimist, mocha, chai
+npm install mysql
+
+"scripts": {
+    "start": "nodemon bin/www --port 3000 --ip 127.0.0.1",
+    "test": "mocha  --require ./mocha.env.js"
+  },
+  
+SET DEBUG=node-express-crud:* & npm start

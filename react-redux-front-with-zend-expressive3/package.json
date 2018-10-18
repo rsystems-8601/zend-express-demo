@@ -1,0 +1,27 @@
+{
+  "name": "react-cli-front-with-zend-expressive3",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "g": "^2.0.1",
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^16.5.2",
+    "react-cli-tool": "0.0.2",
+    "react-dom": "^16.5.2",
+    "react-native": "^0.57.3",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-router-native": "^4.3.0",
+    "react-scripts": "1.1.5",
+    "redux": "^4.0.0",
+    "redux-form-website-template": "0.0.123",
+    "redux-thunk": "^2.3.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
