@@ -31,7 +31,7 @@ app.use('/users', usersRouter);
 
 
 app.use('/', deleteappointmentRouter);
-app.use('/createappointment', createappointmentRouter);
+app.use('/', createappointmentRouter);
 app.use('/viewappointment', viewappointmentRouter);
 app.use('/', updateappointmentRouter);
 
