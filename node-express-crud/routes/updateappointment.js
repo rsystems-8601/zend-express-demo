@@ -1,39 +1,16 @@
-var requireModule = require('../helpers/view/requireModule');
-var connectionModel = require('../helpers/db/connection');
-var appointmentModel = require('../helpers/db/appointmentmodel');
-var dbConn;
-connectionModel.connection(function(err, conn) {
-	dbConn= conn;
-});
+var express = require('express');
+var router = express.Router();
+var mysql = require('mysql');
+var moment = require('moment');
 
 var obj = {};
-obj.title='Update List';
-obj.moment = requireModule.moment;
-obj.applist = false;
+obj.title='Update Appointment';
+obj.moment = moment;
 
 /* GET home page. */
-requireModule.router.get('/updateappointment/:uid', function(req, res, next) {	
-	appointmentModel.getAppointmentInfo(dbConn,req.params.uid, function(err, rows) {
-		//console.log('row data = ', rows);
-		obj.applist=rows;
-		res.render('updateappointment', {
-			title: obj.title,
-			applist:obj.applist ,
-			moment:obj.moment  
-		}); 	
-	});	 
+router.get('/updateappointment/:uid', function(req, res, next) {  
+console.log(req.params.uid);
+  res.render('updateappointment', { title: obj.title,  moment:obj.moment  });
 });
 
-/* GET home page. */
-requireModule.router.post('/updateappointment', function(req, res, next) {	  
-	appointmentModel.updateAppointmentInfo(dbConn,req.body, function(err, rows) {
-		//console.log('row data = ', req.body);
-		if(rows){	
-		//res.redirect('/updateappointment/'+req.body.id);		
-		res.redirect('/viewappointment');		
-		//res.send('Record Updated'); 	
-		}
-	});	 
-});
-
-module.exports = requireModule.router;
+module.exports = router;

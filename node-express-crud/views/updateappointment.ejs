@@ -2,49 +2,41 @@
 <%- include partials/head.ejs %>
 <body class="app">
 <%- include partials/header.ejs %>
-<div class="app-content"> 
-  
-  
-<div class='container'>
-	<div class='header'>
-		<h1> <%= title %> </h1>
-	</div> <!-- header -->
-	<div class='content'>
-		<div class='appointment_form' >
-			<h2>Enter Appointment Details</h2>
-			<form id="request_form" action="/updateappointment" method="post">
-			<% if(applist){ applist.forEach(function (record) { %>
-				<input type='hidden' id='id' name='id' value="<%= record.id %>" />
-				<div class='row'>
-					<div class='label'>Full Name</div>
-					<div class='input_field'>
-						<input class="require" type='text' id='username' name='username' value="<%= record.username %>">
-					</div>
-				</div> <!-- row -->
-				<div class='row'>
-					<div class='label'>Select Date and Time</div>
-					<div class='input_field'><input class="require" type='datetime-local' id='booking_date' name='booking_date' value="<%= moment(record.booking_date).format("YYYY-MM-DDThh:mm") %>">					
-					</div>
-				</div> <!-- row -->
-				<div class='row'>
-					<div class='label'>Reason of Appointment</div>
-					<div class='input_field'>
-						<textarea class="require" rows='9' cols='50' id='reason' name='reason'><%= record.reason %></textarea>
-					</div>
-				</div> <!-- row -->
-				<div class='row'>
-					<div class='label'>&nbsp;</div>
-					<div class='input_field form_update'>
-						<input type='submit' value='Update' id='btn_update'>
-					</div>
-				</div> <!-- row -->				
-			<% }) 			}			%>  	
-			</form>
-		</div> <!-- appointment_form -->
-	</div> <!-- content -->
-</div> <!-- container -->
-
-
+<div class="app-content">        
+	<div class='container'>
+		<div class='header'>
+			<h1> <%= title %> </h1>
+		</div> <!-- header -->
+		<div class='content'>
+			<div class='appointment_form' >
+				<h2>Enter Appointment Details</h2>
+				<form id="request_form" action="#" method="get">
+					<input type='hidden' id='appointment_id' name='appointment_id' value="">
+					<div class='row'>
+						<div class='label'>Full Name</div>
+						<div class='input_field'><input type='text' id='full_name' name='full_name'></div>
+					</div> <!-- row -->
+					<div class='row'>
+						<div class='label'>Select Date and Time</div>
+						<div class='input_field'><input type='datetime-local' id='appointment_time' name='appointment_time'></div>
+					</div> <!-- row -->
+					<div class='row'>
+						<div class='label'>Reason of Appointment</div>
+						<div class='input_field'><textarea rows='9' cols='50' id='appointment_reason' name='appointment_reason'></textarea></div>
+					</div> <!-- row -->
+					<div class='row'>
+						<div class='label'>&nbsp;</div>
+						<div class='input_field form_update'><input type='button' value='Update' id='btn_update'></div>
+						<div class='input_field form_submit'><input type='button' value='Submit' id='btn_submit'></div>
+					</div> <!-- row -->
+					<div class='row'>
+						<div class='label'>&nbsp;</div>
+						<div class='input_field' id='response_container'>&nbsp;</div>
+					</div> <!-- row -->
+				</form>
+			</div> <!-- appointment_form -->
+		</div> <!-- content -->
+	</div> <!-- container -->
 </div>
 <%- include partials/footer.ejs %>
 </body>

@@ -2,51 +2,44 @@
 <%- include partials/head.ejs %>
 <body class="app">
 <%- include partials/header.ejs %>
-<div class="app-content">
-
-        
-<div class='container'>
-	<div class='header'>
-		<h1> <%= title %> </h1>
-	</div> <!-- header -->
-	<div class='content'>
-		<div class='view_appointments records' >
-			<div class="row record reocrd-bold">
-				<div class="col-md-2">Name</div>
-				<div class="col-md-3">Reason</div>
-				<div class="col-md-2">Booking Date</div>
-				<div class="col-md-2">End Time</div>
-			</div>
-			<% if(applist){
-			applist.forEach(function (record) { %>
-				<div class="row record">
-					<div class="col-md-2"><%= record.username %></div>
-					<div class="col-md-3"><%= record.reason %></div>
-					<div class="col-md-2">
-						<%= moment(record.booking_date).format("Do MMMM, YYYY") %>
-					</div>
-					<div class="col-md-2">
-						<%= moment(record.end_time).format("Do MMMM, YYYY") %>
-					</div>
-					<div  class="col-md-1 icon" alt="Edit appointment" title="Edit appointment" value='edit_<%= record.id %>'  >
-						<a href="/updateappointment/<%= record.id %>" >
-							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-						</a>
-					</div>
-					<div  class="col-md-1 icon" alt="Cancel appointment" title="Cancel appointment" value='del_<%= record.id %>' >
-						<a href="/deleteappointment/<%= record.id %>" >
-							<i class="fa fa-times" aria-hidden="true"></i>
-						</a>
-					</div>
+<div class="app-content">        
+	<div class='container'>
+		<div class='header'>
+			<h1> <%= title %> </h1>
+		</div> <!-- header -->
+		<div class='content'>
+			<div class='view_appointments records' >
+				<div class="row record reocrd-bold">
+					<div class="col-md-2">Name</div>
+					<div class="col-md-3">Reason</div>
+					<div class="col-md-2">Booking Date</div>
+					<div class="col-md-2">End Time</div>
 				</div>
-			<% })
-				}
-				%>  
-		</div> <!-- view_appointments -->
-	</div> <!-- content -->
-</div> <!-- container -->
-	
-	
+				<% applist.forEach(function (record) { %>
+					<div class="row record">
+						<div class="col-md-2"><%= record.username %></div>
+						<div class="col-md-3"><%= record.reason %></div>
+						<div class="col-md-2">
+							<%= moment(record.booking_date).format("Do MMMM, YYYY") %>
+						</div>
+						<div class="col-md-2">
+							<%= moment(record.end_time).format("Do MMMM, YYYY") %>
+						</div>
+						<div  class="col-md-1 icon" alt="Edit appointment" title="Edit appointment" value='edit_<%= record.id %>'  >
+							<a href="/updateappointment/<%= record.id %>" >
+								<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+							</a>
+						</div>
+						<div  class="col-md-1 icon" alt="Cancel appointment" title="Cancel appointment" value='del_<%= record.id %>' >
+							<a href="/deleteappointment/<%= record.id %>" >
+								<i class="fa fa-times" aria-hidden="true"></i>
+							</a>
+						</div>
+					</div>
+				<% }) %>  
+			</div> <!-- view_appointments -->
+		</div> <!-- content -->
+	</div> <!-- container -->
 </div>
 <%- include partials/footer.ejs %>
 </body>
