@@ -1,3 +1,51 @@
-<p>
-  employees works!
-</p>
+<h3>
+   Select employee:
+</h3>
+
+<div class="view_appointments records" >
+	<div class="col-md-12">
+		<div class="employeelist col-md-6">
+			<div class="row record reocrd-bold">
+				<div class="col-md-3">Select</div>
+				<div class="col-md-3">Reason</div>	
+			</div>
+			<div *ngFor='let rowset of records'>	
+				<div class="row record" >
+						  <div class="col-md-3">
+							<input type="radio" name="searchid" value="{{rowset.id}}" />
+						  </div>
+						  <div class="col-md-3">{{rowset.username}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="searchresult col-md-6">	
+			<div class="row record reocrd-bold">
+				<div class="col-md-3"> </div>
+				<div class="col-md-3"> </div>	
+			</div>
+			<div class="row ">
+				<div class="col-md-3">Name</div>
+				<div class="col-md-3">Atul</div>
+			</div>	
+			<div class="row ">
+				<div class="col-md-3">Reason</div>
+				<div class="col-md-3">sdsdsd</div>
+			</div>
+			<div class="row ">				
+				<div class="col-md-3">Booking Date</div>
+				<div class="col-md-3">12-56-9898</div>
+			</div>
+			<div class="row ">
+				<div class="col-md-3">End Date</div>
+				<div class="col-md-3">12-56-9898</div>				
+			</div>
+		</div>
+	</div>
+</div> <!-- view_appointments -->
+
+
+
+
+
+
+

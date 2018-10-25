@@ -1,0 +1,254 @@
+<section>
+    <div id="wrapper">
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12 head-section">
+                      
+                            <!-- <a>Preastan:</a> -->
+                            <h4  style="color:#005B7F !important;font-size:17px !important">Wellbeing Survey</h4>
+    
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+
+                    <div class="col-md-12 no-padd border-right">
+                        <div class=""> 
+                         <!--<div class="panel-heading panel-heading1">
+                          <span class="tab">
+                              <h4></h4>
+                          </span>
+                      </div>-->
+                            <!-- <div class="panel-body">
+         
+                        <div class="row Question">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label class="label-Quest">1. What sort of drinker are you?</label>
+                                    <div>
+                                        <div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Alcoholic.png"><br />Alcoholic</div></a></div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Heavydrinker.png"><br />Heavy drinker</div></a></div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Social.png"><br />Social drinker</div></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+    
+                        <div class="row Question">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label class="label-Quest">2. What do you drink, typically?</label>
+                                    <div>
+                                        <div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Beer.png"><br />Beers</div></a></div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Wine.png"><br />Wines</div></a></div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Spirits.png"><br />Spirits</div></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row Question">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label class="label-Quest">3. How often do you drink?</label>
+                                    <div>
+                                        <div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Beer.png"><br />< Once a week</div></a></div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Wine.png"><br />Once a week</div></a></div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Spirits.png"><br />2-3 times a week</div></a></div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Spirits.png"><br />Every day</div></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                  
+                        <div class="row Question">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label class="label-Quest">4. Where do you usually drink?</label>
+                                    <div>
+                                        <div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Beer.png"><br />Office</div></a></div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Wine.png"><br />Bar</div></a></div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Spirits.png"><br />Oudivoors</div></a></div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Spirits.png"><br />Home</div></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row Question">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label class="label-Quest">5. Is there family history of alcoholism?</label>
+                                    <div>
+                                        <div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Beer.png"><br />Yes</div></a></div>
+                                            <div><a href="#"><div><img src="../../../assets/images/Wine.png"><br />No</div></a></div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-md-12" style="margin-bottom:0px; margin-top:10px;">
+                              <button routerLink="/" class="btn btn-secondary aspen-bt buttonBlue">Cancel</button>
+                              <button type="submit" class="btn btn-default aspen-bt buttonBlue">Submit</button>
+                          </div>
+                        </div>
+                        
+                      </div> -->
+
+                            <div class="panel-body">
+                              
+                               
+                                <div *ngIf="!finalMsg">
+                                    <div class="row Question" *ngFor="let item of myQuestionaier;let q = index">
+                                        
+                                        <div *ngIf="q==0">
+                                                <br>
+                                                <b>{{item.categ_title}}</b>
+                                                <br/>
+
+                                                <div [innerHTML]="(item.categ_desc) | safeHtml"></div>
+                                                <!-- {{item.categ_desc}} -->
+                                                <br><br>
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <div align="center"><b>{{item.quest_title}}</b> </div >
+                                                <label class="label-Quest">{{item.ques_question}}</label>
+                                                <div>
+                                                    <div>
+                                                        <div *ngFor="let ans of item.answer_data" id="{{item.question_id+'answerConatiner'}}">
+                                                            <div id="{{item.question_id+ans.answerkey}}" style="cursor: pointer;" [innerHTML]="ans.answer" (click)="selectAns(item.question_id, ans.answerkey)"></div>
+                                                            <!-- <div class="custom-condivol custom-radio">
+                                                                  <input type="radio" id="customRadio2" name="customRadio" class="custom-condivol-input">
+                                                                  <label class="custom-condivol-label" for="customRadio2">
+                                                                      <div [innerHTML]="ans.answer" (click)="selectAns(item.question_id, ans.answerkey)"></div>
+                                                                  </label>
+                                                                </div> -->
+                                                        </div>
+                                                        <ng-container *ngIf="item['ques_type']=='Toggle'">
+                                                            <div>
+                                                                <ui-switch checkedLabel="{{item.toggleOptions.checkedLabelText}}" uncheckedLabel="{{item.toggleOptions.uncheckedLabelText}}" [checked]="item.toggleOptions.lastSavedStatus"
+                                                                    size="large" (change)="onToggleChange($event, item)"></ui-switch>
+                                                            </div>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="item['ques_type']=='Radio'">
+                                                            <div *ngFor="let ans of item.answers;let i = index" >
+                                                                <div class="custom-condivol custom-radio col-mid-2 custom-condivol-inline">
+                                                                    <input class="custom-condivol-input" type="radio" name="inlineRadioOptionsQues{{item.ques_id}}" id="inlineRadioAns{{ans.option_id}}"
+                                                                        [value]="ans.option_id" checked="divue" [(ngModel)]="quesAnsModel[item.ques_id]" style="cursor:pointer">
+                                                                    <label class="custom-condivol-label" for="inlineRadioAns{{ans.option_id}}" style="cursor:pointer">{{ans.option_text}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="item['ques_type']=='Text Box'">
+                                                            <div *ngFor="let ans of item.answers;let i = index">
+                                                                <input class="form-condivol" type="text" placeholder="" [(ngModel)]="quesAnsModel[item.qus_id]">
+                                                            </div>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="item['ques_type']=='Anchor Slider'">
+                                                            <div style="min-width:200px" class="anchor-gradient-div">
+                                                                <ng5-slider [(value)]="quesAnsModel[item.ques_id]" [options]="item.highlightedSliderOptions" style="margin-bottom: 4rem;"></ng5-slider>
+                                                            </div>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="item['ques_type']=='Smooth Slider'">
+                                                            
+                                                            <div style="min-width:200px" class="smooth-gradient-div">
+                                                                <ng5-slider [(value)]="quesAnsModel[item.ques_id]" [options]="item.valueSliderOptions" style="margin-bottom: 4rem;"></ng5-slider>
+                                                            </div>
+                                                            <div class="smooth-slide-title">
+                                                                    <span style="float:left"> {{item.valueSliderOptions.floorLegend}} </span>
+                                                                    <span style="float:right"> {{item.valueSliderOptions.ceilLegend}} </span>
+                                                            </div>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="item['ques_type']=='Smileys'">
+                                                            <div id="Smileys{{item.qus_id}}{{item.answers[0].option_id}}" (click)="selectAns(item.qus_id, item.answers[0].option_id)">
+                                                                <div>
+                                                                    <img src="../../../assets/images/sadFace.jpg">
+                                                                    <br />
+                                                                    <div [innerHTML]="(item.answers[0].option_text) | safeHtml"></div></div>
+                                                            </div>
+                                                            <div id="Smileys{{item.qus_id}}{{item.answers[1].option_id}}" (click)="selectAns(item.qus_id, item.answers[1].option_id)">
+                                                                <div>
+                                                                    <img src="../../../assets/images/moderateSmile.jpg">
+                                                                    <br />
+                                                                    <div [innerHTML]="item.answers[1].option_text | safeHtml"></div></div>
+                                                            </div>
+                                                            <div id="Smileys{{item.qus_id}}{{item.answers[2].option_id}}" (click)="selectAns(item.qus_id, item.answers[2].option_id)">
+                                                                <div>
+                                                                    <img src="../../../assets/images/happySmiley.jpg">
+                                                                    <br />
+                                                                    <div [innerHTML]="item.answers[2].option_text | safeHtml"></div></div>
+                                                            </div>
+                                                        </ng-container>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr style="width:100%;"/>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-12" style="margin-bottom:0px; margin-top:10px;text-align:center"  >
+                                            <!-- <button routerLink="/" class="btn btn-secondary">Back</button> -->
+                                            <button type="submit" class="btn btn-primary" (click)=getNextQuestionaire()>Next</button>
+                                            <!-- <button type="submit" class="btn btn-primary" (click)=submitQuestionaire()>Submit</button> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="finalMsg">
+                                    <div class="card" style="margin-top:50px">
+                                        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">
+                                                <div class="alert alert-success" role="alert">
+                                                    Success
+                                                </div>
+                                            </h5>
+                                            <p class="card-text margin-bottom-3x">{{finalMsg}}</p>
+                                            <a routerLink="/member/dashboard" class="btn btn-primary">Go to Dashboard</a>
+                                            <button class="btn btn-success" (click)="getReport()">Get Report</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">&nbsp;</div>
+
+
+                <!-- /.row -->
+
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+    </div>
+</section>

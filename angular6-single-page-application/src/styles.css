@@ -1,0 +1,121 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    margin-top: 0px;
+    color: #454545;
+    font-size: 14px;
+    font-family:'Lato', sans-serif;
+}
+
+
+
+.padding-x-zero {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.margin-bottom-3x { 
+    margin-bottom: 30px !important;
+}
+.card-box{
+   padding:50px 0px 50px 0px;
+}
+
+/*  custom slider effect*/
+
+
+.ng5-slider-selection{height: 18px !important;}
+
+
+.ng5-slider-pointer{
+	    width: 23px !important;
+        height: 23px !important;
+        border-radius: 0px  !important;
+        top:-2px !important;
+        background-color: white  !important;
+        border: 2px solid grey  !important; 
+}
+
+.anchor-gradient-div .ng5-slider-bar{
+    height: 18px !important;
+    
+	background-image: linear-gradient(
+      to right, 
+      #0573BC,       
+      rgb(255, 255, 0), 
+      rgb(255, 255, 0), 
+      #09B34D
+      
+    ) !important;
+    
+    
+}
+
+.ng5-slider-bar{
+    height: 18px !important;
+    
+}
+
+
+
+.ng5-slider-tick-legend {
+    width: 50px !important;
+}
+
+
+span.ng5-slider-span.ng5-slider-tick-legend {
+    
+    white-space: none !important;
+	display:block !important;
+	word-break: break-all !important;
+    white-space: none !important;
+    
+}
+
+
+.ng5-slider-tick{
+	top:6px !important;
+}
+.ng5-slider-pointer:after{
+    background-color: red !important;
+    width: 10px !important;
+    height: 10px !important;
+    top: 4px !important;
+    left: 4px !important;
+    border-radius: 0px  !important;
+}
+
+.ng5-slider-ticks .ng5-slider-tick:first-child .ng5-slider-tick-legend{
+    padding-left: 14px !important;
+}
+
+.ng5-slider-ticks .ng5-slider-tick:last-child .ng5-slider-tick-legend{
+    margin: 0px -894%;
+}
+
+.smooth-slide-title{
+    margin-top: -37px;    
+    padding-bottom: 17px;
+}
+
+#wrapper{
+    background-color: #edf8fa;
+    padding: 33px 33px;
+    border-radius: 45px;
+}
+
+.anchor-gradient-div .ng5-slider-inner-tooltip {
+    display: none;
+    visibility: hidden !important;
+}
+
+.smooth-gradient-div .ng5-slider-floor{
+    display: none;
+    visibility: hidden !important;
+}
+
+
+.smooth-gradient-div .ng5-slider-ceil{
+    display: none;
+    visibility: hidden !important;
+}
