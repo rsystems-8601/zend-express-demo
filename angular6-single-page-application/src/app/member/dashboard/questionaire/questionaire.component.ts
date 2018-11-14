@@ -38,6 +38,7 @@ export class QuestionaireComponent implements OnInit {
     // this.getSetSubmittedQuestionAnswer();
     this.todayDate = new Date();
     this.getFirstQuestionaire();
+	
   }
 
   public myQuestionaier = [];
@@ -53,6 +54,7 @@ export class QuestionaireComponent implements OnInit {
   public currentCategoryId;
   public assessmentID = 1;// public assessmentID = 12;
   public setID = 0;
+  public setCheckedID = 0;
   // public formattedResponse = [];
 
   // Highlighted Slider config
@@ -94,6 +96,15 @@ export class QuestionaireComponent implements OnInit {
     };
   }
 
+	  onclickMe(qid,aid){
+	  //console.log(qid+'---'+aid);
+	  
+	  if(qid==aid){
+		  document.getElementById('inlineRadioAns'+aid).click();	    
+	  }	    
+	  
+ }
+ 
   setValueSliderOptions2(question) {
     // Value Slider config
     let stepOptionArray = [];
@@ -193,11 +204,13 @@ export class QuestionaireComponent implements OnInit {
           lastSavedStatus: this.quesAnsModel[ques.ques_id] == ques.answers[0].option_id
         };
       } else {
-        this.quesAnsModel[ques.ques_id] = this.quesAnsModel[ques.ques_id] ? this.quesAnsModel[ques.ques_id] : null;
+        this.quesAnsModel[ques.ques_id] = this.quesAnsModel[ques.ques_id] ? "selected" : null;
       }
     });
     return questionaiere;
   }
+  
+  
 
   selectAns(questionId, answer) {
     document.getElementById("Smileys" + questionId + answer).style.border =
@@ -360,6 +373,8 @@ export class QuestionaireComponent implements OnInit {
       );
   }
 
+
+
   getFirstQuestionaire() {
 	let cachekey1= 'q23_'+this.assessmentID+'_'+ "-" + this.userId;	
 	if(cache.get(cachekey1)  && cache.get(cachekey1)!=''){
@@ -448,4 +463,8 @@ export class QuestionaireComponent implements OnInit {
       }
     });
   }
+  
+  
 }
+
+

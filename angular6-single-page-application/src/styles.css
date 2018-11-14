@@ -2,12 +2,10 @@
 
 body {
     margin-top: 0px;
-    color: #454545;
-    font-size: 14px;
+    color: #005b7f;
+    font-size: 15px;
     font-family:'Lato', sans-serif;
 }
-
-
 
 .padding-x-zero {
     padding-left: 0px !important;
@@ -26,7 +24,6 @@ body {
 
 .ng5-slider-selection{height: 18px !important;}
 
-
 .ng5-slider-pointer{
 	    width: 23px !important;
         height: 23px !important;
@@ -37,31 +34,23 @@ body {
 }
 
 .anchor-gradient-div .ng5-slider-bar{
-    height: 18px !important;
-    
+    height: 18px !important;    
 	background-image: linear-gradient(
       to right, 
       #0573BC,       
       rgb(255, 255, 0), 
       rgb(255, 255, 0), 
-      #09B34D
-      
+      #09B34D      
     ) !important;
-    
-    
 }
 
 .ng5-slider-bar{
-    height: 18px !important;
-    
+    height: 18px !important;    
 }
-
-
 
 .ng5-slider-tick-legend {
     width: 50px !important;
 }
-
 
 span.ng5-slider-span.ng5-slider-tick-legend {
     
@@ -72,10 +61,10 @@ span.ng5-slider-span.ng5-slider-tick-legend {
     
 }
 
-
 .ng5-slider-tick{
 	top:6px !important;
 }
+
 .ng5-slider-pointer:after{
     background-color: red !important;
     width: 10px !important;
@@ -90,7 +79,7 @@ span.ng5-slider-span.ng5-slider-tick-legend {
 }
 
 .ng5-slider-ticks .ng5-slider-tick:last-child .ng5-slider-tick-legend{
-    margin: 0px -894%;
+    margin: 0px -650%;
 }
 
 .smooth-slide-title{
@@ -100,8 +89,8 @@ span.ng5-slider-span.ng5-slider-tick-legend {
 
 #wrapper{
     background-color: #edf8fa;
-    padding: 33px 33px;
-    border-radius: 45px;
+    padding: 15px 20px;
+    
 }
 
 .anchor-gradient-div .ng5-slider-inner-tooltip {
@@ -119,3 +108,29 @@ span.ng5-slider-span.ng5-slider-tick-legend {
     display: none;
     visibility: hidden !important;
 }
+
+.headerShade
+{
+    -moz-box-shadow: 3px 3px 4px #000!important;
+	-webkit-box-shadow: 3px 3px 4px #000!important;
+	box-shadow: 3px 3px 4px #000!important;
+}
+
+.btn-primary {
+background: #9FCF6E;
+border:1px solid #9FCF6E;
+}
+.quesHeadTitle{
+    font-size:17px;
+}
+.cat_title{
+    font-size:19px;
+}
+.btn-primary:hover {
+    background: rgb(121, 177, 62);
+    border:1px solid #9FCF6E;
+    }
+    .radio-inline{display: inline-block;margin-right: 10px;}
+    @media screen and (max-width:650px){
+        .radio-inline{display: block;}  
+    }

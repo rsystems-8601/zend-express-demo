@@ -12,3 +12,59 @@ npm install mysql
   },
   
 SET DEBUG=node-express-crud:* & npm start
+
+
+sql
+-----------------------------------
+npm i sequelize
+npm i sequelize
+
+deploy
+-----------------------------------
+npm install pm2 -g
+
+
+pm2 start app.js --name="localhost@3000"
+
+https://www.npmjs.com/package/pm2-deploy
+
+process.json
+{
+   "apps" : [{
+      "name" : "HTTP-API",
+      "script" : "http.js"
+   }],
+   "deploy" : {
+     // "production" is the environment name
+     "production" : {
+       "user" : "ubuntu",
+       "host" : ["192.168.0.13"],
+       "ref"  : "origin/master",
+       "repo" : "git@github.com:Username/repository.git",
+       "path" : "/var/www/my-repository",
+       "post-deploy" : "npm install; grunt dist"
+      },
+   }
+}
+
+# Setup deployment at remote location
+$ pm2 deploy production setup
+
+# Update remote version
+$ pm2 deploy production update
+
+# Revert to -1 deployment
+$ pm2 deploy production revert 1
+
+# execute command on remote machines
+$ pm2 deploy production exec "pm2 reload all"
+
+promis
+-------------
+new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('result')
+  }, 100)
+})
+  .then(console.log)
+  .catch(console.error)

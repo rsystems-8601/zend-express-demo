@@ -138,8 +138,8 @@
                                                 <div align="center"><b>{{item.quest_title}}</b> </div >
                                                 <label class="label-Quest">{{item.ques_question}}</label>
                                                 <div>
-                                                    <div>
-                                                        <div *ngFor="let ans of item.answer_data" id="{{item.question_id+'answerConatiner'}}">
+                                                    <div class="radioloop">
+                                                        <div  *ngFor="let ans of item.answer_data" id="{{item.question_id+'answerConatiner'}}">
                                                             <div id="{{item.question_id+ans.answerkey}}" style="cursor: pointer;" [innerHTML]="ans.answer" (click)="selectAns(item.question_id, ans.answerkey)"></div>
                                                             <!-- <div class="custom-condivol custom-radio">
                                                                   <input type="radio" id="customRadio2" name="customRadio" class="custom-condivol-input">
@@ -155,13 +155,26 @@
                                                             </div>
                                                         </ng-container>
                                                         <ng-container *ngIf="item['ques_type']=='Radio'">
-                                                            <div *ngFor="let ans of item.answers;let i = index" >
+														
+                                                            <div   class="radiolooprow" *ngFor="let ans of item.answers;let i = index" >
                                                                 <div class="custom-condivol custom-radio col-mid-2 custom-condivol-inline">
+																
                                                                     <input class="custom-condivol-input" type="radio" name="inlineRadioOptionsQues{{item.ques_id}}" id="inlineRadioAns{{ans.option_id}}"
-                                                                        [value]="ans.option_id" checked="divue" [(ngModel)]="quesAnsModel[item.ques_id]" style="cursor:pointer">
+                                                                        [value]="ans.option_id" 
+																		
+																		 
+																		 
+																		  [(ngModel)]="quesAnsModel[item.ques_id]"
+
+
+																		  style="cursor:pointer">
                                                                     <label class="custom-condivol-label" for="inlineRadioAns{{ans.option_id}}" style="cursor:pointer">{{ans.option_text}}</label>
+																	{{
+														onclickMe(item.answers[0].option_id , ans.option_id)}}
                                                                 </div>
+																
                                                             </div>
+															
                                                         </ng-container>
                                                         <ng-container *ngIf="item['ques_type']=='Text Box'">
                                                             <div *ngFor="let ans of item.answers;let i = index">
