@@ -11,8 +11,12 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
 
 export class BookappointmentComponent implements OnInit {	
-	
+	showfirstfield=4-4;
 	full_name = new FormControl('');
+	editMovie ="654987";
+	
+	var1;
+	
 	appointment_reason = new FormControl('');
 	appointment_time = new FormControl('');
 	
@@ -24,8 +28,17 @@ export class BookappointmentComponent implements OnInit {
 
 	constructor(private getViewAppintmentService : ViewappointmentService, private builder: FormBuilder, private route: ActivatedRoute, private router: Router ) { }
 
+	compare(name){
+		if (name == "Rajes")
+			return 1;
+		else 
+			return 0;
+	}	
+	
 	ngOnInit() {
 		  //createappointment
+		  
+		  //this.form.full_name.setValue('valueE');
 	}
   
     create_appointment(username,reason,booking_date){
@@ -50,6 +63,13 @@ export class BookappointmentComponent implements OnInit {
 				this.loginForm.value.appointment_reason,
 				this.loginForm.value.appointment_time)
 			}
+  }
+  
+  log = '987';
+
+  logText(value: string): void {
+	  this.var1=this.compare(value);
+    this.log = `Text changed to '${value}'\n`;
   }
 
 }

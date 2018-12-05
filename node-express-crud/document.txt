@@ -68,3 +68,29 @@ new Promise((resolve, reject) => {
 })
   .then(console.log)
   .catch(console.error)
+  
+  
+var Promise = require('promise');
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://localhost/EmployeeDB';
+
+MongoClient.connect(url)
+    .then(function(err, db) {
+        db.collection('Employee').updateOne({
+            "EmployeeName": "Martin"
+        }, {
+            $set: {
+                "EmployeeName": "Mohan"
+            }
+        });
+    }); 
+	
+	
+var Promise = require('promise');
+ 
+var promise = new Promise(function (resolve, reject) {
+  get('http://www.google.com', function (err, res) {
+    if (err) reject(err);
+    else resolve(res);
+  });
+});

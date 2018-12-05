@@ -2,15 +2,17 @@
   Book Appointment 
 </h3>
 
+
+
 <div class='appointment_form' >
 <h2>Enter Appointment Details</h2>
 
 <form [formGroup]="loginForm" (ngSubmit)="register()">
 
-<div class='row'>
+<div class='row' >
 <div class='label'>Full Name</div>
-<div class='input_field '><input type='text' required [formControl]="full_name"  id='full_name' name='full_name' >
-
+<div class='input_field '><input (keyup)="logText(editMovie)" type='text' [(ngModel)]="editMovie" required [formControl]="full_name"  id='full_name' name='full_name' >
+<h6 *ngIf="var1" > Welcome Admin </h6>
 </div>
 </div> <!-- row -->
 
@@ -35,5 +37,5 @@
 
 
 </form>
-
+ <pre>{{log}}</pre>
 </div> <!-- appointment_form -->

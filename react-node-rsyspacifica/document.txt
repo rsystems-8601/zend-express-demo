@@ -1,0 +1,34 @@
+npm init --yes
+npm install
+npm update
+npm install -g create-react-app
+npx create-react-app rsysfitbit
+cd rsysfitbit
+npm start
+http://localhost:3000/
+npm i react-cli-tool
+npm i history
+npm i axios
+npm i react-router
+npm i react-dom
+npm i react-router-dom
+npm install redux
+npm i react-redux
+npm i redux-logger
+npm install redux-form-website-template
+npm install redux-thunk
+
+npm i react-native
+npm i react-router-native
+npm i isomorphic-fetch
+npm install --save material-ui axios react-tap-event-plugin
+
+
+npx react-cli -c Componentname
+npx react-cli -l Modulename
+
+routing
+D:\POC\zend-express-demo\react-cli-front-with-zend-expressive3\src\index.js
+
+Login Page
+https://github.com/cornflourblue/react-redux-registration-login-example
