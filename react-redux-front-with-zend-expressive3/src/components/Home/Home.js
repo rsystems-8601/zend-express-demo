@@ -2,9 +2,10 @@
 import React, { Component} from 'react';
 //import PropTypes from 'prop-types';
 import axios from 'axios';
+
 //import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
-
+import Componentnameslider from '../../components/Componentnameslider';
 //import Bookappointment from './components/Bookappointment';
 
 class Home extends Component {
@@ -15,6 +16,7 @@ class Home extends Component {
 		popupNews: false,
 		popupdelete: false,
 		deleteID: 0,
+		rangeVal: 6
 	};
 	
 	popupPressRelease(){		
@@ -29,6 +31,8 @@ class Home extends Component {
 			deleteID:id
 		})	
 	}
+	
+	
 	
 	confirmDelete(id){		
 	let body = new FormData();
@@ -58,10 +62,28 @@ class Home extends Component {
 			this.setState({ records });			
 		})
 	}
+	
+	constructor(props) {
+		super(props);
+			
+		this.updateRange1 = this.updateRange1.bind(this);
+	  }
+	  
+	updateRange1(val) {
+		this.setState({
+		  rangeVal: val
+		})
+	  }
+	  
+	  milibhagat(id){
+		  return id=6;
+	  }
  
 	render() {
+		const { rangeVal } = this.state;
 		return (
-		<div>
+		<div>		
+		<Componentnameslider range={rangeVal} kamli={this.milibhagat} updateRange2={this.updateRange1}/>
 		<h3>
    Appointment List
 </h3>	

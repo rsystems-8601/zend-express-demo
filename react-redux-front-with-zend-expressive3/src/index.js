@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './react-slider.css';
+
 import Home from './components/Home';
 import Bookappointment from './components/Bookappointment';
 import Headerpart from './components/Headerpart';

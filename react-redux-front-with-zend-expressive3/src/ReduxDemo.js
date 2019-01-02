@@ -6,7 +6,7 @@ class ReduxDemo extends Component {
 	
 	render(){
 		
-		// create a reducer 
+		// create a reducer :: update state , taking state+ action and return new state
 		const reducer = function(state, action){
 			if(action.type === "ATTACK"){
 				return action.payload
