@@ -16,7 +16,13 @@ class Home extends Component {
 		popupNews: false,
 		popupdelete: false,
 		deleteID: 0,
-		rangeVal: 6
+		rangeVal: 1,
+		textVal:'--hi',
+		emoji:{
+		6:'Awful.png',5:"Bad.png",2:"Good.png",3:"Normal.png",
+		  4:"Laugh.png",
+		  1:"Normal.png",
+	7:"Sad.png"}
 	};
 	
 	popupPressRelease(){		
@@ -67,23 +73,47 @@ class Home extends Component {
 		super(props);
 			
 		this.updateRange1 = this.updateRange1.bind(this);
+		this.milibhagat = this.milibhagat.bind(this);
+		this.kanha = this.kanha.bind(this);
 	  }
 	  
-	updateRange1(val) {
+	 updateRange1(val) {
 		this.setState({
 		  rangeVal: val
 		})
 	  }
 	  
-	  milibhagat(id){
-		  return id=6;
+	  milibhagat(v){
+		  console.log(v*2*6)
+		  return v*6;
 	  }
+	  
+	  kanha(){
+		   this.setState({
+			  textVal: ((this.state.textVal)+'<br>--'+(this.text2Input.value))
+		   })
+		 this.text2Input.value='';
+		  //console.log(this.state.textVal+this.textInput.value);
+	  }
+	  
  
 	render() {
 		const { rangeVal } = this.state;
+		{var oo= this.state.emoji}
+				{console.log(oo[1])}
 		return (
 		<div>		
-		<Componentnameslider range={rangeVal} kamli={this.milibhagat} updateRange2={this.updateRange1}/>
+		<div>
+			<span>aa
+			
+				<div dangerouslySetInnerHTML={{__html: this.state.textVal}} /> 
+			</span>
+			<input type="text"  ref={(input) => this.textInput = input} />
+			<input type="text"  ref={(input) => this.text2Input = input} />
+			<button name="ok" onClick={this.kanha} >OK</button>
+		</div>
+		<img src ={'/media/emoji/'+oo[rangeVal]} />{rangeVal}
+		<Componentnameslider range={rangeVal}  kamli={this.milibhagat} jitender={this.updateRange1}/>
 		<h3>
    Appointment List
 </h3>	
