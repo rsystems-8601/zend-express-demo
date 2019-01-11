@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon bin/www --port 3000 --ip 127.0.0.1",
+    "start": "nodemon bin/www --port 4000 --ip 127.0.0.1",
     "test": "mocha  --require ./mocha.env.js"
   },
   "dependencies": {

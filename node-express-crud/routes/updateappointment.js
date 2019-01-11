@@ -36,4 +36,24 @@ requireModule.router.post('/updateappointment', function(req, res, next) {
 	});	 
 });
 
+/* api GET home page. */
+requireModule.router.get('/updateappointment/api/:uid', function(req, res, next) {	
+	appointmentModel.getAppointmentInfo(dbConn,req.params.uid, function(err, rows) {
+		if(rows){	
+			obj.applist=rows;		
+			res.send(obj.applist);		
+		}	
+	});	 
+});
+
+
+/* api GET home page. */
+requireModule.router.post('/updateappointment/api', function(req, res, next) {	  
+	appointmentModel.updateAppointmentInfo(dbConn,req.body, function(err, rows) {		
+		if(rows){			
+			res.send(rows);		
+		}
+	});	 
+});
+
 module.exports = requireModule.router;

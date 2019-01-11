@@ -33,13 +33,13 @@ class Bookappointment extends Component {
 		axios.post(`http://127.0.0.1:8080/createappointment`, body)
 		  .then(res => {
 				console.log(res); 
-					if(res.data.status){
-						this.setState({				
-							popupAdd:!res.data.status,
-							createID:0
-						});						
-						this.props.history.push(`/`)
-					}			
+				if(res.data.status){
+					this.setState({				
+						popupAdd:!res.data.status,
+						createID:0
+					});						
+					this.props.history.push(`/`)
+				}			
 							
 		  })
 		}

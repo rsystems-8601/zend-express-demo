@@ -29,4 +29,28 @@ requireModule.router.post('/createappointment', function(req, res, next) {
 	});	 
 });
 
+/* api createUser. */
+requireModule.router.post('/createUser/api', function(req, res, next) {	  	
+	//res.send(req.body); 	
+	appointmentModel.createUser(dbConn,req.body, function(err, rows) {
+		//console.log('row data = ', req.body);
+		if(rows){				
+			res.send(rows); 	
+		}
+	});	 
+});
+
+
+/* api createUser. */
+requireModule.router.post('/signInUser/api', function(req, res, next) {	  	
+	//res.send(req.body); 	
+	appointmentModel.signInUser(dbConn,req.body, function(err, rows) {
+		if(err){				
+			res.send({error:true,result:'Record not found'});
+		}else{
+			res.send({error:false,result:rows});
+		}
+	});	 
+});
+
 module.exports = requireModule.router;

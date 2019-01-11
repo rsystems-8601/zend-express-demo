@@ -24,4 +24,17 @@ requireModule.router.get('/', function(req, res, next) {
 	});	 
 });
 
+/* API GET home page. */
+requireModule.router.get('/api', function(req, res, next) {	
+	appointmentModel.getAppointmentList(dbConn,10, function(err, rows) {
+		//console.log('row data = ', rows);
+		obj.applist=rows;
+		res.render('viewappointment', { 
+			title: obj.title, 
+			applist:obj.applist, 
+			moment:obj.moment  
+		}); 	
+	});	 
+});
+
 module.exports = requireModule.router;

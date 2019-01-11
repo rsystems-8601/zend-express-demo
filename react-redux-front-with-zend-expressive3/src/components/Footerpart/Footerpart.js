@@ -11,14 +11,14 @@ class Footerpart extends Component {
 		return (
 		
 		
-		<footer className="app-footer">
-			<div className="container">
-				<hr />
-				 <p>
-					 &copy; 2005 -  by Rsystems Ltd. All rights reserved.
-				 </p>				
-			</div>
-		</footer>
+		<div class="text-center">
+			<p>
+				<a href="#" target="_top"> RsysFiitBit </a>
+			</p>
+			<p>
+				<a href="http://rsystems.com" target="_blank">Product of Rsystems</a>
+			</p>
+		</div>
 	
 	);
 	}

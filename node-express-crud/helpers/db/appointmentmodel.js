@@ -51,6 +51,35 @@ function createAppointment(connection,postParam, cb){
 	}
 }
 
+function createUser(connection,postParam, cb){
+	if(postParam){
+		
+		connection.query('INSERT INTO `appointments` ( `firstName`, `lastName`, `username`,`password`) VALUES ("'+postParam.firstName+'","'+postParam.lastName+'","'+postParam.username+'","'+postParam.password+'")', function (err, rows, fields) {
+		  if (err) 
+			cb(err);
+				
+			cb(null,rows);				
+		})
+	}
+}
+
+function signInUser(connection,postParam, cb){
+	if(postParam){		
+		connection.query("SELECT * FROM `appointments` WHERE `username`='"+postParam.username+"' and `password`='"+postParam.password+"' limit 1", function (err, rows, fields) {
+		  if (err) 
+			cb(err);
+		
+				//cb(null,rows)
+				if(rows[0]){
+					cb(null,rows);	
+				}else{
+					cb(true);	
+				}
+		})
+	}
+}
+
+
 //connection.end();
 
 module.exports = {
@@ -58,5 +87,7 @@ module.exports = {
 	getAppointmentList,
 	updateAppointmentInfo,
 	deleteAppointmentInfo,
-	createAppointment
+	createAppointment,
+	signInUser,
+	createUser
 	};

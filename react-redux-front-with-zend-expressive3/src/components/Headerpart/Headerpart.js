@@ -11,44 +11,28 @@ class Headerpart extends Component {
 	render() {
 		return (
 		
-		
-		
-		
-		
-		<header className="app-header">
-        <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div className="container">
-                <div className="navbar-header">
-                    <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                    </button>
-                    <a className="navbar-brand" >
-                        <img src="/media/zf-logo.png" alt="Zend Expressive" />
-                    </a>
-                </div>
-                <div className="collapse navbar-collapse">
-                    <ul className="nav nav-tabs">
-					<li >
-						<a href="/"> View Appointments </a>
-					</li>					
-					<li >
-						<a href="/bookappointment">Book Appointment</a>
-					</li>
-					<li >
-						<a href="/RegisterAppointment">Register Appointment</a>
-					</li>
-				</ul>
-				<br/>
+		<div className="header">
+			<div className="header-wrapper">
+				<a href="/"><img src="/media/logo.png" alt="Pacifica" /></a>
+				<div className="header-links">
+					<a href="/Signup" className="button">Sign Up</a>
+					
+					<a href="/home"> View Appointments </a>
+					<a href="/bookappointment"> Book Appointment</a>
+					<a href="/RegisterAppointment"> Register Appointment</a>				
+					<a href="/Todaysfitness" className="green"> Todays Health</a>
 				
-                </div>
-            </div>
-        </nav>
-    </header>
-	
-	
-	
+					<div className="menu">Menu
+					  <div className="submenu" >			
+							<a href="/home"> View Appointments </a>
+							<a href="/bookappointment"> Book Appointment</a>
+							<a href="/RegisterAppointment"> Register Appointment</a>				
+							<a href="/Todaysfitness"> Todays Health</a>				
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		);
 	}

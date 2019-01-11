@@ -98,22 +98,10 @@ class Home extends Component {
 	  
  
 	render() {
-		const { rangeVal } = this.state;
-		{var oo= this.state.emoji}
-				{console.log(oo[1])}
+		
 		return (
 		<div>		
-		<div>
-			<span>aa
-			
-				<div dangerouslySetInnerHTML={{__html: this.state.textVal}} /> 
-			</span>
-			<input type="text"  ref={(input) => this.textInput = input} />
-			<input type="text"  ref={(input) => this.text2Input = input} />
-			<button name="ok" onClick={this.kanha} >OK</button>
-		</div>
-		<img src ={'/media/emoji/'+oo[rangeVal]} />{rangeVal}
-		<Componentnameslider range={rangeVal}  kamli={this.milibhagat} jitender={this.updateRange1}/>
+		
 		<h3>
    Appointment List
 </h3>	
