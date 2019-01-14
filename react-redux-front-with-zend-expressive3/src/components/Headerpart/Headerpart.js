@@ -6,8 +6,15 @@ import React, { Component} from 'react';
 class Headerpart extends Component {
 	static defaultProps: Object;
 	
-	state = {};
+	state = {appointment_id:''};
  
+	componentDidMount() {		
+		if(localStorage.getItem('session')!==''){
+			const user = JSON.parse(localStorage.getItem('session'));		
+			this.setState({ appointment_id : user.id })
+		}
+	}
+	
 	render() {
 		return (
 		
@@ -19,8 +26,9 @@ class Headerpart extends Component {
 					
 					<a href="/home"> View Appointments </a>
 					<a href="/bookappointment"> Book Appointment</a>
-					<a href="/RegisterAppointment"> Register Appointment</a>				
-					<a href="/Todaysfitness" className="green"> Todays Health</a>
+					<a href="/RegisterAppointment"> Register Appointment</a>
+					
+					<a href={"Todaysfitness/"+this.state.appointment_id} className="green"> Todays Health</a>
 				
 					<div className="menu">Menu
 					  <div className="submenu" >			

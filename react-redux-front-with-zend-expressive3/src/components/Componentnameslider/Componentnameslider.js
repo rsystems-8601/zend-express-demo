@@ -1,11 +1,11 @@
 // @flow
 import React, { Component} from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import createReactClass from 'create-react-class';
+//import ReactDOM from 'react-dom';
+//import PropTypes from 'prop-types';
+//import createReactClass from 'create-react-class';
 
 
-import ReactSlider from 'react-slider';
+//import ReactSlider from 'react-slider';
 
 class Componentnameslider extends Component {
 	static defaultProps: Object;
@@ -26,7 +26,7 @@ class Componentnameslider extends Component {
   
 	render() {
 		const { range } = this.props;
-		const { kamli } = this.props;
+		//const { kamli } = this.props;
 		
 		return (
 			<div className="rsslider">

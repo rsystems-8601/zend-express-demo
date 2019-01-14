@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { createStore } from 'redux';
-
-import ReactDOM from "react-dom";
+//import { createStore } from 'redux';
+//import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { Values } from "redux-form-website-template";
 import store from "./store";

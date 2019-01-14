@@ -70,7 +70,7 @@ function signInUser(connection,postParam, cb){
 			cb(err);
 		
 				//cb(null,rows)
-				if(rows[0]){
+				if(rows[0]){					
 					cb(null,rows);	
 				}else{
 					cb(true);	

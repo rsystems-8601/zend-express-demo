@@ -11,12 +11,12 @@ class Footerpart extends Component {
 		return (
 		
 		
-		<div class="text-center">
+		<div className="text-center">
 			<p>
-				<a href="#" target="_top"> RsysFiitBit </a>
+				<a href="void(0)" target="_top"> RsysFiitBit </a>
 			</p>
 			<p>
-				<a href="http://rsystems.com" target="_blank">Product of Rsystems</a>
+				<a href="http://rsystems.com" rel="noopener noreferrer" target="_blank">Product of Rsystems</a>
 			</p>
 		</div>
 	

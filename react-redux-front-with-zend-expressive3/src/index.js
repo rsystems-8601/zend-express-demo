@@ -11,7 +11,7 @@ import Headerpart from './components/Headerpart';
 import Footerpart from './components/Footerpart';
 import Updateappointment from './components/Updateappointment';
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route,Switch } from 'react-router-dom';
 import RegisterAppointment from './components/RegisterAppointment';
 import Signin from './components/Signin';
 import Signup from './components/Signup';
@@ -27,7 +27,8 @@ ReactDOM.render(
 			<div className="app-content">
 				<div className="container">
 					<Router>
-						<div>						  
+						<div>
+						<Switch>						
 							<Route exact path="/" component={Signin} />   
 							<Route exact path="/Signin" component={Signin} />   
 							<Route exact path="/Signup" component={Signup} />   
@@ -35,7 +36,9 @@ ReactDOM.render(
 							<Route exact path="/home" component={Home} />
 							<Route exact path="/bookappointment" component={Bookappointment} />
 							<Route exact path="/Updateappointment/:id" component={Updateappointment} />
-							<Route exact path="/RegisterAppointment" component={RegisterAppointment} />
+							<Route exact path="/RegisterAppointment" component={RegisterAppointment} />							
+							<Route path="*" component={Signin}/>
+						</Switch>	
 						</div>
 					</Router>
 				</div>

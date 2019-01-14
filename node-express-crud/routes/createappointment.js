@@ -34,7 +34,7 @@ requireModule.router.post('/createUser/api', function(req, res, next) {
 	//res.send(req.body); 	
 	appointmentModel.createUser(dbConn,req.body, function(err, rows) {
 		//console.log('row data = ', req.body);
-		if(rows){				
+		if(rows){
 			res.send(rows); 	
 		}
 	});	 

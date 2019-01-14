@@ -51,14 +51,14 @@ class Updateappointment extends Component {
 			.then(res => {
 					const records = res.data.result;
 					this.setState({ records });	
-					{ this.state.records.map(record =>						
+					this.state.records.map(record =>						
 						{
-							this.setState({ appointment_id : record.id }),
-							this.setState({ full_name : record.username }),
-							this.setState({ appointment_time : record.booking_date }),
-							this.setState({ appointment_reason : record.reason })						
+							this.setState({ appointment_id : record.id ,
+							 full_name : record.username ,
+							 appointment_time : record.booking_date ,
+							 appointment_reason : record.reason });					
 						}						  						
-					)}
+					)
 				})
 		}		
 	}

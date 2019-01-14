@@ -5,7 +5,7 @@ import axios from 'axios';
 
 //import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
-import Componentnameslider from '../../components/Componentnameslider';
+//import Componentnameslider from '../../components/Componentnameslider';
 //import Bookappointment from './components/Bookappointment';
 
 class Home extends Component {

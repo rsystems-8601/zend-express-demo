@@ -1,11 +1,11 @@
 // @flow
 import React, { Component} from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import Componentnameslider from '../../components/Componentnameslider';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+//import { Link } from 'react-router-dom';
+//import { connect } from 'react-redux';
 //import { userActions } from '../_actions';
-import axios from 'axios';
+//import axios from 'axios';
 
 class Todaysfitness extends Component {
 	static defaultProps: Object;
@@ -28,29 +28,40 @@ class Todaysfitness extends Component {
 	7:"Sad.png"}
 	};
 	
-	componentDidMount() {
-		if(this.props.match.params.id){
-			axios.get(`http://localhost:4000/updateappointment/api/`+(this.props.match.params.id))
-			.then(res => {				
-					const records = res.data;					
-					this.setState({ records });	
-					{ this.state.records.map(record =>						
+	componentDidMount() {		
+		if(localStorage.getItem('session')===''){
+			this.props.history.push(`/Signin`);
+		}else{
+			const user = JSON.parse(localStorage.getItem('session'));		
+			this.setState({ appointment_id : user.id ,
+							full_name : user.firstName + ' '+ user.lastName,
+							username : user.username ,
+							appointment_time : user.booking_date,
+							appointment_reason : user.reason })
+		}
+		
+		//second way
+		// if(this.props.match.params.id){
+			// axios.get(`http://localhost:4000/updateappointment/api/`+(this.props.match.params.id))
+			// .then(res => {				
+					// const records = res.data;					
+					// this.setState({ records });	
+					// { this.state.records.map(record =>						
 						
-						{
-							this.setState({ appointment_id : record.id }),
-							this.setState({ full_name : record.firstName + ' '+ record.lastName}),
-							this.setState({ username : record.username }),
-							this.setState({ appointment_time : record.booking_date }),
-							this.setState({ appointment_reason : record.reason })						
-						}						  						
-					)}
-				})				
-		}		
+						// {
+							// this.setState({ appointment_id : record.id }),
+							// this.setState({ full_name : record.firstName + ' '+ record.lastName}),
+							// this.setState({ username : record.username }),
+							// this.setState({ appointment_time : record.booking_date }),
+							// this.setState({ appointment_reason : record.reason })						
+						// }						  						
+					// )}
+				// })				
+		// }		
 	}
 	
 	constructor(props) {
 		super(props);
-			
 		this.updateRange1 = this.updateRange1.bind(this);
 		this.milibhagat = this.milibhagat.bind(this);
 		this.kanha = this.kanha.bind(this);
@@ -77,8 +88,7 @@ class Todaysfitness extends Component {
  
 	render() {
 		const { rangeVal } = this.state;
-		{var oo= this.state.emoji}
-				{console.log(oo[1])}
+		var oo= this.state.emoji;				
 		return (
 		<div>
 		<h5  dangerouslySetInnerHTML={{__html: 'Welcome '+this.state.full_name}} /> 
@@ -91,7 +101,7 @@ class Todaysfitness extends Component {
 				<input type="text"  ref={(input) => this.text2Input = input} />
 				<button name="ok" onClick={this.kanha} >OK</button>
 			</div>
-		<img src ={'/media/emoji/'+oo[rangeVal]} />{rangeVal}
+		<img alt="smile" src ={'/media/emoji/'+oo[rangeVal]} />{rangeVal}
 		<Componentnameslider range={rangeVal}  kamli={this.milibhagat} jitender={this.updateRange1} />
 		</div>);
 	}

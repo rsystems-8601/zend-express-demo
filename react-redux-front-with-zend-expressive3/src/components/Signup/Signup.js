@@ -1,8 +1,8 @@
 // @flow
 import React, { Component} from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+//import PropTypes from 'prop-types';
+//import { Link } from 'react-router-dom';
+//import { connect } from 'react-redux';
 //import { userActions } from '../_actions';
 import axios from 'axios';
 
@@ -42,7 +42,7 @@ class Signup extends Component {
 
         this.setState({ submitted: true });
         const { user } = this.state;
-        const { dispatch } = this.props;
+        //const { dispatch } = this.props;
         if (user.firstName && user.lastName && user.username && user.password) {
 			console.log(this.state)
 			this.createUser(user)
@@ -61,16 +61,33 @@ class Signup extends Component {
 		axios.post(`http://localhost:4000/createUser/api`, user)
 		  .then(res => {
 				//console.log(res);
-				if(res.status==200){
+				if(res.status===200){					
 					this.setState({
 						register:true,
 						createID:res.data.insertId
 					});
-					alert('Id created '+res.data.insertId)
-					this.props.history.push(`/Todaysfitness/`+res.data.insertId)
+					if(res.data.insertId<1){
+						localStorage.setItem('session','');
+					}else{
+						this.SignInUSer(res.data.insertId);
+					}
 				}
 		  })
 		}
+	}
+	
+	SignInUSer(id){
+		if(id){			
+			axios.get(`http://localhost:4000/updateappointment/api/`+(id))
+			.then(res => {
+					const records = res.data;					
+					this.setState({ records });						
+					localStorage.setItem('session',JSON.stringify(res.data[0]));
+					var user = JSON.parse(localStorage.getItem('session'));
+					alert('Welcome '+ user.firstName +' '+ user.lastName )
+					this.props.history.push(`/Todaysfitness/`+user.id);					
+				})				
+		}		
 	}
  
 	render() {
@@ -82,7 +99,7 @@ class Signup extends Component {
 	<div className="videowrapper">
 		<div className="col-sm-4 col-sm-offset-2">
 			<p> <br/></p>	
-			<p><img src="/media/logo.png" /></p>
+			<p><img alt="logo" src="/media/logo.png" /></p>
                 
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !user.firstName ? ' has-error' : '')}>
@@ -116,7 +133,7 @@ class Signup extends Component {
                     <div className="form-group">
                         <button onClick={()=>this.createUser()} className="btn btn-primary">Register</button>
                         {registering && 
-                            <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                            <img alt="logo" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                         }
                         <button type="reset" className="btn btn-link">Cancel</button>
                     </div>
@@ -145,12 +162,12 @@ Signup.defaultProps = {};
 Signup.propTypes = {};
 
 
-function mapStateToProps(state) {
-    const { registering } = state.registration;
-    return {
-        registering
-    };
-}
+// function mapStateToProps(state) {
+    // const { registering } = state.registration;
+    // return {
+        // registering
+    // };
+// }
 
 // const connectedRegisterPage = connect(mapStateToProps)(RegisterPage);
 // export { connectedRegisterPage as RegisterPage };

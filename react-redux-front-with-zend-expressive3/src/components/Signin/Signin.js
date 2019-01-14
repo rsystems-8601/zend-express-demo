@@ -1,8 +1,8 @@
 // @flow
 import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+//import PropTypes from 'prop-types';
+//import { connect } from 'react-redux';
 //import { userActions } from '../_actions';
 import axios from 'axios';
 
@@ -43,7 +43,7 @@ class Signin extends Component {
 
         this.setState({ submitted: true });		
         const { user } = this.state;        
-        const { dispatch } = this.props;
+        //const { dispatch } = this.props;
 		console.log(this.state);
         // if (user.username && user.password) {
            // // dispatch(userActions.login(username, password));
@@ -66,13 +66,16 @@ class Signin extends Component {
 				// console.log('888')
 				if(res.data.error){
 					alert(res.data.result)
+					localStorage.setItem('session','');
 				}else{
+					localStorage.setItem('session',JSON.stringify(res.data.result[0]));
 					this.setState({				
 						register:true,
 						createID:res.data.result[0].id
 					});		
-					alert('Id created '+res.data.result[0].id)					
-					this.props.history.push(`/Todaysfitness/`+res.data.result[0].id)
+					var user = JSON.parse(localStorage.getItem('session'));
+					alert('Welcome '+ user.firstName +' '+ user.lastName )					
+					this.props.history.push(`/Todaysfitness/`+user.id)
 				}		
 		  })
 		}
@@ -87,7 +90,7 @@ class Signin extends Component {
 			<div className="videowrapper">
 				<div className="col-sm-4 col-sm-offset-2">
 					<p> <br/></p>	
-					<p><img src="/media/logo.png" /></p>
+					<p><img alt="logo" src="/media/logo.png" /></p>
 					 <p> <br/></p>           
 					<form name="form" onSubmit={this.handleSubmit}>
 					<div className={'form-group' + (submitted && !user.username ? ' has-error' : '')}>
@@ -107,7 +110,7 @@ class Signin extends Component {
 					<div className="form-group">
 						<button className="btn btn-primary">Login</button>
 						{loggingIn &&
-							<img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+							<img alt="logo"  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
 						}						
 					</div>
 					</form>
