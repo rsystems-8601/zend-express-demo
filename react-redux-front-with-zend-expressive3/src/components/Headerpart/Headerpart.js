@@ -1,41 +1,65 @@
 // @flow
 import React, { Component} from 'react';
 //import PropTypes from 'prop-types';
-//import { Router, Route,    IndexRoute } from 'react-router'
+import { Link } from 'react-router-dom';
+import { Router, Route   } from 'react-router';
 
+
+	
 class Headerpart extends Component {
 	static defaultProps: Object;
 	
-	state = {appointment_id:''};
+	state = {appointment_id:'',logoutbutton:''};
  
-	componentDidMount() {		
+	logoutBefore() {
+		alert(this.state.logoutbutton)
+		return this.sessionBefore();		
+	}	
+	
+	sessionBefore() {
 		if(localStorage.getItem('session')!==''){
-			const user = JSON.parse(localStorage.getItem('session'));		
-			this.setState({ appointment_id : user.id })
+			var user = JSON.parse(localStorage.getItem('session'));
+			if(user.id){
+				this.setState({ appointment_id : user.id });
+				this.state.logoutbutton = 'Logout';
+			}else{
+				this.state.logoutbutton = 'Signup';	
+			}			
+		}else{
+				localStorage.setItem('session','');
+				this.state.logoutbutton = 'Signup';
+				this.state.appointment_id = '';				
 		}
+		return true;
 	}
+	
+	componentWillMount() {				
+		this.sessionBefore();		
+	}
+	
+	constructor(props) {
+        super(props); 
+		this.logoutBefore = this.logoutBefore.bind(this);
+    }
 	
 	render() {
 		return (
 		
 		<div className="header">
 			<div className="header-wrapper">
-				<a href="/"><img src="/media/logo.png" alt="Pacifica" /></a>
-				<div className="header-links">
-					<a href="/Signup" className="button">Sign Up</a>
-					
-					<a href="/home"> View Appointments </a>
-					<a href="/bookappointment"> Book Appointment</a>
-					<a href="/RegisterAppointment"> Register Appointment</a>
-					
-					<a href={"Todaysfitness/"+this.state.appointment_id} className="green"> Todays Health</a>
-				
+				<Link to="/Todaysfitness"><img src="/media/logo.png" alt="Pacifica" /></Link>
+				<div className="header-links">				
+					<Link to={"/"+this.state.logoutbutton} onClick={this.logoutBefore} className="button" id="buttonLogout">{this.state.logoutbutton}</Link>
+					<Link to="/home" > View Appointments </Link>
+					<Link to="/bookappointment" > Book Appointment</Link>
+					<Link to="/RegisterAppointment" > Register Appointment</Link>					
+					<Link to={"/Todaysfitness/"+this.state.appointment_id} className="green"> Todays Health</Link>				
 					<div className="menu">Menu
 					  <div className="submenu" >			
-							<a href="/home"> View Appointments </a>
-							<a href="/bookappointment"> Book Appointment</a>
-							<a href="/RegisterAppointment"> Register Appointment</a>				
-							<a href="/Todaysfitness"> Todays Health</a>				
+							<Link to="/home"> View Appointments </Link>
+							<Link to="/bookappointment"> Book Appointment</Link>
+							<Link to="/RegisterAppointment"> Register Appointment</Link>
+							<Link to="/Todaysfitness"> Todays Health</Link>				
 					  </div>
 					</div>
 				</div>
