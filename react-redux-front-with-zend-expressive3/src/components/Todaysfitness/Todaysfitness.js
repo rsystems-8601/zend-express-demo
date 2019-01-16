@@ -74,7 +74,7 @@ class Todaysfitness extends Component {
 	  }
 	  
 	  milibhagat(v){
-		  console.log(v*2*6)
+		  console.log(v*2*6)		  
 		  return v*6;
 	  }
 	  

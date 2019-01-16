@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom';
 //import { connect } from 'react-redux';
 //import { userActions } from '../_actions';
 import axios from 'axios';
-
+import * as utils from '../../Userservice';
 
 class Signin extends Component {	
 	
+	
 	constructor(props) {
-        super(props);
+		super(props);
+		//this.props.dispatch(userActions.logout());
 
-        // reset login status
-        //this.props.dispatch(userActions.logout());
-
+        
         this.state = {
             user: {                
                 username: '',
@@ -74,6 +74,7 @@ class Signin extends Component {
 						createID:res.data.result[0].id
 					});		
 					var user = JSON.parse(localStorage.getItem('session'));
+					utils.profile.activeButtonName=utils.Config.Logout;
 					alert('Welcome '+ user.firstName +' '+ user.lastName )					
 					this.props.history.push(`/Todaysfitness/`+user.id)
 				}		

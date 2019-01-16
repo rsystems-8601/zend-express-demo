@@ -51,7 +51,7 @@ requireModule.router.get('/updateappointment/api/:uid', function(req, res, next)
 requireModule.router.post('/updateappointment/api', function(req, res, next) {	  
 	appointmentModel.updateAppointmentInfo(dbConn,req.body, function(err, rows) {		
 		if(rows){			
-			res.send(rows);		
+			res.send(rows);
 		}
 	});	 
 });

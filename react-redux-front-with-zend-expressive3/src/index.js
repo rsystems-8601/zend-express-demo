@@ -12,7 +12,7 @@ import Footerpart from './components/Footerpart';
 import Updateappointment from './components/Updateappointment';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Route,Switch } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import RegisterAppointment from './components/RegisterAppointment';
 import Signin from './components/Signin';
 import Signup from './components/Signup';
@@ -20,6 +20,7 @@ import Todaysfitness from './components/Todaysfitness';
 import Logout from './components/Logout';
 
 ReactDOM.render( 
+
 		<Router>		
 		<div className="container">			
 		<Headerpart/>

@@ -5,6 +5,7 @@ import React, { Component} from 'react';
 //import { connect } from 'react-redux';
 //import { userActions } from '../_actions';
 import axios from 'axios';
+import * as utils from '../../Userservice';
 
 class Signup extends Component {
 	static defaultProps: Object;
@@ -85,6 +86,7 @@ class Signup extends Component {
 					localStorage.setItem('session',JSON.stringify(res.data[0]));
 					var user = JSON.parse(localStorage.getItem('session'));
 					alert('Welcome '+ user.firstName +' '+ user.lastName )
+					utils.profile.activeButtonName=utils.Config.Logout;
 					this.props.history.push(`/Todaysfitness/`+user.id);					
 				})				
 		}		
