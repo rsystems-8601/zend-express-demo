@@ -25,21 +25,28 @@ class Componentnameslider extends Component {
 	}  
   
 	render() {
-		const { range } = this.props;
+		const { range, colorcode , emojiname} = this.props;
 		//const { kamli } = this.props;
-		
+		var style = {
+      backgroundColor: colorcode,
+      fontSize: 200
+    };
+	
 		return (
 			<div className="rsslider">
 				<div>
 					<input id="range" type="range"
 					  value={range}
 					  min="1"
-					  max="6"
+					  max="7"
 					  step="1"
+					  style={style}
 					  onChange={this.dharmender}
 					/>
-				<span id="output">{range}</span>
+				
 				</div>
+				
+				<center id="output" className="clearboth"> </center>
 			</div>	
 			);
 	}

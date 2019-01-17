@@ -45,7 +45,7 @@ class Home extends Component {
 			body.append('id', id);
 	axios.post(`http://127.0.0.1:8080/deleteappointment`, body)
       .then(res => {
-			console.log(res);        
+			//console.log(res);        
 			this.setState({
 				popupdelete:!res.data.status,
 				deleteID:0
@@ -84,7 +84,7 @@ class Home extends Component {
 	  }
 	  
 	  milibhagat(v){
-		  console.log(v*2*6)
+		  //console.log(v*2*6)
 		  return v*6;
 	  }
 	  

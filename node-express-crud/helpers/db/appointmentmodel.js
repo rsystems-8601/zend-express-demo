@@ -63,6 +63,18 @@ function createUser(connection,postParam, cb){
 	}
 }
 
+function createMood(connection,postParam, cb){
+	if(postParam){
+		
+		connection.query(('UPDATE appointments SET mood_emoji ='+postParam.mood_emoji+', mood_entry = "'+postParam.mood_entry+'" WHERE id ='+postParam.mood_user_id), function (err, rows, fields) {
+		  if (err) 
+			cb(err);
+				
+			cb(null,rows);				
+		})
+	}
+}
+
 function signInUser(connection,postParam, cb){
 	if(postParam){		
 		connection.query("SELECT * FROM `appointments` WHERE `username`='"+postParam.username+"' and `password`='"+postParam.password+"' limit 1", function (err, rows, fields) {
@@ -89,5 +101,6 @@ module.exports = {
 	deleteAppointmentInfo,
 	createAppointment,
 	signInUser,
-	createUser
+	createUser,
+	createMood
 	};

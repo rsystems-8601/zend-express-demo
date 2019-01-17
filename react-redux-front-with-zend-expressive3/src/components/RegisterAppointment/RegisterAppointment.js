@@ -36,10 +36,12 @@ class RegisterAppointment extends Component {
 		return (
 			<div>			
 			  <Provider store={store}>
-				<div style={{ padding: 15 }}>
-				  <h2>Redux appointment</h2>
+				<div style={{ padding: 15 }}>				  
+				  <h2><strong>Register Appointment </strong></h2>
+				  <div className="clearboth"> 
 				  <SimpleForm onSubmit={showResults} />
 				  <Values form="simple" />
+				  </div>
 				</div>
 			  </Provider>
 			</div>

@@ -7,34 +7,37 @@ const SimpleForm = props => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Full Name</label>
+         <label> </label>
         <div>
           <Field
             name="full_name"
             component="input"
             type="text"
+			className="form-control"
             placeholder="Full Name"
           />
         </div>
       </div>
       <div>
-        <label>appointment_time</label>
+         <label> </label>
         <div>
           <Field
             name="appointment_time"
             component="input"
             type="text"
+			className="form-control"
             placeholder="Appointment Time"
           />
         </div>
       </div>
       <div>
-        <label>Appointment Reason</label>
+        <label> </label>
         <div>
           <Field
             name="appointment_reason"
             component="textarea"
             type="email"
+			className="form-control"
             placeholder="Appointment Reason"
           />
         </div>
@@ -42,10 +45,14 @@ const SimpleForm = props => {
       	  
       
       <div>
-        <button type="submit" disabled={pristine || submitting}>Submit</button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
+	  <div className="clearboth"> 
+        <button type="submit" className="btn btn-primary"  disabled={pristine || submitting}>Submit</button>
+		</div>
+		<div className="clearboth"> 
+        <button type="button" className="btn btn-primary"  disabled={pristine || submitting} onClick={reset}>
           Clear Values
         </button>
+      </div>
       </div>
     </form>
   );

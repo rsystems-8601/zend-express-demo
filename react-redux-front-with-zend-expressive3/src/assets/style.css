@@ -3200,6 +3200,7 @@ html.landing.relax { background-position: initial; }
   }
 }
 
+
 @media all and (max-width: 400px) {
   html.clinician .header .header-wrapper img { width: 155px; padding-top: 20px; }
   .header-wrapper .header-links div.menu,

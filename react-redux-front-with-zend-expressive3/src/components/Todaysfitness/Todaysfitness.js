@@ -6,6 +6,8 @@ import Componentnameslider from '../../components/Componentnameslider';
 //import { connect } from 'react-redux';
 //import { userActions } from '../_actions';
 //import axios from 'axios';
+import axios from 'axios';
+
 
 class Todaysfitness extends Component {
 	static defaultProps: Object;
@@ -20,12 +22,16 @@ class Todaysfitness extends Component {
 		popupUpdate:'',
 		updateID:'',
 		rangeVal: 1,
-		textVal:'--hi',
+		textVal:'',
 		emoji:{
-		6:'Awful.png',5:"Bad.png",2:"Good.png",3:"Normal.png",
-		  4:"Laugh.png",
-		  1:"Normal.png",
-	7:"Sad.png"}
+			1:"Normal",2:"Good",3:"Normal",
+		  4:"Laugh",5:"Bad",6:'Awful',7:"Sad"
+		  
+		},
+		emojiColor:{
+		  1:"#60D293",2:"#5FE9C4",3:"#5BDDDF",
+		  4:"#58CAF6",5:"#FFBE66",6:'#FF9B73',7:"#FF6669"
+		}
 	};
 	
 	componentDidMount() {		
@@ -37,27 +43,10 @@ class Todaysfitness extends Component {
 							full_name : user.firstName + ' '+ user.lastName,
 							username : user.username ,
 							appointment_time : user.booking_date,
+							rangeVal : user.mood_emoji,
+							textVal : user.mood_entry==null?'':user.mood_entry,
 							appointment_reason : user.reason })
 		}
-		
-		//second way
-		// if(this.props.match.params.id){
-			// axios.get(`http://localhost:4000/updateappointment/api/`+(this.props.match.params.id))
-			// .then(res => {				
-					// const records = res.data;					
-					// this.setState({ records });	
-					// { this.state.records.map(record =>						
-						
-						// {
-							// this.setState({ appointment_id : record.id }),
-							// this.setState({ full_name : record.firstName + ' '+ record.lastName}),
-							// this.setState({ username : record.username }),
-							// this.setState({ appointment_time : record.booking_date }),
-							// this.setState({ appointment_reason : record.reason })						
-						// }						  						
-					// )}
-				// })				
-		// }		
 	}
 	
 	constructor(props) {
@@ -68,41 +57,106 @@ class Todaysfitness extends Component {
 	  }
 	  
 	 updateRange1(val) {
-		this.setState({
-		  rangeVal: val
-		})
+		 //alert(val)
+		 if(val>0){
+			this.setState({
+			  rangeVal: val
+			})
+		 }
 	  }
 	  
 	  milibhagat(v){
-		  console.log(v*2*6)		  
+		  //console.log(v*2*6)		  
 		  return v*6;
 	  }
 	  
 	  kanha(){
+		  if(this.text2Input.value!==''){
 		   this.setState({
-			  textVal: ((this.state.textVal)+'<br>--'+(this.text2Input.value))
+			  textVal: '--'+(this.text2Input.value)+'<br>'+(this.state.textVal)
 		   })
 		 this.text2Input.value='';
 		  //console.log(this.state.textVal+this.textInput.value);
+		  }
 	  }
+	  
+	handleSubmit(event) {
+        var user = {
+			mood_entry:this.state.textVal,
+			mood_emoji:this.state.rangeVal,			
+			mood_user_id:this.state.appointment_id		
+			}      		
+        if (user.mood_emoji && user.mood_user_id) {	
+			this.createMood(user);           
+        }else{
+			alert('Please add mood entry');
+		}		
+    }
+	
+	createMood(user){
+		if(user){
+		axios.post(`http://localhost:4000/createMood/api`, user)
+		  .then(res => {
+				//console.log(res);
+				
+				if(res.status===200){					
+					// this.setState({
+						// register:true,
+						// createID:res.data.insertId
+					// });
+					// if(res.data.insertId<1){
+						// localStorage.setItem('session','');
+					// }else{
+						// this.SignInUSer(res.data.insertId);
+					// }
+				}
+		  })
+		}
+	}
+	
  
 	render() {
 		const { rangeVal } = this.state;
 		var oo= this.state.emoji;				
+		var oocolor= this.state.emojiColor;				
 		return (
-		<div>
-		<h5  dangerouslySetInnerHTML={{__html: 'Welcome '+this.state.full_name}} /> 
-		<p > <br /> </p>
+		<div className="fitbit">
+		<div className="fitbit1">
+		<div className="clearboth">
+			<h5 className="fitbit-Welcome"  dangerouslySetInnerHTML={{__html: 'Welcome <strong>'+this.state.full_name+'<strong>'}} /> 
+			</div>
+			
+			<center><img alt="smile" src ={'/media/emoji/'+oo[rangeVal]+'.png'} /></center>
+			<div className="clearboth"><div> 
+				<span  style={{'float':'left'}}> HOW ARE YOU?</span> 
+				<span style={{'float':'right'}}>{oo[rangeVal]} </span> 
+			</div></div>
+			
+			<div className="clearboth"> 
+			<Componentnameslider range={rangeVal} emojiname={oo[rangeVal]} colorcode={oocolor[rangeVal]} kamli={this.milibhagat} jitender={this.updateRange1} />
+			</div>
+			
+		</div>
+		<div className="fitbit2">
 			<div>
+				<div className="clearboth"> 							
+				<textarea type="text" className="form-control" ref={(input) => this.text2Input = input} /> 
+				</div>
+				<div className="clearboth"> 
+					<button name="ok" onClick={this.kanha} className="btn">New Mood Entry</button>
+				</div>
+				<div className="clearboth"> 
+					<button name="ok" onClick={()=>this.handleSubmit()} className="btnDone">Done</button>
+				</div>
+				<div className="clearboth"> 
+				<h5 className="fitbit-Welcome"  dangerouslySetInnerHTML={{__html: 'Your past mood:'}} /> 
 				<span>
 					<div dangerouslySetInnerHTML={{__html: this.state.textVal}} /> 
 				</span>
-				<input type="text"  ref={(input) => this.textInput = input} />
-				<input type="text"  ref={(input) => this.text2Input = input} />
-				<button name="ok" onClick={this.kanha} >OK</button>
+				</div>
+				
 			</div>
-		<img alt="smile" src ={'/media/emoji/'+oo[rangeVal]} />{rangeVal}
-		<Componentnameslider range={rangeVal}  kamli={this.milibhagat} jitender={this.updateRange1} />
+		</div>
 		</div>);
 	}
 }

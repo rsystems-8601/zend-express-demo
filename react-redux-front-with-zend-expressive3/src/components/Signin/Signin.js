@@ -44,12 +44,14 @@ class Signin extends Component {
         this.setState({ submitted: true });		
         const { user } = this.state;        
         //const { dispatch } = this.props;
-		console.log(this.state);
+		//console.log(this.state);
         // if (user.username && user.password) {
            // // dispatch(userActions.login(username, password));
 		    this.signInUser(user);
         // }
     }
+	
+	
 	
 	signInUser(user){
 		if(user){
@@ -75,7 +77,7 @@ class Signin extends Component {
 					});		
 					var user = JSON.parse(localStorage.getItem('session'));
 					utils.profile.activeButtonName=utils.Config.Logout;
-					alert('Welcome '+ user.firstName +' '+ user.lastName )					
+					//alert('Welcome '+ user.firstName +' '+ user.lastName )					
 					this.props.history.push(`/Todaysfitness/`+user.id)
 				}		
 		  })
@@ -90,9 +92,10 @@ class Signin extends Component {
 		return (	        
 			<div className="videowrapper">
 				<div className="col-sm-4 col-sm-offset-2">
-					<p> <br/></p>	
+					<div className="clearboth"> 
 					<p><img alt="logo" src="/media/logo.png" /></p>
-					 <p> <br/></p>           
+					</div>     
+					<div className="clearboth"> 					
 					<form name="form" onSubmit={this.handleSubmit}>
 					<div className={'form-group' + (submitted && !user.username ? ' has-error' : '')}>
 						<label htmlFor="username">Username</label>
@@ -115,6 +118,7 @@ class Signin extends Component {
 						}						
 					</div>
 					</form>
+					</div>     
 					<Link to="/Signup" className="fadeIn wow" id="button">Sign Up for Free</Link>
 				</div>
 			<div className="phone-shot wow fadeIn col-sm-4 col-sm-offset-2" >

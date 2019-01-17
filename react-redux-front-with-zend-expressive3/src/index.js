@@ -18,6 +18,7 @@ import Signin from './components/Signin';
 import Signup from './components/Signup';
 import Todaysfitness from './components/Todaysfitness';
 import Logout from './components/Logout';
+import PageNotFound from './components/PageNotFound';
 
 ReactDOM.render( 
 
@@ -32,12 +33,13 @@ ReactDOM.render(
 						<Route exact path="/Signin" component={Signin} />   
 						<Route exact path="/Signup" component={Signup} />   
 						<Route exact path="/Todaysfitness/:id" component={Todaysfitness} />   
+						<Route exact path="/Todaysfitness" component={Todaysfitness} />   
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/bookappointment" component={Bookappointment} />
 						<Route exact path="/Updateappointment/:id" component={Updateappointment} />
 						<Route exact path="/RegisterAppointment" component={RegisterAppointment} />	
 						<Route exact path="/Logout" component={Logout} />							
-						<Route exact path="*" component={Signin}/>
+						<Route exact path="*" component={PageNotFound}/>
 						</Switch>
 					</div>					
 				</div>

@@ -21,7 +21,7 @@ class Updateappointment extends Component {
 	};
 	
 	confirmUpdate(data){
-		console.log(data);
+		//console.log(data);
 		
 	let body = new FormData();
 			body.append('appointment_id', data.appointment_id);
@@ -31,7 +31,7 @@ class Updateappointment extends Component {
 			
 	axios.post(`http://127.0.0.1:8080/updateappointment`, body)
       .then(res => {
-			console.log(res); 
+			//console.log(res); 
 				if(res.data.status){					
 					this.props.history.push(`/`)
 				}			

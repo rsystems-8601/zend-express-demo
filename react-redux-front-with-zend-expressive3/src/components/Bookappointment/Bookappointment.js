@@ -32,7 +32,7 @@ class Bookappointment extends Component {
 				
 		axios.post(`http://127.0.0.1:8080/createappointment`, body)
 		  .then(res => {
-				console.log(res); 
+				//console.log(res); 
 				if(res.data.status){
 					this.setState({				
 						popupAdd:!res.data.status,
@@ -48,38 +48,37 @@ class Bookappointment extends Component {
 	render() {
 		return (
 		<div>
-		<h3>
-  Book Appointment 
-</h3>
-
+		<div className="clearboth"> 
+		<h2><strong>Book Appointment </strong></h2>
+		</div>
 <div className="appointment_form" >
-<h2>Enter Appointment Details</h2>
+
 
 <form >
 
 <div className="row">
-<div className="label">Full Name</div>
-<div className="input_field"><input type='text'  ref={(input) => this.state.full_name = input}  id='full_name' name='full_name'   />
+<div>Full Name</div>
+<div className="input_field"><input className="form-control"  type='text'  ref={(input) => this.state.full_name = input}  id='full_name' name='full_name'   />
 
 </div>
 </div> 
 
 <div className='row'>
-<div className='label'>Select Date and Time</div>
-<div className='input_field'><input type='text'   name="appointment_time" id='appointment_time' ref={(input) => this.state.appointment_time = input}  /></div>
+<div>Select Date and Time</div>
+<div className='input_field'><input className="form-control"  type='text'   name="appointment_time" id='appointment_time' ref={(input) => this.state.appointment_time = input}  /></div>
 
 </div> 
 
 <div className='row'>
-<div className='label'>Reason of Appointment</div>
-<div className='input_field'><textarea  ref={(input) => this.state.appointment_reason = input} rows='9' cols='50' id='appointment_reason' name='appointment_reason'  /></div>
+<div>Reason of Appointment</div>
+<div className='input_field'><textarea className="form-control"   ref={(input) => this.state.appointment_reason = input} rows='9' cols='50' id='appointment_reason' name='appointment_reason'  /></div>
 
 </div> 
 
 <div className='row'>
 <div className='label'>&nbsp;</div>
 <div className='input_field form_update'>
-	 <button type="button" onClick={()=>this.bookAppointment()}>Submit</button>
+	 <button type="button" className="btn btn-primary" onClick={()=>this.bookAppointment()}>Submit</button>
 </div>
 </div> 
 

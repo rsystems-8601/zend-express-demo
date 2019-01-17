@@ -39,13 +39,13 @@ class Signup extends Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();
+        //event.preventDefault();
 
         this.setState({ submitted: true });
         const { user } = this.state;
         //const { dispatch } = this.props;
         if (user.firstName && user.lastName && user.username && user.password) {
-			console.log(this.state)
+			//console.log(this.state)
 			this.createUser(user)
            // dispatch(userActions.register(user));
         }
@@ -78,18 +78,18 @@ class Signup extends Component {
 	}
 	
 	SignInUSer(id){
-		if(id){			
+		if(id){
 			axios.get(`http://localhost:4000/updateappointment/api/`+(id))
 			.then(res => {
-					const records = res.data;					
-					this.setState({ records });						
+					const records = res.data;				
+					this.setState({ records });
 					localStorage.setItem('session',JSON.stringify(res.data[0]));
 					var user = JSON.parse(localStorage.getItem('session'));
-					alert('Welcome '+ user.firstName +' '+ user.lastName )
+					//alert('Welcome '+ user.firstName +' '+ user.lastName )
 					utils.profile.activeButtonName=utils.Config.Logout;
-					this.props.history.push(`/Todaysfitness/`+user.id);					
-				})				
-		}		
+					this.props.history.push(`/Todaysfitness/`+user.id);
+				})
+		}
 	}
  
 	render() {
@@ -100,9 +100,9 @@ class Signup extends Component {
 		
 	<div className="videowrapper">
 		<div className="col-sm-4 col-sm-offset-2">
-			<p> <br/></p>	
+			<div className="clearboth"> 
 			<p><img alt="logo" src="/media/logo.png" /></p>
-                
+            </div>    
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !user.firstName ? ' has-error' : '')}>
                         <label htmlFor="firstName">First Name</label>
@@ -133,18 +133,21 @@ class Signup extends Component {
                         }
                     </div>
                     <div className="form-group">
-                        <button onClick={()=>this.createUser()} className="btn btn-primary">Register</button>
-                        {registering && 
-                            <img alt="logo" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                        }
+					<div className="clearboth">
+                        <button type="button" onClick={()=>this.handleSubmit()} className="btn btn-primary">Register</button>
+                        
+						</div>	
+						
+						<div className="clearboth">
                         <button type="reset" className="btn btn-link">Cancel</button>
+						</div>	
                     </div>
                 </form>
             </div>
 			
 		<div className="phone-shot wow fadeIn col-sm-4 col-sm-offset-2" >
-			<p> <br/></p>
-			<img src="/media/home-with-award2.png" width="370px" alt="Pacifica Mobile App" />		
+			<div className="clearboth"> 
+			<img src="/media/home-with-award2.png" width="370px" alt="Pacifica Mobile App" />	</div>	
 		</div>
 	
 		<div className="col-sm-8 col-sm-offset-2" >	

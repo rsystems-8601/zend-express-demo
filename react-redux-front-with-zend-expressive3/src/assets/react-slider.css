@@ -37,13 +37,24 @@ $primary: red;
   }
 }
 
+.fitbit-Welcome{
+	background-color: #1BC98D;
+    height: 50px;
+    padding: 15px;
+}
+
+.clearboth{
+	clear: both;
+    margin: 25px 0px;
+}
+
 /* CHROME */
 #range {
   -webkit-appearance: none;
   outline: none;
   background: $primary;
-  height: 6px;
-  width: 200px;
+  height: 13px;
+ /* width: 200px;*/
   border-radius: 5px;
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -80,6 +91,19 @@ $primary: red;
   padding: 14px;
   border-radius: 4px;
   color: white;
+  border-radius: 96px;
+}
+
+.btnDone{
+    background-color: #60D293;
+    border: none;
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+    border-radius: 4px;
+    color: white;
+    border-radius: 96px;
+    font-weight: 600;
 }
 
 .logindiv  .fb{

@@ -40,6 +40,16 @@ requireModule.router.post('/createUser/api', function(req, res, next) {
 	});	 
 });
 
+/* api createMood. */
+requireModule.router.post('/createMood/api', function(req, res, next) {	  	
+	//res.send(req.body); 	
+	appointmentModel.createMood(dbConn,req.body, function(err, rows) {
+		//console.log('row data = ', req.body);
+		if(rows){
+			res.send(rows); 	
+		}
+	});	 
+});
 
 /* api createUser. */
 requireModule.router.post('/signInUser/api', function(req, res, next) {	  	
