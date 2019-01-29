@@ -1,0 +1,130 @@
+***************FOR REFRESH*************
+clear inside file
+D:\native\AwesomeProject2\android\app\build
+D:\native\AwesomeProject2\android\.gradle
+
+run adb.exe manually as administartive 
+C:\Users\pradeep.srivastav\AppData\Local\android\Sdk\platform-tools
+
+cd D:\native\AwesomeProject2
+run emulator befor start app
+npm run build
+react-native start
+react-native run-android
+
+***************FOR Studio Re install *************
+1-paste android-studio-ide-182.5199772-windows.zip
+D:\android\android-studio
+run with adminstartive - D:\android\android-studio\bin\studio64.exe
+
+2-create folder 
+C:\Users\pradeep.srivastav\AppData\Local\android\Sdk
+C:\Users\pradeep.srivastav\AppData\Local\android\Sdk\platform-tools
+C:\Users\pradeep.srivastav\AppData\Local\android\Sdk\tools
+
+3- paste tool -build-tools_r26.0.2-windows
+C:\Users\pradeep.srivastav\AppData\Local\android\Sdk\build-tools
+folder name : 
+26.0.2
+27.0.3
+28.0.3
+
+4- Enable via Windows Features: "Hyper-V" - Only available for Windows 10 
+
+5- Add regedit key
+	A-Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Google\Chrome
+	HardwareAccelerationModeEnabled:1
+	Registry key	Value type==>DWORD 32 bit value
+
+
+	B-Computer\HKEY_CURRENT_USER\Software\Microsoft\Avalon.Graphics
+	Registry key	Value type==>DWORD 32 bit value
+	DisableHWAcceleration:1
+	MaxMultisampleType:16
+	HardwareAccelerationModeEnabled:1
+
+6- delete below folder and run app studio.exe64
+C:\Users\pradeep.srivastav\.android
+C:\Users\pradeep.srivastav\.AndroidStudio3.3
+
+7- make environment
+ANDROID_HOME
+C:\Users\pradeep.srivastav\AppData\Local\Android\Sdk
+
+
+8- Creade AVD 
+hardware profile: Nexus 4
+System Image: Android 7.0.arm 64-v8a	
+Ram Memory : 1024
+Disable: front camera , rear camera , GPS 
+
+9- sleect folder as project --D:\native\AwesomeProject2\android
+run app in studio
+then a go in "Gradle Scripts "
+select file : build.gradle 
+
+set the version:
+buildscript {
+    ext {
+        buildToolsVersion = "27.0.3"
+        minSdkVersion = 16
+        compileSdkVersion = 27
+        targetSdkVersion = 26
+        supportLibVersion = "27.1.1"
+    }
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.3.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+11- npm i build
+12- npm i jest-react-native
+13- npm i watchman
+14- npm i react-native-router-flux@latest
+15- npm i yarn
+15- npm install -g expo-cli
+make sure android mobile simulator is on 
+- expo init AwesomeProject
+cd AwesomeProject
+npm start
+yarn start
+
+**********for background image **************
+<ImageBackground
+        style={{
+          
+         flex: 1,
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover'
+          
+        }}
+        source={require('./assets/Bananavarieties.jpg')}
+      >
+	  
+*************BIOS Setting ***************
+1- press F1 restart while
+Advance => CPU Setting > Enable : Vertual Intel 
+
+2- type "windows feature" in run command 
+Enable hyper-V (All feature)
+
+3-run intel exe as administartive mode
+C:\Users\pradeep.srivastav\AppData\Local\android\Sdk\extras\intel\Hardware_Accelerated_Execution_Manager
+haxm_check.exe
+intelhaxm-android.exe
+
+4-run application
+expo start
+yarn start
+
+5- build android app
+make an account https://expo.io/
+expo build:android

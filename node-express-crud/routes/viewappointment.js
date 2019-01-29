@@ -29,11 +29,13 @@ requireModule.router.get('/api', function(req, res, next) {
 	appointmentModel.getAppointmentList(dbConn,10, function(err, rows) {
 		//console.log('row data = ', rows);
 		obj.applist=rows;
-		res.render('viewappointment', { 
-			title: obj.title, 
-			applist:obj.applist, 
-			moment:obj.moment  
-		}); 	
+		res.send({'status' :true,
+		'result' : obj.applist});
+		// res.render('viewappointment', { 
+			// title: obj.title, 
+			// applist:obj.applist, 
+			// moment:obj.moment  
+		// }); 	
 	});	 
 });
 

@@ -1571,11 +1571,10 @@ html.landing.pacifica-edu .faq.press.schools img { width: 200px; filter: graysca
   background: white;
   left: 50%;
   margin-left: -225px;
-  width: 450px;
-  z-index: 5;
+  width: 450px;  
   height: auto;
-  top: 60px;
-  position: fixed;
+  top: 0;
+  position: absolute;
   z-index: 999999;
   padding: 32px 30px 50px;
 }

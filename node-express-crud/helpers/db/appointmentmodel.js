@@ -29,6 +29,17 @@ function updateAppointmentInfo(connection,postParam, cb){
 	}
 }
 
+function updateAppointmentAPI(connection,postParam, cb){	
+	if(postParam){
+		connection.query('UPDATE appointments SET `username` = "'+postParam.full_name+'", `reason` = "'+postParam.appointment_reason+'", `booking_date` = "'+postParam.appointment_time+'" WHERE `id` ='+postParam.appointment_id, function (err, rows, fields) {
+		  if (err) 
+			cb(err);
+				
+			cb(null,rows.affectedRows);				
+		})
+	}
+}
+
 function deleteAppointmentInfo(connection,id, cb){
 	if(id){
 		connection.query('UPDATE appointments SET `is_deleted` =1 WHERE `id` ='+id, function (err, rows, fields) {
@@ -47,6 +58,18 @@ function createAppointment(connection,postParam, cb){
 			cb(err);
 			//	console.log(rows)
 			cb(null,rows.affectedRows);				
+		})
+	}
+}
+
+function createAppointmentAPI(connection,postParam, cb){
+	if(postParam){
+		connection.query('INSERT INTO `appointments` ( `username`, `reason`, `booking_date`,`end_time`) VALUES ("'+postParam.full_name+'","'+postParam.appointment_reason+'","'+postParam.appointment_time+'","'+postParam.appointment_time+'")', function (err, rows, fields) {
+		  if (err) 
+			cb(err);
+			//	console.log(rows)
+			//cb(null,rows.affectedRows);				
+			cb(null,rows);				
 		})
 	}
 }
@@ -102,5 +125,7 @@ module.exports = {
 	createAppointment,
 	signInUser,
 	createUser,
-	createMood
+	createMood,
+	updateAppointmentAPI,
+	createAppointmentAPI
 	};

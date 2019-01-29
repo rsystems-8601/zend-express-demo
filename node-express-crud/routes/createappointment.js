@@ -29,6 +29,19 @@ requireModule.router.post('/createappointment', function(req, res, next) {
 	});	 
 });
 
+
+/* GET home page. */
+requireModule.router.post('/createappointment/api', function(req, res, next) {	  
+	appointmentModel.createAppointmentAPI(dbConn,req.body, function(err, rows) {
+		//console.log('row data = ', req.body);		 
+		if(rows){				
+			res.send({'status':true,'result':rows}); 	
+		}else{
+			res.send({'status':false,'result':rows}); 	
+		}
+	});	 
+});
+
 /* api createUser. */
 requireModule.router.post('/createUser/api', function(req, res, next) {	  	
 	//res.send(req.body); 	

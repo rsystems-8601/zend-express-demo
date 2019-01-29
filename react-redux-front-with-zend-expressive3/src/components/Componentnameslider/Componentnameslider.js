@@ -25,7 +25,7 @@ class Componentnameslider extends Component {
 	}  
   
 	render() {
-		const { range, colorcode , emojiname} = this.props;
+		const { range, colorcode  } = this.props;
 		//const { kamli } = this.props;
 		var style = {
       backgroundColor: colorcode,

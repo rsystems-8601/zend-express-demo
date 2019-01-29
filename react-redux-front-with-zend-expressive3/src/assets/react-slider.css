@@ -12,8 +12,10 @@ $primary: red;
   display: flex;
   align-items: center;
   padding: 5px;
+}
+
   #output {
-    background: red;
+    
     color: #fff;
     border-radius: 2px;
     padding: 3px 7px;
@@ -35,7 +37,7 @@ $primary: red;
       border-left-color: white;
     }
   }
-}
+
 
 .fitbit-Welcome{
 	background-color: #1BC98D;
@@ -43,9 +45,17 @@ $primary: red;
     padding: 15px;
 }
 
+.fitbit-head{
+	background-color: #A9AABC;
+    height: 50px;
+    padding: 15px;
+    width: 50%;
+    border-radius: 96px;
+}
+
 .clearboth{
 	clear: both;
-    margin: 25px 0px;
+    margin: 5px 0px;
 }
 
 /* CHROME */

@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 const SimpleForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props;
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} method="post">
       <div>
          <label> </label>
         <div>
@@ -24,8 +24,8 @@ const SimpleForm = props => {
           <Field
             name="appointment_time"
             component="input"
-            type="text"
-			className="form-control"
+            type="datetime-local"
+			
             placeholder="Appointment Time"
           />
         </div>

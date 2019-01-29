@@ -6,3 +6,5 @@ export var Config = {
 	Signup: 'Sign Up',
 	Logout: 'Log Out',
 	};
+	
+	

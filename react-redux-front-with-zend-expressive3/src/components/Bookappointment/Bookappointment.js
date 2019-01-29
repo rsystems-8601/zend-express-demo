@@ -24,13 +24,19 @@ class Bookappointment extends Component {
 	}
 	
 	bookAppointment(){
-		if(this.state.full_name.value){
+		if(this.state.full_name){
 		let body = new FormData();			
 				body.append('full_name', this.state.full_name.value);
 				body.append('appointment_time', this.state.appointment_time.value);
 				body.append('appointment_reason', this.state.appointment_reason.value);
 				
-		axios.post(`http://127.0.0.1:8080/createappointment`, body)
+				var koko= {
+				'full_name': this.state.full_name.value,
+				'appointment_time': this.state.appointment_time.value,
+				'appointment_reason': this.state.appointment_reason.value}
+				
+		//axios.post(`http://127.0.0.1:8080/createappointment`, this.state)
+		axios.post(`http://localhost:4000/createappointment/api`, koko)
 		  .then(res => {
 				//console.log(res); 
 				if(res.data.status){
@@ -38,7 +44,7 @@ class Bookappointment extends Component {
 						popupAdd:!res.data.status,
 						createID:0
 					});						
-					this.props.history.push(`/`)
+					this.props.history.push(`/home`)
 				}			
 							
 		  })
@@ -65,7 +71,7 @@ class Bookappointment extends Component {
 
 <div className='row'>
 <div>Select Date and Time</div>
-<div className='input_field'><input className="form-control"  type='text'   name="appointment_time" id='appointment_time' ref={(input) => this.state.appointment_time = input}  /></div>
+<div className='input_field'><input   type='datetime-local'   name="appointment_time" id='appointment_time' ref={(input) => this.state.appointment_time = input}  /></div>
 
 </div> 
 

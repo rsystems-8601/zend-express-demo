@@ -31,11 +31,11 @@ class Home extends Component {
 		})	
 	}
 	
-	showDelete(id){		
+	showDelete(id){			
 		this.setState({
 			popupdelete:true,
 			deleteID:id
-		})	
+		})		
 	}
 	
 	
@@ -43,7 +43,8 @@ class Home extends Component {
 	confirmDelete(id){		
 	let body = new FormData();
 			body.append('id', id);
-	axios.post(`http://127.0.0.1:8080/deleteappointment`, body)
+	//axios.post(`http://127.0.0.1:8080/deleteappointment`, body)
+	axios.post(`http://localhost:4000/deleteappointment/api/`+id, body)	
       .then(res => {
 			//console.log(res);        
 			this.setState({
@@ -62,7 +63,8 @@ class Home extends Component {
 	}
 	  
 	componentDidMount() {
-	axios.get(`http://127.0.0.1:8080/viewappointment`)
+	//axios.get(`http://127.0.0.1:8080/viewappointment`)
+	axios.get(`http://localhost:4000/viewappointment/api`)
 	.then(res => {
 			const records = res.data.result;
 			this.setState({ records });			
@@ -122,8 +124,8 @@ class Home extends Component {
 		<div className="row record" key={'row'+record.id}>
 				  <div className="col-md-2">{record.username}</div>
 				  <div className="col-md-3">{record.reason}</div>
-				  <div className="col-md-2">{record.booking_date}</div>
-				  <div className="col-md-2">{record.end_time}</div>
+				  <div className="col-md-2">{(record.booking_date.replace('T',' ')).replace('.000Z','')}</div>
+				  <div className="col-md-2">{(record.end_time.replace('T',' ')).replace('.000Z','')}</div>
 				  
 				  <div  className="col-md-1 icon" alt="Edit appointment" title="Edit appointment"  >
 					<Link  to={`/updateappointment/${record.id}`} className="current">Edit</Link>

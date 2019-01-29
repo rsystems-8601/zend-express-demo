@@ -23,13 +23,15 @@ requireModule.router.get('/deleteappointment/:uid', function(req, res, next) {
 });
 
 /* api GET home page. */
-requireModule.router.get('/deleteappointment/api/:uid', function(req, res, next) {	
+requireModule.router.post('/deleteappointment/api/:uid', function(req, res, next) {	
 	appointmentModel.deleteAppointmentInfo(dbConn,req.params.uid, function(err, rows) {
 		//console.log('row data = ', rows);
 		if(rows){	
-		res.redirect('/viewappointment');		
+		res.send({status:true});		
 		//res.send('Record Updated'); 	
-		} 	
+		} else{
+			res.send({status:true});
+		}	
 	});	 
 });
 

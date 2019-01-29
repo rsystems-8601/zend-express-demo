@@ -18,15 +18,20 @@ class Headerpart extends Component {
 	sessionBefore() {
 		if(localStorage.getItem('session')!==''){
 			var user = JSON.parse(localStorage.getItem('session'));
-			if(user.id){
-				this.setState({ appointment_id : user.id });
-				this.state.logoutbutton = 'Logout';
-				utils.profile.activeButtonName=utils.Config.Logout;					
-			}else{
-				this.state.logoutbutton = 'Signup';	
-				utils.profile.activeButtonName=utils.Config.Signup;
-			}	
-			
+			if(user){
+				if(user.id){
+					this.setState({ appointment_id : user.id });
+					this.state.logoutbutton = 'Logout';
+					utils.profile.activeButtonName=utils.Config.Logout;					
+				}else{
+					this.state.logoutbutton = 'Signup';	
+					utils.profile.activeButtonName=utils.Config.Signup;
+				}	
+			}
+			else{
+					this.state.logoutbutton = 'Signup';	
+					utils.profile.activeButtonName=utils.Config.Signup;
+				}
 		}else{
 				localStorage.setItem('session','');
 				this.state.logoutbutton = 'Signup';
@@ -41,7 +46,7 @@ class Headerpart extends Component {
 	}
 	
 	constructor(props) {
-        super(props); 
+        super(props); 		
 		this.logoutBefore = this.logoutBefore.bind(this);
     }
 	
@@ -55,15 +60,15 @@ class Headerpart extends Component {
 					<Link to={"/"+this.state.logoutbutton} onClick={this.logoutBefore} className="button" id="buttonLogout">
 						{utils.profile.activeButtonName}
 					</Link>
-					<Link to="/home" > View Appointments </Link>
-					<Link to="/bookappointment" > Book Appointment</Link>
-					<Link to="/RegisterAppointment" > Register Appointment</Link>					
+					<Link to="/home" > View Therapist </Link>
+					<Link to="/bookappointment" > Book Therapist</Link>
+					<Link to="/RegisterAppointment" > Register Therapist</Link>					
 					<Link to={"/Todaysfitness/"+this.state.appointment_id} className="green"> Todays Health</Link>				
 					<div className="menu">Menu
 					  <div className="submenu" >			
-							<Link to="/home"> View Appointments </Link>
-							<Link to="/bookappointment"> Book Appointment</Link>
-							<Link to="/RegisterAppointment"> Register Appointment</Link>
+							<Link to="/home"> View Therapist </Link>
+							<Link to="/bookappointment"> Book Therapist</Link>
+							<Link to="/RegisterAppointment"> Register Therapist</Link>
 							<Link to="/Todaysfitness"> Todays Health</Link>				
 					  </div>
 					</div>

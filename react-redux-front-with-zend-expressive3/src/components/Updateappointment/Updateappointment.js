@@ -16,7 +16,7 @@ class Updateappointment extends Component {
 		full_name:'',
 		appointment_time:'',
 		appointment_reason:'',
-		popupUpdate:'',
+		popupUpdate:false,
 		updateID:''
 	};
 	
@@ -26,28 +26,29 @@ class Updateappointment extends Component {
 	let body = new FormData();
 			body.append('appointment_id', data.appointment_id);
 			body.append('full_name', data.full_name);
-			body.append('appointment_time', data.appointment_time);
+			body.append('appointment_time', data.appointment_time.replace('T',' '));
 			body.append('appointment_reason', data.appointment_reason);
 			
-	axios.post(`http://127.0.0.1:8080/updateappointment`, body)
+	//axios.post(`http://127.0.0.1:8080/updateappointment`, body)
+	axios.post(`http://localhost:4000/updateappointment/api`, data)
       .then(res => {
-			//console.log(res); 
-				if(res.data.status){					
-					this.props.history.push(`/`)
-				}			
-			this.setState({
-				
-				popupUpdate:!res.data.status,
-				updateID:0
-			});
-			this.componentDidMount();
+			console.log(res); 
+			if(res.data.status){					
+				this.props.history.push(`/home`)
+			}			
+			// this.setState({				
+				// popupUpdate:!res.data.status,
+				// updateID:0
+			// });
+			//this.componentDidMount();
       })
 	} 
 	
 	
 	componentDidMount() {
 		if(this.props.match.params.id){
-			axios.get(`http://127.0.0.1:8080/viewappointment?id=`+(this.props.match.params.id))
+			//axios.get(`http://127.0.0.1:8080/viewappointment?id=`+(this.props.match.params.id))
+			axios.get(`http://localhost:4000/updateappointment/api/`+(this.props.match.params.id))
 			.then(res => {
 					const records = res.data.result;
 					this.setState({ records });	
@@ -55,7 +56,7 @@ class Updateappointment extends Component {
 						{
 							this.setState({ appointment_id : record.id ,
 							 full_name : record.username ,
-							 appointment_time : record.booking_date ,
+							 appointment_time : record.booking_date.replace('.000Z','') ,
 							 appointment_reason : record.reason });					
 						}						  						
 					)
@@ -90,7 +91,7 @@ class Updateappointment extends Component {
 
 <div className="row">
 <div className="label">Select Date and Time</div>
-<div className="input_field"><input type="text"   id="appointment_time" name="appointment_time" onChange={ e => this.setState({ appointment_time : e.target.value }) }  value={this.state.appointment_time} /></div>
+<div className="input_field"><input    id="appointment_time" name="appointment_time" type='datetime-local' onChange={ e => this.setState({ appointment_time : e.target.value }) }  value={this.state.appointment_time.replace('.000Z','')} /></div>
 
 </div> 
 

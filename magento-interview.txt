@@ -1,0 +1,149 @@
+---ABOUT YOURSELF
+I elong from delhi and have done MCA ,i have 8 year of experience in magento 1 and magento 2
+Currenty working in cmm5 lelvel company rsystems noida
+
+---MAGENTO V1 AND MAGENTO V1 ENTERPRISE ADDITION
+*Customer Segmentation 
+and Personalization
+*Dynamic Rule-Based
+ Product Relations
+*Content Staging and
+ Preview
+*Visual Merchandising
+*Elasticsearch
+*Solr
+*Responsive Design Themes
+*Flexible Deployment Options
+*Promotions and Pricing
+*Integrate Magento with 
+third-party applications 
+using
+*efficient web APIs 
+*with SOAP and REST support
+
+v2
+
+
+*Qualify for the easiest
+ level of PCI compliance
+ (SAQ-A
+*or SAQ A-EP), depending 
+on payment methods used
+*Configure pricing and 
+taxes for gift-wrapping
+ options
+*Organize content pages
+ and add pagination,
+*navigation, and menus
+ with a page hierarchy tool
+*Varnish Page Caching
+*Multiple Master Databases
+• Specify allowed destination 
+countries based
+on shipping method
+• Stay informed about 
+security issues 
+through the
+Magento Security Center
+ and mailing list
+*Analytics and Reporting
+*Mobile Commerce
+
+
+---REGISTRY PATTER IN MAGENTO N HOW IT WORK
+
+*registry pattern is basically
+ a pattern that allows any 
+ object or data to be available
+ in a public global
+ scope for any resource
+ to use.
+
+
+*All the singletons are
+ stored in the internal
+ registry: a global scoped
+ container for storing data.
+ It is not only for internal use.
+ The Mage::register($key, $value),
+ ::registry($key) and 
+ ::unregister($key) methods
+ can be respectively used 
+ for storing, retrieving and 
+ removing data from the registry.
+ The registry is often used
+ for transferring data 
+ between scopes when they
+ cannot be passed on, 
+ otherwise.
+
+
+
+---PORPOSE OF MAGENTO CODE CMPILATION
+Magento 2’s robust plugin system
+ and dependency injection 
+ works by creating generated
+ php source code based on the
+ non-generated code you write. 
+ This includes classes for:
+
+**Interceptors — Classes that
+ modifies the behavior of a public
+ function call by running code 
+ either before, after, 
+ or around that function.
+**Factories — Classes that
+ instantiate non-injectable classes
+**Proxies (virutal classes) 
+– Classes which are used to 
+allow for lazy-loading of dependencies.
+**Repositories code generation
+ – generated code for the API
+**Service data attributes generation
+ – generated extension classes
+
+
+---HOW DO / WHERE WRITE MAGENTO CUSTOM SQL QUERY
+$resource = Mage::getSingleton('core/resource');
+	
+	/**
+	 * Retrieve the read connection
+	 */
+	$readConnection = $resource->getConnection('core_read');
+	
+	/**
+	 * Retrieve the write connection
+	 */
+	$writeConnection = $resource->getConnection('core_write');
+	
+	
+---WHICH METHOD MAGENTO LOAD BY DEFAULT
+
+
+#File: app/code/core/Mage/Core/Model/App.php
+$this->_initModules();
+
+Mage_Core_Model_Config
+app/etc/modules/*.xml
+File: app/code/core/Mage/Core/Model/App.php
+public function run($params)
+
+
+catalog_controller_product_init
+observers
+updateStockStatus
+updatePrice
+catalog_controller_product_init_before
+
+---DIFFERENCE COOKIES -SESSION-- LOCAL STORAGE
+
+---LAYOUT PROCESSING IN MAGENTO 2
+
+---FIELDSET IN MAGENTO
+
+--- IN JAVA SCRIPT UNDEFINED AND UN DECLERAED VARIABLES
+
+---IMPORVE MAGENTO PERFORMANCE--SETTINGS CUSOM CODE TTOL
+
+
+

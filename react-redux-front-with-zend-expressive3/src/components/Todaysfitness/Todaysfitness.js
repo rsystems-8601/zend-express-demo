@@ -7,7 +7,7 @@ import Componentnameslider from '../../components/Componentnameslider';
 //import { userActions } from '../_actions';
 //import axios from 'axios';
 import axios from 'axios';
-
+//import * as utils from '../../Userservice';
 
 class Todaysfitness extends Component {
 	static defaultProps: Object;
@@ -38,7 +38,8 @@ class Todaysfitness extends Component {
 		if(localStorage.getItem('session')===''){
 			this.props.history.push(`/Signin`);
 		}else{
-			const user = JSON.parse(localStorage.getItem('session'));		
+			const user = JSON.parse(localStorage.getItem('session'));
+			if(user){	
 			this.setState({ appointment_id : user.id ,
 							full_name : user.firstName + ' '+ user.lastName,
 							username : user.username ,
@@ -46,11 +47,13 @@ class Todaysfitness extends Component {
 							rangeVal : user.mood_emoji,
 							textVal : user.mood_entry==null?'':user.mood_entry,
 							appointment_reason : user.reason })
+			}
 		}
 	}
 	
 	constructor(props) {
-		super(props);
+		super(props);		
+		//console.log(this.props.contacts.name)
 		this.updateRange1 = this.updateRange1.bind(this);
 		this.milibhagat = this.milibhagat.bind(this);
 		this.kanha = this.kanha.bind(this);
@@ -149,7 +152,7 @@ class Todaysfitness extends Component {
 					<button name="ok" onClick={()=>this.handleSubmit()} className="btnDone">Done</button>
 				</div>
 				<div className="clearboth"> 
-				<h5 className="fitbit-Welcome"  dangerouslySetInnerHTML={{__html: 'Your past mood:'}} /> 
+				<h5 className="fitbit-head"  dangerouslySetInnerHTML={{__html: 'Your past mood:'}} /> 
 				<span>
 					<div dangerouslySetInnerHTML={{__html: this.state.textVal}} /> 
 				</span>

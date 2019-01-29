@@ -93,7 +93,7 @@ class Signup extends Component {
 	}
  
 	render() {
-        const { registering  } = this.props;
+        //const { registering  } = this.props;
         const { user, submitted } = this.state;
         return (
 		
