@@ -12,18 +12,18 @@ export default class App extends Component {
 	//pradeep786expo::Welcome@8601
 	update1(e) {
      this.setState({
-		  Loading: 'Checked-In is loading .....'
+		  Loading: 'Checked-In is 12starting .....'
 		})
     }
 	
 	update2(e) {
      this.setState({
-		  Loading: 'Guide is loading .....'
+		  Loading: 'Guide is 123 starting .....'
 		})
     }
 	update3(e) {
      this.setState({
-		  Loading: 'Activities is loading .....'
+		  Loading: 'Activities is loading. .....'
 		})
     }
 	update4(e) {
@@ -72,7 +72,7 @@ export default class App extends Component {
 				<Image source={require('./assets/logo.png')} style={{ alignItems: 'center',marginLeft: 35,marginTop: 35,marginBottom: 40,
 		justifyContent: 'center',}}/>
 				
-				<Greeting name='Checked In' />
+				<Greeting name='Checked In..' />
 				<Greeting name='Good Day, Chris' />
 				<Greeting name='How are you feeling?' />
 				

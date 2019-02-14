@@ -7,3 +7,29 @@ http://127.0.0.1:4200/home
 npm install bootstrap@3 --save
 ng serve --open
 ng generate service hero
+
+--------------------
+lamda expression 
+--------------------------
+delete = (index) => {
+   const persons = [...this.state.persons];
+   persons.splice(index,1);
+   this.setState({
+     persons
+   });
+  }
+ inputChange = (event,id) => {
+    const personIndex = this.state.persons.findIndex(
+      (p) => {
+        return p.id === id;
+      }
+    );
+call in props
+<Person 
+                        key={p.id} 
+                        name={p.name} 
+                        age={p.age}
+                        click={() =>this.props.delete(index)}
+                        input={(event) => this.props.inputChange(event,p.id)}
+      
+                         />

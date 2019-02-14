@@ -127,4 +127,5 @@ yarn start
 
 5- build android app
 make an account https://expo.io/
+enable "production mode" left side in browser cosole
 expo build:android
