@@ -7,13 +7,13 @@ http://127.0.0.1:4200/home
 npm install bootstrap@3 --save
 ng serve --open
 ng generate service hero
-
---------------------
+ng g pipe translate --module=app --spec=false
+--------------------------
 lamda expression 
 --------------------------
 delete = (index) => {
    const persons = [...this.state.persons];
-   persons.splice(index,1);
+   persons.slice(index,1);
    this.setState({
      persons
    });

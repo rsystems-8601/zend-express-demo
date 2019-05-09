@@ -22,6 +22,18 @@ C:\Users\pradeep.srivastav\AppData\Local\android\Sdk
 C:\Users\pradeep.srivastav\AppData\Local\android\Sdk\platform-tools
 C:\Users\pradeep.srivastav\AppData\Local\android\Sdk\tools
 
+run with USB mobile device 
+set in path=C:\Users\pradeep.srivastav\AppData\Local\android\Sdk\platform-tools
+set in path=C:\Users\pradeep.srivastav\AppData\Local\android\Sdk\
+set in path=D:\android\android-studio\jre\bin
+== connect your mobile with USB\
+==7 time hit builder number in setting
+== turn USB debugging 
+== run command in CMD :
+adb reverse tcp:8081 tcp:8081
+adb shell input keyevent 82
+
+
 3- paste tool -build-tools_r26.0.2-windows
 C:\Users\pradeep.srivastav\AppData\Local\android\Sdk\build-tools
 folder name : 
@@ -90,6 +102,8 @@ buildscript {
 14- npm i react-native-router-flux@latest
 15- npm i yarn
 15- npm install -g expo-cli
+or 
+yarn add global expo-cli
 make sure android mobile simulator is on 
 - expo init AwesomeProject
 cd AwesomeProject

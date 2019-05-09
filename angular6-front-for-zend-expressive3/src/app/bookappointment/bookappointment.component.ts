@@ -68,8 +68,8 @@ export class BookappointmentComponent implements OnInit {
   log = '987';
 
   logText(value: string): void {
-	  this.var1=this.compare(value);
-    this.log = `Text changed to '${value}'\n`;
+	  this.var1= this.compare(value);
+      this.log = `Text changed to '${value}'\n`;
   }
 
 }

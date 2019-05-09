@@ -4,6 +4,9 @@
 
 <div class="view_appointments records" >
 	<div class="col-md-12">
+	
+<pre>{{log}}</pre>
+
 		<div class="employeelist col-md-6">
 			<div class="row record reocrd-bold">
 				<div class="col-md-3">Select</div>
@@ -12,7 +15,10 @@
 			<div *ngFor='let rowset of records'>	
 				<div class="row record" >
 						  <div class="col-md-3">
-							<input type="radio" name="searchid" value="{{rowset.id}}" />
+						  <input type="radio" (change)="logText(rowset.id)" [(ngModel)]="searchid" name="searchid" value="{{rowset.id}}" /> 
+            
+
+			{{rowset.id}}
 						  </div>
 						  <div class="col-md-3">{{rowset.username}}</div>
 				</div>
@@ -42,6 +48,7 @@
 		</div>
 	</div>
 </div> <!-- view_appointments -->
+
 
 
 

@@ -13,6 +13,7 @@ import { FooterpartpartComponent } from './footerpartpart/footerpartpart.compone
 import { BookappointmentComponent } from './bookappointment/bookappointment.component';
 import { UpdateappointmentComponent } from './updateappointment/updateappointment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { WINDOW_PROVIDERS } from "./window.service";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 	ReactiveFormsModule
   ],
   providers: [
-	ViewappointmentService
+	ViewappointmentService,
+	WINDOW_PROVIDERS 
   ],
   bootstrap: [AppComponent]
 })

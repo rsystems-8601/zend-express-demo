@@ -1,6 +1,51 @@
+
 <h3>
    Appointment List
 </h3>
+
+<div style="height:200px; overflow:auto;" #radhe id="radhe"  class="menu" (scroll)="refresh()">
+<div  >
+<div [class.fixed]="navIsFixed" >
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>dkhfdj f<br>
+</div>
+</div>
+</div>
+
+<div class="input-group-prepend">
+ <span *ngIf="selectedFile" style="clear: both; width: 100%;">{{selectedFile?selectedFile.name:''}} has been attached</span>
+              
+              
+                <div class="group-chat-dropdown">
+                  
+                  <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput /> 
+                  <button mat-menu-item (click)="fileInput.click()">
+                    <i class="fas fa-file-upload mr-2"></i> Upload from PC
+                  </button>
+                
+            </div>
+			
+			<div><br />********<br />
+			
+			
+			  </div>
+		 </div>	
+
+
 
 <div class='view_appointments records' >
 	<div class="row record reocrd-bold">
@@ -10,6 +55,8 @@
 	<div class="col-md-2">End Time</div>
 	<div class="col-md-2">Action</div>
 	</div>
+	<div class="nav-container" >
+
 	<div *ngFor='let rowset of records'>	
 		<div class="row record" >
 				  <div class="col-md-2">{{rowset.username}}</div>
@@ -21,6 +68,8 @@
 				  
 				  <div  class="col-md-1 icon" alt="Cancel appointment" title="Cancel appointment" id="cancel_{{rowset.id}}" ><a class="fa fa-times" aria-hidden="true" (click)="show_delete=true; delete_id=rowset.id;"> Delete  </a></div>
 		</div>
+		
+</div>
 	</div>			  
 </div> <!-- view_appointments -->
 

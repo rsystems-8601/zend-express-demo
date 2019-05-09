@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../search.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import {FormControl, FormGroup,FormBuilder} from '@angular/forms';
 
 @Component({
 	selector: 'app-employees',
@@ -10,10 +12,26 @@ export class EmployeesComponent implements OnInit {
 	
 	records = [];	
 	
+	form = new FormGroup({
+    searchid: new FormControl('1'),
+  });
+  
 	constructor(private getSearchService : SearchService ) { 
 		
 	
 	}
+	
+	infoid='';
+	varset='';
+	
+	compare(name){
+		if (name == "Rajes")
+			return "1";
+		else 
+			return "0";
+	}
+	
+	log = '987';
 
 	ngOnInit() {
 	  
@@ -30,5 +48,10 @@ export class EmployeesComponent implements OnInit {
 			}			
 		});
 	}
+	
+	logText(value: string): void {		
+	  this.varset=this.compare(value);
+      this.log = `Text changed to '${value}'\n`;
+  }
 
 }
