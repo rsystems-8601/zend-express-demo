@@ -33,3 +33,9 @@ call in props
                         input={(event) => this.props.inputChange(event,p.id)}
       
                          />
+
+						 
+deployment command 
+---------------------
+ng build --aot --base-href /iCoachFirst/ --configuration=dev2
+
