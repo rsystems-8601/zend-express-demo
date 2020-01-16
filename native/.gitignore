@@ -1,1 +1,5 @@
+node_modules/
+shanaya/
+android/
 .gradle/
+yarn.lock

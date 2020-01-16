@@ -1,0 +1,35 @@
+/* Scss Document */
+
+/* Device Wdith */
+$tablet-portrait: 768px;
+$tablet-landscape: 1023px;
+$tablet-breakpoit: 992px;
+$header-landscape: 1111px;
+$small-desktop: 1250px;
+
+@mixin tablet {
+  @media (min-width: #{$tablet-portrait}) and (max-width: #{$tablet-landscape}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$tablet-landscape}) {
+    @content;
+  }
+}
+@mixin breakpoint {
+  @media (max-width: #{$tablet-breakpoit}) {
+    @content;
+  }
+}
+@mixin headerlandscape {
+  @media (max-width: #{$header-landscape}) {
+    @content;
+  }
+}
+@mixin smalldesktop {
+  @media (max-width: #{$small-desktop}) {
+    @content;
+  }
+}

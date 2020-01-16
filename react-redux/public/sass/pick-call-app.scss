@@ -1,0 +1,246 @@
+
+/* Scss Document */
+/* Scss Document */
+/* Scss Document */
+/*Table of Content*
+
+*/
+@import "style-components/variables";
+@import "style-components/fonts";
+@import "style-components/mixins";
+@import "style-components/buttons";
+@import "style-components/formelements";
+
+@font-face {
+  font-family: 'OpenSans-Regular';
+  src: url('../fonts/opensans/OpenSans-Regular.eot');
+  src: url('../fonts/opensans/OpenSans-Regular.woff2') format('woff2'),
+       url('../fonts/opensans/OpenSans-Regular.woff') format('woff'),
+       url('../fonts/opensans/OpenSans-Regular.ttf') format('truetype'),
+       url('../fonts/opensans/OpenSans-Regular.svg#OpenSans-Regular') format('svg'),
+       url('../fonts/opensans/OpenSans-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OpenSans-Semibold';
+  src: url("../fonts/opensans/OpenSans-Semibold.eot");
+  src: url("../fonts/opensans/OpenSans-Semibold.woff2") format("woff2"), url("../fonts/opensans/OpenSans-Semibold.woff") format("woff"), url("../fonts/opensans/OpenSans-Semibold.ttf") format("truetype"), url("../fonts/opensans/OpenSans-Semibold.svg#OpenSans-Semibold") format("svg"), url("../fonts/opensans/OpenSans-Semibold.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal; }
+
+body {
+	font-family: 'OpenSans-Regular';
+	font-size:$font-medium;
+}
+		  .row {
+			  margin-bottom: 0;
+		   }
+		  .btn {
+			background-color: $white-color;
+			color: #808080;
+			border:1px solid $medium-gray;
+			font-size:$font-small;
+			border-radius: 2px;
+			box-shadow: none;
+			text-transform: capitalize;
+			height: 30px;
+			line-height: 28px;
+			padding: 0 12px;
+		  }
+
+h4 {
+	font-size: 12px;
+	color: #404041;
+	margin:$font-small;
+}
+h3 {
+	font-size:$font-medium;
+	color: #404041;
+	margin:0px;
+}
+ul{
+	margin:0px;
+}
+.mt10{
+	margin-top:10px;
+}
+.mb10{
+	margin-bottom:10px;
+}
+.ml10{
+	margin-left:10px;
+}
+.mt5{
+margin-top:5px;}
+.no-padding{
+	padding-left:0px;
+	padding-right:0px;
+}
+
+.heading-highlighter{
+	background-color:$bg-light;
+	padding:10px 0px;
+}
+.heading-highlighter h3{
+	color: $text-black;
+	line-height:1;
+	margin-left:5px;
+	font-family: 'OpenSans-Semibold';
+}
+.heading-highlighter h4{
+	color:$darkest-gray;
+}
+
+strong{
+   font-family: "OpenSans-Semibold";
+}
+
+.top-heading span.last-updated{
+	font-size:10px;
+	color: $text-dark;
+	line-height:1.2;
+}
+.top-heading strong,.top-heading span{
+	display:inline-block;
+	line-height:1.2;
+	font-size:$font-small;
+}
+.top-heading span{
+	margin-left:3px;
+}
+.top-heading i{
+	margin-right:5px;
+}
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0; }
+
+* html .clearfix {
+  height: 1%; }
+
+.clearfix {
+  display: block; }
+
+
+.call-picker-heading{
+	margin:10px 6px 10px;
+	color:$dark-gray;
+}
+
+
+
+
+table {
+
+th{
+padding:8px 5px;
+font-size:$font-smaller;
+}
+thead{
+background-color:$bg-light;
+font-size:$font-small;
+color:$text-dark;
+font-weight:normal;
+border:1px solid $border-light;
+th{
+background-color:$bg-light;
+font-weight:normal;
+font-size:$font-small;	
+}
+
+
+}
+tbody{
+td{
+font-size:$font-small;
+color:$text-dark;
+padding:4px 5px;
+span.truncate{
+max-width:100px;
+width:90%;
+
+}
+label.tag.truncate{
+	background:$bg-light; 
+	color:$text-dark; 
+	padding:2px 5px;
+	display: inline-block;
+	max-width:80px;
+	width:auto;
+}
+}
+
+}
+
+}
+
+table.highlight > tbody > tr:hover {
+    background-color: #f9f9f9;
+}
+
+table tr:hover a.call-icon{
+opacity:1;
+color:$info-action;
+}
+table tr a.call-icon{
+opacity:1;
+font-size:16px;
+color:$light-gray;
+}
+.relative {
+	position:relative;
+}
+.filter-wrapper{
+	margin-top:4px;
+	i.filter-applied-indicator{
+		background:$info-action;
+		width:6px;
+		height:6px;
+		position: absolute;
+		top: -5px;
+		right: 0px;
+		margin-top:3px;
+		border-radius: 50% 50%;
+	}
+	.btn-icon {
+		border:0px;
+		border-radius:50% 50%;
+		height:25px;
+		width:25px;
+		line-height:1.5;
+		background: $bg-light;
+		padding:0px;
+		display: block;
+	}
+	h4{
+	margin:5px 0px 5px;
+}
+}
+.multiple-btn{
+	padding-top:5px!important;
+	padding-bottom:5px!important;
+	.btn{
+		height: 20px;
+		line-height: 17px;
+	}
+}
+
+
+::placeholder {
+    color:$medium-gray;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: $medium-gray;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+   color: $medium-gray;
+}
+

@@ -1,0 +1,123 @@
+/* Scss Document */
+
+
+/* Font Size Veriable */
+$smaller-font: 0.8rem; 
+$small-font: 0.9rem;
+
+
+/* Form Material Style Removal */	
+.input-field.col label {
+    left: 0; 
+	top: 0.3rem; 
+	padding-right:8px;} 
+
+[type="checkbox"] + label, [type="radio"] + label {
+	font-size: 0.8rem;
+    line-height: 24px;
+	color: $text-dark;
+    padding-left: 30px;
+	overflow: hidden;
+	max-width: 100%;
+	text-overflow: ellipsis;
+}	
+.filter-section {	
+	.input-field {
+    	margin-top: 0;
+		input[type="text"]{
+			margin-bottom:0;}
+		}	
+} 
+
+textarea.materialize-textarea{
+	padding:0.8rem 0 0;}
+
+.collapsible{ 
+	margin:0;
+}	
+	
+.collapsible span.badge.new {
+  	background-color: #e57373;
+  	line-height: 16px;
+  	padding: 0 5px 0 1px;
+  	font-size: $font-smaller;
+  	max-width: 70px;
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	right: 0;
+}	
+
+.ticket-detail{
+.collapsible {
+	border:none;
+	box-shadow:none;
+	}
+	.collapsible span.badge.new {
+		margin-top:0;
+	}	
+	}
+
+.side-nav span.badge.new::before, 
+.collapsible span.badge.new::before{ 
+		background-color:transparent;
+		}
+
+.dropdown-content li > a, .dropdown-content li > span {
+	
+	i{
+		font-size:1rem;
+		}
+	img{
+		width:14px;
+		margin:0 8px;}	
+	}
+.select-wrapper {
+	.dropdown-content {
+		width:100%;
+		}
+	}	
+.dropdown-content {
+	
+	li {
+		min-height: 28px;
+		}
+	}
+			
+.filled-in[type="checkbox"]:not(:checked) + label::after,
+.filled-in[type="checkbox"]:checked + label::after{
+	border-radius: 0;
+    height: 16px;
+    width: 16px;
+	top: 5px;
+	border: 1px solid $border-dark;
+	}	
+.filled-in[type="checkbox"]:checked + label::after{
+	border-color: $state-info;
+	background-color: $state-info;
+}
+.filled-in[type="checkbox"]:checked + label::before{
+	left: -1px;
+    top: 3px;
+}		
+.breadcrumb {
+	color:#1565c0;
+	font-size:0.8rem;
+	
+	&:before {
+    content: '\f238';
+	color:#9e9e9e;
+	font-size: 1.15rem;
+	margin: 0 4px 0 2px;
+	}
+	}
+		
+.breadcrumb:last-child {
+    color: #9e9e9e;
+}		
+			
+.collapsible{
+	box-shadow: none;
+}
+	

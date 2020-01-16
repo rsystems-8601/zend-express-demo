@@ -1,0 +1,366 @@
+/* Scss Document */
+/* Tabs */
+.tabs {
+	height: 34px;
+	display: block;
+	
+	.tab{
+		height: 34px;
+    	line-height: 34px;
+		flex-grow: 0;
+		width:auto;
+		a{
+			color: $text-dark;
+			font-size: $font-small;
+			text-transform: capitalize;
+			outline: none !important;
+			&.active{color: $text-dark;}
+			&:hover{color: $text-dark;}
+		}
+	}
+	.indicator{
+		background-color: $state-info;
+		display: none;
+	}
+	&.default-tabs{
+		border-bottom: 1px solid $border-light!important;
+		display: flex;
+		overflow: hidden;
+		.tab{
+			margin: 0!important;
+			flex-grow: 1;
+			a{	
+				color: $text-dark;
+				&:active, &:focus{
+					background-color: $white-color!important;
+					color: $text-dark!important;
+				}
+				&.active{
+					background-color: $white-color!important;
+					color: #11569c!important;
+					}
+				&:hover{
+					background-color: $white-color!important;
+            		color: #11569c!important;
+				}
+				
+			}
+		}
+		.indicator{
+			display: block!important;
+			background-color: #11569c!important;
+		}
+	}
+}
+.horizontal-tabs{
+&.tabs {
+	background-color: transparent;
+	height: auto!important;
+	overflow: visible;
+	.tab {
+		float: left;
+		height: 34px;
+		line-height: 32px;
+		margin-left: 0;
+		overflow: visible;
+		a{
+			padding:0 10px;
+			font-size: $font-small;
+			background-color: $bg-light;
+			border-width:0 1px 0 0;
+			border-style: solid;
+			border-color: $white-color;
+			text-transform: capitalize;
+			color: $text-dark;
+			text-align: left;
+			min-width: 100px;
+			overflow: visible;
+			position: relative;
+			
+			&.active{
+				color: $text-active;
+				background-color: $white-color;
+			 &:after{
+				content:"";
+				width: 100%;
+				border-bottom: 3px solid $white-color;
+				position: absolute;
+				bottom: -2px;
+				left: 0;
+			}
+				&:hover{
+					color: $text-active;
+					background-color: $white-color;
+				.btn-close{
+					color: $text-darker;
+					}
+				}
+			}
+			&:hover{
+				color: $white-color;
+				background-color: $border-light;
+				.btn-close{
+					color: $white-color;
+				}
+			}			
+			span{
+				float: left;
+				width: 80%;
+				overflow: hidden;			
+    			text-overflow: ellipsis;
+			}
+			.btn-close{
+				float: right;
+				margin-right: -3px;
+				line-height: 32px;
+				height: 32px;
+				i{
+					font-size: $font-medium;
+					margin: 0;
+				}
+				&:hover{
+					color: $white-color;
+				}
+			}
+		}
+		&:first-child{
+			margin-left: 0;
+			a{
+				border-left-width:1px;
+			}
+		}
+	}
+	.indicator{
+		bottom: auto;
+		top: 0;
+		background-color: $state-info;
+	}
+  }
+	
+}
+.tab-content {
+	border-radius: 0 3px 3px 3px;
+	margin-top: 2px;
+}
+
+/* Vertical Tabs */
+.vertical-tabs {
+	height:auto;
+	background-color: $bg-dark;
+	min-height: 230px;
+	margin-top: 0;
+	
+	.tab{
+		height: 29px;
+		line-height: 29px;
+		a{
+			padding: 0 0 0 5px;
+			font-size: 0.75rem;
+			color: $text-dark;
+			border-left:2px solid $border-light;
+			border-bottom: 1px solid $border-dark;
+			text-align: left;
+			background-color: transparent;
+			min-width: 10px;
+			border-top: none;
+			border-right: none;
+			
+			&:hover{
+				background-color: lighten($bg-dark, 10%);
+				color: $text-dark;
+				border-left-color: lighten($bg-dark, 10%);
+			}
+			&:focus{
+				outline: none;
+			}
+			&.active{
+			background-color: $white-color;
+			color: $text-dark;
+			border-left-color: $text-info;
+				&:after{
+					border-bottom: none;
+				}
+				
+			}
+			
+			
+		}	
+		
+		
+		
+	}
+	.indicator {
+		display: none;
+	}
+	&.circle-list{
+			border-bottom:0px;
+			padding-top:5px;
+			min-height: 112px !important;
+    		max-height: 225px !important;
+			width:118%;
+			overflow-y: scroll;
+			box-sizing: content-box;
+			padding-right: 8px;
+			padding-left: 4px;
+			
+			
+			.tab{
+				 min-width:auto;
+				height:34px;
+				line-height: 34px;
+				a{
+				padding:3px 3px 4px 1px;
+				position: relative;
+				border-bottom:0px;
+				border-left:0px!important;
+				span,.broadcast-btn > btn-floating{
+					height:25px;
+					width:25px;
+					line-height:25px;
+					text-align: center;
+					display: block;
+					margin:0 auto;
+					background-color:$white-color;
+					border:1px solid $header-bg;
+					color:$header-bg;
+					box-shadow: 0 4px 8px 0 lighten($header-bg, 70%), 0 1px 5px 0 lighten($header-bg, 40%), 0 2px 4px -1px lighten($header-bg, 12%);
+				}
+					
+					
+				i{
+					position: absolute;
+					font-size:$font-smaller;
+					z-index: 999;
+					bottom:3px;
+					right:3px;
+				}
+				&.active{
+					span{
+						background-color:$header-bg;
+						border:1px solid $transparent;
+						color:$white-color;
+					}
+				}
+						&.icon-btn{
+						overflow: visible;
+						margin: 0 auto;
+						text-align: center;
+							padding-top:0px;
+							line-height: 28px;
+					.btn-floating{
+						height: 25px;
+						width: 25px;
+						line-height: 25px;
+						margin: 0 auto;
+						background-color:$white-color;
+						display: inline-block;
+					border:1px solid $header-bg;
+						i{
+						position: relative;
+						top:0px;
+						left:-1px;
+						font-size: 1.6rem;
+						color:$header-bg;
+						line-height: 26px;
+						
+					}
+					}
+					&.active{
+						.btn-floating{
+						background-color:$header-bg;
+							i{color:$white-color;
+							}
+					}
+					}
+				&.active{
+					.btn-floating{
+						background-color:$header-bg;
+						border:1px solid $transparent;
+						color:$white-color;
+						&.hover{
+						background-color:$transparent!important;
+					}
+					}
+					&.hover{
+						background-color:$transparent!important;
+					}
+				
+					}
+				}
+				&.broadcast-btn{
+					overflow: visible!important;
+					text-align: center;
+					width:34px!important;
+					padding:0px;
+					margin:0 auto;
+					line-height:29px;
+					padding-top: 0px;
+					box-shadow:none;
+					.btn-floating{
+						background-color:$bg-light;
+						border-radius:3px!important;
+						border:1px solid lighten($border-dark, 6%);
+						display:inline-block!important;
+						height:24px;
+						line-height:1;
+						width:26px!important;
+						margin:0 auto;
+						box-shadow:none;
+						i{
+						position: relative;
+						top:0px;
+						left:-1px;
+						font-size: 1.6rem;
+						color:$header-bg;
+						line-height: 23px;
+					
+					}
+					}
+					&.active{
+						.btn-floating{
+						border-radius:2px;
+						background-color:$header-bg;
+							i{color:$white-color;
+							}
+					}
+					}
+				&.active{
+					.btn-floating{
+						background-color:$header-bg;
+						border:1px solid $transparent;
+						color:$white-color;
+						&.hover{
+						background-color:$transparent!important;
+					}
+					}
+					&.hover{
+						background-color:$transparent!important;
+					}
+				
+					}
+				}
+					
+					
+			}
+				.new-msg{
+						background-color:$chat-active;
+						color:$white-color;
+						border-color:$chat-active;
+					i{
+						background-color:$chat-active;
+						color:$white-color!important;
+					}
+					}
+			}
+			
+		}
+}
+.vertical-tabs-wrapper {
+	background-color: #fff;
+	border-width:1px 1px 1px 0;
+	border-style:solid;	
+	border-color:$border-light;
+}
+.OQ-tabs.horizontal-tabs.tabs .tab:first-child a span {width:100%;}
+
+/* Tabs End */
