@@ -143,3 +143,27 @@ yarn start
 make an account https://expo.io/
 enable "production mode" left side in browser cosole
 expo build:android
+
+
+
+01-01-2020
+---------------------------------------
+
+connect  mobile with computer via USB
+Setting > Developer option > On > USB Debugging turn enable 
+open cmd > D:\POC\zend-express-demo\native\
+**  npm install npm@latest -g
+npm install -g expo-cli
+
+run power shell as administrator and run below command ::
+
+choco install -y nodejs.install python2 jdk8
+
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+
+react-native init AwesomeProject
+cd AwesomeProject
+open cmd > D:\POC\zend-express-demo\native\AwesomeProject
+npm start # you can also use: expo start
+

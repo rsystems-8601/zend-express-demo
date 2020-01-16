@@ -7,16 +7,16 @@ import { UpdateappointmentComponent } from './updateappointment/updateappointmen
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-	{path: 'home', component:HomeComponent },
-	{path: 'employees', component:EmployeesComponent },
-	{path: 'bookappointment', component:BookappointmentComponent },
-	{path: 'updateappointment/:id', component:UpdateappointmentComponent },
-	{path: '', redirectTo:'/home' , pathMatch : 'full' },
-	{path: '**', component:PageNotFoundComponent },
+	{ path: 'home', component: HomeComponent },
+	{ path: 'employees', component: EmployeesComponent },
+	{ path: 'bookappointment', component: BookappointmentComponent },
+	{ path: 'updateappointment/:id', component: UpdateappointmentComponent },
+	{ path: '', redirectTo: '/home', pathMatch: 'full' },
+	{ path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }

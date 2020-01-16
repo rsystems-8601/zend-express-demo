@@ -1,0 +1,122 @@
+\xampp php 7.3 only 
+C:\Windows\System32\drivers\etc
+http://server.rsystems.com/magento3/
+http://server.rsystems.com/magento3/admin
+A111111
+
+***
+-- Install Composer as instructed in https://getcomposer.org/download/
+-- After install composer, check the composer status  in system terminal for your confirmation.
+C:\xampp\htdocs\magento3\  run command  
+composer update 
+
+
+***https://marketplace.magento.com/customer/accessKeys/
+C:\xampp\htdocs\magento3\auth.json
+
+{
+    "http-basic": {
+        "repo.magento.com": {
+            "username": "62c697284acab95e6aa3a90e76348dd4",
+            "password": "6ced6bdffe3689e162b33eb495e8e98c"
+        }
+    }
+}
+
+
+https://devdocs.magento.com/guides/v2.3/install-gde/install/cli/dev_update-magento.html
+https://magento.stackexchange.com/questions/90983/how-to-use-the-new-repo-magento-com
+
+
+***RewriteBase /magento3/
+C:\xampp\htdocs\magento3\pub\.htaccess
+C:\xampp\htdocs\magento3\.htaccess
+
+
+php bin/magento cache:clean
+php bin/magento cache:flush
+php bin/magento indexer:reindex
+
+intl.dll   -->   copy from C:\xampp\php\ext and paste in C:\xampp\apache\bin
+php_pdo_firebird.dll   -->   copy from C:\xampp\php\ext and paste in C:\xampp\apache\bin
+php_pdo_oci.dll  -->   copy from C:\xampp\php\ext and paste in C:\xampp\apache\bin
+php_interbase.dll  -->  copy from C:\xampp\php\ext and paste in C:\xampp\apache\bin
+oci8_12c  -->  copy from C:\xampp\php\ext and paste in C:\xampp\apache\bin
+
+
+****C:\xampp\htdocs\magento3\vendor\magento\framework\View\Element\Template\File\Validator.php
+change $realPath in below method :: $realPath = str_replace('\\', '/', $this->fileDriver->getRealPath($path));
+
+ protected function isPathInDirectories($path, $directories)
+    {
+        if (!is_array($directories)) {
+            $directories = (array)$directories;
+        }
+        $realPath = str_replace('\\', '/', $this->fileDriver->getRealPath($path));
+        foreach ($directories as $directory) {
+            if (0 === strpos($realPath, $directory)) {
+                return true;
+            }
+        }
+        return false;
+    }
+	
+**Alll magento command 	
+**https://devdocs.magento.com/guides/v2.3/config-guide/cli/config-cli-subcommands.html
+**https://www.emiprotechnologies.com/technical_notes/magento-technical-notes-60/post/magento-2-useful-commands-list-391
+magento cache:{enable
+php bin/magento cache:enable
+php bin/magento setup:static-content:deploy -f
+php bin/magento dev:source-theme:deploy -f
+php bin/magento dev:tests:run
+php bin/magento setup:upgrade
+php bin/magento cache:flush
+php bin/magento deploy:mode:show
+php bin/magento deploy:mode:set developer
+php bin/magento setup:static-content:deploy -f en_US
+
+
+**** create "tmp" folder
+C:\xampp\htdocs\magento3\tmp
+
+
+**** create "generation" folder
+C:\xampp\htdocs\magento3\var\generation
+
+
+
+***MIME type error - Refused to apply style / Refused to execute script. Strict MIME checking is enabled
+1. Go to file path pub/static/
+
+2. Check whether the .htaccess file is available (hidden file - Press ctrl+H to view it).
+
+3. If not available, based on the Magento version get the .htaccess file in the file path pub/static/and move it into your server.
+
+
+*****
+After removed the Ultimo theme you need to run the below ssh commands in your magento root directory:
+
+rm -rf var/cache/*
+rm -rf var/composer_home/*
+rm -rf var/log/*
+rm -rf var/tmp/*
+rm -rf var/view_preprocessed/*
+rm -rf pub/static/adminhtml/*
+rm -rf pub/static/frontend/*
+php bin/magento setup:upgrade
+php bin/magento setup:static-content:deploy -f en_US
+chmod -R 777 var pub/static
+php bin/magento cache:flush
+
+
+***C:\xampp\htdocs\magento3\vendor\magento\framework\View\Element\Html\Calendar.php
+comment line 116
+
+   // get "am" & "pm" words
+        // $this->assign('am', $this->encoder->encode($localeData['calendar']['gregorian']['AmPmMarkers']['0']));
+        // $this->assign('pm', $this->encoder->encode($localeData['calendar']['gregorian']['AmPmMarkers']['1']));
+
+		
+****C:\xampp\htdocs\magento3\vendor\magento\framework\Locale\TranslatedLists.php on line 202
+It is not good solution but temporary fix. You can remove records from "directory_country" table where country id equal to "AN"		
+**AN  AN ANT
