@@ -1,0 +1,200 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar" [class.collapsedSidebar]="toogleMenu">
+
+        <ul class="nav">
+            <li class="nav-item" >
+                <a style="cursor:text" class="nav-link collapsed" data-toggle="collapse" [class.active]="selectedListItem == 'dashboard' "  aria-expanded="true" aria-controls="ui-basic" (click)="setActive('dashboard')">
+                    <i class="dashboard"></i>
+                    <span class="menu-title">Dashboards</span>
+                    <i class="menu-arrow"></i>
+                </a>
+
+                <div class="collapse" id="ui-dashboard" [class.show]="selectedListItem == 'dashboard' ">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Tier 1 Support</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Engineering</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Service Delivery</a></li>
+                        <li class="nav-item"><a style="cursor:text"  class="nav-link" [routerLink]="">Security</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Sales</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Executive</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Custom</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" [class.active]="selectedListItem == 'customer' "  aria-expanded="false" aria-controls="ui-basic" (click)="setActive('customer')">
+                    <i class="support"></i>
+                    <span class="menu-title">Customer</span>
+                    <i class="menu-arrow"></i>
+                </a>
+
+                <div class="collapse" id="ui-support" [class.show]="selectedListItem == 'customer' ">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['tickets']">Ticketing</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Alerts</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['customer/maintenance-calender']">Maintenance Calendar</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['scheduled-jobs']">Scheduld Jobs</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Emergency Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Onboarding</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['notifications']">Notifications</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['announcements']">Announcements</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Quote</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Orders</a></li>
+                    </ul>
+                </div>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" [class.active]="selectedListItem == 'manage' " aria-expanded="false" aria-controls="ui-basic" (click)="setActive('manage')">
+                    <i class="provision"></i>
+                    <span class="menu-title">Manage</span>
+                    <i class="menu-arrow"></i>
+                </a>
+
+                <div class="collapse" id="ui-provision" [class.show]="selectedListItem == 'manage' ">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Data Center</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">PODS</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Customers</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Private Cloud</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Desktop Pools</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Desktops</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Users</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a style="cursor:text" class="nav-link" data-toggle="collapse" [class.active]="selectedListItem == 'insights' "  aria-expanded="false" aria-controls="ui-basic" (click)="setActive('insights')">
+                    <i class="manage"></i>
+                    <span class="menu-title">Insights</span>
+                    <i class="menu-arrow"></i>
+                </a>
+
+                <div class="collapse" id="ui-manage" [class.show]="selectedListItem == 'insights' ">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Data Center</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">PODS</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Customers</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Private Cloud</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Desktop Pools</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Desktops</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Users</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Reports</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" [class.active]="selectedListItem == 'admin' "aria-expanded="false" aria-controls="ui-basic" (click)="setActive('admin')">
+                    <i class="monitor"></i>
+                    <span class="menu-title">Admin Panel</span>
+                    <i class="menu-arrow"></i>
+                </a>
+
+                <div class="collapse" id="ui-monitor" [class.show]="selectedListItem == 'admin' ">
+                    <ul class="nav flex-column sub-menu">
+
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['users','configure']">Users</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" [routerLink]="['customer-assignment/details']">Customer Assignment</a></li> -->
+                        <!-- <li class="nav-item"><a class="nav-link" [routerLink]="['appliances/add-appliances']">Add Applience</a></li> -->
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Roles</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['category']">Groups</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Subscriptions</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['organizations']">Organizations</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['organization-group']">Organizations Group</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['applications']">Applications</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['application-group']">Application Group</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['product-rates']">Products</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Appliances</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['email-templates']">Templates</a></li>
+                        <li class="nav-item"><a class="nav-link" (click)="redirectCreatedatacenter()">Create Datacenter</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['master-configuration']">Master Data Configuration</a></li>
+                        
+
+
+                    </ul>
+                </div>
+            </li>
+
+
+            <li class="nav-item">
+                <a style="cursor:text" class="nav-link" data-toggle="collapse" [class.active]="selectedListItem == 'inventory' " aria-expanded="false" aria-controls="ui-basic" (click)="setActive('inventory')">
+                    <i class="report"></i>
+                    <span class="menu-title">Inventory</span>
+                    <i class="menu-arrow"></i>
+                </a>
+
+                <div class="collapse" id="ui-report" [class.show]="selectedListItem == 'inventory' ">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Provision</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Capacity</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Network</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Hardware</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">SDDC Hosts</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Virtual Servers</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Vendor Contract</a></li>
+                        <li class="nav-item"><a style="cursor:text" class="nav-link" [routerLink]="">Service Catalog</a></li>
+                    </ul>
+                </div>
+            </li>
+
+
+            <li class="nav-item" style="display: none;">
+                <a class="nav-link" data-toggle="collapse" aria-expanded="false" [class.active]="selectedListItem == 'capacity' " aria-controls="ui-basic" (click)="setActive('capacity')">
+                    <i class="capacity"></i>
+                    <span class="menu-title">Capacity</span>
+                    <i class="menu-arrow"></i>
+                </a>
+
+                <div class="collapse" id="ui-capacity" [class.show]="selectedListItem == 'capacity' ">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">POD Desktops</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">POD PCVDCs</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">POD Hosts</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Private VLANs</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Private Ips</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Public Ips</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">On Deck</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item" style="display: none;">
+                <a class="nav-link" data-toggle="collapse" aria-expanded="false" [class.active]="selectedListItem == 'control-center' " aria-controls="ui-basic" (click)="setActive('control-center')">
+                    <i class="capacity"></i>
+                    <span class="menu-title">Control Center</span>
+                    <i class="menu-arrow"></i>
+                </a>
+
+                <div class="collapse" id="ui-capacity" [class.show]="selectedListItem == 'control-center' ">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">POD Desktops</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">POD PCVDCs</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">POD Hosts</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Private VLANs</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Private Ips</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">Public Ips</a></li>
+                        <li class="nav-item"><a class="nav-link" [routerLink]="">On Deck</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+
+        <div class="footer-support">
+            <div class="contact-item">
+                <div><strong>
+                        General Support:
+                    </strong></div>
+                (888) 33434 34445 <br>
+                Ed Stark : +1415534566
+            </div>
+            <div class="contact-item">
+                <div><strong>
+                        Client Relationship Manager
+                    </strong></div>
+                Ed Stark : +1415534566
+            </div>
+        </div>
+        </nav>

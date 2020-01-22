@@ -1,0 +1,62 @@
+.marginT10{
+  margin-top: 10px;
+}
+
+.marginT20{
+  margin-top: 20px;
+}
+
+.marginR10{
+  margin-right: 10px!important;
+}
+.marginT30{
+  margin-top: 30px;
+}
+
+.marginR30{
+  margin-right: 30px;
+}
+
+.marginL30{
+  margin-left: 30px;
+}
+.marginB10{
+  margin-bottom: 5px;
+}
+
+.marginB5{
+  margin-bottom: 5px;
+}
+
+.flex{
+  display: flex;
+}
+
+
+.flex-grow{
+  flex-grow: 1;
+}
+
+.isclose{
+color: $isclose ;
+}
+
+.isOpen{
+  color: $isOpen ;
+}
+
+.isUpdated{
+  color: $isupdated ;
+}
+
+.isCritical{
+  color: $isCritical ;
+}
+
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}

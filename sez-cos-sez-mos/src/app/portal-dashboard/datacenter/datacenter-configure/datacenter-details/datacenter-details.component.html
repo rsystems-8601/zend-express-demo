@@ -1,0 +1,424 @@
+<div class="container" *ngIf="detailsDatacenterStatus">
+    <div class="editPod">
+        <button (click)="updateDatacenterDetails()" class="btn-primary" mat-button>Update Data Center</button>
+    </div>
+    <mat-card-title class="flex m-l-20 m-r-20">
+        <h3>{{ titleDatacenter | translate}}</h3>
+    </mat-card-title>
+    <div class="card-body">
+        <div class="poddetails">
+            <div class="mat-form-field-infix m-l-30">
+                <div class="card-details">
+                    <mat-tab-group animationDuration="1ms">
+                        <mat-tab label="Details">
+                            <ul class="details">
+                                <li *ngFor="let item of details | keyvalue">
+                                    <label>{{item.key}}</label>: <span>{{item.value}}</span>
+                                </li>
+                            </ul>
+                        </mat-tab>
+
+                        <mat-tab label="Configuration">
+                            <ul class="details">
+                                <li *ngFor="let item of configuration | keyvalue">
+                                    <label>{{item.key}}</label>: <span>{{item.value}}</span>
+                                </li>
+                            </ul>
+                        </mat-tab>
+
+                        <mat-tab label="Address">
+                            <ul class="details">
+                                <li *ngFor="let item of addressDetails | keyvalue">
+                                    <label>{{item.key}}</label>: <span>{{item.value}}</span>
+                                </li>
+                            </ul>
+                        </mat-tab>
+
+                    </mat-tab-group>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Stepper Form for Datacenter-->
+<div class="container" *ngIf="updateDatacenterFormStatus">
+    <div class="editPod" style="float: right" *ngIf="updateBtnstatus">
+        <button class="btn-primary" mat-button (click)="backTodetails()">Back To details</button>
+    </div>
+    <mat-card-title class="flex m-l-20 m-r-20">
+        <h3>{{ titleDatacenter | translate }} </h3>
+
+
+    </mat-card-title>
+    <mat-horizontal-stepper linear #stepper>
+
+        <mat-step [stepControl]="ft" errorMessage="Details.">
+            <div>&nbsp;&nbsp;</div>
+            <form [formGroup]="ft">
+                <ng-template matStepLabel>Details</ng-template>
+                <ul fxLayout="row wrap" fxLayoutGap="2%" fxLayoutAlign="center stretch" class="form-wraper">
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Data Center Name</mat-label>
+                            <input matInput [placeholder]="'Data Center Name'" formControlName="name" maxlength="50">
+                        </mat-form-field>
+                        <div class="error" *ngIf="name.value && name.invalid">
+                            {{"Please enter Valid datacenter Name"}}
+                        </div>
+                    </li>
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Customer ID</mat-label>
+                            <input matInput [placeholder]="'Customer ID'" formControlName="customerId" maxlength="50">
+                        </mat-form-field>
+
+                    </li>
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Portal URL</mat-label>
+                            <input matInput [placeholder]="'Portal URL'" maxlength="30" formControlName="portalUrl">
+                            <mat-error *ngIf="ft.controls['portalUrl'].hasError('required')">
+                                {{ "validation.required" | translate }}
+                            </mat-error>
+                            <div class="error" *ngIf="portalUrl.value && portalUrl.invalid">
+                                {{"URL format should be like http://example.com or example.com"}}
+                            </div>
+                        </mat-form-field>
+                    </li>
+
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Support Email</mat-label>
+                            <input matInput [placeholder]="'Support Email'"  maxlength="30" formControlName="supportEmail">
+                            <mat-error *ngIf="ft.controls['supportEmail'].hasError('required')">
+                                {{ "validation.required" | translate }}
+                            </mat-error>
+                            <div class="error" *ngIf="supportEmail.value && supportEmail.invalid">
+                                {{"Please Enter Valid Email"}}
+                            </div>
+                        </mat-form-field>
+                    </li>
+
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Cage</mat-label>
+                            <input matInput [placeholder]="'Cage'" formControlName="cage" maxlength="15">
+                            <mat-error *ngIf="ft.controls['cage'].hasError('required')">
+                                {{ "validation.required" | translate }}
+                            </mat-error>
+                            <div class="error" *ngIf="cage.value && cage.invalid">
+                                {{"Number Only"}}
+                            </div>
+                        </mat-form-field>
+                    </li>
+                    <li fxFlex="48">
+
+                        <!-- <mat-label>DC NOC Phone</mat-label> -->
+                        <dz-phone-input appearance="outline" formControlName="workPhone" minlength="15" maxlength="18"
+                            placeholder="DC NOC Phone" [disabledArr]="viewButton" required> </dz-phone-input>
+                        <mat-error *ngIf="ft.controls['workPhone'].hasError('required') && ft.controls.workPhone.dirty">
+                            {{ "validation.required" | translate }}
+                        </mat-error>
+
+
+
+                    </li>
+                    <li fxFlex="48"> </li>
+
+                    <li fxFlex="48"> </li>
+
+
+                </ul>
+                <div class="marginT30">
+                    <button matStepperNext class="btn-primary" mat-button>Next</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step [stepControl]="sd" errorMessage="Configuration">
+            <form [formGroup]="sd">
+                <ng-template matStepLabel>Configuration</ng-template>
+                <ul fxLayout="row wrap" fxLayoutGap="2%" fxLayoutAlign="center stretch" class="form-wraper">
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Rack TypeID</mat-label>
+                            <mat-select [placeholder]="'Rack TypeID'" (ngModelChange)="onChangeRacktype($event)"
+                                formControlName="rackTypeID" required>
+                                <mat-option *ngFor="let envvalue of rackTypevalues" [value]="envvalue.id">
+                                    {{ envvalue.name }}
+                                </mat-option>
+                            </mat-select>
+                            <input type="hidden" formControlName="rackTypeName" />
+                            <mat-error *ngIf="sd.controls['rackTypeID'].hasError('required')">
+                                {{"validation.required" | translate  }}
+                            </mat-error>
+                        </mat-form-field>
+                    </li>
+
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Power TypeID</mat-label>
+                            <mat-select [placeholder]="'Power TypeID'" formControlName="powertypeId"  required>
+                                <mat-option *ngFor="let powertypevalues of powerTypevalues"
+                                    [value]="powertypevalues.id">
+                                    {{ powertypevalues.name }}
+                                </mat-option>
+                            </mat-select>
+                            <input type="hidden" formControlName="powertypeName" />
+                            <mat-error *ngIf="sd.controls['powertypeId'].hasError('required')">
+                                {{"validation.required" | translate }}
+                            </mat-error>
+
+                        </mat-form-field>
+                    </li>
+
+                    <li fxFlex="48">
+                        <mat-checkbox formControlName="isComplaince"  (ngModelChange)="onPowerTypeId()" >Compliant Envs</mat-checkbox><br>
+                        <mat-error *ngIf="validCompliance">
+                            {{"Please select atleaset one Compliance Type"}}
+                        </mat-error>
+                        <mat-form-field appearance="outline" *ngIf="isComplaince.value">
+                            <mat-label>Compliant Pod Slots</mat-label>
+                            <input matInput [placeholder]="'Compliant Pod Slots' "
+                                formControlName="maximumPodsCompliance" maxlength="2">
+                            <mat-error *ngIf="sd.controls['maximumPodsCompliance'].hasError('required')">
+                                {{"validation.required" | translate  }}
+                            </mat-error>
+                            <div class="error" *ngIf="maximumPodsCompliance.value && maximumPodsCompliance.invalid">
+                                {{"Number Only"}}
+                            </div>
+                        </mat-form-field>
+
+                    </li>
+                    <li fxFlex="48">                        
+                        <mat-checkbox formControlName="isNoncomplaince" (ngModelChange)="onPowerTypeId()" >Non Compliant Env</mat-checkbox><br>
+                        <mat-form-field appearance="outline" *ngIf="isNoncomplaince.value">
+                            <mat-label>Non Compliant Pod Slots</mat-label>
+                            <!-- <mat-label>Maximum Pods NonCompliance</mat-label> -->
+                            <input matInput [placeholder]="'Non Compliant Pod Slots' "
+                                formControlName="maximumPodsNoncompliance" maxlength="2">
+                            <mat-error *ngIf="sd.controls['maximumPodsNoncompliance'].hasError('required')">
+                                {{"validation.required"  | translate }}
+                            </mat-error>
+                            <div class="error"
+                                *ngIf="maximumPodsNoncompliance.value && maximumPodsNoncompliance.invalid">
+                                {{"Number Only"}}
+                            </div>
+                        </mat-form-field>
+
+                    </li>                    
+                    
+                    <div class="hr-line-dashed"></div>
+
+                    <li fxFlex="48">
+
+                        <label for="isBioMetric">Bio Metrics</label><br>
+                        <mat-radio-group aria-label="Is Biometric" formControlName="isBioMetric">
+                            <mat-radio-button *ngFor="let k of isBiometricvalues" [value]="k">
+                                <ng-container *ngIf="k===true" class="marginR20">Yes</ng-container>&nbsp;
+                                <ng-container *ngIf="k===false">No</ng-container>
+                            </mat-radio-button>
+                        </mat-radio-group>
+
+                        <mat-error *ngIf="sd.controls['isBioMetric'].hasError('required')">
+                            {{"validation.required" | translate  }}
+                        </mat-error>
+
+                    </li>
+
+                    <li fxFlex="48">
+
+                        <label for="isCamera">Camera</label><br>
+                        <mat-radio-group aria-label="Is Camera" formControlName="isCamera">
+                            <mat-radio-button *ngFor="let k of isCameravalues" [value]="k">
+                                <ng-container *ngIf="k===true" class="marginL10">Yes</ng-container>&nbsp;
+                                <ng-container *ngIf="k===false">No</ng-container>
+                            </mat-radio-button>
+
+                        </mat-radio-group>
+
+                        <mat-error *ngIf="sd.controls['isCamera'].hasError('required')">
+                            {{"validation.required" | translate  }}
+                        </mat-error>
+
+                    </li>
+
+
+
+
+                    
+                    <li>&nbsp;</li>
+
+                    <li>
+
+                    </li>
+
+
+                </ul>
+                <div>&nbsp;&nbsp;&nbsp;</div>
+                <div>
+                    <button mat-button matStepperPrevious class="btn-default" mat-button>Back</button>&nbsp;&nbsp;
+                    <button mat-button matStepperNext class="btn-primary" mat-button (click)="onPowerTypeId()">Next</button>
+                </div>
+            </form>
+
+        </mat-step>
+
+        <mat-step [stepControl]="th" errorMessage="Address">
+            <form [formGroup]="th">
+                <ng-template matStepLabel>Address</ng-template>
+                <ul fxLayout="row wrap" fxLayoutGap="2%" fxLayoutAlign="center stretch" class="form-wraper">
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Address1</mat-label>
+                            <input matInput [placeholder]="'Address1' " formControlName="address1" maxlength="100"
+                                required>
+                            <mat-error *ngIf="th.controls['address1'].hasError('required')">
+                                {{"validation.required" | translate }}
+                            </mat-error>
+
+                        </mat-form-field>
+                    </li>
+
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Address2</mat-label>
+                            <input matInput [placeholder]="'Address2' " formControlName="address2" maxlength="100"
+                                required>
+                            <mat-error *ngIf="th.controls['address2'].hasError('required')">
+                                {{"validation.required" | translate }}
+                            </mat-error>
+
+                        </mat-form-field>
+                    </li>
+
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Country Name</mat-label>
+
+                            <mat-select [placeholder]="'Country Name'" formControlName="countryId"
+                                (ngModelChange)="onChangeCountry($event)" required>
+                                <mat-option *ngFor="let countryValue of countryList" [value]="countryValue.countryId">
+                                    {{ countryValue.countryName }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="th.controls['countryId'].hasError('required')">
+                                {{"validation.required" | translate }}
+                            </mat-error>
+
+                        </mat-form-field>
+                    </li>
+
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>State Name</mat-label>
+                            <mat-select [placeholder]="'State Name'" formControlName="stateId" required
+                                (ngModelChange)="onChangeStateChange($event)">
+                                <mat-option *ngFor="let stateValue of stateList" [value]="stateValue.stateId">
+                                    {{ stateValue.stateName }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="th.controls['stateId'].hasError('required')">
+                                {{"validation.required" | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </li>
+
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>City Name</mat-label>
+
+                            <input matInput placeholder="City Name" aria-label="City" [matAutocomplete]="auto"
+                                formControlName="cityId" maxlength="100" required>
+                            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWithCityName()">
+                                <mat-option *ngFor="let cityValue of filteredOptions | async" [value]="cityValue">
+                                    {{ cityValue.cityName }}
+                                </mat-option>
+                            </mat-autocomplete>
+
+
+                            <mat-error *ngIf="th.controls['cityId'].hasError('required')">
+                                {{"validation.required" | translate }}
+                            </mat-error>
+
+                        </mat-form-field>
+                    </li>
+
+
+
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Zip Code</mat-label>
+                            <input matInput placeholder="Zip Code" aria-label="Zip Code" [matAutocomplete]="autoZip"
+                                formControlName="zipCode" matTooltip="Type to filter the Zip code"
+                                matTooltipPosition="after" maxlength="10" required>
+                            <mat-autocomplete #autoZip="matAutocomplete">
+                                <mat-option *ngFor="let zipValue of filterOptionsZip | async" [value]="zipValue">
+                                    {{ zipValue }}
+                                </mat-option>
+                            </mat-autocomplete>
+
+                            <mat-error *ngIf="th.controls['zipCode'].hasError('required')">
+                                {{"validation.required" | translate }}
+                            </mat-error>
+
+                        </mat-form-field>
+                    </li>
+
+
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Air Port Code</mat-label>
+                            <input matInput [placeholder]="'Air Port Code' " formControlName="airportCode" uppercase
+                                maxlength="5" minlength="3">
+
+                            <div class="error" *ngIf="airportCode.value && airportCode.invalid">
+                                {{"Airport Code should be alphabetic and Minimum 3 And Maximum 5 charachters"}}
+                            </div>
+                        </mat-form-field>
+                    </li>
+
+                    <li *ngIf="updateBtnstatus" fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Datacenter ID</mat-label>
+                            <input matInput [placeholder]="'Datacenter ID' " formControlName="dCenterNotationId"
+                                readonly>
+                            <mat-error *ngIf="th.controls['dCenterNotationId'].hasError('required')">
+                                {{"validation.required" | translate }}
+                            </mat-error>
+
+                        </mat-form-field>
+                    </li>
+                    <li *ngIf="!updateBtnstatus" fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Datacenter ID</mat-label>
+                            <input matInput [placeholder]="'Datacenter ID' " formControlName="dCenterNotationId">
+                            <mat-error *ngIf="th.controls['dCenterNotationId'].hasError('required')">
+                                {{"validation.required" | translate }}
+                            </mat-error>
+
+                        </mat-form-field>
+                    </li>
+                    <li fxFlex="48"> </li>
+                    <li fxFlex="48"> </li>
+
+                </ul>
+                <div *ngIf="updateBtnstatus">
+                    <button class="btn-primary" mat-button matStepperPrevious
+                        class="btn-default">Back</button>&nbsp;&nbsp;
+                    <button class="btn-primary" mat-button (click)="updateDatacenterdata()">{{'Update' }}</button>
+                </div>
+                <div *ngIf="!updateBtnstatus">
+                    <button matStepperPrevious class="btn-primary" mat-button>Back</button>&nbsp;&nbsp;
+                    <button class="btn-primary" mat-button type="button"
+                        (click)="saveDatacenterdata()">{{'Save' }}</button>
+                </div>
+
+            </form>
+        </mat-step>
+
+
+
+    </mat-horizontal-stepper>
+</div>

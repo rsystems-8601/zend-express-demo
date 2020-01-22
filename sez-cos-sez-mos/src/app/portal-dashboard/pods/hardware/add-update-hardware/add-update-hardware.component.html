@@ -1,0 +1,582 @@
+<div class="">
+    <mat-card-title class="flex m-l-20 m-r-20">
+        <h3>{{ "Hardware" }}</h3>
+    </mat-card-title>       
+ </div>
+
+<div class="container"> 
+ <mat-horizontal-stepper linear #stepper>
+        <mat-step [stepControl]="ft" errorMessage="Details.">
+         <div>&nbsp;&nbsp;</div>
+          <form [formGroup]="ft">
+            <ng-template matStepLabel>Details</ng-template>
+            <ul>
+           
+                    <li>
+                        <label>Name: &nbsp;</label> 
+                        <mat-form-field appearance="outline">
+                            <input matInput [placeholder]="'Name' "
+                                    formControlName="name" required maxlength="32" >
+                            <mat-error *ngIf="ft.controls['name'].hasError('required')">
+                                {{ "validation.required" | translate  }}
+                            </mat-error>
+                            <div class="error" *ngIf="name.value && name.invalid">
+                              {{ "Name can be alphanumeric with -_. allowed"}}
+                            </div>
+                        </mat-form-field>
+                    </li>
+                    <li>
+                        <label>Make: &nbsp;</label> 
+                        <mat-form-field appearance="outline">
+                            <input matInput [placeholder]="'Make' "
+                                    formControlName="make" required maxlength="32" >
+                            <mat-error *ngIf="ft.controls['make'].hasError('required')">
+                                {{ "validation.required" | translate  }}
+                            </mat-error>
+                            <div class="error" *ngIf="make.value && make.invalid">
+                                {{ "Make can be alphanumeric with -_. allowed"}}
+                            </div>
+                        </mat-form-field>
+                    </li>
+                    <li>
+                        <label>Model: &nbsp;</label> 
+                        <mat-form-field appearance="outline">
+                            <input matInput [placeholder]="'Model' "
+                                    formControlName="model" required maxlength="32" >
+                            <mat-error *ngIf="ft.controls['model'].hasError('required')">
+                                {{ "validation.required" | translate    }}
+                            </mat-error>
+                            <div class="error" *ngIf="model.value && model.invalid">
+                                {{ "Model can be alphanumeric with -_. allowed"}}
+                            </div>
+                        </mat-form-field>
+                    </li>
+
+                    <li>
+                        <label>Sr. No#:&nbsp;</label>
+                        <mat-form-field appearance="outline">
+                            <input matInput [placeholder]="'Serial Number #' "
+                                    formControlName="serialNumber" required maxlength="32" >
+                            <mat-error *ngIf="ft.controls['serialNumber'].hasError('required')">
+                                {{ "validation.required" | translate   }}
+                            </mat-error>
+                            <div class="error" *ngIf="serialNumber.value && serialNumber.invalid">
+                              {{ "Only alphanumerics allowed" }}
+                            </div>
+                        </mat-form-field>
+                    </li>
+                    
+                    <li>
+                        <label>Type: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <mat-form-field appearance="outline">
+                            <mat-select [placeholder]="'Type'" formControlName="type" required (ngModelChange)="changeType($event)">
+                              <mat-option *ngFor="let typeValue of hardwareTypeArray" [value]="typeValue">
+                                  {{ typeValue | titlecase }}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="ft.controls['type'].hasError('required')">
+                                {{ "validation.required" | translate }}
+                            </mat-error>
+                      </mat-form-field>  
+                      
+                    </li>
+                    <li *ngIf="switchTypeStatus">
+                         <label>Switch Type: &nbsp;</label>
+                        <mat-form-field appearance="outline">
+                            <mat-select [placeholder]="'Switch Type'" formControlName="switchType"  >
+                              <mat-option *ngFor="let typeValue of switchTypeArray" [value]="typeValue">
+                                  {{ typeValue | titlecase }}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="ft.controls['switchType'].hasError('required')">
+                                {{ "validation.required" | translate }}
+                            </mat-error>
+                      </mat-form-field>  
+                      
+                    </li>
+                    
+                </ul>
+            <div>
+              <button  matStepperNext class="btn-primary" mat-button>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="sd" errorMessage="Chassis information">
+                <form [formGroup]="sd">
+                  <ng-template matStepLabel>Chassis information</ng-template>
+                  <ul>
+
+                    <ng-container *ngIf="typeofAction=='SWITCHES'">
+                        <li>
+                             <label>Total Ports: &nbsp;</label>
+                            <mat-form-field appearance="outline">
+                                    <input matInput [placeholder]="'Total Ports' "
+                                            formControlName="totalPorts" >
+                                </mat-form-field>
+                                <mat-error class="error"  *ngIf="sd.controls['totalPorts'].hasError('required') && sd.controls['totalPorts'].dirty">
+                                    {{ "validation.required" | translate }}
+                                </mat-error>
+                                <div class="error" *ngIf="totalPorts.value && totalPorts.invalid">
+                                    {{ "Only numbers with maximum length 2 digits" }}
+                                  </div>      
+                       </li>
+                       <li>
+                           <label>Used Ports: &nbsp;</label>
+                          <mat-form-field appearance="outline">
+                                  <input matInput [placeholder]="'Used Ports' "
+                                          formControlName="usedPorts">
+                              </mat-form-field>
+                              <!-- <mat-error class="error"  *ngIf="sd.controls['usedPorts'].hasError('required') && sd.controls['usedPorts'].dirty">
+                                  {{ "validation.required" | translate }}
+                              </mat-error> -->
+                              <mat-error class="error"  *ngIf="sd.controls['usedPorts'].hasError('required') && sd.controls['usedPorts'].dirty">
+                                  {{ "validation.required" | translate }}
+                              </mat-error>
+                              <div class="error" *ngIf="usedPorts.value && usedPorts.invalid">
+                                  {{ "Only numbers with maximum length 2 digits" }}
+                                </div> 
+                     </li>
+                    </ng-container>
+
+                    <ng-container *ngIf="typeofAction=='SERVERS' || typeofAction=='Array'">
+                        <li>
+                                <label>RAM: &nbsp;</label>
+                            <mat-form-field appearance="outline">
+                              <input matInput [placeholder]="'RAM' "
+                                      formControlName="ram"   maxlength="3">
+                              <mat-error *ngIf="sd.controls['ram'].hasError('required') && sd.controls['ram'].dirty">
+                                  {{ "validation.required" | translate }}
+                              </mat-error>
+                              <div class="error" *ngIf="ram.value && ram.invalid">
+                                  {{"Only numerics allowed"}}
+                                </div>
+                            </mat-form-field>    
+                      </li>
+                        <!-- <li>
+                            <mat-form-field appearance="outline">
+                                <mat-select [placeholder]="'CPU TypeId'" formControlName="cpuTypeId">
+                                    <mat-option *ngFor="let cputypeValue of cpuCountArray" [value]="cputypeValue.id">
+                                        {{ cputypeValue.name }}
+                                    </mat-option>
+                                  </mat-select>
+                                  <mat-error *ngIf="sd.controls['cpuTypeId'].hasError('required') && sd.controls['cpuTypeId'].dirty">
+                                      {{ "validation.required" | translate }}
+                                  </mat-error>
+                             </mat-form-field>     
+                       </li> -->
+
+                      <!-- <li>
+                          <mat-form-field appearance="outline">
+                              <mat-select [placeholder]="'CPU Name'" formControlName="cpuName">
+                                <mat-option *ngFor="let cputypeValue of cpuCountArray" [value]="cputypeValue.name">
+                                    {{ cputypeValue.name }}
+                                </mat-option>
+                              </mat-select>
+                              <mat-error *ngIf="sd.controls['cpuName'].hasError('required') && sd.controls['cpuName'].dirty">
+                                  {{"validation.required" | translate }}
+                              </mat-error>
+                        </mat-form-field>  
+                    </li> -->
+
+                    <li>
+                            <label>CPU Type: &nbsp;</label>
+                        <mat-form-field appearance="outline">
+                                <input matInput [placeholder]="'CPU Type'" formControlName="cpuName" required>
+                                <span class="combobox-span" (click)="openCpuTypelist()">
+                                    <i class="material-icons">keyboard_arrow_down</i></span> 
+                                <mat-error *ngIf="sd.controls['cpuName'].hasError('required')">
+                                    {{"validation.required" | translate }}
+                                </mat-error>
+                        </mat-form-field>
+                    </li>
+
+                    <li *ngIf="cpuTypeSatatus" style="position: relative;">
+                          
+                        <mat-list class="ownerList">
+                            <mat-list-item 
+                            *ngFor="let cputypeValue of cpuCountArray;let i= index"  [ngClass]="i%2 == 0 ? 'evenClass' : 'oddClass'"
+                            (click)="selectCPuType(cputypeValue)"> {{ cputypeValue.name }} </mat-list-item>
+                        </mat-list>
+                     </li>
+                     
+                  <li>
+                      <label>CPU Speed: &nbsp;</label>
+                    <mat-form-field appearance="outline">
+                      <input matInput [placeholder]="'CPU Speed' "
+                              formControlName="cpuSpeed"   maxlength="10">
+                      <mat-error *ngIf="sd.controls['cpuSpeed'].hasError('required') && sd.controls['cpuSpeed'].dirty">
+                          {{ "validation.required" | translate }}
+                      </mat-error>
+                    </mat-form-field>    
+                 </li> 
+                 <li>
+                    <label>CPU Speed: &nbsp;</label>
+                    <mat-form-field appearance="outline">
+                      <input matInput [placeholder]="'CPU Speed' "
+                              formControlName="cpuSpeed"   maxlength="10">
+                      <mat-error *ngIf="sd.controls['cpuSpeed'].hasError('required') && sd.controls['cpuSpeed'].dirty">
+                          {{ "validation.required" | translate }}
+                      </mat-error>
+                    </mat-form-field>    
+                 </li>  
+
+                  <li>
+                        <label>CPU Count: &nbsp;</label>
+                      <mat-form-field appearance="outline">
+                              <input matInput [placeholder]="'CPU Count' "
+                                      formControlName="cpuCount" >
+                          </mat-form-field>
+                          <mat-error *ngIf="sd.controls['cpuCount'].hasError('required') && sd.controls['cpuCount'].dirty">
+                              {{"validation.required" | translate }}
+                          </mat-error>
+                          <div class="error" *ngIf="cpuCount.value && cpuCount.invalid">
+                              {{"Only numerics allowed"}}
+                            </div>
+                  </li>
+                      <li>
+                            <label>Hardwareware ClusterNotationID: &nbsp;</label>
+                          <mat-form-field appearance="outline">
+                                  <input matInput [placeholder]="'Hardwareware ClusterNotationID' "
+                                          formControlName="hwClusterNotationID" >
+                              </mat-form-field>
+                              <mat-error *ngIf="sd.controls['hwClusterNotationID'].hasError('required')  && sd.controls['hwClusterNotationID'].dirty">
+                                  {{"validation.required" | translate }}
+                              </mat-error>
+                      </li>
+                      <li>
+                            <label>Hardwareware ClusterID: &nbsp;</label>
+                          <mat-form-field appearance="outline">
+                                  <input matInput [placeholder]="'Hardwareware ClusterID' "
+                                          formControlName="hwClusterId" >
+                              </mat-form-field>
+                              <mat-error *ngIf="sd.controls['hwClusterId'].hasError('required') && sd.controls['hwClusterId'].dirty">
+                                  {{"validation.required" | translate }}
+                              </mat-error>
+                      </li>
+                      <li>
+                            <label>Chasis Id: &nbsp;</label>
+                          <mat-form-field appearance="outline">
+                                  <input matInput [placeholder]="'Chasis Id' "
+                                          formControlName="chasisId" >
+                              </mat-form-field>
+                              <mat-error *ngIf="sd.controls['chasisId'].hasError('required') && sd.controls['chasisId'].dirty">
+                                  {{"validation.required" | translate }}
+                              </mat-error>
+                      </li>
+                      <li>
+                            <label>Date Of Purchase: &nbsp;</label>
+                          <mat-form-field appearance="outline">
+                                  
+                                  <input matInput [matDatepicker]="picker_start_contract1" placeholder="Date Of Purchase"
+                                  formControlName="dateOfPurchase">
+                                <mat-datepicker-toggle matSuffix [for]="picker_start_contract1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker_start_contract1></mat-datepicker>            
+                              </mat-form-field>
+                              <mat-error class="error" *ngIf="sd.controls['dateOfPurchase'].hasError('required') && sd.controls['dateOfPurchase'].dirty">
+                                  {{"validation.required" | translate }}
+                              </mat-error>
+                      </li>
+
+                      <li>
+                            <label>Sales Lease Number: &nbsp;</label>
+                          <mat-form-field appearance="outline">
+                                  <input matInput [placeholder]="'Sales Lease Number' "
+                                          formControlName="salesLeaseNumber" >
+                              </mat-form-field>
+                              <mat-error class="error" *ngIf="sd.controls['salesLeaseNumber'].hasError('required') && sd.controls['salesLeaseNumber'].dirty">
+                                  {{"validation.required" | translate }}
+                              </mat-error>
+                              <div class="error" *ngIf="salesLeaseNumber.value && salesLeaseNumber.invalid">
+                                  {{"Only numerics allowed"}}
+                                </div>
+                      </li>
+
+                      
+                      
+                      <li>
+                            <label>Cores: &nbsp;</label>
+                          <mat-form-field appearance="outline">
+                                  <input matInput [placeholder]="'Cores' "
+                                          formControlName="cores" maxlength="2" >
+                              </mat-form-field>
+                              <mat-error class="error" *ngIf="sd.controls['cores'].hasError('required') && sd.controls['cores'].dirty">
+                                  {{"validation.required" | translate }}
+                              </mat-error>
+                              <div class="error" *ngIf="cores.value && cores.invalid">
+                                  {{"Only numerics allowed"}}
+                                </div>
+                      </li>
+                     
+                    <li>
+                            <label>Ip Address: &nbsp;</label>
+                        <mat-form-field appearance="outline">
+                                <input matInput [placeholder]="'Ip Address' "
+                                        formControlName="ipAddress"   (keypress)="numberOnlyType($event)" >
+                                <mat-error class="error" *ngIf="sd.controls['ipAddress'].hasError('required')">
+                                    {{"validation.required" | translate  }}
+                                </mat-error>
+                                <div class="error" *ngIf="ipAddress.value && ipAddress.invalid">
+                                    {{"Not a valid IP addrsss"}}
+                                  </div>     
+                            </mat-form-field>
+                   </li>
+
+                   <li>
+                        <label>Drive Size: &nbsp;</label>
+                      <mat-form-field appearance="outline">
+                        <input matInput [placeholder]="'Drive Size' "
+                                formControlName="driveSize"   maxlength="10">
+                        <mat-error *ngIf="sd.controls['driveSize'].hasError('required') && sd.controls['driveSize'].dirty">
+                            {{ "validation.required" | translate }}
+                        </mat-error>
+                        <div class="error" *ngIf="driveSize.value && driveSize.invalid">
+                            {{"Only numbers allowed"}}
+                          </div> 
+                      </mat-form-field>    
+                </li>
+
+                
+
+                 <li>
+                        <label>Username: &nbsp;</label>
+                    <mat-form-field appearance="outline">
+                      <input matInput [placeholder]="'Username' "
+                              formControlName="username"   maxlength="10">
+                      <mat-error *ngIf="sd.controls['username'].hasError('required') && sd.controls['username'].dirty">
+                          {{ "validation.required" | translate }}
+                      </mat-error>
+                    </mat-form-field>    
+              </li>
+
+                  <li>
+                        <label>Password: &nbsp;</label>
+                        <mat-form-field appearance="outline">
+                          <input type="password" matInput [placeholder]="'Password' "
+                                  formControlName="password"   maxlength="20" 
+                                  matTooltip="Password Hint: Atlest 8 Charectors, Special Charectors, Numbers, Lower letters, Upper letters ">
+                          <mat-error *ngIf="sd.controls['password'].hasError('required') && sd.controls['password'].dirty">
+                              {{ "validation.required" | translate }}
+                          </mat-error>
+                         <div class="error" *ngIf="password.value && password.invalid">
+                                {{ "Please enter valid password" }}
+                              </div>
+                        </mat-form-field>    
+                  </li>
+                </ng-container>
+                
+                 <!--Array------------------------------------------------->
+                 <ng-container *ngIf="typeofAction!='SWITCHES' && typeofAction=='Array'">
+                    <li>
+                            <label>Last Snapshot: &nbsp;</label>
+                        <mat-form-field appearance="outline">
+                          <input matInput [placeholder]="'Last Snapshot' "
+                                  formControlName="lastSnapshot"   maxlength="20" >
+                          <mat-error *ngIf="sd.controls['lastSnapshot'].hasError('required') && sd.controls['lastSnapshot'].dirty">
+                              {{ "validation.required" | translate }}
+                          </mat-error>
+                          
+                        </mat-form-field>    
+                  </li>
+  
+                  <li>
+                     <label>Is Protected: &nbsp;</label>
+                     <mat-form-field appearance="outline">
+                    <mat-select [placeholder]="'Is Protected'" formControlName="protected">
+                        <mat-option *ngFor="let item of Isprotected | keyvalue" [value]="item.value">
+                            {{ item.key }}
+                        </mat-option>
+                      </mat-select>        
+                        <mat-error *ngIf="sd.controls['protected'].hasError('required')">
+                            {{ "validation.required" | translate }}
+                        </mat-error>
+                     
+                      </mat-form-field>    
+                </li>
+  
+                <li>
+                        <label>Volume Name: &nbsp;</label>
+                    <mat-form-field appearance="outline">
+                      <input matInput [placeholder]="'Volume Name' "
+                              formControlName="volumeName"   maxlength="20" >
+                      <mat-error *ngIf="sd.controls['volumeName'].hasError('required') && sd.controls['volumeName'].dirty">
+                          {{ "validation.required" | translate }}
+                      </mat-error>
+                      <!-- <div class="error" *ngIf="password.value && password.invalid">
+                            {{ "Please enter valid password" }}
+                          </div> -->
+                    </mat-form-field>    
+              </li>
+  
+              <li>
+                    <label>Virtual Network: &nbsp;</label>
+                  <mat-form-field appearance="outline">
+                    <input matInput [placeholder]="'Virtual Network' "
+                            formControlName="virtualNetwork"   maxlength="20" >
+                    <mat-error *ngIf="sd.controls['virtualNetwork'].hasError('required') && sd.controls['virtualNetwork'].dirty">
+                        {{ "validation.required" | translate }}
+                    </mat-error>
+                    <!-- <div class="error" *ngIf="password.value && password.invalid">
+                          {{ "Please enter valid password" }}
+                        </div> -->
+                  </mat-form-field>    
+            </li>
+                 </ng-container>
+                   
+                    
+                    </ul>
+                  <div>
+                        <button mat-button matStepperPrevious class="btn-primary" mat-button>Back</button>&nbsp;&nbsp;
+                    <button mat-button matStepperNext class="btn-primary" mat-button>Next</button>
+                  </div>
+                </form>
+              </mat-step>
+
+            <mat-step [stepControl]="th" errorMessage="Location">
+                <form [formGroup]="th">
+                    <ng-template matStepLabel>Location</ng-template>
+
+                    <div>
+                            <mat-form-field appearance="outline"> 
+                                <input  matInput [value]="datacenterName" readonly>
+                            </mat-form-field>           
+                    </div>
+                    <div>
+                            <mat-form-field appearance="outline">
+                                <input  matInput [value]="podName" readonly>
+                            </mat-form-field>           
+                  </div>
+                  
+                    <div>
+                            <button  matStepperPrevious class="btn-primary" mat-button>Back</button>&nbsp;&nbsp;
+                    <button  matStepperNext class="btn-primary" mat-button>Next</button>
+                    </div>
+                </form>
+                </mat-step>
+
+        <mat-step [stepControl]="fr" errorMessage="Ownership">
+          <form [formGroup]="fr">
+            <ng-template matStepLabel>Ownership</ng-template>
+            <ul>
+                    
+                    <li>
+                            <label>Owner: &nbsp;</label>
+                            <mat-form-field appearance="outline">
+                                <input matInput [placeholder]="'Owner'" formControlName="ownerName" required><span class="combobox-span" (click)="openOwnerTypelist()">
+                                    <i class="material-icons">keyboard_arrow_down</i></span> 
+                                <mat-error *ngIf="fr.controls['ownerName'].hasError('required')">
+                                    {{"validation.required" | translate }}
+                                </mat-error>
+                           </mat-form-field>
+                    </li>
+
+                    <li *ngIf="ownerTypeSatatus" style="position: relative;">
+                      <mat-list class="ownerList" appearance="outline">
+                          <mat-list-item 
+                          *ngFor="let ownertypeValue of ownerTypeArray;let i= index"  [ngClass]="i%2 == 0 ? 'evenClass' : 'oddClass'"
+                          (click)="selectOwnerType(ownertypeValue)"> {{ ownertypeValue.name }} </mat-list-item>
+                      </mat-list>
+                   </li>
+                   
+                    <li>
+                            <label>Contract Term: &nbsp;</label>
+                            <mat-form-field appearance="outline">
+                                    <input matInput [placeholder]="'Contract Term' "
+                                            formControlName="contractTerm" required maxlength="20">
+
+                                            <mat-error *ngIf="fr.controls['contractTerm'].hasError('required')">
+                                                    {{"validation.required" | translate }}
+                                            </mat-error>
+                                </mat-form-field>
+                    </li>
+
+                    <li>
+                          <label>Contract Start date : &nbsp;</label>
+                          <mat-form-field appearance="outline">
+                                  <input matInput placeholder="Contract Start date"
+                                    formControlName="contractStartDate"
+                                    [matDatepicker]="picker_start_contract">
+                                  <mat-datepicker-toggle matSuffix [for]="picker_start_contract"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker_start_contract></mat-datepicker>
+                              </mat-form-field>
+                              <mat-error class="error" *ngIf="fr.controls['contractStartDate'].hasError('required') && fr.controls['contractStartDate'].dirty">
+                                      {{"validation.required" | translate }}
+                              </mat-error>
+                    </li>
+
+                    <li>
+                            <label>Contract End date: &nbsp;</label>
+                            <mat-form-field appearance="outline">
+                                    <input matInput [matDatepicker]="picker_end_contract" required 
+                                     placeholder="Contract End date" formControlName="contractEndDate">
+                                    <mat-datepicker-toggle matSuffix [for]="picker_end_contract"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker_end_contract></mat-datepicker>  
+                                </mat-form-field>
+                                <mat-error *ngIf="fr.controls['contractEndDate'].hasError('required') && fr.controls['contractEndDate'].dirty">
+                                        {{"validation.required" | translate }}
+                                </mat-error>
+                                 
+                    </li>
+
+                    <li>
+                            <label>Warranty Start date: &nbsp;</label>
+                            <mat-form-field appearance="outline">
+                                    <input matInput [matDatepicker]="picker_start_warrenty" required 
+                                     placeholder="Warranty Start" formControlName="warrantyStartDate">
+                                    <mat-datepicker-toggle matSuffix [for]="picker_start_warrenty"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker_start_warrenty ></mat-datepicker>  
+                                </mat-form-field>
+                                <mat-error *ngIf="fr.controls['warrantyStartDate'].hasError('required') && fr.controls['warrantyStartDate'].dirty">
+                                        {{"validation.required" | translate }}
+                                </mat-error>
+                                 
+                    </li>
+
+
+                    <li>
+                            <label>Warranty End date: &nbsp;</label>
+                            <mat-form-field appearance="outline">
+                                    <input matInput [matDatepicker]="picker_end_warrenty" required 
+                                     placeholder="Warranty End" formControlName="warrantyEndDate">
+                                    <mat-datepicker-toggle matSuffix [for]="picker_end_warrenty"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker_end_warrenty ></mat-datepicker>  
+                                </mat-form-field>
+                                <mat-error *ngIf="fr.controls['warrantyEndDate'].hasError('required') && fr.controls['warrantyEndDate'].dirty">
+                                        {{"validation.required" | translate }}
+                                </mat-error>    
+                                 
+                    </li>
+
+                </ul>
+            <div>&nbsp;</div>
+            <!-- <div>
+              <button mat-button matStepperPrevious class="customBtn">Back</button>&nbsp;&nbsp;
+              <button mat-button matStepperNext class="customBtn">Next</button>
+            </div> -->
+                 <div class="buttons">
+                    <button mat-button matStepperPrevious class="btn-primary" mat-button>Back</button>&nbsp;&nbsp;
+                    <button  type="button" (click)="saveHardwareData()" 
+                        [disabled]="!sd.valid || !fr.valid || !ft.valid"  mat-raised-button disabled>{{ 'Save' }}</button>
+                        <!-- <button mat-button (click)="stepper.reset()" class="customBtn">Reset</button> -->
+                  </div>
+          </form>
+        </mat-step>
+
+        <!-- <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <h3 class="mattitle">{{"You are now done."}}</h3>
+          
+          
+        </mat-step> -->
+      </mat-horizontal-stepper>
+</div>
+
+
+
+
+
+ 
+
+
+
+ 

@@ -1,0 +1,20 @@
+<div [ngClass]="{'has-error': !isValid()}">
+    <div class="fg-line">
+        <input *ngIf="!mask" class="form-control" type={{type}} min="{{min}}"
+               [dz-focus]="autofocus"
+               [disabled]="disabled"
+               [placeholder]="placeholder ? (placeholder | translate) : ''"
+               [(ngModel)]="value"
+               (ngModelChange)="onNgModelChange($event)"
+               (blur)="onBlurAction($event)">
+
+        <input *ngIf="mask" class="form-control" type={{type}}
+               [dz-focus]="autofocus"
+               [disabled]="disabled"
+               [placeholder]="placeholder ? (placeholder | translate) : ''"
+               [(ngModel)]="value"
+               (ngModelChange)="onNgModelChange($event)"
+               [textMask]="{mask: mask}"
+               (blur)="onBlurAction($event)">
+    </div>
+</div>

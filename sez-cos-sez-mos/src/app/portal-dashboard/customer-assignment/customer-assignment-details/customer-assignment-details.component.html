@@ -1,0 +1,58 @@
+<div>
+    <mat-card-title class="flex m-l-20 m-r-20">
+        <h3>{{ "Customer Assignment" }}</h3>
+    </mat-card-title>
+       <!--Common selector for components -->
+            <app-data-table 
+            [tableData]="tableData" 
+            [columnHeader]="columnHeader" 
+            [pageLength]="pageLength"
+            [pageSize]="pageSize"
+            [pageIndex]="pageIndex"
+            [hasDelete]="true"
+            [deleteDialog] = "deleteDialog"
+            (pageChanged)= "pageChanged($event)"
+            (radioChangedvalue)="radiovalues($event)"
+            (searchValues)="searchValues($event)">
+            </app-data-table> 
+ </div>
+<div class="customer-details" *ngIf="details || customerConfiguration || customerLocation">
+    <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Details">
+                <ul class="details">
+                    <li  *ngFor="let itemconfigdetail of details | keyvalue">
+                        <label>{{itemconfigdetail.key}}</label>: <span>{{itemconfigdetail.value}}</span> 
+                    </li>
+                </ul>
+        </mat-tab>
+        <mat-tab label="Configuration">
+                <ul class="details">
+                        <li  *ngFor="let itemconfig of customerConfiguration | keyvalue">
+                            <!-- <td><h5>{{itemconfig.key}}:</h5></td><td><a>{{itemconfig.value}}</a></td> -->
+                            <label>{{itemconfig.key}}</label>: <span>{{itemconfig.value}}</span> 
+                        </li>
+                    </ul>
+        </mat-tab>
+        <mat-tab label="Location">
+            <ul class="details">
+                    <li  *ngFor="let itemlocation of customerLocation | keyvalue">
+                        <!-- <td><h5>{{itemlocation.key}}:</h5></td><td><a>{{itemlocation.value}}</a></td> -->
+                        <label>{{itemlocation.key}}</label>: <span>{{itemlocation.value}}</span> 
+                    </li>
+                </ul>
+        </mat-tab>
+      </mat-tab-group>
+</div>
+<div style="margin-bottom: 100px;">&nbsp;</div>
+ 
+
+
+
+
+
+
+ 
+
+
+
+ 

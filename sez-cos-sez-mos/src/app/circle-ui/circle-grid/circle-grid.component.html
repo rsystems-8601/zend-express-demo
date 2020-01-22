@@ -1,0 +1,19 @@
+<div class="cell-grid yellow" >
+
+    <div class="circle show" data-level=1
+    *ngFor="let p of innerParent;  let i = index; let last = last"
+    [ngStyle]= "{
+                    'transform': 'scale(' +  (1 + ((innerParent.length - i)*.15))   + ')'
+                }"
+     (click)="clickOnParent($event,p)">
+
+        <div class="title">{{p.listLevelName  }} </div>
+        <div class="list" >
+            <ul class="text-center">
+                <li ><a (click)="redirectTodetailPage($event,cell)" title="{{cell.listLevelName}}">{{cell.listLevelName}}</a></li>
+                <li *ngFor="let celDetail of cell.listItems; let cellIndex = index;" (click)="clickListItm($event,cellIndex,celDetail,p)"><span>{{celDetail.itemDisplayName}}</span> {{celDetail.itemDisplayValue}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+

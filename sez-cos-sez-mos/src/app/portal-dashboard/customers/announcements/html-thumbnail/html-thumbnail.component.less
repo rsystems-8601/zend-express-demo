@@ -1,0 +1,28 @@
+.thumbnail {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  border: 1px solid gray;
+  user-select: none;
+}
+
+.thumbnail-content {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  display: inline-block;
+  zoom: 0.2;
+  -moz-transform: scale(0.3);
+  -moz-transform-origin: 0 0;
+
+  padding: 50px;
+
+  ::ng-deep img {
+    max-width: 100%;
+  }
+}

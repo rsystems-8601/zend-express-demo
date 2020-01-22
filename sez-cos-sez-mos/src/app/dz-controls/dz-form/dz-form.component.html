@@ -1,0 +1,9 @@
+<form *ngIf="formGroup" (ngSubmit)="submit(formGroup)" novalidate [formGroup]="formGroup" class="w-100">
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+</form>
+<form *ngIf="!formGroup" (ngSubmit)="submit(templateForm)" novalidate #templateForm="ngForm" class="w-100">
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+</form>
+<ng-template #contentTpl>
+    <ng-content></ng-content>
+</ng-template>

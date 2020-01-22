@@ -1,0 +1,67 @@
+<h1 matDialogTitle>{{ "Add Tor switches"}} </h1>
+<form [formGroup]="torswitchesForm"  class="edit-entity-form">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input matInput [placeholder]="'Name' "
+                   formControlName="name" required>
+            <mat-error *ngIf="torswitchesForm.controls['name'].hasError('required')">
+                {{"validation.required"    }}
+            </mat-error>
+        </mat-form-field>
+        <div *ngIf="notationidStatus">
+                <mat-form-field >
+                        <input matInput [placeholder]="'SWITCH ID' "
+                               formControlName="notationId" readonly>
+                </mat-form-field>
+        </div>
+        <mat-form-field>
+                <input matInput [placeholder]="'Make' "
+                       formControlName="make" required>
+                <mat-error *ngIf="torswitchesForm.controls['make'].hasError('required')">
+                    {{"validation.required"    }}
+                </mat-error>
+        </mat-form-field>
+            <mat-form-field>
+                    <input matInput [placeholder]="'Model' "
+                           formControlName="model" required>
+                    <mat-error *ngIf="torswitchesForm.controls['model'].hasError('required')">
+                        {{"validation.required"    }}
+                    </mat-error>
+             </mat-form-field>
+        <mat-form-field>
+                <input matInput [placeholder]="'Owner Name' "
+                        formControlName="ownerName" required>
+                <mat-error *ngIf="torswitchesForm.controls['ownerName'].hasError('required')">
+                    {{"validation.required"    }}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                    <input matInput [placeholder]="'Serial Number #' "
+                            formControlName="serialNumber" required>
+                    <mat-error *ngIf="torswitchesForm.controls['serialNumber'].hasError('required')">
+                        {{"validation.required"    }}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                        <input matInput [placeholder]="'Total Ports #' "
+                                formControlName="totalPorts" required>
+                        <mat-error *ngIf="torswitchesForm.controls['totalPorts'].hasError('required')">
+                            {{"validation.required"    }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                            <input matInput [placeholder]="'Ports Used #' "
+                                    formControlName="usedPorts" required>
+                            <mat-error *ngIf="torswitchesForm.controls['usedPorts'].hasError('required')">
+                                {{"validation.required"    }}
+                            </mat-error>
+                        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button class="btn btn-primary btn-sm" type="button" (click)="saveTorswitches()" [disabled]="!torswitchesForm.valid"  mat-button>{{'Save Pod' }}</button>
+        <button class="btn btn-link btn-sm" type="button" mat-dialog-close  mat-button>{{"cancel" }}</button>
+    </div>
+</form>

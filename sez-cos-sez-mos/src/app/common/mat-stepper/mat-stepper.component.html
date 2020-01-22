@@ -1,0 +1,27 @@
+<!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+</button> -->
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+1.1
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+   1
+  </mat-step>
+  <mat-step [stepControl]="FormGroup3">
+2
+  </mat-step>
+  <mat-step [stepControl]="FormGroup4">
+3
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+

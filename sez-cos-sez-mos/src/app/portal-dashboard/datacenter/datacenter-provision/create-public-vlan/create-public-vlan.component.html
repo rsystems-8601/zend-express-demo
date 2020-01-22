@@ -1,0 +1,80 @@
+<div class="card">
+    <mat-card-title class="flex m-l-20 m-r-20">
+        <h2>{{ pageTitle }}</h2>
+    </mat-card-title>
+</div>
+<div class="container">
+    <mat-horizontal-stepper linear #stepper class="xs-form-wraper">
+        <mat-step [stepControl]="ft" errorMessage="Environment">
+            <form [formGroup]="ft">
+                <ng-template matStepLabel> Environment </ng-template>
+                <ul fxlayout="row wrap" fxLayoutGap="2%">
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline" class="disabled">
+                            <mat-label>DataCenter</mat-label>
+                            <span>{{datacenterName}}</span>
+                            <input matInput [errorStateMatcher]="matcher" [placeholder]=""
+                                formControlName="dataCenterId" style="display: none;">
+                        </mat-form-field>
+                    </li>
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Environment</mat-label>
+                            <mat-select [errorStateMatcher]="matcher" [placeholder]="'Environment'"
+                                formControlName="environmentType" required>
+                                <mat-option *ngFor="let envvalue of envormentTypes" [value]="envvalue">
+                                    {{ envvalue }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="ft.controls['environmentType'].hasError('required')">
+                                {{ "validation.required" | translate  }}
+                            </mat-error>
+                        </mat-form-field>
+                    </li>
+                </ul>
+                <div>
+                    <button mat-button matStepperNext class="btn-primary">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="sd" errorMessage="Range">
+            <form [formGroup]="sd">
+                <ng-template matStepLabel>Range</ng-template>
+                <ul xlayout="row wrap" fxLayoutGap="2%">
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>From</mat-label>
+                            <input matInput [errorStateMatcher]="matcher" [placeholder]="'From'" formControlName="from"
+                                required>
+                            <mat-error *ngIf="sd.controls['from'].hasError('required')">
+                                {{ "From is mandatory" }}
+                            </mat-error>
+                            <div class="error" *ngIf="from.value && from.invalid">
+                                {{ "From is Invalid" }}
+                            </div>
+
+                        </mat-form-field>
+                    </li>
+                    <li fxFlex="48">
+                        <mat-form-field appearance="outline">
+                            <mat-label>To</mat-label>
+                            <input matInput [errorStateMatcher]="matcher" [placeholder]="'To' " formControlName="to"
+                                required>
+                            <mat-error *ngIf="sd.controls['to'].hasError('required')">
+                                {{"To is mandatory"  }}
+                            </mat-error>
+                            <div class="error" *ngIf="to.value && to.invalid">
+                                {{ "To is Invalid" }}
+                            </div>
+                        </mat-form-field>
+                    </li>
+                </ul>
+                <div class="buttons">
+                    <button matStepperPrevious class="customBtnback" mat-button>Back</button>&nbsp;&nbsp;
+                    <button class="btn-primary" type="button" [disabled]="!ft.valid || !sd.valid"
+                        (click)="createPublicVLANRequest()" mat-button>Save</button>
+                </div>
+            </form>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

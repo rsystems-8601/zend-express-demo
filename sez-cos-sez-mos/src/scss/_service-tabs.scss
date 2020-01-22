@@ -1,0 +1,59 @@
+.services-links {
+  flex-wrap: wrap;
+  margin: 30px 0px 0 0px;
+  a{
+    cursor: pointer;
+  }
+  .active{
+    background: #8c8c8c!important;
+    color: #fff;
+  }
+
+  .service{
+    background: #f7f7f7;
+    border-radius: 7px;
+    padding: 27px 30px 15px 7px;
+    margin-bottom: 15px;
+    width: 199px;
+    margin-right: 27px;
+    text-decoration: none;
+    position: relative;
+    max-height: 89px;
+
+    span{
+      display: inline-block;
+      font-size: 15px;
+      padding-top: 0px;
+      color: #333;
+      line-height: 19px;
+    }
+
+    &::after {
+      position: absolute;
+      content: "";
+      background-image: url(./assets/images/datacenter-configure/service-browse.png);
+      width: 21px;
+      height: 21px;
+      right: 5px;
+      background-repeat: no-repeat;
+      top: calc(50% - 10px );
+      display: none;
+    }
+    img {
+      vertical-align: top;
+      /* max-width: 20%; */
+      /* display: inline-block; */
+      width: 53px;
+      padding: 0px 6px 0 0;
+      position: relative;
+      top: -6px;
+
+  }
+}
+.active.service{
+span{
+  color:#fff;
+}
+}
+
+}

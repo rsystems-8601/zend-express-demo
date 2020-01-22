@@ -1,0 +1,94 @@
+/* mat defaukt tabel */
+table {
+  width: 100%;
+}
+
+.mat-table{
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  padding: 20px 0;
+}
+
+ .mat-header-cell{
+  display: flex;
+  width:100%;
+  flex-direction: column;
+  align-items: end;
+  font-weight: 600;
+  // height: 100px;
+  > div{
+    width:100%;
+  }
+  dz-autocomplete{
+    width: 100%;
+  }
+  .mat-form-field-appearance-legacy {
+    .mat-form-field-wrapper {
+      padding-bottom: 1.25em;
+      margin-right: 2px;
+      margin-top: 20px;
+    }
+  }
+}
+
+
+th.mat-header-cell{
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(0,0,0,.54);
+  vertical-align: top;
+}
+
+.mat-cell, .mat-footer-cell{
+  font-size: 0.875rem;
+}
+
+
+.mat-row:nth-child(odd){
+  background-color: rgba(0, 0, 0, 0.05);
+  }
+
+.mat-sort-header-container{
+  display: flex;
+  align-items: flex-start;
+}
+
+.mat-form-field{
+  width: 100%;
+}
+
+.badge {
+  display: inline-block;
+  padding: .375rem .5625rem;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
+
+a.badge {
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+.badge-danger {
+  color: #fff;
+  background-color: #ff5e5e;
+}
+
+.fixed{
+  color: #fff;
+  background-color: #4d7cff;
+}
+.progress{
+    color: #212529;
+    background-color: #f29d56;
+}
+
+.completed, .isActive{
+  color: #212529;
+  background-color: #6fd96f;
+}

@@ -1,0 +1,72 @@
+/** Application buttons ***/
+.btn-primary{
+  background: $btn-primary-bg;
+  color:$btn-primary-color;
+  border-radius: none!important;
+  border: 1px solid $btn-primary-bdr!important;
+  +{
+    .btn-default, .btn-link{
+      margin-left: 10px;
+    }
+    .btn-primary{
+      margin-right: 10px;
+    }
+  }
+  &:hover{
+    background: $btn-primary-hover-bg;
+  }
+
+}
+
+.btn-default, .action, .btn-link{
+  background: $btn-light-bg;
+  border-radius: none!important;
+
+  +{
+    .btn-primary{
+      margin-right: 10px;
+    }
+  }
+
+}
+
+a.active{
+  background: $btn-primary-bg;
+  border-radius: none!important;
+  color:$white;
+
+  +{
+    .btn-primary{
+      margin-right: 10px;
+    }
+  }
+
+  &:hover{
+    text-decoration: none;
+  }
+
+}
+
+.mat-button[disabled][disabled]{
+  color:#fff!important;
+}
+
+.mat-checkbox-checked.mat-accent
+.mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent
+.mat-checkbox-background{
+  background: #59b8a7;
+}
+
+.mat-primary .mat-pseudo-checkbox-checked,
+.mat-primary .mat-pseudo-checkbox-indeterminate{
+  background: #59b8a7;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
+  color:#59b8a7;
+}
+
+button.mat-sort-header-button {
+  text-transform: capitalize;
+}

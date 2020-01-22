@@ -1,0 +1,50 @@
+.d-flex {
+  display: flex !important;
+}
+
+.services-links {
+    flex-wrap: wrap;
+    margin: 30px;
+
+    .service {
+    background: #f7f7f7;
+    border-radius: 7px;
+    padding: 17px 8px;
+    margin-bottom: 19px;
+    width: 179px;
+    margin-right: 27px;
+    text-decoration: none;
+    position: relative;
+
+    img {
+      vertical-align: top;
+      max-width: 24%;
+      display: inline-block;
+    }
+
+    span {
+      max-width: 54%;
+      display: inline-block;
+      color: #838383;
+      font-size: 15px;
+      padding-top: 3px;
+    }
+  }:after {
+    position: absolute;
+    content: "";
+    background-image: url(../../../../assets/images/datacenter-configure/service-browse.png);
+    width: 21px;
+    height: 21px;
+    right: 19px;
+    background-repeat: no-repeat;
+    top: calc(50% - 10px );
+  }
+
+  .service.active {
+    background: #4f4f4f;
+
+    span {
+      color: white !important;
+    }
+  }
+}

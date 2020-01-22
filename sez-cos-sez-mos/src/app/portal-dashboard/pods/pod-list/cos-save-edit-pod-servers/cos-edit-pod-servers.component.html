@@ -1,0 +1,114 @@
+<h1 matDialogTitle>{{ "Add Servers"}}</h1>
+<form [formGroup]="serversForm"  class="edit-entity-form">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input matInput [placeholder]="'Name' "
+                   formControlName="name" required>
+            <mat-error *ngIf="serversForm.controls['name'].hasError('required')">
+                {{"validation.required"    }}
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+                <input matInput [placeholder]="'Make' "
+                       formControlName="make" required>
+                <mat-error *ngIf="serversForm.controls['make'].hasError('required')">
+                    {{"validation.required"    }}
+                </mat-error>
+        </mat-form-field>
+            <mat-form-field>
+                    <input matInput [placeholder]="'Model' "
+                           formControlName="model" required>
+                    <mat-error *ngIf="serversForm.controls['model'].hasError('required')">
+                        {{"validation.required"    }}
+                    </mat-error>
+             </mat-form-field>
+        <mat-form-field>
+                <input matInput [placeholder]="'Owner Name' "
+                        formControlName="ownerName" required>
+                <mat-error *ngIf="serversForm.controls['ownerName'].hasError('required')">
+                    {{"validation.required"    }}
+                </mat-error>
+            </mat-form-field>    
+            
+            <mat-form-field>
+                    <input matInput [placeholder]="'Serial Number #' "
+                            formControlName="serialNumber" required>
+                    <mat-error *ngIf="serversForm.controls['serialNumber'].hasError('required')">
+                        {{"validation.required"    }}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                        <input matInput [placeholder]="'RAM #' "
+                                formControlName="ram" required>
+                        <mat-error *ngIf="serversForm.controls['ram'].hasError('required')">
+                            {{"validation.required"    }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                            <input matInput [placeholder]="'CPU Type' "
+                                    formControlName="cpuName" required>
+                            <mat-error *ngIf="serversForm.controls['cpuName'].hasError('required')">
+                                {{"validation.required"    }}
+                            </mat-error>
+                   </mat-form-field> 
+
+                   <mat-form-field>
+                        <input matInput [placeholder]="'Cores #' "
+                                formControlName="cores" required>
+                        <mat-error *ngIf="serversForm.controls['cores'].hasError('required')">
+                            {{"validation.required"    }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput [placeholder]="'Drives' "
+                                formControlName="drives" required>
+                        <mat-error *ngIf="serversForm.controls['drives'].hasError('required')">
+                            {{"validation.required"    }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput [placeholder]="'User Name' " formControlName="userName" required>
+                        <mat-error *ngIf="serversForm.controls['userName'].hasError('required')">
+                            {{"validation.required"    }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput type="password" [placeholder]="'Password' " formControlName="password" required>
+                        <mat-error *ngIf="serversForm.controls['password'].hasError('required')">
+                            {{"validation.required"    }}
+                        </mat-error>
+                    </mat-form-field>
+
+                   
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="dateOfPurchase">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                    
+
+                    <mat-form-field>
+                        <input matInput [placeholder]="'Warranty Period' " formControlName="warrantyPeriod" required>
+                        <mat-error *ngIf="serversForm.controls['warrantyPeriod'].hasError('required')">
+                            {{"validation.required"    }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput [placeholder]="'Sales/Lease Number' " formControlName="salesLeaseNumber" required>
+                        <mat-error *ngIf="serversForm.controls['salesLeaseNumber'].hasError('required')">
+                            {{"validation.required"    }}
+                        </mat-error>
+                    </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button class="btn btn-primary btn-sm" type="button" (click)="saveipmiswitches()" [disabled]="!serversForm.valid"  mat-button>{{ 'save' }}</button>
+        <button class="btn btn-link btn-sm" type="button" mat-dialog-close  mat-button>{{"cancel" }}</button>
+    </div>
+</form>

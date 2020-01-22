@@ -1,0 +1,89 @@
+<div class="dc-header-wrap">
+  <div class="brand-wrap">
+    <div class="brand-logo"> <img src="assets/images/logo.svg" [routerLink]="['datacenter-list']"></div>
+    <div>
+      <p fxHide.xs fxHide.sm fxHide.md>
+        <span>User Information...</span>
+      </p>
+    </div>
+  </div>
+  <div class="dc-header flex-grow">
+    <div class="header-alerts">
+
+      <!-- <div class="dc-alert flex-grow" style="max-width: 600px;" fxHide.xs>
+  <h4> Utitlites: </h4>
+  <p> Nullam dictum felis eu pede. integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
+</div> -->
+
+      <div class="dc-alert fix-width" fxHide.xs fxHide.sm>
+        <h4> Service Request </h4>
+        <div class="alert-count-wrap flex ">
+          <div>
+            <div class="preview-count isclose"> 9 </div>
+            <div class="preview-item-content"> Open </div>
+
+          </div>
+          <div>
+            <div class="preview-count isOpen">10 </div>
+            <div class="preview-item-content"> Updated </div>
+
+          </div>
+          <div>
+            <div class="preview-count isUpdated"> 15</div>
+            <div class="preview-item-content"> Closed Today </div>
+
+          </div>
+        </div>
+      </div>
+
+<div class="dc-alert fix-width" fxHide.xs style="visibility: hidden">
+  <h4> Alerts </h4>
+ <div class="alert-count-wrap flex ">
+    <div>
+        <div class="preview-count isCritical"> 9 </div>
+        <div class="preview-item-content"> Tickets</div>
+
+          </div> 
+          <div>
+            <div class="preview-count">10 </div>
+            <div class="preview-item-content"> Waiting</div>
+
+          </div>
+          <div>
+            <div class="preview-count"> 15</div>
+            <div class="preview-item-content"> Notification </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="dc-alert fix-width" style="visibility: hidden">
+        <!-- <h4> Reports </h4> -->
+        <div class="flex">
+          <div class="chart-wrapper">
+            <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+              [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+              [plugins]="lineChartPlugins">
+            </canvas>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="dc-alert user" fxHide.xs>
+        <h4> User Account </h4>
+        <div class="user-info">
+          <div class="u-name"> John Snow </div>
+          <div class="marginB10"> 0071237 </div>
+          <div>
+            <span (click)="openEditSetting()" style="cursor: pointer;"> Edit Setting </span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

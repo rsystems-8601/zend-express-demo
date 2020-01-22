@@ -1,0 +1,193 @@
+<h1 matDialogTitle *ngIf="!viewButton">{{ customerTitle | translate }}</h1>
+<h1 matDialogTitle *ngIf="viewButton">{{ "View Customer" }}</h1>
+<dz-form [formGroup]="customerForm" (onSubmit)="saveUser()" class="edit-entity-form">
+
+    <div mat-dialog-content>
+       <div fxlayout="row wrap" fxLayoutGap="2%">
+          <mat-form-field  fxFlex="33">
+              <input matInput [placeholder]="'Customer name' "
+                     formControlName="custName" required >
+              <mat-error *ngIf="customerForm.controls['custName'].hasError('required')">
+                  {{"validation.required" | translate   }}
+              </mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field fxFlex="33">
+              <input matInput [placeholder]="'Customer ShortName' "
+                     formControlName="customerShortName" required>
+              <mat-error *ngIf="customerForm.controls['customerShortName'].hasError('required')">
+                  {{"validation.required" | translate   }}
+              </mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field fxFlex="33">
+              <input matInput [placeholder]="'Firstname' "
+                     formControlName="firstName" required>
+              <mat-error *ngIf="customerForm.controls['firstName'].hasError('required')">
+                  {{"validation.required" | translate   }}
+              </mat-error>
+          </mat-form-field>
+
+
+       </div>
+
+       <div fxlayout="row" fxLayoutGap="2%">
+          <mat-form-field fxFlex="33">
+              <input matInput [placeholder]="'Lastname' "
+                     formControlName="lastName" required>
+              <mat-error *ngIf="customerForm.controls['lastName'].hasError('required')">
+                  {{"validation.required" | translate   }}
+              </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="33">
+              <input matInput [placeholder]="'email' "
+                     formControlName="email" pattern=".+@.+" required>
+              <mat-error *ngIf="customerForm.controls['email'].hasError('required')">
+                  {{"validation.required" | translate  }}
+              </mat-error>
+              <mat-error *ngIf="customerForm.controls['email'].hasError('pattern')">
+                  {{"validation.email.pattern" | translate  }}
+              </mat-error>
+              <mat-error *ngIf="customerForm.controls['email'].hasError('duplicate')">
+                  {{"validation.email.unique" | translate  }}
+              </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="33">
+              <input matInput [placeholder]="'CID' "
+                     formControlName="cid" required>
+              <mat-error *ngIf="customerForm.controls['cid'].hasError('required')">
+                  {{"validation.required" | translate   }}
+              </mat-error>
+          </mat-form-field>
+
+       </div>
+
+       <div fxlayout="row" fxLayoutGap="2%">
+          <mat-form-field fxFlex="33">
+        <input matInput [placeholder]="'address1' "
+               formControlName="address1" required>
+        <mat-error *ngIf="customerForm.controls['address1'].hasError('required')">
+            {{"validation.required" | translate   }}
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="33">
+        <input matInput [placeholder]="'address2' "
+               formControlName="address2" required>
+        <mat-error *ngIf="customerForm.controls['address2'].hasError('required')">
+            {{"validation.required" | translate   }}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="33">
+            <mat-select [placeholder]="'Country' "
+                        formControlName="countryName" required (selectionChange)="countryStateInfo($event)">
+                <mat-option *ngFor="let countryone of countryList" [value]="countryone.countryId">
+                    {{countryone.countryName }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="customerForm.controls['countryName'].hasError('required')">
+                {{"validation.required" }}
+            </mat-error>
+        </mat-form-field>
+
+</div>
+
+<div fxlayout="row" fxLayoutGap="2%">
+    <mat-form-field fxFlex="33">
+        <mat-select [placeholder]="'State'" formControlName="stateName" required (selectionChange)="stateCityInfo($event)">
+            <mat-option *ngFor="let state of stateList" [value]="state.stateId">
+                {{state.postalCode}} - {{state.stateName}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="customerForm.controls['stateName'].hasError('required')">
+                  {{"validation.required" | translate }}
+              </mat-error>
+</mat-form-field>
+<mat-form-field fxFlex="33">
+    <mat-select [placeholder]="'City'" formControlName="cityName" required>
+        <mat-option *ngFor="let city of cityList" [value]="city.cityId">
+            {{city.cityName}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="customerForm.controls['cityName'].hasError('required')">
+              {{"validation.required" | translate }}
+          </mat-error>
+</mat-form-field>
+
+<mat-form-field fxFlex="33">
+    <input matInput [placeholder]="'Zip' "
+    formControlName="zipCode" required>
+<mat-error *ngIf="customerForm.controls['zipCode'].hasError('required')">
+ {{"validation.required" | translate }}
+</mat-error>
+  </mat-form-field>
+
+</div>
+
+
+
+
+
+
+
+        <!-- <mat-form-field>
+                <mat-select [placeholder]="'Partner'" formControlName="partnerName" required (selectionChange)="partnerInfo($event)">
+                  <mat-option *ngFor="let partner of partnerData" [value]="partner.partnerId">
+                      {{ partner.partnerName+" ("+partner.pid+")" }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="customerForm.controls['partnerName'].hasError('required')">
+                   {{"validation.required" | translate }}
+                </mat-error>
+        </mat-form-field> -->
+
+        <div fxlayout="row" fxLayoutGap="2%">
+            <mat-form-field fxFlex="33">
+                <mat-select [placeholder]="'Parent Customers'" formControlName="parentCustomer" required>
+                    <mat-option *ngFor="let parentData of parentCustomerlist" [value]="parentData.id">
+                        {{ parentData.name }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="customerForm.controls['parentCustomer'].hasError('required')">
+                     {{"validation.required" | translate }}
+                  </mat-error>
+              </mat-form-field>
+              <mat-form-field fxFlex="33">
+                  <mat-select [placeholder]="'User Assigned'" formControlName="userAsigned" required>
+                      <mat-option *ngFor="let userData of userAssigned" [value]="userData.id">
+                          {{ userData.userName }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="customerForm.controls['userAsigned'].hasError('required')">
+                       {{"validation.required" | translate }}
+                    </mat-error>
+                </mat-form-field>
+
+           <dz-phone-input fxFlex="16" formControlName="phone" placeholder="phone" [disabledArr]="viewButton"></dz-phone-input>
+           <dz-phone-input fxFlex="16" formControlName="workPhoneNumber" placeholder="workPhoneNumber" [disabledArr]="viewButton"></dz-phone-input>
+
+
+        </div>
+
+
+        <div fxlayout="row" fxLayoutGap="2%">
+        <div fxflex="33">
+            <label>Compliant&nbsp;</label>
+            <input matInput placeholder="" style="display: none;background-color: transparent;" >
+            <mat-radio-group floatPlaceholder="isCompliant" formControlName="isCompliant">
+            <mat-radio-button [value]="true" [checked]="complient === true" style="margin-right: 15px;"> Yes </mat-radio-button>&nbsp;<mat-radio-button [value]="false">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+      </div>
+
+
+    </div>
+    <div mat-dialog-actions class="marginT30">
+        <button mat-button class="btn btn-primary" *ngIf="!viewButton"> <i class="material-icons">save</i> {{'save' }}</button>
+        <button mat-button class="btn btn-default" type="button" mat-dialog-close> <i class="material-icons"> cancel </i> {{"cancel" }}</button>
+    </div>
+</dz-form>

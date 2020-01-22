@@ -1,0 +1,142 @@
+<h1 matDialogTitle>{{(job ? "editScheduledJob" : "newScheduledJob") | translate}}</h1>
+<dz-form *ngIf="form" [formGroup]="form" (onSubmit)="save()" class="edit-entity-form">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input matInput [placeholder]="'title' | translate"
+                   formControlName="title" required>
+            <mat-error *ngIf="form.controls['title'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select [placeholder]="'type' | translate" formControlName="type">
+                <mat-option *ngFor="let type of MaintenanceType | values" [value]="type">
+                    {{type | translate}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="p-b-15">
+            <h5>Message</h5>
+            <dz-ckeditor  ></dz-ckeditor>
+        </div>
+
+        <mat-form-field>
+            <mat-select [placeholder]="'severity' | translate" formControlName="severity">
+                <mat-option *ngFor="let severity of Severity | values" [value]="severity">
+                    {{severity | translate}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [matDatetimepicker]="startDateTimePicker" [placeholder]="'startDateTime' | translate"
+                   formControlName="startDateTime" required>
+            <mat-datetimepicker-toggle matSuffix [for]="startDateTimePicker"></mat-datetimepicker-toggle>
+            <mat-datetimepicker type="datetime" #startDateTimePicker></mat-datetimepicker>
+            <mat-error *ngIf="form.controls['startDateTime'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['startDateTime'].hasError('invalidDateRange')">
+                {{"validation.start-time.after-end" | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['startDateTime'].hasError('invalidRepeatUntil')">
+                {{"validation.start-time.after-repeat-until" | translate }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [matDatetimepicker]="endDateTimePicker" [placeholder]="'endDateTime' | translate"
+                   formControlName="endDateTime" required>
+            <mat-datetimepicker-toggle matSuffix [for]="endDateTimePicker"></mat-datetimepicker-toggle>
+            <mat-datetimepicker type="datetime" #endDateTimePicker></mat-datetimepicker>
+            <mat-error *ngIf="form.controls['endDateTime'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['endDateTime'].hasError('invalidDateRange')">
+                {{"validation.end-time.before-start" | translate }}
+            </mat-error>
+        </mat-form-field>
+<span *ngIf="form.controls['type'].value !== 'CHANGE_FREEZE'">
+        <mat-form-field>
+            <mat-select [placeholder]="'repeat' | translate" formControlName="repeat">
+                <mat-option *ngFor="let cronDescription of availableCrons.getDescriptions() | values"
+                            [value]="cronDescription">
+                    {{cronDescription | translate: {date: recurrenceDate} }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls['repeat'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [matDatepicker]="repeatUntilDatePicker" [placeholder]="'repeatUntil' | translate"
+                   formControlName="repeatUntil">
+            <mat-datepicker-toggle matSuffix [for]="repeatUntilDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #repeatUntilDatePicker></mat-datepicker>
+            <mat-error *ngIf="form.controls['repeatUntil'].hasError('invalidRepeatUntil')">
+                {{"validation.repeat-until.before-start" | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['repeatUntil'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+        </mat-form-field>
+    </span>
+        <mat-checkbox formControlName="reminder" [hidden]="form.controls['type'].value == 'CHANGE_FREEZE'">{{"reminder" | translate}}</mat-checkbox>
+
+        <dz-autocomplete *ngIf="!auth.isOrganizationAdmin()"
+                         [searchFunction]="organizationService.organizationsSearchFunction"
+                         [placeholder]="'organizations' | translate"
+                         [searchPlaceholder]="'nameOrCid' | translate"
+                         formControlName="organizations"
+                         [displayWith]="organizationService.organizationToString"
+                         [multiple]="true"
+                         [required]="true">
+        </dz-autocomplete>
+
+        <dz-autocomplete [searchFunction]="ticketService.memberUserSearchFunction"
+                         [hidden]="form.controls['type'].value == 'CHANGE_FREEZE'"
+                         [placeholder]="'assignedUser' | translate"
+                         formControlName="assignedUser"
+                         [displayWith]="userService.userToString"
+                         [enableToClear]="true">
+        </dz-autocomplete>
+
+        <dz-autocomplete [searchFunction]="searchPortalAdmin"
+                         [hidden]="form.controls['type'].value !== 'CHANGE_FREEZE'"
+                         [placeholder]="'approvers' | translate"
+                         formControlName="approvers"
+                         [displayWith]="userService.userToString"
+                         [enableToClear]="true"
+                         [multiple]="true"
+                         [required]="form.controls['type'].value === 'CHANGE_FREEZE'"
+                         >
+        </dz-autocomplete>
+
+        <div class="fileinput" *ngIf="auth.isPortalAdmin() && !job.approvalTicketId">
+        <div *ngIf="cref && cref.length > 0">
+            <h5><u>{{"uploadedFiles" | translate}}</u></h5>
+            <div *ngFor="let file of cref; let i = index">
+                <div>
+                    <span class="filename">
+                        {{ file.name }}
+                    </span>
+                    <span  ><a aria-label="Delete" (click)="removeFile(i)" > <i class="material-icons red" matTooltip="Remove File">close</i></a></span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+            <span class="btn btn-primary btn-file">
+                <span class="fileinput-new">{{"uploadCREF" | translate}}</span>
+                <input class="file-upload" type="file"
+                        (change)="onFileChange($event)"
+                        #file>
+            </span>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button class="btn btn-primary btn-sm"  mat-button>{{'sendApprovalEmail' | translate}}</button>
+        <button class="btn btn-link btn-sm" type="button" (click)="cancel()"  mat-button>{{"cancel" | translate}}</button>
+    </div>
+</dz-form>

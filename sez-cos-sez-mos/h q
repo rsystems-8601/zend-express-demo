@@ -1,0 +1,421 @@
+[33mcommit 9c0ea694f712a773f14b0d7b5bb364b52bf72cba[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: 0fde0fd c33a18e
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Tue Dec 24 18:15:40 2019 +0530
+
+    Merge branch 'fix-prod-issue'
+
+[33mcommit 0fde0fd74bf9b0ffac2725790e24046e5934704a[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: sumitrsystems <sumit.agarwal@rsystems.com>
+Date:   Tue Dec 24 17:49:33 2019 +0530
+
+    Update Dockerfile
+
+[33mcommit c33a18ee83e66ccdbd3960c10977baa0a3d9c30c[m[33m ([m[1;31morigin/fix-prod-issue[m[33m, [m[1;32mfix-prod-issue[m[33m)[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Tue Dec 24 17:39:14 2019 +0530
+
+    prod docker
+
+[33mcommit 29067e36f59fe72084fb03865cbde65704ff7207[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Tue Dec 24 17:35:54 2019 +0530
+
+    fixed prod issue
+
+[33mcommit 9768186cb6cb042962573368085e7d0ca09041be[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Tue Dec 24 15:44:05 2019 +0530
+
+    production issue 50% resolve
+
+[33mcommit 252df86639994a60b686c4447940485cd9168eb9[m
+Author: sumitrsystems <sumit.agarwal@rsystems.com>
+Date:   Tue Dec 24 13:57:49 2019 +0530
+
+    Update Dockerfile
+
+[33mcommit afe26536a651f096e879bcaef0de8ca1812794e9[m
+Author: sumitrsystems <sumit.agarwal@rsystems.com>
+Date:   Tue Dec 24 13:53:54 2019 +0530
+
+    Update angular.json
+    
+    updated dist path
+
+[33mcommit f8ca79dd62c82dab8ae11308021b1dbcfeab19ad[m
+Author: sumitrsystems <sumit.agarwal@rsystems.com>
+Date:   Tue Dec 24 13:52:36 2019 +0530
+
+    Update Dockerfile
+
+[33mcommit 841003a8b085fbb9a5fc0a6869d58c73ca581fe1[m
+Author: sumitrsystems <sumit.agarwal@rsystems.com>
+Date:   Tue Dec 24 13:35:45 2019 +0530
+
+    Update default.conf
+
+[33mcommit 1d98b004116f87400f33f4d7f11ac5db55413ccc[m
+Author: sumitrsystems <sumit.agarwal@rsystems.com>
+Date:   Tue Dec 24 13:27:01 2019 +0530
+
+    Create default.conf
+
+[33mcommit 70e9f3d17e2c1f1b54cc46a6c09f5a6cfdf240f4[m
+Author: sumitrsystems <sumit.agarwal@rsystems.com>
+Date:   Tue Dec 24 13:25:35 2019 +0530
+
+    Update Dockerfile
+
+[33mcommit e3a4d8ffa99aaa90d616b0b6845fce37d2265e49[m
+Author: sumitrsystems <sumit.agarwal@rsystems.com>
+Date:   Tue Dec 24 13:25:06 2019 +0530
+
+    Update Dockerfile
+    
+    added default conf
+
+[33mcommit 99b0b78610a7684de62759ba47098d8b4f86a5c6[m[33m ([m[1;31morigin/migrate-modules[m[33m)[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Mon Dec 23 12:33:15 2019 +0530
+
+    org group
+
+[33mcommit fed82ca16a7c87c8af2b7e7a531d800d7e666f23[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Mon Dec 23 10:56:51 2019 +0530
+
+    change user button
+
+[33mcommit 5547405df3d07a52ae603202433e9ce72439f4eb[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Fri Dec 20 19:05:30 2019 +0530
+
+    add orgnaization
+
+[33mcommit a53b67a60a03f929a56e70baf77b8062f26b132b[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Fri Dec 20 18:50:21 2019 +0530
+
+    dz-application group done
+
+[33mcommit 61e3e74b74dd0d1c544255999200e48640c88e45[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Fri Dec 20 17:49:02 2019 +0530
+
+    add application modules
+
+[33mcommit 5bde692ba967be2545ae0d25ac97728eb6ff4251[m
+Merge: 53af43c e237079
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Fri Dec 20 16:30:45 2019 +0530
+
+    resolve conflict
+
+[33mcommit e237079e13fd36264d13b18a64353eb12e90040a[m
+Author: sumitrsystems <sumit.agarwal@rsystems.com>
+Date:   Fri Dec 20 16:06:14 2019 +0530
+
+    Update rest-auth-client.ts
+
+[33mcommit 7f20c6773c15d5c5ea835bdc3ba976cae387d317[m
+Author: sumitrsystems <sumit.agarwal@rsystems.com>
+Date:   Fri Dec 20 16:01:59 2019 +0530
+
+    Update rest-auth-client.ts
+
+[33mcommit b33b47cb3f4234e8bfcded054644e7e28ef17262[m
+Author: sumitrsystems <sumit.agarwal@rsystems.com>
+Date:   Fri Dec 20 15:40:11 2019 +0530
+
+    Create ui.yaml
+
+[33mcommit f93205a9a1596dc426513d3fafed3defa78cd5fe[m
+Merge: e7a6856 1c591fd
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Fri Dec 20 15:34:08 2019 +0530
+
+    Merge branch 'master' of https://github.com/sumitrsystems/c3-ui
+
+[33mcommit e7a6856456cf013ce82ade659a4f9a11a1cf8f6a[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Fri Dec 20 15:33:29 2019 +0530
+
+    environment change
+
+[33mcommit 1c591fdb2af59dd6bd4bf3632043fdbfd7b2b5e7[m
+Author: sumitrsystems <sumit.agarwal@rsystems.com>
+Date:   Fri Dec 20 15:09:28 2019 +0530
+
+    Create Dockerfile
+
+[33mcommit 43584e5386f3b430c04c930edbbbaf36f6981a03[m
+Author: sumitrsystems <sumit.agarwal@rsystems.com>
+Date:   Fri Dec 20 15:05:25 2019 +0530
+
+    Update and rename New Text Document.txt to environment.ts
+    
+    updated
+
+[33mcommit e3a4ee3d4fa56c9fefb01d9240bb0f520b25d25a[m
+Author: sumitrsystems <sumit.agarwal@rsystems.com>
+Date:   Fri Dec 20 15:02:21 2019 +0530
+
+    Add files via upload
+    
+    updated properties devops
+
+[33mcommit 53af43c4a2a991fe7fcca504fa054f53036feff1[m
+Merge: 416afbc 48317c1
+Author: aditya.tyagi <aditya.tyagi@rsystems.com>
+Date:   Fri Dec 20 13:08:56 2019 +0530
+
+    Merge branch 'migrate-modules' of https://github.com/sumitrsystems/c3-ui into migrate-modules
+
+[33mcommit 416afbc14f4c80880a8d95a0a288fed401671c25[m
+Author: aditya.tyagi <aditya.tyagi@rsystems.com>
+Date:   Fri Dec 20 13:07:37 2019 +0530
+
+    changes style as per desktop layout
+
+[33mcommit 48317c15791571942cb06cbebe94847a0a67b9f5[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Fri Dec 20 13:03:28 2019 +0530
+
+    add user list
+
+[33mcommit 7d3c16386d2f79792bdba1ba865471533933081d[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Thu Dec 19 10:34:51 2019 +0530
+
+    add delete and update options
+
+[33mcommit b0e039ee1144c6cb60d500b3d3fd82ed3a619e67[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Thu Dec 19 10:32:02 2019 +0530
+
+    migrate , patner , email template,  customer ,product rates, product category
+
+[33mcommit bc3d1aa00e3330ecb3431660a8dd9f601008a519[m[33m ([m[1;31morigin/datacenter-list[m[33m, [m[1;31morigin/c3-ui-104[m[33m, [m[1;32mtheme-work[m[33m, [m[1;32mdatacenter-list[m[33m, [m[1;32mc3-ui-104[m[33m)[m
+Merge: 18bb0aa 7f1e65e
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Wed Dec 18 11:22:45 2019 +0530
+
+    Merge branch 'theme-work' of https://github.com/sumitrsystems/c3-ui into theme-work
+
+[33mcommit 18bb0aa41fc086a801e62544ee73bc23e38c0424[m
+Merge: a7cb8ed 4eafb36
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Wed Dec 18 11:13:33 2019 +0530
+
+    merge master to c3-ui-104
+
+[33mcommit 7f1e65e921e8fd3c5763a26405a010c8b077f255[m[33m ([m[1;31morigin/theme-work[m[33m)[m
+Merge: a6fd1a2 4eafb36
+Author: aditya.tyagi <aditya.tyagi@rsystems.com>
+Date:   Wed Dec 18 10:48:31 2019 +0530
+
+    Merge branch 'master' into theme-work
+
+[33mcommit a6fd1a216783bb421644a5e89a1d2a24358d17be[m
+Author: aditya.tyagi <aditya.tyagi@rsystems.com>
+Date:   Wed Dec 18 10:41:41 2019 +0530
+
+    1. add theme component
+    2. chart component
+    3. steper componente
+    4. tab component
+
+[33mcommit a7cb8edcce6a4758101f429425115bb2e38c5d25[m
+Author: Ghanshyam Pandey <Ghanshyam.Pandey@rsystems.com>
+Date:   Tue Dec 17 18:58:43 2019 +0530
+
+    tab for pods
+
+[33mcommit 4eafb361b5cdd73f8988e765b609337e2cbf7e04[m[33m ([m[1;32m'[m[33m)[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Tue Dec 17 17:51:51 2019 +0530
+
+    implement datacenter list
+
+[33mcommit aadeae41c16ecda99bb56c46de56e5b7c7f5e90f[m
+Author: Ghanshyam Pandey <Ghanshyam.Pandey@rsystems.com>
+Date:   Tue Dec 17 11:51:39 2019 +0530
+
+    start working on pod details
+
+[33mcommit bdbd10c1ed3a73b2e4c63748fb476245f4f10884[m
+Merge: 3b4c36f 786caa5
+Author: Ghanshyam Pandey <Ghanshyam.Pandey@rsystems.com>
+Date:   Mon Dec 16 17:36:32 2019 +0530
+
+    merge with master
+
+[33mcommit 3b4c36ff90f4ae8ca94062353847bfb5b1c6b384[m
+Author: Ghanshyam Pandey <Ghanshyam.Pandey@rsystems.com>
+Date:   Mon Dec 16 17:07:23 2019 +0530
+
+    save and edit hardware clusters
+
+[33mcommit 26bdf5bcdfe3eb255b4a736adc1a6f30e0ef0f7d[m
+Merge: 6415448 786caa5
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Mon Dec 16 12:40:01 2019 +0530
+
+    merge master to aplly recent designe
+
+[33mcommit 641544812eba4837ee52d52f3db4282ee7c1a022[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Mon Dec 16 11:54:56 2019 +0530
+
+    modify datacenter list designe
+
+[33mcommit 786caa5fdaf3bbf1379659d6d64907bb6580e761[m
+Author: aditya.tyagi <aditya.tyagi@rsystems.com>
+Date:   Mon Dec 16 11:50:31 2019 +0530
+
+    1. login page new designe
+    2. datacenter configuration page
+    3. Designe tables of configure tab
+
+[33mcommit 6249a1f0d9d3c66a043ce78aa0aec55c3d3fecd1[m
+Author: Ghanshyam Pandey <Ghanshyam.Pandey@rsystems.com>
+Date:   Mon Dec 16 11:24:44 2019 +0530
+
+    change in login page css
+
+[33mcommit 1819db37efe188086e4463ccf8569ff97c221c2a[m
+Merge: 31538fa 4aac53f
+Author: Ghanshyam Pandey <Ghanshyam.Pandey@rsystems.com>
+Date:   Fri Dec 13 18:33:52 2019 +0530
+
+    change in pod
+
+[33mcommit 31538fa227a828373ec338e8ef0bb2a1c54f5deb[m
+Author: Ghanshyam Pandey <Ghanshyam.Pandey@rsystems.com>
+Date:   Fri Dec 13 12:54:09 2019 +0530
+
+    change in app
+
+[33mcommit 4aac53fbfd0cd4ca73d347a04587162c34563dd1[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Fri Dec 13 11:42:45 2019 +0530
+
+    angular theme integration
+
+[33mcommit 53b351bef330514b116e9f8de11ed0dd01739ab6[m
+Author: Ghanshyam Pandey <Ghanshyam.Pandey@rsystems.com>
+Date:   Fri Dec 13 10:37:54 2019 +0530
+
+    created private vlan and vrrp group
+
+[33mcommit 90b360392d633b9144c36deeb4c829906e50b994[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Thu Dec 12 17:11:32 2019 +0530
+
+    add cosmos as header token
+
+[33mcommit 9e2e1a6b09940469274a0fc13fee691b094f573e[m
+Author: Ghanshyam Pandey <Ghanshyam.Pandey@rsystems.com>
+Date:   Thu Dec 12 15:33:25 2019 +0530
+
+    change in structure and added pod service with auth
+
+[33mcommit 7997d335fd3f67236bc1ceae26c230e6401fa6c8[m
+Merge: 7556676 7560e96
+Author: Ghanshyam Pandey <Ghanshyam.Pandey@rsystems.com>
+Date:   Thu Dec 12 10:19:25 2019 +0530
+
+    change merge with master to setup infra
+
+[33mcommit 7556676cd7cfc2a6724bcaa4f936684f96d95701[m
+Author: Ghanshyam Pandey <Ghanshyam.Pandey@rsystems.com>
+Date:   Thu Dec 12 09:54:48 2019 +0530
+
+    pod and management
+
+[33mcommit 7560e966c6e28f9980b20f0f2e164e4ad7501d04[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Thu Dec 12 09:05:49 2019 +0530
+
+    consume api for login
+
+[33mcommit f8ca4f0c48a8ba3cbe598c8a2c1985b04bb102b0[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Wed Dec 11 16:53:38 2019 +0530
+
+    move infra to c3 ui from prod
+
+[33mcommit e29c75fda4e58a92de8a4d862e64bcae2a5ddfc1[m
+Author: Ghanshyam Pandey <Ghanshyam.Pandey@rsystems.com>
+Date:   Wed Dec 11 16:43:20 2019 +0530
+
+    change in structure
+
+[33mcommit 7aac0ef5faf371bb4643dae9769c46ae05745162[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Wed Dec 11 14:37:00 2019 +0530
+
+    change ui with angular theme developed by aditya
+
+[33mcommit 696088f7a9c78ff0d0372ba1641ea82240bd2485[m
+Author: Ghanshyam Pandey <Ghanshyam.Pandey@rsystems.com>
+Date:   Wed Dec 11 13:02:21 2019 +0530
+
+    changes in pod management
+
+[33mcommit eda8d5f935096852ed4c4b45aafa9983063c34b9[m
+Author: Ghanshyam Pandey <Ghanshyam.Pandey@rsystems.com>
+Date:   Wed Dec 11 12:09:41 2019 +0530
+
+    start work in podmanagement
+
+[33mcommit 04a68b571bee848adc67cfbac68588130d436ef7[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Tue Dec 10 13:06:48 2019 +0530
+
+    add tab list
+
+[33mcommit 7ccab271523be12d4995b3675dc839d1729677ec[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Mon Dec 2 12:38:28 2019 +0530
+
+    show chart and make nav bar clickable
+
+[33mcommit 233c93928dc003e2fb3a1f33371abaa671edeccf[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Mon Dec 2 10:36:09 2019 +0530
+
+    change strtucture to optmise build, and add login and dashboard control
+
+[33mcommit f12317a6e1e68eb36f1d8bdd256b5daf36000918[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Thu Nov 28 18:57:13 2019 +0530
+
+    move assets sub folder to one level up except images
+
+[33mcommit 7af2826f3ac1b2476d667c7c40a73e331030eb2e[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Thu Nov 28 13:10:24 2019 +0530
+
+    initial commit of theme integration for dashboard
+
+[33mcommit cc9739d635fe0953ae742c511fbbdc0670519752[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Thu Nov 28 13:08:32 2019 +0530
+
+    enhance git ignpore by adding editorconfig
+
+[33mcommit eb4cc3d29421760e1742549524e4bf74c5b075ef[m
+Author: Avinash Mishra <Avinash.Mishra@rsystems.com>
+Date:   Thu Nov 28 13:06:06 2019 +0530
+
+    add git ignore file
+
+[33mcommit 21eee2ce27cc0e681840a392099b7bc5d39ca466[m
+Author: sumitrsystems <sumit.agarwal@rsystems.com>
+Date:   Thu Nov 28 12:50:29 2019 +0530
+
+    Create README
+    
+    Created new repository for C3 UI.

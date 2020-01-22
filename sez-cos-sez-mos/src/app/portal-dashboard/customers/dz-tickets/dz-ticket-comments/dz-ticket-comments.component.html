@@ -1,0 +1,24 @@
+<dz-ticket-comment-form *ngIf="showCommentForm"
+                        [ticketStatus]="status"
+                        [formValues]="commentFormValues"                        
+                        [board]="board"
+                        [ticketId]="ticketId"
+                        (post)="postComment.emit($event)"></dz-ticket-comment-form>
+<ul class="tvc-lists comments" *ngIf="comments?.length">
+    <li *ngFor="let comment of comments; let i = index" class="media comment">
+        <div class="media-body">
+            <mat-chip-list class="pull-right" *ngIf="i == 0">
+                <mat-chip selected="true" class="latest-comment">{{'latestComment' | translate}}</mat-chip>
+            </mat-chip-list>
+            <strong class="d-block">{{comment.author}}</strong>
+            <small class="c-gray">{{formatDate(comment.dateCreated)}}</small>
+            <div class="comment-text" [innerHtml]="comment.text | linkify | safeHtml"></div>
+        </div>
+    </li>
+</ul>
+<dz-ticket-comment-form *ngIf="showCommentForm && comments.length > 0"
+                        [formValues]="commentFormValues"
+                        [ticketStatus]="status"
+                        [board]="board"
+                        [ticketId]="ticketId"
+                        (post)="postComment.emit($event)"></dz-ticket-comment-form>

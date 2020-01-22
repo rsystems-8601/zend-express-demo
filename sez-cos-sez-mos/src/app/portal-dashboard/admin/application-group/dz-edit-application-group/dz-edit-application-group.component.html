@@ -1,0 +1,28 @@
+<h1 matDialogTitle>{{(applicationGroup ? "editApplicationGroup" : "newApplicationGroup") | translate}}</h1>
+<dz-form [formGroup]="form" (onSubmit)="save()" class="edit-entity-form">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input matInput [placeholder]="'name' | translate"
+                   formControlName="name" required>
+            <mat-error *ngIf="form.controls['name'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['name'].hasError('duplicate')">
+                {{"validation.application-group.name.unique" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <dz-autocomplete *ngIf="!auth.isOrganizationAdmin()"
+                         [searchFunction]="organizationService.organizationsSearchFunction"
+                         [placeholder]="'organizations' | translate"
+                         [searchPlaceholder]="'nameOrCid' | translate"
+                         formControlName="organizations"
+                         [displayWith]="organizationService.organizationToString"
+                         [multiple]="true"
+                         [required]="true">
+        </dz-autocomplete>
+    </div>
+    <div mat-dialog-actions>
+        <button class="btn btn-primary btn-sm" mat-button>{{'save' | translate}}</button>
+        <button class="btn btn-link btn-sm" type="button" (click)="redirectToParent()" mat-button>{{"cancel" | translate}}</button>
+    </div>
+</dz-form>

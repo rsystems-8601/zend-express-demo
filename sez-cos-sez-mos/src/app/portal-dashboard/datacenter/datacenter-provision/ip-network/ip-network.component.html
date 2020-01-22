@@ -1,0 +1,128 @@
+<div class="card">
+    <mat-card-title class="flex m-l-20 m-r-20">
+        <h2>{{ pageTitle }}</h2>
+    </mat-card-title>
+</div>
+<div class="container">
+    <mat-horizontal-stepper linear #stepper class="xs-form-wraper">
+        <mat-step [stepControl]="ft" errorMessage="Environment">
+            <form [formGroup]="ft">
+                    <ng-template matStepLabel>Environment</ng-template>
+                    <ul  fxLayout="row wrap" fxLayoutAlign="left stretch"  fxLayoutGap="2%">
+                        <li fxFlex="48">
+                                <mat-form-field appearance="outline" class="disabled">
+                                  <mat-label> Data Center</mat-label>
+                                    <span>{{datacenterName}}</span>
+                                            <input matInput [placeholder]="" [errorStateMatcher]="matcher" formControlName="dataCenterId"  style="display: none;">
+                                </mat-form-field>
+                            </li>
+                            <li fxFlex="48">
+                                    <mat-form-field appearance="outline">
+                                            <mat-label>Environment</mat-label>
+                                    <mat-select [placeholder]="'Environment'" [errorStateMatcher]="matcher" formControlName="environmentType" required >
+                                        <mat-option *ngFor="let envvalue of envormentTypes" [value]="envvalue" >
+                                            {{ envvalue }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="ft.controls['environmentType'].hasError('required')">
+                                        {{ "validation.required" | translate  }}
+                                    </mat-error>
+                                </mat-form-field>
+                            </li>
+                            <li fxFlex="48">
+                                    <mat-form-field appearance="outline">
+                                            <mat-label>Type</mat-label>
+                                    <mat-select [placeholder]="'Type'" [errorStateMatcher]="matcher" formControlName="ipType" required >
+                                        <mat-option *ngFor="let ipvalue of ipTypes" [value]="ipvalue" >
+                                            {{ ipvalue }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="ft.controls['ipType'].hasError('required')">
+                                        {{ "validation.required" | translate  }}
+                                    </mat-error>
+                                </mat-form-field>
+                            </li>
+                        </ul>
+                        <div>
+                            <button mat-button matStepperNext class="btn-primary">Next</button>
+                        </div>
+                </form>
+        </mat-step>
+        <mat-step [stepControl]="sd" errorMessage="IP Information">
+            <form [formGroup]="sd">
+                     <ng-template matStepLabel>IP Information</ng-template>
+                     <ul fxLayout="row wrap" fxLayoutGap="2%" fxLayoutAlign="left stretch"  class="form-wraper">
+                        <li fxFlex="48">
+                                    <mat-form-field appearance="outline">
+                                            <mat-label>IP NET</mat-label>
+                                     <input matInput [placeholder]="'IP NET'" [errorStateMatcher]="matcher" formControlName="networkIp" required>
+                                     <mat-error *ngIf="sd.controls['networkIp'].hasError('required')">
+                                         {{"IP Net is mandatory"  }}
+                                     </mat-error>
+                                    <div class="error" *ngIf="networkIp.value && networkIp.invalid">
+                                            {{ "IP Net is Invalid" }}
+                                    </div>
+
+                                 </mat-form-field>
+                             </li>
+                             <li fxFlex="48">
+                                    <mat-form-field appearance="outline">
+                                            <mat-label>CIDR</mat-label>
+                                     <input matInput [placeholder]="'CIDR' " [errorStateMatcher]="matcher" formControlName="cidrNumber" required >
+                                     <!--(ngModelChange)="createNetmaskAddr($event)"  (ngModelChange)="username = $event"-->
+                                     <mat-error *ngIf="sd.controls['cidrNumber'].hasError('required')">
+                                         {{"CIDR is mandatory"  }}
+                                     </mat-error>
+
+                                 </mat-form-field>
+                             </li>
+                             <li fxFlex="48">
+                                    <mat-form-field appearance="outline">
+                                            <mat-label>Gateway</mat-label>
+                                     <input matInput [placeholder]="'Gateway' " [errorStateMatcher]="matcher" formControlName="gateway" required>
+                                     <mat-error *ngIf="sd.controls['gateway'].hasError('required')">
+                                         {{"Gateway is mandatory"  }}
+                                     </mat-error>
+                                     <div class="error" *ngIf="gateway.value && gateway.invalid">
+                                        {{ "Gateway is Invalid" }}
+                                    </div>
+                                 </mat-form-field>
+                             </li>
+                             <li *ngIf="isPublicIp"  fxFlex="48">
+                                    <mat-form-field appearance="outline">
+                                            <mat-label>Subnet Mask</mat-label>
+                                     <input matInput [placeholder]="'Subnet Mask' " [errorStateMatcher]="matcher" formControlName="subnetMask" required [readonly]="!isPublicIp">
+                                     <mat-error *ngIf="sd.controls['subnetMask'].hasError('required')">
+                                         {{"Subnet Mask is mandatory"  }}
+                                     </mat-error>
+                                     <mat-error class="error" *ngIf="subnetMask.value && subnetMask.invalid">
+                                        {{ "Subnet Mask is Invalid" }}
+                                    </mat-error>
+                                 </mat-form-field>
+                             </li>
+                             <li *ngIf="!isPublicIp">
+                                    <mat-form-field appearance="outline">
+                                     <mat-label>Subnet Mask</mat-label>
+                                     <input matInput [placeholder]="'Subnet Mask' " formControlName="subnetMask"  [readonly]="!isPublicIp">
+                                 </mat-form-field>
+                             </li>
+                             <li *ngIf="isPublicIp" fxFlex="48">
+                                    <mat-form-field appearance="outline">
+                                            <mat-label>Select</mat-label>
+                                    <mat-select formControlName="vlanId" [placeholder]="'Select' " [errorStateMatcher]="matcher" required>
+                                        <mat-option *ngFor="let vlan of publicVlanList" [value]="vlan.id">{{vlan.vlanIdString}}</mat-option> 
+                                    </mat-select>
+                                    <mat-error *ngIf="sd.controls['vlanId'].hasError('required')">
+                                        {{"Please select Public Vlan"  }}
+                                    </mat-error>
+                                </mat-form-field>
+                            </li>
+                         </ul>
+                        <div class="buttons">
+                             <button matStepperPrevious class="customBtnback" mat-button >Back</button>&nbsp;&nbsp;
+                             <button class="btn-primary" type="button" (click)="savePrivateIp()" [disabled]="!sd.valid || !ft.valid" mat-button >Save</button>
+                         </div>
+                 </form>
+         </mat-step>
+    </mat-horizontal-stepper>
+</div>

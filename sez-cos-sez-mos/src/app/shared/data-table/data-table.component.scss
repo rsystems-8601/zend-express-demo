@@ -1,0 +1,44 @@
+table{
+    width: 100%;
+   }
+
+.mat-form-field--inline {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.mat-form-field--inline .mat-form-field:nth-child(1) {
+    margin-right: 10px;
+}
+
+
+.mat-form-field {
+    padding: 0 0 0 10px;
+}
+
+
+.mycls {
+    margin: 0px 0px 12px 0;
+}
+
+.mat-row, .mat-header-row {
+    min-width: 2800px;
+    width: 100%;
+ }
+
+.mattableCustom {
+    width: 2600px;
+}
+
+.custom_mat_class {
+    min-width: 100%;
+    overflow: auto;
+}
+
+/* .mat-table {
+  overflow:auto;
+  min-width: 2000px;
+  max-height: 500px;
+} */

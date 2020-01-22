@@ -1,0 +1,227 @@
+<mat-card-title class="flex m-l-20 m-r-20">
+        <h2>{{"scheduledJobsManagement" | translate}}</h2>
+        <ng-container *ngIf="!readonly">
+            <span class="flex-spacer"></span>
+            <button class="btn btn-primary btn-lg" mat-button (click)="openEditDialog()">
+                {{"addScheduledJob" | translate}}
+            </button>
+        </ng-container>
+    </mat-card-title>
+    <mat-card-content>
+        <mat-table [dataSource]="dataSource" matSort class="management-table">
+
+            <ng-container matColumnDef="approvalStatus">
+                <mat-header-cell *matHeaderCellDef>
+                     <div>{{"status" | translate}}</div>
+                    <mat-form-field>
+                        <mat-select [placeholder]="'filterByStatus' | translate"
+                                    ngModel (ngModelChange)="filterBy('approvalStatus', Operator.EQUAL, $event)">
+                            <mat-option>{{'any' | translate}}</mat-option>
+                            <mat-option *ngFor="let status of APPROVAL_STATUS | values" [value]="status">
+                                {{status | translate}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let job">
+                  <span title="{{job.approvalStatus}}">
+                        <i class="large material-icons"
+                        [ngClass]="{'red': job.approvalStatus == 'REJECTED', 'amber': job.approvalStatus=='PENDING', 'green': job.approvalStatus == 'APPROVED'}" >brightness_1</i>
+                    </span>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+                <mat-header-cell *matHeaderCellDef>
+                    <div mat-sort-header>{{"title" | translate}}</div>
+                    <mat-form-field>
+                        <input matInput [placeholder]="'filterByTitle' | translate"
+                               ngModel (ngModelChange)="filterBy('title', Operator.CONTAINS, $event)">
+                    </mat-form-field>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let job">{{job.title}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="type">
+                <mat-header-cell *matHeaderCellDef>
+                    <div mat-sort-header>{{"type" | translate}}</div>
+                    <mat-form-field>
+                        <mat-select [placeholder]="'filterByType' | translate"
+                                    ngModel (ngModelChange)="filterBy('type', Operator.EQUAL, $event)">
+                            <mat-option>{{'any' | translate}}</mat-option>
+                            <mat-option *ngFor="let type of MaintenanceType | values" [value]="type">
+                                {{type | translate}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let job">{{job.type | translate}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="thumbnail">
+                <mat-header-cell *matHeaderCellDef>
+                    <div mat-sort-header="message">{{"message" | translate}}</div>
+                    <mat-form-field>
+                        <input matInput [placeholder]="'filterByMessage' | translate"
+                               ngModel (ngModelChange)="filterBy('message', Operator.CONTAINS, $event)">
+                    </mat-form-field>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let job">
+                    <dz-html-thumbnail [content]="job.message"></dz-html-thumbnail>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="severity">
+                <mat-header-cell *matHeaderCellDef>
+                    <div mat-sort-header>{{"severity" | translate}}</div>
+                    <mat-form-field>
+                        <mat-select [placeholder]="'filterBySeverity' | translate"
+                                    ngModel (ngModelChange)="filterBy('severity', Operator.EQUAL, $event)">
+                            <mat-option>{{'any' | translate}}</mat-option>
+                            <mat-option *ngFor="let severity of Severity | values" [value]="severity">
+                                {{severity | translate}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let job">{{job.severity | translate}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="startDateTime">
+                <mat-header-cell *matHeaderCellDef>
+                    <div mat-sort-header>{{"startDate" | translate}}</div>
+                    <mat-form-field>
+                        <input matInput [matDatetimepicker]="startDateTimePicker"
+                               [placeholder]="'filterByDateTime' | translate"
+                               (dateInput)="filterBy('startDateTime', Operator.GREATER_OR_EQUAL, $event.value?.toISOString())">
+                        <mat-datetimepicker-toggle matSuffix [for]="startDateTimePicker"></mat-datetimepicker-toggle>
+                        <mat-datetimepicker type="datetime" #startDateTimePicker></mat-datetimepicker>
+                    </mat-form-field>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let job">{{DateUtils.formatDateTime(job.startDateTime, true)}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="endDateTime">
+                <mat-header-cell *matHeaderCellDef>
+                    <div mat-sort-header>{{"endDate" | translate}}</div>
+                    <mat-form-field>
+                        <input matInput [matDatetimepicker]="endDateTimePicker"
+                               [placeholder]="'filterByDateTime' | translate"
+                               (dateInput)="filterBy('endDateTime', Operator.LESS_OR_EQUAL, $event.value?.toISOString())">
+                        <mat-datetimepicker-toggle matSuffix [for]="endDateTimePicker"></mat-datetimepicker-toggle>
+                        <mat-datetimepicker type="datetime" #endDateTimePicker></mat-datetimepicker>
+                    </mat-form-field>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let job">{{DateUtils.formatDateTime(job.endDateTime, true)}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="repeat">
+                <mat-header-cell *matHeaderCellDef>
+                    {{"repeat" | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let job">
+                    {{ job.getCronDescription() | translate:{date: job.getRecurrenceDate()} }}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="repeatUntil">
+                <mat-header-cell *matHeaderCellDef>
+                    <div mat-sort-header>{{"repeatUntil" | translate}}</div>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="repeatUntilDatePicker"
+                               [placeholder]="'filterByDateTime' | translate"
+                               (dateInput)="filterBy('repeatUntil', Operator.EQUAL, DateUtils.formatDate($event.value))">
+                        <mat-datepicker-toggle matSuffix [for]="repeatUntilDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #repeatUntilDatePicker></mat-datepicker>
+                    </mat-form-field>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let job">{{job.repeatUntil}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="reminder">
+                <mat-header-cell *matHeaderCellDef>
+                    <div mat-sort-header>{{"reminder" | translate}}</div>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let job">{{(job.reminder ? "send" : "doNotSend") | translate}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="organizations">
+                <mat-header-cell *matHeaderCellDef>
+                    {{"organizations" | translate}}
+                    <dz-autocomplete
+                            [searchFunction]="organizationService.organizationsSearchFunction"
+                            [searchPlaceholder]="'nameOrCid' | translate"
+                            [placeholder]="'filterByOrgs' | translate"
+                            ngModel (ngModelChange)="filterByMultiple('organizations', $event)"
+                            [displayWith]="organizationService.organizationToString"
+                            [multiple]="true">
+                    </dz-autocomplete>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let job">
+                    {{organizationService.organizationsToString(job.organizations)}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="assignedUser">
+                <mat-header-cell *matHeaderCellDef>
+                    <div mat-sort-header>{{"assignedUser---" | translate}}</div>
+                    <dz-autocomplete [searchFunction]="ticketService.memberUserSearchFunction"
+                                     [placeholder]="'filterByUser' | translate"
+                                     ngModel (ngModelChange)="filterBy('assignedUser', Operator.EQUAL, $event?.id)"
+                                     [displayWith]="userService.userToString"
+                                     [enableToClear]="true">
+                    </dz-autocomplete>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let job">{{userService.userToString(job.assignedUser)}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="approvalTicketId">
+                <mat-header-cell *matHeaderCellDef>
+                    <div mat-sort-header>{{"ticket" | translate}}</div>
+                    <mat-form-field>
+                        <input matInput [placeholder]="'filterById' | translate"
+                               ngModel (ngModelChange)="filterBy('approvalTicketId', Operator.EQUAL, $event)">
+                    </mat-form-field>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let job">
+                    <a routerLink="/console/tickets"
+                       [queryParams]="{id: job.approvalTicketId}">{{job.approvalTicketId}}</a>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let job">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="job.editable"
+                            class="row-menu-button">
+                            <mat-icon>more_vert</mat-icon>
+                        <!-- <i class="zmdi zmdi-more-vert"></i> -->
+                    </button>
+                    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+                        <button mat-menu-item (click)="openEditDialog(job)">
+                            <mat-icon>edit</mat-icon> {{"edit" | translate}}
+                        </button>
+                        <button mat-menu-item (click)="confirmDeletion(job, 'scheduledJobDeleteConfirmation',{title:job.title})">
+                            <mat-icon>delete</mat-icon> {{"delete" | translate}}
+                        </button>
+                        <button mat-menu-item *ngIf="job.approvalStatus != 'APPROVED'" (click)="resendApprovalEmail(job)">
+                            {{"resendApprovalMail" | translate}}
+                        </button>
+                        <button mat-menu-item
+                        *ngIf="(job.type == MaintenanceType.DIFFERENTIAL_BACKUP || job.type == MaintenanceType.FULL_BACKUP || job.type == MaintenanceType.DESKTOP_PATCHING || job.type == MaintenanceType.INFRASTRUCTURE_PATCHING) && !job.inactiveDate"
+                        (click)="inActiveJob(job)">
+                            {{"inactive" | translate}}
+                        </button>
+                    </mat-menu>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+        </mat-table>
+        <mat-paginator #paginator
+                       [pageSize]="10"
+                       [pageSizeOptions]="[10, 25, 50, 100]"
+                       [length]="totalElements">
+        </mat-paginator>
+    </mat-card-content>

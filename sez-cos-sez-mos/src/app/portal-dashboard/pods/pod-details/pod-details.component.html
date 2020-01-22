@@ -1,0 +1,44 @@
+<div class="container">
+         <div class="editPod">
+                <button (click)="redirectToupdatePod()" class="btn-primary" mat-button>Update Pod</button>
+            </div>
+    <mat-card-title class="flex m-l-20 m-r-20">
+        <h3>{{ "POD DETAILS" }}</h3>
+    </mat-card-title>
+        <div class="card-body">
+            <div  class="poddetails">
+                <div  class="mat-form-field-infix m-l-30">
+                        <div class="card-details">
+                            <mat-tab-group animationDuration="1ms">
+                               <mat-tab label="Details">
+                                    <ul class="details">
+                                            <li *ngFor="let item of details | keyvalue">
+                                                    <label>{{item.key}}</label>: <span>{{item.value}}</span> 
+                                            </li>
+                                            <li><label>Datacenter: </label>: <span>{{ datacenterName }}</span> </li>
+                                          </ul>
+                                </mat-tab>
+                                    <mat-tab label="Configuration">
+                                        <ul class="details">
+                                                <li *ngFor="let item of configuration | keyvalue">
+                                                    <label>{{item.key}}</label>: <span>{{item.value}}</span> 
+                                                </li>
+                                        </ul>
+                                    </mat-tab>
+                                    <mat-tab label="Components"> 
+                                        <ul class="details">
+                                                <li *ngFor="let item of Components | keyvalue">
+                                                        <label>{{item.key}}</label>: <span>{{item.value}}</span> 
+                                                </li>
+                                        </ul>
+                                    </mat-tab>
+                            </mat-tab-group>
+                     </div>  
+            </div>
+        </div>
+     </div>
+ </div>
+
+
+
+ 

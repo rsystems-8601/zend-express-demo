@@ -1,0 +1,29 @@
+<div class="">
+    <div class="card">
+        <div class="card-body">
+            <div class="">
+                <div  class="col-lg-12 col-md-12 col-xs-12">
+                    <div class="ipnetwork">
+                        <app-data-table 
+                            [tableData]="tableData" 
+                            [columnHeader]="columnHeader" 
+                            [dataDialog]="updateComponent" 
+                            [deleteDialog] = "deleteDialog"
+                            [titleComponent]="titleComponent" 
+                            [pageLength]="pageLength"
+                            [pageSize]="pageSize"
+                            [pageIndex]="pageIndex"
+                            [exportButton]="false"
+                            [editButton]="true"
+                            [hasDelete]="true"
+                            (pageChanged)= "pageChanged($event)"
+                            (searchValues)="searchValues($event)"
+                            >
+                        </app-data-table>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+

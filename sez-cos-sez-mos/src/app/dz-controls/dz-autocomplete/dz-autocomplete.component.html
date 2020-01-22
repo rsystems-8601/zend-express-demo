@@ -1,0 +1,25 @@
+<mat-form-field class="w-100">
+    <mat-select [multiple]="multiple" (onOpen)="input.focus(); onTouched()"
+                [(ngModel)]="stringValue" (ngModelChange)="onChange($event)" #select="ngModel" [required]="required"
+                [placeholder]="placeholder">
+        <mat-form-field class="w-100 p-l-15 p-r-15 p-t-10">
+            <input matInput [formControl]="queryFormControl" [placeholder]="searchPlaceholder" #input>
+        </mat-form-field>
+
+        <div class="button-row" *ngIf="multiple && (queryFormControl == null || queryFormControl.value == null || queryFormControl.value == '')">
+                <button mat-raised-button class="btn-select-all btn-primary marginR10" (click)="selectAll(select)">
+                    Select All
+                </button>
+                <button mat-raised-button class="btn-select-all btn-primary" (click)="deselectAll(select)">
+                    Deselect All
+                </button>
+        </div>
+        <mat-option *ngIf="enableToClear" class="c-red">{{'clear' | translate}}</mat-option>
+        <mat-option *ngFor="let stringItem of stringItems$ | async" [value]="stringItem">
+            {{stringItem}}
+        </mat-option>
+    </mat-select>
+    <mat-error *ngIf="select.hasError('required')">
+        {{"validation.required" | translate}}
+    </mat-error>
+</mat-form-field>

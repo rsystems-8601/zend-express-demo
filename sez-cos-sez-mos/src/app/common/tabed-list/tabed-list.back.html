@@ -1,0 +1,177 @@
+
+        <nav mat-tab-nav-bar>
+                <a mat-tab-link
+                   *ngFor="let link of navLinks"
+                   [routerLink]="link.path"
+                   routerLinkActive #rla="routerLinkActive">
+                  {{link.labelName}}
+                </a>
+            </nav>
+
+            <div class="services-links">
+
+              <a href="#" class="service active" mat-button>
+                <img src="../../../assets/images/datacenter-configure/icon-1.png" class="service-icon">
+                <span>Datacenter <br> Details</span>
+            </a>
+
+
+            <a href="#" class="service" mat-button>
+                <img src="../../../assets/images/datacenter-configure/icon-5.png" class="service-icon">
+                <span>POD <br> Slots</span>
+            </a>
+
+            <a href="#" class="service" mat-button>
+                <img src="../../../assets/images/datacenter-configure/icon-8.png" class="service-icon">
+                <span>Public <br>VLANs</span>
+            </a>
+
+            <a href="#" class="service" mat-button>
+                <img src="../../../assets/images/datacenter-configure/icon-7.png" class="service-icon">
+                <span>Public <br> IPs</span>
+            </a>
+
+            <a href="#" class="service" mat-button>
+                <img src="../../../assets/images/datacenter-configure/icon-6.png" class="service-icon">
+                <span>Private <br> IPs</span>
+            </a>
+
+            <a href="#" class="service">
+                <img src="../../../assets/images/datacenter-configure/icon-2.png" class="service-icon">
+                <span>Elastic <br> IPs</span>
+            </a>
+
+            <a href="#" class="service">
+                <img src="../../../assets/images/datacenter-configure/icon-3.png" class="service-icon">
+                <span>Global <br> Services</span>
+            </a>
+
+            <a href="#" class="service">
+                <img src="../../../assets/images/datacenter-configure/icon-4.png" class="service-icon">
+                <span>Network <br>Hardware</span>
+            </a>
+
+            <a href="#" class="service">
+                <img src="../../../assets/images/datacenter-configure/icon-9.png" class="service-icon">
+                <span>Server <br> Hardware</span>
+            </a>
+            </div>
+            <hr>
+<div class="datacenter-tabs">
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+        <a href="#" class="nav-link active show"> General Info </a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link" id="support-tab"> Support </a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link" id="cage-tab"> Cage / Zone </a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link" id="compliance-tab"> Compliance </a>
+    </li>
+</ul>
+<div class="tab-content">
+   <div class="monitor-table">
+  <div class="row head">
+      <div class="col">Datacenter Name</div>
+      <div class="col">Datacenter Type</div>
+      <div class="col">Vendor</div>
+      <div class="col">Address</div>
+      <div class="col">Support Email</div>
+      <div class="col">Support URL</div>
+      <div class="col"></div>
+  </div>
+  <div class="row">
+      <div class="col">DEN01</div>
+      <div class="col">Donec pede justo</div>
+      <div class="col">Pede Justo</div>
+      <div class="col">103.101.33.22</div>
+      <div class="col">john@example.com</div>
+      <div class="col">john@example.com</div>
+      <div class="col"><a class="button" href="">Edit Instance</a></div>
+  </div>
+
+  <div class="row">
+      <div class="col">DEN01</div>
+      <div class="col">Donec pede justo</div>
+      <div class="col">Pede Justo</div>
+      <div class="col">103.101.33.22</div>
+      <div class="col">john@example.com</div>
+      <div class="col">john@example.com</div>
+      <div class="col"><a class="button" href="">Edit Instance</a></div>
+  </div>
+
+  <div class="row">
+      <div class="col">DEN01</div>
+      <div class="col">Donec pede justo</div>
+      <div class="col">Pede Justo</div>
+      <div class="col">103.101.33.22</div>
+      <div class="col">john@example.com</div>
+      <div class="col">john@example.com</div>
+      <div class="col"><a class="button" href="">Edit Instance</a></div>
+  </div>
+
+  <div class="row">
+      <div class="col">DEN01</div>
+      <div class="col">Donec pede justo</div>
+      <div class="col">Pede Justo</div>
+      <div class="col">103.101.33.22</div>
+      <div class="col">john@example.com</div>
+      <div class="col">john@example.com</div>
+      <div class="col"><a class="button" href="">Edit Instance</a></div>
+  </div>
+
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> Profile </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> VatNo. </th>
+    <td mat-cell *matCellDef="let element"> {{element.vat}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef> Created </th>
+    <td mat-cell *matCellDef="let element"> {{element.created}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="symbol">
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <td mat-cell *matCellDef="let element"> <label ngClass="{{element.status_class}}"class="badge badge-danger">{{element.status}}</label> </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- [active]="rla.isActive" -->
+ <!-- <mat-tab-group>
+  <mat-tab *ngFor="let link of navLinks" label="{{link.labelName}}">
+  </mat-tab>
+</mat-tab-group> -->

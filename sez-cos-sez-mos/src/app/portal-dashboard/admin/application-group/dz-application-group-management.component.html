@@ -1,0 +1,83 @@
+<mat-card>
+    <mat-card-title class="flex m-l-20 m-r-20">
+        <h2>{{"appGroupManagement" | translate}}
+         <!-- <ng-container *ngIf="!readonly">
+            <span class="flex-spacer"></span>
+            <button class="btn btn-primary btn-lg pull-right" mat-button (click)="openEditDialog()">
+                {{"addAppGroup" | translate}}
+            </button>
+        </ng-container> --> </h2>
+
+    </mat-card-title>
+    <mat-card-content>
+        <mat-table [dataSource]="dataSource" matSort class="management-table">
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef>
+                    <div mat-sort-header>{{"name" | translate}}</div>
+                    <mat-form-field>
+                        <input matInput [placeholder]="'filterByName' | translate"
+                               ngModel (ngModelChange)="filterBy('name', Operator.CONTAINS, $event)">
+                    </mat-form-field>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let group"> AA {{group.name}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="organizations">
+                <mat-header-cell *matHeaderCellDef>
+                    {{"organizations" | translate}}
+                    <dz-autocomplete
+                            [searchFunction]="organizationService.organizationsSearchFunction"
+                            [searchPlaceholder]="'nameOrCid' | translate"
+                            [placeholder]="'filterByOrgs' | translate"
+                            ngModel (ngModelChange)="filterByMultiple('organizations', $event)"
+                            [displayWith]="organizationService.organizationToString"
+                            [multiple]="true">
+                    </dz-autocomplete>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let group">{{organizationService.organizationsToString(group.organizations)}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="owner">
+                <mat-header-cell *matHeaderCellDef>
+                    <div mat-sort-header="owner.name">{{"owner" | translate}}</div>
+                    <dz-autocomplete *ngIf="!auth.isOrganizationAdmin()"
+                                     [searchFunction]="organizationService.organizationsSearchFunction"
+                                     [placeholder]="'filterByOwner' | translate"
+                                     [searchPlaceholder]="'nameOrCid' | translate"
+                                     ngModel
+                                     (ngModelChange)="filterBy('owner', Operator.EQUAL, $event?.id)"
+                                     [displayWith]="organizationService.organizationToString"
+                                     [enableToClear]="true">
+                    </dz-autocomplete>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let group">{{group.owner.name}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let group">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="group.editable" class="row-menu-button">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+                        <button mat-menu-item (click)="openEditDialog(group)">
+                                <mat-icon>edit</mat-icon> {{"edit" | translate}}
+                        </button>
+                        <button mat-menu-item (click)="confirmDeletion(group,'applicationGroupDeleteConfirmation',{name: group.name})">
+                                <mat-icon>delete</mat-icon>{{"delete" | translate}}
+                        </button>
+                    </mat-menu>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+        </mat-table>
+        <mat-paginator #paginator
+                       [pageSize]="10"
+                       [pageSizeOptions]="[10, 25, 50, 100]"
+                       [length]="totalElements">
+        </mat-paginator>
+    </mat-card-content>
+</mat-card>

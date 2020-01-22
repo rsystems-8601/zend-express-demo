@@ -1,0 +1,273 @@
+<div class="">
+    <mat-card-title class="flex m-l-20 m-r-20">
+        <h3>{{ podTitle }}</h3>
+    </mat-card-title>
+ </div>
+<div class="container">
+ <mat-horizontal-stepper linear #stepper>
+
+        <mat-step [stepControl]="ft" errorMessage="Environment.">
+          <form [formGroup]="ft" class="xs-form-wraper">
+            <ng-template matStepLabel>Environment</ng-template>
+            <ul fxLayout="row wrap" fxLayoutGap="2%" fxLayoutAlign="left stretch">
+                <li fxFlex="48">
+
+                            <mat-form-field appearance="outline">
+                                    <!-- <mat-label>{{"Datacenter Name"}}</mat-label> -->
+                                <span>{{datacenterName}}</span>
+                                     <input matInput [errorStateMatcher]="matcher" [placeholder]=""
+                                     formControlName="dataCenterId" style="display: none;">
+                         </mat-form-field>
+                    </li>
+                    <li fxFlex="48">
+                            <mat-form-field appearance="outline">
+                                    <mat-label>{{"Enviroment Type"}}</mat-label>
+                                <mat-select [placeholder]="'Environment'" [errorStateMatcher]="matcher" formControlName="environmentType" required >
+                                    <mat-option *ngFor="let envvalue of envormentTypes" [value]="(podEnv) ? podEnv : envvalue" >
+                                        {{ envvalue }}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="ft.controls['environmentType'].hasError('required')">
+                                    {{ "validation.required" | translate  }}
+                                </mat-error>
+                        </mat-form-field>
+                    </li>
+
+                    <li fxFlex="48">
+                            <mat-form-field appearance="outline">
+                                    <mat-label>{{"Pod Slots"}}</mat-label>
+
+                                    <input matInput [errorStateMatcher]="matcher" [placeholder]="'Pod Slots' " maxlength="10"  formControlName="datacenterSlot" required >
+                                    <mat-error *ngIf="ft.controls['datacenterSlot'].hasError('required')">
+                                        {{ "validation.required" | translate }}
+                                    </mat-error>
+                                    <div class="error" *ngIf="datacenterSlot.value && datacenterSlot.invalid">
+                                        {{"Pod Slot Should be Number Only"}}
+                                      </div>
+                            </mat-form-field>
+                        </li>
+                </ul>
+            <div>
+              <button mat-button matStepperNext class="btn-primary">Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="sd" errorMessage="Pod Details">
+            <form [formGroup]="sd" class="xs-form-wraper">
+                  <ng-template matStepLabel>Pod Details</ng-template>
+                  <ul fxLayout="row wrap" fxLayoutGap="2%" fxLayoutAlign="left stretch">
+                        <li fxFlex="48">
+
+                                <mat-form-field appearance="outline">
+                                        <mat-label>{{"Pod Name"}}</mat-label>
+                                <input matInput [errorStateMatcher]="matcher" [placeholder]="'Pod Name' "
+                                        formControlName="podName" required >
+                                <mat-error *ngIf="sd.controls['podName'].hasError('required')">
+                                    {{"validation.required" | translate }}
+                                </mat-error>
+                                <div class="error" *ngIf="podName.value && podName.invalid">
+                                        {{"Pod Name can be alphanumeric with -_. allowed"}}
+                                      </div>
+                            </mat-form-field>
+                        </li>
+
+                        <li fxFlex="48">
+                                <mat-form-field appearance="outline">
+                                        <mat-label>{{"Management URL"}}</mat-label>
+                                <input matInput [errorStateMatcher]="matcher" [placeholder]="'Management URL' "
+                                        formControlName="managementUrl" required >
+                                <mat-error *ngIf="sd.controls['managementUrl'].hasError('required')">
+                                    {{"validation.required" | translate }}
+                                </mat-error>
+                                <div class="error" *ngIf="managementUrl.value && managementUrl.invalid">
+                                        {{"URL format should be like http://example.com or example.com"}}
+                                      </div>
+                            </mat-form-field>
+                        </li>
+
+                        <li fxFlex="48">
+                            <span class="networklabel">{{"NetWork Type"}}  ttt</span><br>
+                            <label formArrayName="networkType" *ngFor="let order of networkTypeControl; let i = index" [formGroup]="order">
+                                <input type="checkbox" [formControlName]="i" > {{ordersData[i]}}
+                            </label>
+                                <mat-error *ngIf="sd.controls['networkType'].hasError('required') && !sd.controls['networkType'].pristine" class="marginT0">
+                                    {{"validation.required" | translate  }}
+                                </mat-error>
+                            <!-- <mat-error class="error" *ngIf="sd.controls['networkType'].hasError('required')">
+                                {{"Please Select atleast One Network Type" }}
+                            </mat-error> -->
+                        </li>
+
+                    </ul>
+                    <div>&nbsp;&nbsp;&nbsp;</div>
+                  <div>
+                        <button mat-button matStepperPrevious class="btn-default"> Back </button>&nbsp;&nbsp;
+                    <button mat-button matStepperNext class="btn-primary" >Next</button>
+                  </div>
+                </form>
+        </mat-step>
+
+        <mat-step [stepControl]="th" errorMessage="Active Directory">
+                <form [formGroup]="th" class="xs-form-wraper">
+                    <ng-template matStepLabel>Active Directory</ng-template>
+                    <ul fxLayout="row wrap" fxLayoutGap="2%" fxLayoutAlign="left stretch">
+                        <li fxFlex="48">
+
+                                    <mat-form-field appearance="outline">
+                                            <mat-label>{{"Active Directory IP Address"}}</mat-label>
+                                        <input matInput [errorStateMatcher]="matcher" [placeholder]="'Active Directory IP Address' "
+                                                formControlName="activeDirectoryIPAddress" required >
+                                        <mat-error *ngIf="th.controls['activeDirectoryIPAddress'].hasError('required')">
+                                            {{"validation.required" | translate }}
+                                        </mat-error>
+                                        <div class="error" *ngIf="activeDirectoryIPAddress.value && activeDirectoryIPAddress.invalid">
+                                                {{ "Active Directory IP Address is Invalid" }}
+                                              </div>
+                                    </mat-form-field>
+                            </li>
+
+                            <li fxFlex="48">
+                                    <mat-form-field appearance="outline">
+                                            <mat-label>{{"Active Directory Domain Name"}}</mat-label>
+                                        <input matInput [errorStateMatcher]="matcher" [placeholder]="'Active Directory Domain Name' "
+                                                formControlName="activeDirectoryDomainName" required >
+                                        <mat-error *ngIf="th.controls['activeDirectoryDomainName'].hasError('required')">
+                                            {{"validation.required" }}
+                                        </mat-error>
+                                        <div class="error" *ngIf="activeDirectoryDomainName.value && activeDirectoryDomainName.invalid">
+                                                {{ "Domain format should be like http://example.com or example.com" }}
+                                              </div>
+                                    </mat-form-field>
+                            </li>
+
+                            <li fxFlex="48">
+                                    <mat-form-field appearance="outline">
+                                            <mat-label>{{"Active Directory Username"}}</mat-label>
+                                            <input matInput [errorStateMatcher]="matcher" [placeholder]="'Active Directory Username' "
+                                                    formControlName="activeDirectoryUsername" required >
+                                            <mat-error *ngIf="th.controls['activeDirectoryUsername'].hasError('required')">
+                                                {{"validation.required" | translate }}
+                                            </mat-error>
+                                        </mat-form-field>
+                            </li>
+
+                            <li fxFlex="48">
+                                    <mat-form-field appearance="outline">
+                                            <mat-label>{{"Active Directory Password"}}</mat-label>
+                                            <input type="password" matInput [errorStateMatcher]="matcher" [placeholder]="'Active Directory Password' "
+                                                    formControlName="activeDirectoryPassword" required
+                                                    matTooltip="Password Hint: Atlest 8 Charectors, Special Charectors, Numbers, Lower letters, Upper letters ">
+                                            <mat-error *ngIf="th.controls['activeDirectoryPassword'].hasError('required')">
+                                                {{"validation.required" | translate }}
+                                            </mat-error>
+                                            <div class="error" *ngIf="activeDirectoryPassword.value && activeDirectoryPassword.invalid">
+                                                    {{ "Please enter valid password" }}
+                                                  </div>
+                                        </mat-form-field>
+                            </li>
+
+
+                        </ul>
+                    <div>
+                    <button mat-button matStepperPrevious class="btn-default">Back</button>&nbsp;&nbsp;
+                    <button mat-button matStepperNext class="btn-primary">Next</button>
+                    </div>
+                </form>
+                </mat-step>
+
+        <mat-step [stepControl]="fr" errorMessage="Vcenter Information">
+          <form [formGroup]="fr" class="xs-form-wraper">
+            <ng-template matStepLabel>Vcenter Information</ng-template>
+            <ul fxLayout="row wrap" fxLayoutGap="2%" fxLayoutAlign="left stretch">
+                <li fxFlex="48">
+                            <mat-form-field appearance="outline">
+                                    <mat-label>{{"Vcenter IP Address"}}</mat-label>
+                                <input matInput [errorStateMatcher]="matcher" [placeholder]="'Vcenter IP Address' "
+                                        formControlName="privateIP" required >
+                                <mat-error *ngIf="fr.controls['privateIP'].hasError('required')">
+                                    {{"validation.required" | translate}}
+                                </mat-error>
+                                <div class="error" *ngIf="privateIP.value && privateIP.invalid">
+                                        {{ "Vcenter IP Address is Invalid" }}
+                                      </div>
+                            </mat-form-field>
+                    </li>
+                    <li fxFlex="48">
+                            <mat-form-field appearance="outline">
+                                    <mat-label>{{"Vcenter Username"}}</mat-label>
+                                <input matInput [errorStateMatcher]="matcher" [placeholder]="'Vcenter Username' "
+                                        formControlName="name" required >
+                                <mat-error *ngIf="fr.controls['name'].hasError('required')">
+                                    {{"validation.required" | translate }}
+                                </mat-error>
+
+                            </mat-form-field>
+                    </li>
+
+                    <li fxFlex="48">
+                            <mat-form-field appearance="outline">
+                                    <mat-label>{{"Vcenter Password"}}</mat-label>
+                                    <input type="password" matInput [errorStateMatcher]="matcher" [placeholder]="'Vcenter Password' "
+                                            formControlName="vCenterpassword" required
+                                             matTooltip="Password Hint: Atlest 8 Charectors, Special Charectors, Numbers, Lower letters, Upper letters ">
+                                    <mat-error *ngIf="fr.controls['vCenterpassword'].hasError('required')">
+                                        {{"validation.required" | translate }}
+                                    </mat-error>
+                                    <div class="error" *ngIf="vCenterpassword.value && vCenterpassword.invalid">
+                                            {{ "Please enter valid Password" }}
+                                          </div>
+                                </mat-form-field>
+                    </li>
+
+                    <li fxFlex="48">
+                            <mat-form-field appearance="outline">
+                                    <mat-label>{{"Vcenter Version"}}</mat-label>
+                                    <input matInput [errorStateMatcher]="matcher" [placeholder]="'Vcenter Version' "
+                                            formControlName="version" required >
+                                    <mat-error *ngIf="fr.controls['version'].hasError('required')">
+                                        {{"validation.required" | translate }}
+                                    </mat-error>
+                                    <div class="error" *ngIf="version.value && version.invalid">
+                                            {{ "Vcenter Version can be alphanumeric with ._-allowed" }}
+                                          </div>
+                                </mat-form-field>
+                    </li>
+                    <li fxFlex="48">
+                            <mat-form-field appearance="outline">
+                                    <mat-label>{{"Vcenter URL"}}</mat-label>
+                            <input matInput [errorStateMatcher]="matcher" [placeholder]="'Vcenter URL' "
+                                    formControlName="url" required >
+                            <mat-error *ngIf="fr.controls['url'].hasError('required')">
+                                {{"validation.required" | translate }}
+                            </mat-error>
+                            <div class="error" *ngIf="url.value && url.invalid">
+                                    {{ "Management URL format should be like http://example.com" }}
+                                  </div>
+                        </mat-form-field>
+                    </li>
+                    <li fxFlex="48"></li>
+                    <li fxFlex="48"></li>
+                </ul>
+
+                 <div class="buttons">
+                    <button mat-button matStepperPrevious class="btn-default">Back</button>&nbsp;&nbsp;
+                    <button class="btn-primary" type="button" [disabled]="!ft.valid || !sd.valid || !th.valid || !fr.valid" (click)="savePoddata()" mat-button > {{ updatePodStatus }}</button>
+
+                  </div>
+          </form>
+        </mat-step>
+
+      </mat-horizontal-stepper>
+</div>
+
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+
+
+
+
+
+
+
+

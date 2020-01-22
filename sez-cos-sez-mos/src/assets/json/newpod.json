@@ -1,0 +1,109 @@
+{
+    "id": null,
+    "podName": "dsf",
+    "datacenterSlot": "343",
+    "dataCenterId": 77,
+    "rackUnits": "343",
+    "domain": "http://example.com",
+    "environmentType": "Compliance",
+    "managementUrl": "http://abvc.com",
+    "maximumHwClusters": "41",
+    "maxStorageClusters": "55",
+    "maxTorSwitches": "54",
+    "max10GBSwitches": "45",
+    "maxIPMISwitches": "45",
+    "maxServers": "55",
+    "vCenter": {
+      "name": "dsf",
+      "version": "asf",
+      "url": "http://xyz.com",
+      "privateIP": "1.25.2.5",
+      "id": null
+    },
+    "torSwitches": [
+      {
+        "action": "ADD",
+        "name": "sdf",
+        "make": "sdaf",
+        "model": "sdf",
+        "serialNumber": "dsaf",
+        "totalPorts": "43",
+        "usedPorts": "3",
+        "ownerName": "Matt McDaniel",
+        "ownerId": 91
+      }
+    ],
+    "tenGBSwitches": [
+      {
+        "action": "ADD",
+        "name": "sdaf",
+        "make": "asdf",
+        "model": "asf",
+        "serialNumber": "33",
+        "totalPorts": "32",
+        "usedPorts": "4",
+        "ownerId": 91,
+        "ownerName": "Matt McDaniel"
+      }
+    ],
+    "iPMISwitches": [
+      {
+        "action": "ADD",
+        "name": "432",
+        "make": "234",
+        "model": "234",
+        "serialNumber": "234",
+        "totalPorts": "23",
+        "usedPorts": "3",
+        "ownerId": 92,
+        "ownerName": "DataSales"
+      }
+    ],
+    "servers": [
+      {
+        "action": "ADD",
+        "name": "5345",
+        "make": "345",
+        "model": "345",
+        "serialNumber": "345",
+        "ram": "345",
+        "cpuName": "345",
+        "cores": "34",
+        "drives": "rew",
+        "ownerId": 91,
+        "ownerName": "Matt McDaniel",
+        "userName": "erwt",
+        "password": "wert",
+        "dateOfPurchase": "12/10/2019",
+        "warrantyPeriod": "wet",
+        "salesLeaseNumber": "wetwert",
+        "cpuTypeId": null
+      }
+    ],
+    "storageCluster": [
+      {
+        "action": "ADD",
+        "name": "53",
+        "make": "gsd",
+        "model": "dfsg",
+        "serialNumber": "sg",
+        "ram": "345",
+        "cpuName": "dfs",
+        "cores": "43",
+        "drives": "sdfg",
+        "ownerId": 92,
+        "ownerName": "DataSales",
+        "userName": "sdfg",
+        "password": "sdfg",
+        "dateOfPurchase": "12/11/2019",
+        "warrantyPeriod": "sdg",
+        "salesLeaseNumber": "sdfg",
+        "cpuTypeId": null
+      }
+    ],
+    "podNotationId": "sdf",
+    "additionalInfo": "55",
+    "networkType": [
+      "LEGACY"
+    ]
+  }

@@ -1,0 +1,69 @@
+<h1 matDialogTitle>{{ "Add IPMI switches"}}</h1>
+<form [formGroup]="ipmiswitchesForm"  class="edit-entity-form">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input matInput [placeholder]="'Name' "
+                   formControlName="name" required>
+            <mat-error *ngIf="ipmiswitchesForm.controls['name'].hasError('required')">
+                {{"validation.required"    }}
+            </mat-error>
+        </mat-form-field>
+        <div *ngIf="notationidStatus">
+                <mat-form-field >
+                        <input matInput [placeholder]="'SWITCH ID' "
+                               formControlName="notationId" readonly>
+                </mat-form-field>
+        </div>
+        
+
+        <mat-form-field>
+                <input matInput [placeholder]="'Make' "
+                       formControlName="make" required>
+                <mat-error *ngIf="ipmiswitchesForm.controls['make'].hasError('required')">
+                    {{"validation.required"    }}
+                </mat-error>
+        </mat-form-field>
+            <mat-form-field>
+                    <input matInput [placeholder]="'Model' "
+                           formControlName="model" required>
+                    <mat-error *ngIf="ipmiswitchesForm.controls['model'].hasError('required')">
+                        {{"validation.required"    }}
+                    </mat-error>
+             </mat-form-field>
+        <mat-form-field>
+                <input matInput [placeholder]="'Owner Name' "
+                        formControlName="ownerName" required>
+                <mat-error *ngIf="ipmiswitchesForm.controls['ownerName'].hasError('required')">
+                    {{"validation.required"    }}
+                </mat-error>
+            </mat-form-field>    
+            
+            <mat-form-field>
+                    <input matInput [placeholder]="'Serial Number #' "
+                            formControlName="serialNumber" required>
+                    <mat-error *ngIf="ipmiswitchesForm.controls['serialNumber'].hasError('required')">
+                        {{"validation.required"    }}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                        <input matInput [placeholder]="'Total Ports #' "
+                                formControlName="totalPorts" required>
+                        <mat-error *ngIf="ipmiswitchesForm.controls['totalPorts'].hasError('required')">
+                            {{"validation.required"    }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                            <input matInput [placeholder]="'Ports Used #' "
+                                    formControlName="usedPorts" required>
+                            <mat-error *ngIf="ipmiswitchesForm.controls['usedPorts'].hasError('required')">
+                                {{"validation.required"    }}
+                            </mat-error>
+                        </mat-form-field> 
+    </div>
+    <div mat-dialog-actions>
+        <button class="btn btn-primary btn-sm" type="button" (click)="saveipmiswitches()" [disabled]="!ipmiswitchesForm.valid"  mat-button>{{'save' }}</button>
+        <button class="btn btn-link btn-sm" type="button" mat-dialog-close  mat-button>{{"cancel" }}</button>
+    </div>
+</form>

@@ -1,0 +1,76 @@
+.poddetails {
+    /* width: 1000px; */
+    position: relative;
+    /* margin: 0 auto; */
+    text-align: left;
+}
+
+.card-details {
+    width: 1200px;
+    position: relative;
+}
+
+.mat-card-title h3 {
+    font-size: 22px;
+    width: auto;
+    font-weight: 100;
+}
+
+.card-details label {
+    font-size: 14px;
+    padding: 0 10px 0 10px;
+    color: #272b31;
+}
+
+
+.card-details input {
+    font-size: 15px;
+}
+
+
+button.customBtn.mat-button.mat-button-base {
+    background: #4d505d;
+    color: #ddd;
+    margin: 0px 0 0 20px;
+}
+
+button.customBtnback {
+    background: #b0b0b0;
+    color: #333;
+    margin: 0px 0 0 20px;
+}
+
+
+.mat-tab-label-content {
+    color: #24272d;
+    font-weight: 400;
+    font-size: 18px;
+    /* text-align: left; */
+}
+
+button.customBtnsave {
+    position: relative;
+    padding: 5px 10px 5px 10px;
+    font-size: 17px;
+    width: 70px;
+    height: 36px;
+    border: 1px solid #4c505c;
+    background: #717788;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.editPod {
+    float: right;
+    position: relative;
+    right: 187px;
+    padding: 10px;
+}
+
+.form-wraper{
+  max-width: 55%;
+
+}

@@ -1,0 +1,6 @@
+<div fxLayout="row wrap" fxflexfill class="grid-wraper">
+<div class="cell-grid yellow" id="second" fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="50"  fxFlex="33"  *ngFor="let circleList of masterList?.masterList">
+    <app-circle-grid [circleGrid]="circleList" [parentList]="parentList" (gridClicked)="cirlcLeClicked($event)"></app-circle-grid>
+</div>
+</div>
+

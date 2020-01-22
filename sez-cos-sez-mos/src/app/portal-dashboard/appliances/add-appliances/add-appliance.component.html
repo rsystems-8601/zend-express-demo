@@ -1,0 +1,254 @@
+<div class="">
+    <mat-card-title class="flex m-l-20 m-r-20">
+        <h3>{{ "COSMOS Appliance" }}</h3>
+    </mat-card-title>       
+ </div>
+
+<div class="container">
+ <mat-horizontal-stepper linear #stepper>
+        
+        <mat-step [stepControl]="ft" errorMessage="Appliance Detail.">
+                <div>&nbsp;&nbsp;</div>
+          <form [formGroup]="ft">
+            <ng-template matStepLabel>Appliance Detail</ng-template>
+            <ul>
+                <li class="copy_url">
+                        <a class="" href="javascript:void(0);"
+                        title="Copy"  (click)="copyText(urltoSave)">
+                        <mat-icon>file_copy</mat-icon></a><span>{{ urltoSave }}</span>
+                </li>
+                    <li>
+                        <mat-form-field>
+                            <input matInput [placeholder]="'Appliance Name' "
+                                    formControlName="name" required  >
+                            <mat-error *ngIf="ft.controls['name'].hasError('required')">
+                                {{ "validation.required"   }}
+                            </mat-error>
+                            <div class="error" *ngIf="name.value && name.invalid">
+                              {{"Invalid format"}}
+                            </div>
+                        </mat-form-field>
+                    </li>
+                    <li>
+                            <!-- <mat-form-field>
+                                    <mat-select [placeholder]="'Data Center'" formControlName="dataCentreId" required >
+                                      <mat-option *ngFor="let datacenterval of datacenterData" [value]="datacenterval.id">
+                                          {{ datacenterval.name }}
+                                      </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="ft.controls['dataCentreId'].hasError('required')">
+                                       {{"validation.required"  }}
+                                    </mat-error>
+                                </mat-form-field>  -->
+
+
+                                <mat-form-field>
+                                 <!-- <label for="dataCentreId">Data Center</label>  -->
+                                 <span>{{datacenterName}}</span>
+                                          <input matInput [placeholder]=""
+                                          formControlName="dataCentreId" [value]="datacetnerId" style="display: none;" >
+                              </mat-form-field>
+
+
+                              <!-- <mat-form-field>
+                                
+                                <mat-select [placeholder]="'Data Center'"   formControlName="dataCentreId" required >
+                                  <mat-option  [value]="datacetnerId" selected="{{datacenterName}}">
+                                      {{ datacenterName }}
+                                  </mat-option>
+                                </mat-select> 
+                                
+                                
+                                
+                            </mat-form-field> -->
+                    </li>
+                    <li>
+                            <!-- <mat-form-field>
+                                    <mat-select [placeholder]="'Pod'" formControlName="podId" required>
+                                      <mat-option *ngFor="let podvalue of podData" [value]="podvalue.id">
+                                          {{ podvalue.podName }}
+                                      </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="ft.controls['podId'].hasError('required')">
+                                       {{"validation.required" }}
+                                    </mat-error>
+                                </mat-form-field> -->
+                                <mat-form-field>
+                                  <!-- <label for="dataCentreId">Data Center</label>  -->
+                                  <span>{{podName}}</span>
+                                           <input matInput [placeholder]=""
+                                           formControlName="podId" [value]="podId" style="display: none;" >
+                               </mat-form-field>
+                    </li>
+                    <li>
+                            <mat-form-field>
+                                    <input matInput [placeholder]="'Access Key' "
+                                            formControlName="accessKey" readonly >
+                                  
+                                </mat-form-field>
+                    </li>
+                    <li>
+                            <mat-form-field>
+                                    <input matInput [placeholder]="'Access Secret' "
+                                            formControlName="accessSecret" required >
+                                    <mat-error *ngIf="ft.controls['accessSecret'].hasError('required')">
+                                        {{"validation.required"   }}
+                                    </mat-error>
+                                </mat-form-field>
+                    </li>
+                </ul>
+            <div>
+              <button mat-button matStepperNext class="customBtn">Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="sd" errorMessage="V Center Details.">
+                <form [formGroup]="sd">
+                  <ng-template matStepLabel>vCenter Details</ng-template>
+                  <ul>
+                        <li>
+                                <mat-form-field>
+                                        <input matInput [placeholder]="'V Center Url' "
+                                                formControlName="vCenterUrl" required >
+                                        <mat-error *ngIf="sd.controls['vCenterUrl'].hasError('required')">
+                                            {{"validation.required"  }}
+                                        </mat-error>
+                                        <div class="error" *ngIf="vCenterUrl.value && vCenterUrl.invalid">
+                                            Not a valid VCenter Url
+                                          </div>
+                                    </mat-form-field>
+                        </li>
+                        <li>
+                                <mat-form-field>
+                                        <input matInput [placeholder]="'V Center Username' "
+                                                formControlName="vCenterUsername" required >
+                                        <mat-error *ngIf="sd.controls['vCenterUsername'].hasError('required')">
+                                            {{"validation.required"  }}
+                                        </mat-error>
+                                    </mat-form-field>
+                        </li>
+                        <li>
+                            
+                        <mat-form-field>
+                                <input type="password" matInput [placeholder]="'V Center Password' "
+                                        formControlName="vCenterPassword"
+                                         required 
+                                         matTooltip="Password Hint: Atlest 8 Charectors, Special Charectors, Numbers, Lower letters, Upper letters ">
+                                <mat-error *ngIf="sd.controls['vCenterPassword'].hasError('required')">
+                                    {{"validation.required" }}
+                                </mat-error>
+
+                                <div class="error" *ngIf="vCenterPassword.value && vCenterPassword.invalid">
+                                    Not a valid Password 
+                                  </div>
+                            </mat-form-field>
+                        </li>
+                    </ul>
+                  <div>
+                        <button mat-button matStepperPrevious class="customBtnback">Back</button>&nbsp;&nbsp;
+                    <button mat-button matStepperNext class="customBtn">Next</button>
+                  </div>
+                </form>
+              </mat-step>
+
+            <mat-step [stepControl]="th" errorMessage="NSX Manager Details.">
+                <form [formGroup]="th">
+                    <ng-template matStepLabel>NSX Manager Details</ng-template>
+                    <ul>
+                            <li>
+                                    <mat-form-field>
+                                            <input matInput [placeholder]="'NXS Manager URL' "
+                                                    formControlName="nsxManagerURL" required >
+                                            <mat-error *ngIf="th.controls['nsxManagerURL'].hasError('required')">
+                                                {{"validation.required" }}
+                                            </mat-error>
+                                            <div class="error" *ngIf="nsxManagerURL.value && nsxManagerURL.invalid">
+                                                Not a valid NSX URL
+                                              </div>
+                                        </mat-form-field>
+                            </li>
+                            <li>
+                                 
+                            <mat-form-field>
+                                    <input matInput [placeholder]="'NSX UserName' "
+                                            formControlName="nsxUserName" required >
+                                    <mat-error *ngIf="th.controls['nsxUserName'].hasError('required')">
+                                        {{"validation.required"   }}
+                                    </mat-error>
+                                </mat-form-field>
+                            </li>
+                            <li>
+                                    <mat-form-field>
+                                            <input type="password" matInput [placeholder]="'NSX Password' "
+                                                    formControlName="nsxPassword" required matTooltip="Password Hint: Atlest 8 Charectors, Special Charectors, Numbers, Lower letters, Upper letters ">
+                                            <mat-error *ngIf="th.controls['nsxPassword'].hasError('required')">
+                                                {{"validation.required"   }}
+                                            </mat-error>
+                                            <div class="error" *ngIf="nsxPassword.value && nsxPassword.invalid">
+                                                Not a valid Password
+                                              </div>
+                                        </mat-form-field>
+                            </li>
+                        </ul>
+                    <div>
+                            <button mat-button matStepperPrevious class="customBtnback">Back</button>&nbsp;&nbsp;
+                    <button mat-button matStepperNext class="customBtn">Next</button>
+                    </div>
+                </form>
+                </mat-step>
+
+        <mat-step [stepControl]="fr" errorMessage="POD VARs.">
+          <form [formGroup]="fr">
+            <ng-template matStepLabel>POD VARs</ng-template>
+            <div class="podvarstable">
+                    <div class="tittle"><h3>{{"POD VARS"}}</h3></div>
+                    <div class="addbtn"><span class="btn btn-primary addnew" (click)="addPodvar()">Add New </span></div>
+                </div>
+                <div>&nbsp;</div>
+                <div>
+                    <ng-container >
+                            <table  class="podvartbl">
+                                <tr><td><label>Key</label></td>&nbsp;<td><label>Value</label></td>&nbsp;<td><label>Action</label></td>&nbsp;</tr>
+                                <tr formArrayName="podVars"   *ngFor="let field of getPodVars; let ind = index;">
+                                  <ng-container [formGroupName]="ind">
+                                    <td><mat-form-field><input matInput  formControlName="key" required ></mat-form-field> </td>&nbsp;&nbsp;
+                                    <td><mat-form-field><input matInput  formControlName="value" required></mat-form-field> </td>&nbsp;
+                                    <td *ngIf="ind >= 0"><button class="btn btn-danger" (click)="removeRow(ind)" mat-button><mat-icon>delete</mat-icon></button></td>
+                                </ng-container>
+                                </tr>
+                            </table>
+                  </ng-container>
+              </div>
+            <div>&nbsp;</div>
+            <!-- <div>
+              <button mat-button matStepperPrevious class="customBtn">Back</button>&nbsp;&nbsp;
+              <button mat-button matStepperNext class="customBtn">Next</button>
+            </div> -->
+                 <div class="buttons">
+                    <button mat-button matStepperPrevious class="customBtn">Back</button>&nbsp;&nbsp;
+                    <button class="customBtnsave" type="button" (click)="savePoddata()" 
+                        [disabled]="!th.valid || !fr.valid">{{'Save' }}</button>
+                        <!-- <button mat-button (click)="stepper.reset()" class="customBtn">Reset</button> -->
+                  </div>
+          </form>
+        </mat-step>
+
+        <!-- <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <h3 class="mattitle">{{"You are now done."}}</h3>
+          
+          
+        </mat-step> -->
+      </mat-horizontal-stepper>
+</div>
+
+
+
+
+
+ 
+
+
+
+ 

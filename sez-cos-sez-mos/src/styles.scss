@@ -1,0 +1,156 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./scss/_variables.scss";
+@import "./scss/_base.scss";
+@import "./scss/_utility.scss";
+@import "./scss/_buttons.scss";
+@import "./scss/_forms.scss";
+@import "./scss/_table.scss";
+@import "./scss/_service-tabs";
+@import "./scss/_matComponents.scss";
+@import "./scss/_animation.scss";
+
+
+.nav{
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.app-container{
+background: #fff;
+height: 100vh;
+border-top-left-radius: 30px;
+}
+
+.scrollable-height{
+  height: 100vh;
+
+}
+
+.mat-card{
+  padding: 0px 40px!important;
+}
+
+@media only screen and (min-width: 1024px) {
+.scrollable-height{
+  height: calc(100vh - 250px);
+
+}
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+#toasty {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top:0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 999;
+  width: 30%;
+
+}
+
+#toasty .toasty-type-error {
+  padding: 10px 15px;
+  border: 2px solid #ab3034;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  background-color: #f19b9a;
+  color: #fff;
+  font-size: 14px;
+  color: #710000;
+}
+
+#toasty .toasty-type-success {
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  background-color: #39917F;
+  color: #fff;
+}
+
+#toasty .toasty-type-info , #toasty .toasty-type-default ,#toasty .toasty-type-wait , #toasty .toasty-type-warning  {
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  background-color: yellow;
+  color: #000000;
+}
+
+#toasty .close-button {
+  display: inline-block;
+  // font: 18px/1 Material-Design-Iconic-Font;
+  text-rendering: auto;
+  width: 1.28571429em;
+  color: #333;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+
+#toasty .close-button:before {
+  content: "\e5cd";
+  font-family: "Material Design Icons";
+  // content: "\e5cd";
+}
+
+
+.mat-radio-outer-circle{
+  border-radius: 0 !important;
+  width:15px!important;
+  height: 15px!important;
+
+}
+
+.mat-radio-inner-circle{
+  border-radius: 0 !important;
+  width:15px!important;
+  height: 15px!important;
+
+}
+
+
+
+/* Loader css start here */
+.loader_wrapper {
+  background: rgba(0, 0, 0, 0.3);
+  width: $full-width;
+  height: $full-height;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 99999;
+}
+
+.loader {
+  border: 10px solid #e2e2e2; /* Light grey */
+  border-top: 10px solid $bg-sidebar-hover; /* Blue */
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 100000;
+  width: 80px;
+  height: 80px;
+  margin: -40px 0 0 -40px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Loader css end here */

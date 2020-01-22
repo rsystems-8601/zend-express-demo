@@ -1,0 +1,11 @@
+<div class="mat-main-div">
+    <h3 mat-line>{{ statusTitle }}</h3>
+    <mat-divider></mat-divider>
+    <div mat-dialog-content> <div>{{ statusContent }}</div> </div>
+    <div mat-dialog-actions class="marginT20">
+            <button mat-button class="btn btn-primary btn-sm" (click)="changeStatus()" mat-dialog-close>{{ 'Yes'}}</button>
+            <button mat-button class="btn btn-default btn-sm" type="button" mat-dialog-close>{{ "No" }}</button>
+     </div>
+</div>
+
+

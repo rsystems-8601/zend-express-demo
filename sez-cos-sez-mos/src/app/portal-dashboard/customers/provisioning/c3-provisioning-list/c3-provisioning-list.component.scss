@@ -1,0 +1,40 @@
+$red: red;
+$yellow: yellow;
+$green: green;
+$blue: blue;
+$black: black;
+
+.circle-status{
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+::ng-deep span.BLUE {
+   @extend .circle-status; 
+    background-color: $blue;
+}
+
+::ng-deep .GREEN{
+    @extend .circle-status;
+    background-color: $green;
+}
+::ng-deep .YELLOW{
+    @extend .circle-status;
+    background-color: $yellow;
+}
+::ng-deep .RED{
+    @extend .circle-status;
+    background-color: $red;
+}
+
+::ng-deep .black{
+    @extend .circle-status;
+    background-color: $black;
+}
+
+::ng-deep .RED.SQUARE{
+    @extend .circle-status;
+    border-radius:5px;
+    background-color: $red;
+}

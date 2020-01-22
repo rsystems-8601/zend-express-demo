@@ -1,0 +1,17 @@
+.selectable{
+    cursor: pointer;
+}
+
+.selected {    
+    height: 100%;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    background-color: wh;
+    border-width: 2px;
+    border-style: solid;
+    border-color: blue;
+}
+.not-selectable{
+    font-weight: bold;
+}

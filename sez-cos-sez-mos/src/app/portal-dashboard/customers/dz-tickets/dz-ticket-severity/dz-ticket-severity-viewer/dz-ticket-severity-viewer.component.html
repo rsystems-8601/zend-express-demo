@@ -1,0 +1,28 @@
+
+<div class="severity-heading">{{"selectPrioritySLAGrid" | translate}}</div>
+<div class="severity-viewer">
+    <div>{{"slaBasedOnCompanyCal" | translate}}</div>
+    <mat-grid-list cols="4" rowHeight="40px">        
+        <mat-grid-tile *ngFor="let sev of severityObject.severityLevels" (click)="selectPriority(sev)" >
+            <div [ngClass]="{'selectable': sev.selectable, 'selected': sev.selected, 'not-selectable': sev.selectable == false}">
+                   <span *ngIf="sev.priority" class="box" [ngClass]="sev.color" ></span> {{sev.priority ? sev.priority : sev.text}}
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <div class="severity-urgency-text">
+        <div class="example-selected-value">Urgency: {{ severity["urgency"] | translate }}</div>
+        <div>{{severity["urgencyText"]}}</div>
+    </div>
+    <div class="severity-urgency-text">
+        <div class="example-selected-value">Impact: {{ severity["impact"] | translate }}</div>
+        <div>{{severity["impactText"]}}</div>
+    </div>
+</div>
+<div class="mat-dialog-actions">
+        <button class="btn btn-primary btn-sm waves-effect" (click)="submitSeverity()">
+                {{"done" | translate}}
+        </button>
+        <button class="btn btn-link btn-sm waves-effect" mat-dialog-close="" type="button" ng-reflect-dialog-result="" aria-label="Close dialog">
+            {{"cancel" | translate}}
+        </button>
+</div>

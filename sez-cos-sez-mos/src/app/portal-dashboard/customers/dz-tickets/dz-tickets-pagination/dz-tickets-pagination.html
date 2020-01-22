@@ -1,0 +1,25 @@
+<div class="ng-table-pager">
+    <div class="ng-table-counts btn-group pull-right">
+        <button type="button" *ngFor="let count of counts"
+                (click)="setPageSize(count)"
+                [ngClass]="{active: pagination.activeCount == count}"
+                class="btn btn-default">
+            <span>{{count}}</span>
+        </button>
+        <button type="button"
+                (click)="setPageSize(-1)"
+                [ngClass]="{active: pagination.activeCount < 0}"
+                class="btn btn-default">
+            <span>{{"all" | translate}}</span>
+        </button>
+    </div>
+
+    <ul class="pagination ng-table-pagination">
+        <li (click)="previousPage()" [ngClass]="{disabled : pagination.activePage == 1}">
+            <a>«</a>
+        </li>
+        <li (click)="nextPage()" [ngClass]="{disabled : !hasMorePages}">
+            <a>»</a>
+        </li>
+    </ul>
+</div>

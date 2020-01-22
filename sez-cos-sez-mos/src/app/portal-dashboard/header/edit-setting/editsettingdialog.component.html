@@ -1,0 +1,50 @@
+<div class="mat-main-div">
+    <h3 mat-line>{{ "My Profile"}}</h3>
+    <mat-divider></mat-divider>
+    <div mat-dialog-content>
+        <form [formGroup]="ownerForm" (ngSubmit)="updateUser()">
+            <mat-form-field>
+                <input matInput  placeholder="User Name" formControlName="userName" value="{{userInfo.userName}}" />
+                <mat-error *ngIf="f.userName.errors?.required">User Name is mandatory</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="First Name" formControlName="firstName" value="{{userInfo.firstName}}" />
+                <mat-error *ngIf="f.firstName.errors?.required">First Name is mandatory</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Last Name" formControlName="lastName" value="{{userInfo.lastName}}" />
+                <mat-error *ngIf="f.lastName.errors?.required">Last Name is mandatory</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Phone" formControlName="phone" minlength="8" value="{{userInfo.phoneNumber}}" />
+                <mat-error *ngIf="f.phone.errors?.required">Phone is mandatory</mat-error>
+                <mat-error *ngIf="f.phone.errors?.minlength">Phone should be of atleast 8 digits</mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field>
+                <input matInput placeholder="Email" formControlName="email" value="{{userInfo.email}}" />
+                <mat-error *ngIf="f.email.errors?.required">Email is mandatory.</mat-error>
+                <mat-error *ngIf="f.email.errors?.email">Please enter a valid email.</mat-error>
+
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="role" multiple>
+                    <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="f.role.errors?.required">Role is mandatory.</mat-error>
+            </mat-form-field>
+        </form>
+
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button class="btn btn-primary" (click)="updateUser()" mat-button>{{'Save' }}</button>
+        <button mat-button class="btn btn-link" type="button" (click)="cancelClicked()"
+            mat-button>{{ "Cancel" }}</button>
+    </div>
+</div>

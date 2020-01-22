@@ -1,0 +1,107 @@
+<h1 matDialogTitle *ngIf="!viewButton">{{ partnerTitle | translate }}</h1>
+<h1 matDialogTitle *ngIf="viewButton">{{ "View Partner" }}</h1>
+<dz-form [formGroup]="partnerForm" (onSubmit)="savePartner()" class="edit-entity-form">
+    <div mat-dialog-content>
+   <div fxlayout="row wrap" fxLayoutGap="2%">
+  <mat-form-field fxFlex="33">
+            <input matInput [placeholder]="'Partner name' "
+                   formControlName="partnerName" required>
+            <mat-error *ngIf="partnerForm.controls['partnerName'].hasError('required')">
+                {{"validation.required" | translate   }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="33">
+            <input matInput [placeholder]="'address1' "
+                   formControlName="address1" required>
+            <mat-error *ngIf="partnerForm.controls['address1'].hasError('required')">
+                {{"validation.required" | translate   }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="33">
+            <input matInput [placeholder]="'address2' "
+                   formControlName="address2" required>
+            <mat-error *ngIf="partnerForm.controls['address2'].hasError('required')">
+                {{"validation.required" | translate   }}
+            </mat-error>
+        </mat-form-field>
+
+    </div>
+
+    <div fxlayout="row wrap" fxLayoutGap="2%">
+        <mat-form-field fxFlex="33">
+            <mat-select [placeholder]="'Country' "
+                        formControlName="countryName" required (selectionChange)="countryStateInfo($event)">
+                <mat-option *ngFor="let countryone of countryList" [value]="countryone.countryId">
+                    {{countryone.countryName }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="partnerForm.controls['countryName'].hasError('required')">
+                {{"validation.required" }}
+            </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field fxFlex="33">
+            <mat-select [placeholder]="'State'" formControlName="stateName" required>
+              <mat-option *ngFor="let state of stateList" [value]="state.stateId">
+                  {{state.stateName}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="partnerForm.controls['stateName'].hasError('required')">
+                    {{"validation.required" | translate }}
+                </mat-error>
+       </mat-form-field>
+
+
+        <mat-form-field fxFlex="33">
+            <input matInput [placeholder]="'City' "
+                   formControlName="cityName" required>
+            <mat-error *ngIf="partnerForm.controls['cityName'].hasError('required')">
+                {{"validation.required" | translate   }}
+            </mat-error>
+        </mat-form-field>
+
+    </div>
+
+    <div fxlayout="row wrap" fxLayoutGap="2%">
+        <mat-form-field fxFlex="33">
+            <input matInput [placeholder]="'Zip' "
+                   formControlName="zipCode" required>
+            <mat-error *ngIf="partnerForm.controls['zipCode'].hasError('required')">
+                {{"validation.required" | translate   }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="33">
+            <input matInput [placeholder]="'email' "
+                   formControlName="partnerEmail" pattern=".+@.+" required>
+            <mat-error *ngIf="partnerForm.controls['partnerEmail'].hasError('required')">
+                {{"validation.required" | translate  }}
+            </mat-error>
+            <mat-error *ngIf="partnerForm.controls['partnerEmail'].hasError('pattern')">
+                {{"validation.email.pattern" | translate  }}
+            </mat-error>
+            <mat-error *ngIf="partnerForm.controls['partnerEmail'].hasError('duplicate')">
+                {{"validation.email.unique" | translate  }}
+            </mat-error>
+        </mat-form-field>
+        <dz-phone-input fxFlex="33" formControlName="phoneNumber" [disabledArr]="viewButton"></dz-phone-input>
+
+    </div>
+
+
+
+        <!-- <mat-form-field>
+            <input matInput [placeholder]="'Partner CID' "
+                   formControlName="pid" required>
+            <mat-error *ngIf="partnerForm.controls['pid'].hasError('required')">
+                {{"validation.required" | translate   }}
+            </mat-error>
+        </mat-form-field> -->
+
+
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button class="btn btn-primary btn-sm" *ngIf="!viewButton">{{'save' }} </button>
+        <button mat-button class="btn btn-default btn-sm" type="button" mat-dialog-close>{{"cancel" }}</button>
+    </div>
+</dz-form>

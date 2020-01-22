@@ -1,0 +1,9 @@
+<div mat-dialog-content>
+    {{confirmationMessage }}
+</div>
+<div mat-dialog-actions align="end">
+    <button type="button" class="btn btn-danger btn-sm" [matDialogClose]="true"  mat-button>{{"ok" | translate}}
+    </button>
+    <button type="button" class="btn btn-link btn-sm" (click)="dialogRef.close()"  mat-button>{{"cancel" | translate}}
+    </button>
+</div>

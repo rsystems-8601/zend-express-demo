@@ -1,0 +1,727 @@
+<div class="container-fluid">
+        <tabset type="pills" class="predefined-filters-tabs app-list-link">
+      
+          <tab *ngIf="true" [heading]="'allTickets' | translate" (selectTab)="selectDefaultFilters()"></tab>
+      
+          <ng-container *ngIf="auth.isPortalAdmin()">
+            <tab *ngFor="let board of ticketService.BOARDS | values" [heading]="board.name | translate"
+                 (selectTab)="selectBoard(board)"></tab>
+          </ng-container>
+      
+          <tab *ngIf="true" [heading]="'ticketsISubmitted' | translate " (selectTab)="selectFilterTicketsISubmitted()"></tab>
+      
+          <tab *ngIf="authMemberReference$ | async" [heading]="'ticketsAssignedToMe' | translate"
+               (selectTab)="selectFilterTicketsAssignedToMe()"></tab>
+      
+          <tab  *ngIf="scopeOrganizationType != ORG_TYPE.CUSTOMER" [heading]="'customerHasUpdated' | translate"
+                (selectTab)="selectFilterCustomerHasUpdated()"></tab>
+      
+          <tab *ngIf="true" [heading]="'customerExperience' | translate " (selectTab)="selectFilterTicketsISubmitted()"></tab>
+          <tab *ngIf="true" [heading]="'customerPortal' | translate " (selectTab)="selectFilterTicketsISubmitted()"></tab>
+          <tab *ngIf="true" [heading]="'provisioning' | translate " (selectTab)="selectFilterTicketsISubmitted()"></tab>
+          <tab *ngIf="true" [heading]="'changeManagement' | translate " (selectTab)="selectFilterTicketsISubmitted()"></tab>
+          <tab *ngIf="true" [heading]="'clientRelation' | translate " (selectTab)="selectFilterTicketsISubmitted()"></tab>
+          <tab *ngIf="true" [heading]="'platform' | translate " (selectTab)="selectFilterTicketsISubmitted()"></tab>
+      
+          <tab  *ngIf="scopeOrganizationType == ORG_TYPE.CUSTOMER" [heading]="'supportHasUpdated' | translate"
+                (selectTab)="selectFilterSupportHasUpdated()"></tab>
+      
+        </tabset>
+        <div fxLayout="row">
+          <div class="filters-block" fxFlex="90">
+            <mat-card class="card filters-card">
+              <div class="card-body card-padding">
+                <div class="filters-container">
+                  <div *ngFor="let filter of filters; trackBy: filterTrackBy; index as filterIndex; last as lastFilter"
+                       class="filter">
+      
+                    <div class="row" fxLayout="row">
+                      <div fxFlex="40">
+                        <mat-form-field floatPlaceholder="never" class="w-100" appearance="outline">
+                          <mat-select [ngModel]="filter.field && filterOptionsByField[filter.field]"
+                                      (ngModelChange)="initFilter(filter, $event)"
+                                      [placeholder]="'addFilter' | translate">
+                            <mat-option *ngFor="let filterOption of filterOptionsByField | values"
+                                        [value]="filterOption">
+                              {{filterOption.name | translate}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+      
+                      <div class="operator" *ngIf="filter.operatorToString()" fxFlex="20">
+                        {{filter.operatorToString() | translate}}
+                      </div>
+      
+                      <div class="col-sm-10" *ngIf="filter.field && filter.operatorToString()"
+                           [ngSwitch]="filter.field" fxFlex="50">
+      
+                        <mat-form-field class="w-100" *ngSwitchCase="'supportUpdatedFlag'" appearance="outline">
+                          <mat-select [(ngModel)]="filter.value" (ngModelChange)="applyFilter(filter)">
+                            <mat-option value="false">
+                              Yes
+                            </mat-option>
+                            <mat-option value="true">
+                              No
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+      
+                        <mat-form-field class="w-100" *ngSwitchCase="'customerUpdatedFlag'" appearance="outline">
+                          <mat-select [(ngModel)]="filter.value" (ngModelChange)="applyFilter(filter)">
+                            <mat-option value="true">
+                              Yes
+                            </mat-option>
+                            <mat-option value="false">
+                              No
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+      
+                        <mat-form-field class="w-100" *ngSwitchCase="'severity'" appearance="outline">
+                          <mat-select [(ngModel)]="filter.value"
+                                      (ngModelChange)="applyFilter(filter)">
+                            <mat-option *ngFor="let severity of severityLevels | values"
+                                        [value]="severity">
+                              {{severity | translate}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="w-100" *ngSwitchCase="'impact'" appearance="outline">
+                          <mat-select [(ngModel)]="filter.value"
+                                      (ngModelChange)="applyFilter(filter)">
+                            <mat-option *ngFor="let impact of impactLevels | values"
+                                        [value]="impact">
+                              {{impact | translate}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+      
+                        <mat-form-field class="w-100" *ngSwitchCase="'priority/id'" appearance="outline">
+                          <mat-select [(ngModel)]="filter.value"
+                                      (ngModelChange)="applyFilter(filter)">
+                            <mat-option *ngFor="let priority of ticketService.priorityList"
+                                        [value]="priority.id">
+                              {{priority.name | translate}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+      
+                        <mat-form-field class="w-100" *ngSwitchCase="'type/name'" appearance="outline">
+                          <mat-select multiple
+                                      [(ngModel)]="filter.value"
+                                      (ngModelChange)="applyFilter(filter)">
+                            <mat-option *ngFor="let type of (selectedBoard?.types || allTypes)"
+                                        [value]="type">
+                              {{type | translate}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+      
+                        <mat-form-field class="w-100" *ngSwitchCase="'status'" appearance="outline">
+                          <mat-select multiple
+                                      [(ngModel)]="filter.value"
+                                      (ngModelChange)="applyFilter(filter)">
+                            <mat-option *ngFor="let status of (selectedBoard?.statuses || allStatuses)"
+                                        [value]="status">
+                              <ng-container *ngIf="selectedBoard">
+                                {{status | translate}}
+                              </ng-container>
+                              <ng-container *ngIf="!selectedBoard">
+                                {{status | translate}}
+                                ({{ticketService.getBoardByStatus(status).name | translate}})
+                              </ng-container>
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+      
+                        <dz-autocomplete *ngSwitchCase="'organizationId'"
+                                         [multiple]="true"
+                                         [searchFunction]="searchOrganizations"
+                                         [searchPlaceholder]="'nameOrCid' | translate"
+                                         [displayWith]="organizationService.organizationToString"
+                                         [(ngModel)]="filter.value"
+                                         (ngModelChange)="applyFilter(filter)"
+                                         class="w-100">
+                        </dz-autocomplete>
+      
+                        <dz-date-range-picker *ngSwitchCase="'createdDateRange'"
+                                              [(startDate)]="filter.value.start"
+                                              (startDateChange)="filterByCreationDateFrom(filter.value.start)"
+                                              [(endDate)]="filter.value.end"
+                                              (endDateChange)="filterByCreationDateTo(filter.value.end)">
+                        </dz-date-range-picker>
+      
+                        <dz-date-range-picker *ngSwitchCase="'updatedDateRange'"
+                                              [(startDate)]="filter.value.start"
+                                              (startDateChange)="filterByUpdateDateFrom(filter.value.start)"
+                                              [(endDate)]="filter.value.end"
+                                              (endDateChange)="filterByUpdateDateTo(filter.value.end)">
+                        </dz-date-range-picker>
+      
+                        <dz-autocomplete *ngSwitchCase="'resources'"
+                                         [searchFunction]="ticketService.memberReferenceSearchFunction"
+                                         [searchPlaceholder]="'search' | translate"
+                                         [displayWith]="ticketService.memberReferenceToString"
+                                         [(ngModel)]="filter.value"
+                                         (ngModelChange)="applyFilter(filter)"
+                                         class="w-100">
+                        </dz-autocomplete>
+      
+                        <ng-container *ngIf="auth.isPortalAdmin()">
+                          <mat-form-field *ngSwitchCase="'board/id'" class="w-100" appearance="outline">
+                            <mat-select [(ngModel)]="filter.value"
+                                        (ngModelChange)="applyFilter(filter)">
+                              <mat-option *ngFor="let board of ticketService.BOARDS | values"
+                                          [value]="board">
+                                {{board.name | translate}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </ng-container>
+      
+                        <mat-form-field *ngSwitchDefault appearance="outline">
+                          <input matInput [(ngModel)]="filter.value" (ngModelChange)="applyFilter(filter)"
+                                 autofocus class="w-100">
+                        </mat-form-field>
+                      </div>
+      
+                      <div *ngIf="!lastFilter" class="col-sm-2">
+                                          <span  class="close-icon m-t-10"
+                                                 (click)="clearFilter(filterIndex)">
+                                              <i class="zmdi zmdi-close"></i>
+                                              <mat-icon>close</mat-icon>
+                                      </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a class="clear-all-filters" (click)="clearAllFilters()">
+                  <mat-icon>close</mat-icon>
+                </a>
+              </div>
+            </mat-card>
+          </div>
+          <div class="tickets-actions" fxFlex="15">
+            <button class="btn btn-primary pull-right" (click)="reloadTickets()" mat-button><mat-icon>refresh</mat-icon>
+            </button>
+            <!-- *ngIf="auth.hasPermission(Permission.EDIT_TICKETS)" -->
+            <button class="btn btn-primary new-ticket-btn pull-right" (click)="createNewTicket()"
+                    mat-button
+            >
+              {{"newTicket" | translate}}
+            </button>
+          </div>
+        </div>
+      
+        <div class="container-fluid">
+          <div class=" row-no-padding tickets"  fxLayout="row"  [dzNoItems]="tickets?.length == 0 && !isShowNewTicket"
+               [noItemsMessage]="'noTicketsFound' | translate">
+            <div fxFlex="30" class="col-sm-7 listview scrollable-block" [dzNoItems]="tickets?.length == 0"
+                 [noItemsMessage]="'noTicketsFound' | translate">
+              <div *ngIf="tickets?.length > 1" class="lv-header-alt ticket-sort" id="ticket-sort-filter">
+                <div class="lvh-label">
+                  <span>{{"sortBy" | translate}}</span>
+                  <mat-form-field class="sort-block sort-select">
+                    <mat-select [(ngModel)]="sort.field" (ngModelChange)="reloadTickets()">
+                      <mat-option *ngFor="let field of sortableFields" [value]="field">
+                        {{field | translate}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <button mat-icon-button class="sort-block sort-btn" (click)="sort.reverse(); reloadTickets()">
+                    <i class="zmdi"
+                       [class.zmdi-sort-amount-asc]="sort.asc"
+                       [class.zmdi-sort-amount-desc]="sort.desc"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="lv-body ticket-list">
+                <virtual-scroller [items]="tickets" (vsUpdate)="viewPortItems = $event"
+                                  [childWidth]="424"
+                                  [childHeight]="73">
+                  <div *ngFor="let ticket of viewPortItems"
+                       class="lv-item media ticket"
+                       (click)="selectTicket(ticket)"
+                       [ngClass]="{'active': selectedTicket?.id == ticket.id, 'customer-updated': (ticket.customerUpdateBanner == true || ticket.supportUpdateBanner == true)}">
+                    <div class="ribbon-container" [style.display]="(ticket.customerUpdateBanner == true) ? 'block' : 'none'">
+                      <span>{{'customerHasUpdated' | translate}}</span>
+                    </div>
+                    <div class="ribbon-container" [style.display]="(ticket.supportUpdateBanner == true) ? 'block' : 'none'">
+                      <span>{{'supportHasUpdated' | translate}}</span>
+                    </div>
+                    <div class="media-body container-fluid">
+                      <div class="row">
+                        <div class="col-sm-4">
+                          {{ticket.id}}
+                        </div>
+                        <div class="col-sm-15 text-center">
+                          {{ticket.company.name}}
+                          <span *ngIf="ticket.contactName || ticket.contactEmailAddress">({{ticket.contactName || ticket.contactEmailAddress}})</span>
+                          <span *ngIf="ticket.type"
+                                class="nowrap">|{{ticket.type.name | translate}}|</span>
+                        </div>
+                        <div class="col-sm-5 pull-right text-right">
+                          {{ticket.dateEntered | date:'MMM d'}}
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="lv-title col-sm-24">
+                          {{ticket.summary}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </virtual-scroller>
+              </div>
+            </div>
+      
+            <div fxFlex="70" class="col-sm-17 scrollable-block">
+              <mat-tab-group [dynamicHeight]="true" [(selectedIndex)]="selectTabIndex"
+                             (selectedTabChange)="selectTab($event.index)">
+                <mat-tab *ngFor="let tab of tabs; let tabIndex = index">
+                  <ng-template mat-tab-label>
+                    <span>{{tab | translate}}</span>
+                    <button mat-icon-button class="close-tab"
+                            (click)="closeTab(tabIndex); $event.stopPropagation()" *ngIf="tabs.length > 1">
+                      <i class="zmdi zmdi-close"></i>
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </ng-template>
+      
+                  <div *ngIf="isShowNewTicket" class="container">
+                    <dz-form
+                      (onSubmit)="showUserSelectForContactOnTicketNew ? verifyContactOnSaveTicket() : saveTicket()">
+                      <div class="row m-t-30">
+                        <mat-form-field class="col-sm-24">
+                          <input matInput [(ngModel)]="newTicket.summary"
+                                 [placeholder]="'enterTicketSummary' | translate"
+                                 name="summary" required autofocus>
+                        </mat-form-field>
+                      </div>
+                      <div class="row m-t-10" *ngIf="!auth.isOrganizationAdmin() && !auth.isUserRole()">
+                        <dz-autocomplete class="col-sm-24"
+                                         [placeholder]="'organization' | translate"
+                                         [searchFunction]="searchOrganizations"
+                                         [searchPlaceholder]="'nameOrCid' | translate"
+                                         [displayWith]="organizationService.organizationToString"
+                                         [(ngModel)]="newTicketOrganization">
+                        </dz-autocomplete>
+                      </div>
+                      <div class="row m-t-15">
+                        <dz-autocomplete class="col-sm-24"
+                                         [multiple]="true"
+                                         [placeholder]="'sendEmailNotificationsToAdditionalUsers' | translate"
+                                         [searchPlaceholder]="'search' | translate"
+                                         [searchFunction]="userService.userSearchFunction"
+                                         [displayWith]="userService.userToString"
+                                         ngModel (ngModelChange)="selectCcEmails($event)"
+                                         name="ccEmails">
+                        </dz-autocomplete>
+                      </div>
+                      <div class="form-group m-t-30"
+                           [ngClass]="{'has-error': formService.hasControlError(description)}">
+                          <div class="fg-line">
+                            <mat-form-field>
+                                <textarea matInput class="form-control" rows="5"
+                                        #description="ngModel" name="description"
+                                        [(ngModel)]="newTicket.detailDescription"
+                                        placeholder="{{'enterTicketDescription' | translate}}">
+                                </textarea>
+                            </mat-form-field>
+                          </div>
+                      </div>
+                      <div class="row" *ngIf="auth.isPortalAdmin()">
+                        <mat-form-field class="col-sm-24">
+                          <mat-select [placeholder]="'board' | translate"
+                                      [(ngModel)]="newTicketBoard"
+                                      name="board" required>
+                            <mat-option
+                              *ngFor="let board of ticketService.BOARDS | values" [value]="board">
+                              {{board.name | translate}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="row">
+                        <dz-ticket-severity [placeholder]="'impactUrgancy' | translate"
+                                            [(severity)]="newTicket.severity" [(impact)]="newTicket.impact" [required]="true"></dz-ticket-severity>
+                      </div>
+                      <div class="row m-t-10">
+                        <mat-form-field class="col-sm-24">
+                          <mat-select [(ngModel)]="newTicket.type"
+                                      [placeholder]="'type' | translate"
+                                      name="type" required>
+                            <mat-option *ngFor="let type of newTicketBoard.types" [value]="type">
+                              {{type | translate}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="row m-t-10" *ngIf="auth.isPortalAdmin()">
+                        <dz-autocomplete class="col-sm-20"
+                                         *ngIf="showUserSelectForContactOnTicketNew"
+                                         [placeholder]="'contact' | translate"
+                                         [searchPlaceholder]="'search' | translate"
+                                         [searchFunction]="userService.userSearchFunction"
+                                         [displayWith]="userService.userToString"
+                                         [(ngModel)]="newTicketContact"
+                                         (ngModelChange)="setNewTicketOrganization($event?.organization)"
+                                         name="contact">
+                        </dz-autocomplete>
+      
+                        <mat-form-field class="col-sm-20" *ngIf="!showUserSelectForContactOnTicketNew">
+                          <input matInput class="w-100" [placeholder]="'contact' | translate"
+                                 [(ngModel)]="newTicketContact.email" pattern=".+@.+">
+                        </mat-form-field>
+      
+                        <div class="col-sm-4">
+                          <mat-button-toggle-group
+                            (change)="showUserSelectForContactOnTicketNew = !showUserSelectForContactOnTicketNew"
+                            class="contact-type">
+                            <mat-button-toggle [checked]="showUserSelectForContactOnTicketNew"
+                                               value="user">
+                              {{'portalUser' | translate}}
+                            </mat-button-toggle>
+                            <mat-button-toggle [checked]="!showUserSelectForContactOnTicketNew"
+                                               value="email">
+                              {{'email' | translate}}
+                            </mat-button-toggle>
+                          </mat-button-toggle-group>
+                        </div>
+                      </div>
+                      <div class="row m-t-10" *ngIf="!auth.isOrganizationAdmin() && !auth.isUserRole()">
+                        <dz-autocomplete class="col-sm-24"
+                                         [placeholder]="'organization' | translate"
+                                         [searchFunction]="searchOrganizations"
+                                         [searchPlaceholder]="'nameOrCid' | translate"
+                                         [displayWith]="organizationService.organizationToString"
+                                         [(ngModel)]="newTicketOrganization">
+                        </dz-autocomplete>
+                      </div>
+                      <div class="row m-t-15">
+                        <dz-autocomplete class="col-sm-24"
+                                         [multiple]="true"
+                                         [placeholder]="'sendEmailNotificationsToAdditionalUsers' | translate"
+                                         [searchPlaceholder]="'search' | translate"
+                                         [searchFunction]="userService.userSearchFunction"
+                                         [displayWith]="userService.userToString"
+                                         ngModel (ngModelChange)="selectCcEmails($event)"
+                                         name="ccEmails">
+                        </dz-autocomplete>
+                      </div>
+                      <div class="form-group m-t-30"
+                           [ngClass]="{'has-error': formService.hasControlError(description)}">
+                        <div class="fg-line">
+                          <mat-form-field>
+                                          <textarea matInput class="form-control" rows="5"
+                                                    #description="ngModel" name="description"
+                                                    [(ngModel)]="newTicket.detailDescription"
+                                                    placeholder="{{'enterTicketDescription' | translate}}"></textarea>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="fileinput marginT10 marginB10">
+                                          <span class="btn btn-primary btn-file m-r-10">
+                                              <!-- <span class="fileinput-new"> {{"selectFiles" | translate}}</span> -->
+                                              <input class="file-upload hide" type="file" multiple
+                                                     (change)="selectAttachmentFiles($event.target.files)" id="batchFileInput" style="display:none">
+                                                     <label for="batchFileInput" class="fS-width mat-button btn btn-primary" mat-button> {{"selectFiles" | translate}} </label>
+                                          </span>
+                        <div *ngFor="let file of files; let i = index">
+                          <span class="fileinput-filename">{{file.name}}</span>
+                          <a class="close fileinput-exists" (click)="cancelFile(i)" mat-button>&times;</a>
+                        </div>
+                      </div>
+                      <div>
+                        <button class="btn btn-primary" mat-button>
+                          {{"submit" | translate}}
+                        </button>
+                        <button class="btn btn-default" type="button" (click)="isShowNewTicket = false" mat-button>
+                          {{"cancel" | translate}}
+                        </button>
+                      </div>
+                    </dz-form>
+                  </div>
+      
+                  <div *ngIf="!isShowNewTicket && selectedTicket?.details">
+                    <div class="t-view">
+                      <div class="tv-body">
+                        <div class="ticket-header">{{selectedTicket.summary}}</div>
+                        <mat-accordion [multi]="true">
+                          <mat-expansion-panel [expanded]="true">
+                            <mat-expansion-panel-header>
+                              <mat-panel-title>
+                                {{'ticketDetails' | translate}}
+                              </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <dl class="dl-horizontal ticket-general-info">
+                              <dt>{{"id" | translate}}</dt>
+                              <dd><span class="value">{{selectedTicket.id}}</span></dd>
+      
+                              <ng-container *ngIf="auth.isPortalAdmin()">
+                                <dt>{{"board" | translate}}</dt>
+                                <dd>
+                                  <dz-click-to-edit
+                                    [value]="selectedTicket.board.name"
+                                    [readOnly]="!isTicketEditable(selectedTicket)">
+                                    <mat-form-field *dzClickToEditContent class="value-editor">
+                                      <mat-select [ngModel]="selectedTicket.board.name"
+                                                  (ngModelChange)="changeBoard(selectedTicket, $event)">
+                                        <mat-option
+                                          *ngFor="let board of ticketService.BOARDS | values"
+                                          [value]="board.name">
+                                          {{board.name | translate}}
+                                        </mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                  </dz-click-to-edit>
+                                </dd>
+                              </ng-container>
+      
+                              <dt>{{"organization" | translate}}</dt>
+                              <dd>
+                                <dz-click-to-edit
+                                  [value]="selectedTicket.details.portalOrganization?.name || selectedTicket.company.name"
+                                  [readOnly]="!auth.isPortalAdmin() || !isTicketEditable(selectedTicket)"
+                                  (onUpdate)="ticketChanged = true">
+                                  <dz-autocomplete
+                                    *dzClickToEditContent
+                                    class="value-editor"
+                                    [searchFunction]="searchOrganizations"
+                                    [searchPlaceholder]="'nameOrCid' | translate"
+                                    [displayWith]="organizationService.organizationToString"
+                                    [(ngModel)]="selectedTicket.details.portalOrganization">
+                                  </dz-autocomplete>
+                                </dz-click-to-edit>
+                              </dd>
+      
+                              <dt>{{"contact" | translate}}</dt>
+                              <dd class="assignment">
+                                <dz-click-to-edit [value]="getContactName()"
+                                                  [readOnly]="!isTicketEditable(selectedTicket)"
+                                                  [compareWith]="compareUsersFn"
+                                                  (onUpdate)="changeContact(selectedTicket, $event)">
+                                  <ng-container *dzClickToEditContent>
+                                    <dz-autocomplete class="value-editor select-user"
+                                                     *ngIf="showUserSelectForContactOnTicketEdit"
+                                                     [searchFunction]="userService.userSearchFunction"
+                                                     [searchPlaceholder]="'search' | translate"
+                                                     [displayWith]="userService.userToString"
+                                                     [ngModel]="selectedTicket.details.portalUser">
+                                    </dz-autocomplete>
+      
+                                    <mat-form-field class="value-editor select-user"
+                                                    *ngIf="!showUserSelectForContactOnTicketEdit">
+                                      <input matInput class="w-100"
+                                             [ngModel]="getContactEmail()"
+                                             pattern=".+@.+">
+                                    </mat-form-field>
+      
+                                    <mat-button-toggle-group
+                                      (change)="showUserSelectForContactOnTicketEdit = !showUserSelectForContactOnTicketEdit"
+                                      class="contact-type">
+                                      <mat-button-toggle
+                                        [checked]="showUserSelectForContactOnTicketEdit"
+                                        value="user">
+                                        {{"portalUser" | translate}}
+                                      </mat-button-toggle>
+                                      <mat-button-toggle
+                                        [checked]="!showUserSelectForContactOnTicketEdit"
+                                        value="email">
+                                        {{"email" | translate}}
+                                      </mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                    <!-- TODO uncomment this code <button mat-button
+                                            (click)="selectedTicket.details.portalUser = authUser">
+                                      {{"assignToMe" | translate}}
+                                    </button> -->
+                                  </ng-container>
+                                </dz-click-to-edit>
+                              </dd>
+      
+                              <dt>{{"ccEmails" | translate}}</dt>
+                              <dd>
+                                <dz-click-to-edit
+                                  [value]="selectedTicket.details.ccEmails.join(', ')"
+                                  [readOnly]="!isTicketEditable(selectedTicket)"
+                                  (onUpdate)="changeCcEmail(selectedTicket, $event)">
+                                  <div *dzClickToEditContent
+                                       class="value-editor"
+                                       [ngClass]="{'has-error': formService.hasControlError(ccEmails)}">
+                                    <div class="fg-line">
+                                                              <textarea class="form-control" rows="5"
+                                                                        placeholder="{{'emailsShouldBeSeparatedByCommas' | translate}}"
+                                                                        #ccEmails="ngModel" name="ccEmails"
+                                                                        [ngModel]="selectedTicket.details.ccEmails.join(', ')"
+                                                                        ccEmails></textarea>
+                                    </div>
+                                  </div>
+                                </dz-click-to-edit>
+                              </dd>
+      
+                              <dt>{{"status" | translate}}</dt>
+                              <dd>
+                                <dz-click-to-edit [value]="selectedTicket.status?.name"
+                                                  [readOnly]="!auth.isPortalAdmin() || !isTicketEditable(selectedTicket)">
+                                  <mat-form-field *dzClickToEditContent class="value-editor">
+                                    <mat-select [ngModel]="selectedTicket.status?.name"
+                                                (ngModelChange)="changeStatus(selectedTicket, $event)">
+                                      <mat-option
+                                        *ngFor="let status of ticketService.BOARDS[selectedTicket.board.name].statuses"
+                                        [value]="status">
+                                        {{status | translate}}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </dz-click-to-edit>
+                              </dd>
+      
+                              <dt>{{"type" | translate}}</dt>
+                              <dd>
+                                <dz-click-to-edit [value]="selectedTicket.type?.name"
+                                                  [readOnly]="!isTicketEditable(selectedTicket)">
+                                  <mat-form-field *dzClickToEditContent class="value-editor">
+                                    <mat-select [ngModel]="selectedTicket.type?.name"
+                                                (ngModelChange)="changeType(selectedTicket, $event)">
+                                      <mat-option
+                                        *ngFor="let type of ticketService.BOARDS[selectedTicket.board.name].types"
+                                        [value]="type">
+                                        {{type | translate}}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </dz-click-to-edit>
+                              </dd>
+      
+                              <dt>{{"impactUrgancy" | translate}}</dt>
+                              <dd>
+                                <dz-click-to-edit [value]="impactUrgencyTranslation(selectedTicket.impact, selectedTicket.severity)"
+                                                  [readOnly]="!isTicketEditable(selectedTicket)">
+                                  <ng-container *dzClickToEditContent class="value-editor">
+                                    <dz-ticket-severity [(severity)]="selectedTicket.severity"
+                                                        [(impact)]="selectedTicket.impact"  [showPriority]="false"
+                                                        (severityChange)="changeSeverity(selectedTicket, $event)" (impactChange)="changeImpact(selectedTicket, $event)">
+                                    </dz-ticket-severity>
+                                  </ng-container>
+      
+                                </dz-click-to-edit>
+                              </dd>
+                              <dt>{{"priority" | translate}}</dt>
+                              <dd>
+                                <span class="value">{{ selectedTicket.priority["name"] }}</span>
+                              </dd>
+      
+                              <dt>{{"assignedTo" | translate}}</dt>
+                              <dd class="assignment">
+                                <dz-click-to-edit [value]="getAssignedMemberNames(selectedTicket)"
+                                                  [readOnly]="!auth.isPortalAdmin() || !isTicketEditable(selectedTicket)"
+                                                  (onUpdate)="assignMembers(selectedTicket, selectedTicket.details.assignedMembers)">
+                                  <ng-container *dzClickToEditContent>
+                                    <dz-autocomplete class="value-editor select-user"
+                                                     [multiple]="true"
+                                                     [searchFunction]="ticketService.memberReferenceSearchFunction"
+                                                     [searchPlaceholder]="'search' | translate"
+                                                     [displayWith]="ticketService.memberReferenceToString"
+                                                     [(ngModel)]="selectedTicket.details.assignedMembers">
+                                    </dz-autocomplete>
+                                    <button mat-button *ngIf="authMemberReference$ | async"
+                                            (click)="assignMeAsResource()">
+                                      {{"assignToMe" | translate}}
+                                    </button>
+                                  </ng-container>
+                                </dz-click-to-edit>
+                              </dd>
+      
+                              <dt>{{"created" | translate}}</dt>
+                              <dd><span
+                                class="value">{{selectedTicket.dateEntered | date:'short'}}</span>
+                              </dd>
+      
+                              <dt>{{"updated" | translate}}</dt>
+                              <dd><span
+                                class="value">{{selectedTicket._info.lastUpdated | date:'short'}}</span>
+                              </dd>
+                            </dl>
+      
+                            <div class="ticket-text"
+                                 [innerHtml]="selectedTicket.details.description | linkify | safeHtml"></div>
+                          </mat-expansion-panel>
+      
+      
+                          <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                              {{'attachments' | translate}}
+                            </mat-expansion-panel-header>
+      
+                            <ul class="tvb-stats" *ngIf="selectedTicket.details.attachments.length">
+                              <li *ngFor="let attachment of selectedTicket.details.attachments"
+                                  class="tvbs-likes">
+                                <a (click)="getAttachment(attachment)">{{attachment.fileName}}</a>
+                              </li>
+                            </ul>
+                            <div class="btn-group dropdown" *ngIf="isTicketEditable(selectedTicket)">
+                              <button class="btn btn-primary btn-file">
+                                <span>{{"attachFile" | translate}}</span>
+                                <input type="file"
+                                       (change)="attachFile($event.target, selectedTicket.id)">
+                              </button>
+                            </div>
+                          </mat-expansion-panel>
+      
+                          <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                              {{'ticketUpdates' | translate}}
+                            </mat-expansion-panel-header>
+                            <div class="tv-comments m-t-20">
+                              <tabset *ngIf="auth.isPortalAdmin()">
+                                <tab *ngFor="let type of commentsByType | keys"
+                                     [heading]="type | translate"
+                                     (selectTab)="selectCommentType(type, $event)">
+      
+                                  <dz-ticket-comments
+                                    [comments]="commentsByType[type](selectedTicket.details.comments)"
+                                    [showCommentForm]="isTicketEditable(selectedTicket)"
+                                    [commentFormValues]="ticketNoteFormValues"
+                                    [status]="selectedTicket.status.name"
+                                    [board]="ticketService.BOARDS[selectedTicket.board.name]"
+                                    [ticketId]="selectedTicket.id"
+                                    (postComment)="postNote(selectedTicket, $event)"></dz-ticket-comments>
+                                </tab>
+                              </tabset>
+                              <dz-ticket-comments *ngIf="!auth.isPortalAdmin()"
+                                                  [comments]="selectedTicket.details.comments"
+                                                  [showCommentForm]="isTicketEditable(selectedTicket)"
+                                                  [commentFormValues]="ticketNoteFormValues"
+                                                  (postComment)="postNote(selectedTicket, $event)"></dz-ticket-comments>
+                            </div>
+                          </mat-expansion-panel>
+                        </mat-accordion>
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab>
+                <mat-tab label="+"></mat-tab>
+              </mat-tab-group>
+            </div>
+      
+          </div>
+        </div>
+      
+      </div>
+      
+      <span style="display: none;">
+      <dz-helpdesk-contact-verifyer #saveTicketContactVerifier (persist)="saveTicket($event)"></dz-helpdesk-contact-verifyer>
+      <dz-helpdesk-contact-verifyer #changeContactVerifier [offerDefaultContact]="false"></dz-helpdesk-contact-verifyer>
+      </span>
+      <mat-toolbar class="bottom-toolbar" *ngIf="ticketChanged">
+        <span>{{"youMadeChangesToTicket" | translate}}</span>
+        <span class="flex-spacer"></span>
+        <button class="btn btn-primary bgm-lightgreen" (click)="submitTicketChangesAndReload()">
+          {{"submit" | translate}}
+        </button>
+        <button class="btn btn-cancel m-l-15" (click)="cancelTicketChanges()">
+          {{"cancel" | translate}}
+        </button>
+      </mat-toolbar>
+      

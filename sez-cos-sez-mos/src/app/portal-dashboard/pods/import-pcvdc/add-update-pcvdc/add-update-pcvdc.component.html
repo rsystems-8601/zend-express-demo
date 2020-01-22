@@ -1,0 +1,213 @@
+<div class="">
+    <mat-card-title class="flex m-l-20 m-r-20">
+        <h3>{{ "Import PCVDC" }}</h3>
+    </mat-card-title>       
+ </div>
+
+<div class="container"> 
+ <mat-horizontal-stepper linear #stepper>
+        <mat-step [stepControl]="ft" errorMessage="PCVDC Virtual Machines">
+         <div>&nbsp;&nbsp;</div>
+          <form [formGroup]="ft">
+            <ng-template matStepLabel>PCVDC Virtual Machines</ng-template>
+            <ul>
+              <li style="display: none;">
+                  <mat-form-field appearance="outline">
+                      <input matInput  formControlName="product" [value]="72">
+                   </mat-form-field>
+              </li>
+                <div class="addmore1">
+                    <div class="addmoreBtn1">
+                        
+                      <span (click)="addPcvdc()">Add More</span><i class="material-icons addcircle" (click)="addPcvdc()">add_circle</i>
+                    </div>
+                  </div>
+                <li> 
+                      <div formArrayName="pcvdcvms" *ngFor="let a of getControlsforpcvdc(); let i = index">
+                          <div [formGroupName]="i">
+                              <mat-form-field appearance="outline" style="width:400px !important;">
+                                  <mat-label>Virtual Machine Name </mat-label>
+                                   <mat-select [placeholder]="'Virtual Machine Name'" formControlName="virtualMachineName" >
+                                    <mat-option *ngFor="let item of vmListArray" [value]="item.id">
+                                        {{ item.virtualMachineName }}
+                                    </mat-option>
+                                  </mat-select>
+                                  
+                                      <!-- <mat-error *ngIf="getControlsforpcvdc().controls[i].virtualMachineName.invalid">
+                                          {{"validation.required" | translate  }}
+                                      </mat-error>  -->
+                                  
+                                  
+                             </mat-form-field>&nbsp;
+                              
+                             <mat-form-field appearance="outline" style="width:400px !important;">
+                                <mat-label>PCVDC Component</mat-label>
+                                 <mat-select [placeholder]="'PCVDC Component'" formControlName="lookupName">
+                                  <mat-option *ngFor="let item of pcvdcListArray" [value]="item.lookupId">
+                                      {{ item.lookupName }}
+                                  </mat-option>
+                                </mat-select> 
+                                
+                                    <!-- <mat-error *ngIf="getControlsforpcvdc().controls[i].lookupName.invalid">
+                                        {{ "validation.required" | translate  }}
+                                    </mat-error>  -->
+                               
+                                
+                           </mat-form-field>
+                          </div>
+                          <div class="addmore">
+                            <div class="addmoreBtn">
+                                <span (click)="removePcvdc(i)"><i class="material-icons">remove_circle </i></span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <!-- <button (click)="saveItems()">Save</button> -->
+                 
+            </li>  
+
+            <li>
+                <mat-form-field appearance="outline"> 
+                    <mat-label>Hardware Cluster</mat-label>
+                    <mat-select formControlName="hwCluster" class="vlanselect" [placeholder]="'Hardware Cluster' " required>
+                        <mat-option *ngFor="let hardwareclusterValue of hardwareclusterList" [value]="hardwareclusterValue.id">
+                            {{ hardwareclusterValue.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="ft.controls['hwCluster'].hasError('required')">
+                        {{"validation.required" | translate  }}
+                    </mat-error> 
+                </mat-form-field>
+            </li>
+
+            <li>
+                <mat-form-field appearance="outline"> 
+                    <mat-label>VRRP Group</mat-label>
+                    <mat-select formControlName="vrrpGroupSynName" class="vlanselect" [placeholder]="'VRRP Group' " required>
+                        <mat-option *ngFor="let vrrpgroupValue of vrrpgroupList" [value]="vrrpgroupValue.vrrpGroupId">
+                            {{ vrrpgroupValue.vrrpgroupIdString }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="ft.controls['vrrpGroupSynName'].hasError('required')">
+                        {{"validation.required" | translate  }}
+                    </mat-error> 
+                </mat-form-field>
+            </li>
+        
+         </ul>
+            <div>
+              <button  matStepperNext class="btn-primary" mat-button>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="sd" errorMessage="Public Ips">
+                <form [formGroup]="sd">
+                  <ng-template matStepLabel>Public Ips</ng-template>
+
+                  public IPS
+                  <!-- <ul>
+                    <li>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Customer Name</mat-label>
+                    <input type="text" placeholder="Customer Name" matInput formControlName="customerName" (change)="onBlur($event)" required
+                        [formControl]="searchCustomer" [matAutocomplete]="auto">
+                        <span class="search_icon"><i class="material-icons">search</i></span>
+                    <mat-autocomplete #auto="matAutocomplete">
+                            
+                        <mat-option *ngFor="let cust of customerList" [value]="cust.custName" (onSelectionChange)="selectCustomer(cust.custId, cust.custName)" >
+                            {{cust.custName}}
+                        </mat-option>
+                    </mat-autocomplete>
+                   <mat-error *ngIf="sd.controls['customerName'].hasError('required')">
+                        {{"validation.required"  }}
+                    </mat-error> 
+                </mat-form-field>
+                    </li>
+                    <li>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Customer CID</mat-label>
+                        <input matInput [placeholder]="'Customer CID' " formControlName="customerId" required readonly>
+                        </mat-form-field>
+                    </li>
+                  </ul> -->
+                  <div>
+                        <button mat-button matStepperPrevious class="btn-primary" mat-button>Back</button>&nbsp;&nbsp;
+                    <button mat-button matStepperNext class="btn-primary" mat-button>Next</button>
+                  </div>
+                  <!-- <button (click)="saveTest()">Test Save</button> -->
+                </form>
+              </mat-step>
+
+            <mat-step [stepControl]="th" errorMessage="Customer Assignment">
+                <form [formGroup]="th">
+                    <ng-template matStepLabel>Customer Assignment</ng-template>
+                    <ul>
+                      <li>
+                        <mat-form-field appearance="outline">
+                          <mat-label>Customer Name</mat-label>
+                      <input type="text" placeholder="Customer Name" matInput formControlName="customerName" (change)="onBlur($event)" required
+                          [formControl]="searchCustomer" [matAutocomplete]="auto">
+                          <span class="search_icon"><i class="material-icons">search</i></span>
+                      <mat-autocomplete #auto="matAutocomplete">
+                              
+                          <mat-option *ngFor="let cust of customerList" [value]="cust.custName" (onSelectionChange)="selectCustomer(cust.custCID, cust.custName)" >
+                              {{cust.custName}}
+                          </mat-option>
+                      </mat-autocomplete>
+                      
+                  </mat-form-field>
+                      </li>
+                      <li>
+                        <mat-form-field appearance="outline">
+                          <mat-label>Customer CID</mat-label>
+                          <input matInput [placeholder]="'Customer CID' " formControlName="custCID" required readonly>
+                          </mat-form-field>
+                      </li>
+                    </ul>
+                    <div>
+                     <button  matStepperPrevious class="btn-primary" mat-button>Back</button>&nbsp;&nbsp;
+                    <button  matStepperNext class="btn-primary" mat-button>Next</button>
+                    </div>
+                </form>
+                </mat-step>
+
+        <mat-step [stepControl]="fr" errorMessage="Review">
+          <form [formGroup]="fr">
+            <ng-template matStepLabel>Review</ng-template>
+            <ul>
+                    
+               
+
+            </ul>
+            <div>&nbsp;</div>
+            <!-- <div>
+              <button mat-button matStepperPrevious class="customBtn">Back</button>&nbsp;&nbsp;
+              <button mat-button matStepperNext class="customBtn">Next</button>
+            </div> -->
+                 <div class="buttons">
+                    <button mat-button matStepperPrevious class="btn-primary" mat-button>Back</button>&nbsp;&nbsp;
+                    <button  type="button" (click)="saveHardwareData()"  mat-raised-button disabled>{{ 'Save' }}</button>
+                        <!-- <button mat-button (click)="stepper.reset()" class="customBtn">Reset</button> -->
+                  </div>
+          </form>
+        </mat-step>
+
+        <!-- <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <h3 class="mattitle">{{"You are now done."}}</h3>
+          
+          
+        </mat-step> -->
+      </mat-horizontal-stepper>
+</div>
+
+
+
+
+
+ 
+
+
+
+ 

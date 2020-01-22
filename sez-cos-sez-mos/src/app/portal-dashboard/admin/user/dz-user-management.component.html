@@ -1,0 +1,17 @@
+<app-data-table 
+    [tableData]="tableData" 
+    [columnHeader]="columns" 
+    [dataDialog]="editDialogComponent" 
+    [deleteDialog] = "deleteDialog"
+    [titleComponent]="titleComponent" 
+    [pageLength]="pageLength"
+    [pageSize]="pageSize"
+    [exportButton]="false"
+    [editButton]="true"
+    [hasDelete]="true"
+    (pageChanged)= "pageChanged($event)"
+    (deleteEvent)="userDeleteTrigger($event)"
+    (searchValues)="searchValues($event)"
+    >
+</app-data-table>
+      

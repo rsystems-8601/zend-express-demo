@@ -1,0 +1,89 @@
+<h3 matDialogTitle>{{ Title }}</h3>
+<form [formGroup]="virtualMachinesForm"  class="edit-entity-form">
+    <div mat-dialog-content fxLayout="row wrap" fxLayoutGap="2%" fxLayoutAlign="left"  class="form-wraper">
+            <mat-form-field appearance="outline" fxFlex="31">
+                    <mat-label> Virtual Machine Name </mat-label>
+            <input matInput [placeholder]="'Virtual Machine Name' "
+                   formControlName="virtualMachineName" required>
+
+            <mat-error *ngIf="virtualMachinesForm.controls['virtualMachineName'].hasError('required')">
+                {{"validation.required"}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="31">
+                <mat-label>Virtual OS Version</mat-label>
+            <input matInput [placeholder]="'Virtual OS Version' "
+                   formControlName="osVersion" required>
+
+            <mat-error *ngIf="virtualMachinesForm.controls['osVersion'].hasError('required')">
+                {{"validation.required"  }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="31">
+                <mat-label>Virtual IP Address</mat-label>
+            <input matInput [placeholder]="'Virtual IP Address' "
+                   formControlName="ipAddress" required>
+
+            <mat-error *ngIf="virtualMachinesForm.controls['ipAddress'].hasError('required')">
+                {{"validation.required"  }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="31">
+                <mat-label>Virtual Network</mat-label>
+            <input matInput [placeholder]="'Virtual Network' "
+                   formControlName="virtualNetwork" required>
+
+            <mat-error *ngIf="virtualMachinesForm.controls['virtualNetwork'].hasError('required')">
+                {{"validation.required"  }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="31">
+                <mat-label>CPU</mat-label>
+            <input matInput [placeholder]="'CPU' "
+                   formControlName="cpu" required>
+
+            <mat-error *ngIf="virtualMachinesForm.controls['cpu'].hasError('required')">
+                {{"validation.required"  }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="31">
+                <mat-label>Virtual RAM</mat-label>
+            <input matInput [placeholder]="'Virtual RAM' "
+                   formControlName="ram" required>
+
+            <mat-error *ngIf="virtualMachinesForm.controls['ram'].hasError('required')">
+                {{"validation.required"  }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="31">
+                <mat-label>Virtual Storage</mat-label>
+            <input matInput [placeholder]="'Virtual Storage' "
+                   formControlName="storage" required>
+
+            <mat-error *ngIf="virtualMachinesForm.controls['storage'].hasError('required')">
+                {{"validation.required"  }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="31">
+                <mat-label>Customer Name</mat-label>
+                <!-- (onSelectionChange)="selectCustomer($event)" -->
+            <input matInput [placeholder]="'Customer Name' "
+                   formControlName="customerName"   [matAutocomplete]="auto" required>
+                   <i class="material-icons">search</i>
+                   <mat-autocomplete #auto="matAutocomplete">
+                       <mat-option *ngFor="let user of filteredUsers | async" [value]="user.custName">{{ user.custName }}</mat-option>
+                   </mat-autocomplete>
+
+            <mat-error *ngIf="virtualMachinesForm.controls['customerName'].hasError('required')">
+                {{"validation.required"  }}
+            </mat-error>
+        </mat-form-field>
+        <div fxFlex="31"></div>
+        <div fxFlex="31"></div>
+        <div fxFlex="31"></div>
+    </div>
+    <div mat-dialog-actions>
+        <button class="btn-primary" type="button" (click)="saveVirtualmachine()" [disabled]="!virtualMachinesForm.valid"  mat-button>{{'Update' }}</button>
+        <button class="btn btn-link btn-sm" type="button" mat-dialog-close  mat-button>{{"cancel" }}</button>
+    </div>
+</form>

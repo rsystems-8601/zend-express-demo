@@ -1,0 +1,54 @@
+<mat-card>
+        <mat-card-title class="flex m-l-20 m-r-20">
+                <h2>{{ titleComponent | translate}}</h2>
+        </mat-card-title>
+
+        <mat-card-content>
+                <form [formGroup]="formGroup"  class="form">
+                    <div  class="email_template_type">
+                            <mat-form-field class="form-element">
+                                    <mat-select [placeholder]="'Select Email Template' "
+                                      formControlName="name" required  (selectionChange)="emailTemplateselect($event)">
+                                      <mat-option  [value]="">{{"Select"}}</mat-option>
+                                      <mat-option *ngFor="let countryone of emailtemplatename" [value]="countryone.id">{{countryone.name}}</mat-option>
+                                      </mat-select>
+                                     <mat-error *ngIf="!name.valid && name.touched">{{ titleAlert }}</mat-error>
+                                  </mat-form-field>
+                                </div>
+
+         <!--Subject and Email Template body-->
+        <div *ngIf="emailStatus;else other_content"  class="content_email">
+            <div fxLayout="column" fxLayoutGap="32px">
+                    <mat-label>Subject</mat-label>
+                    <ng-container *ngFor="let emailsubjecteach of emailSubject;let i = index">
+                         <div style="width:350px;float: left;">
+                        <mat-form-field *ngIf="emailSubject && emailsubjecteach.isEditable==true; else other_field">
+                                <input  matInput
+                                    [placeholder]="emailsubjecteach.text"
+                                formControlName="subject{{i}}" required>
+                            <mat-error *ngIf="formGroup.controls['subject'+i].hasError('required')">{{"Required" }}</mat-error>
+                        </mat-form-field>
+                        <ng-template #other_field>
+                          <span class="diabled_text1"> {{emailsubjecteach.text}} </span>
+                        </ng-template>
+                    </div>
+                    </ng-container>
+            </div>
+            <mat-label>Notes</mat-label>
+                <mat-form-field style="width:100%">
+                <input matInput [placeholder]="" style="display: none;">
+                    <ck-editor  formControlName="emailbody" [config]="{ 'forceEnterMode': true, 'height': 480 }"  skin="moono-lisa" [fullPage]="true" [(ngModel)]="templateBodytext" language="en"></ck-editor>
+                    <mat-error *ngIf="formGroup.controls['emailbody'].hasError('required')">{{"Required" }}</mat-error>
+                </mat-form-field>
+            </div>
+
+                <ng-template #other_content></ng-template>
+                  <div mat-dialog-actions>
+                        <button mat-button class="btn btn-primary" type="button" (click)="saveCategory()" [disabled]="!formGroup.valid">{{'Update' }}</button>
+                        <button mat-button class="btn btn-default" type="button">{{"Reset" }}</button>
+                    </div>
+                </form>
+              </mat-card-content>
+  </mat-card>
+
+

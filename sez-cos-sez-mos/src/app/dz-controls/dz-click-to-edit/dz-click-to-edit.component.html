@@ -1,0 +1,7 @@
+<span *ngIf="!isEditState" (click)="switchToEditableState()"
+      class="value"
+      [class.editable-value]="!readOnly"
+      [class.empty-editable-value]="!readOnly && !value">{{value | translate}}</span>
+<span tabindex="0">
+    <ng-content></ng-content>
+</span>

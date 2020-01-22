@@ -1,0 +1,40 @@
+<mat-card>
+   <mat-card-title class="flex m-l-20 m-r-20">
+        <h3>{{ 'New Provisioning Request' }}</h3>
+    </mat-card-title>
+ 
+<div class="container">
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step>
+      <app-step1-customer-info>
+        <ng-template matStepLabel>Customer Information</ng-template>
+        <h2>Customer Information</h2>
+      </app-step1-customer-info>
+    </mat-step>
+    <mat-step>
+      <app-step2-new-order>
+        <ng-template matStepLabel>New Order</ng-template>
+      </app-step2-new-order>
+    </mat-step>
+    <mat-step>
+      <app-step3-contract-info>
+        <ng-template matStepLabel>Contract Information</ng-template>
+      </app-step3-contract-info>
+    </mat-step>
+    <mat-step>
+      <app-step4-dizzion-deliverable-form>
+        <ng-template matStepLabel>Dizzion Deliverable Form</ng-template>
+      </app-step4-dizzion-deliverable-form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+</mat-card>   
+
+
+
+
+
+
+
+
+

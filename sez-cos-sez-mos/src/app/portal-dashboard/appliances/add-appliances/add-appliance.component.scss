@@ -1,0 +1,163 @@
+.mat-card-title h3 {
+    font-size: 22px;
+    padding: 20px 0 5px 36px;
+    /* border-bottom: 1px solid; */
+    width: auto;
+    font-weight: 100;
+}
+
+.card-details {
+    width: auto;
+    margin: 0 auto 0 34px;
+}
+
+
+
+.mat-form-field {
+    width: 51%;
+  }
+
+.masterconfig { padding: 20px 20px 30px 30px;background: #fff;width: 1100px;position: relative;display: block;left: 30px;border: 1px solid #ddd;
+margin: 0 auto; }
+.podvarstable {
+    padding: 10px;
+    margin: 0 auto;
+    position: relative;
+    height: 71px;
+    text-align: center;
+}
+.tittle  {
+    float: left;
+    top: 0;
+    left: 5px;
+    color: #4d505d;
+    text-align: left;
+    padding: 0 0 0 61px;
+}
+.addbtn {
+    display: block;
+    /* float: right; */
+    width: 86%;
+    position: relative;
+    right: 0;
+    margin: 10px 0 0 0;
+    text-align: right;
+}
+.tittle1 {float: left;width: 40%;display: block;position: relative;top: -7px;}
+.addbtn1 {display: block;float: right;width: 50%;position: relative;right: 0; margin: 5px 11px 0 0;text-align: right;}
+.addnew {
+    background: #a4a5ab;
+    padding: 10px 10px 10px 10px;
+    width: auto;
+    height: 36px;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    color: #1d1f27;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    top: 7px;
+}
+.tittle1 h3 {font-size: 18px;padding: 5px 0 0 10px;}
+.textboxdiv { width: 50%;float: left; display: block;position: relative;padding: 10px;border: 1px solid #ddd;}
+.textbox_button { width: 100%;float: left; display: block; margin: 20px 0 0 0; }
+.buttondiv { float: left;position: relative;width: 40%;top: 3px;left: 29px;}
+.tittle h2 { font-size: 19px; }
+
+
+.podvartbl {
+    width: 90%;margin: 0 auto;text-align: left;
+}
+
+.container {
+    width: 90%;
+}
+
+
+table.podvartbl label {
+    text-align: left;
+    font-size: 15px;
+    font-weight: 600;
+    /* background: #333; */
+    padding: 3px 10px 4px 0px;
+    color: #4d505d;
+}
+
+button.customBtn.mat-button.mat-button-base {
+    background: #4d505d;
+    color: #ddd;
+    margin: 0px 0 0 20px;
+}
+
+button.customBtnback {
+    background: #b0b0b0;
+    color: #333;
+    margin: 0px 0 0 20px;
+}
+
+
+
+li.copy_url span {
+    font-size: 14px;
+    position: relative;
+    top: -6px;
+    left: 13px;
+    text-decoration: underline;
+    color: #066e96;
+}
+
+button.customBtnsave {
+    position: relative;
+    padding: 5px 10px 5px 10px;
+    font-size: 17px;
+    width: 70px;
+    height: 36px;
+    border: 1px solid #4c505c;
+    background: #717788;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+.error {
+    font-size: 12px;
+    line-height: 20px;
+    color: red;
+}
+
+
+.mat-stepper-horizontal, .mat-stepper-vertical {
+    font-size: 17px;
+}
+
+
+.mat-stepper-horizontal, .mat-stepper-vertical {
+    padding: 0 0 0 12px;
+}
+
+.mat-step-header .mat-step-label.mat-step-label-active {
+    font-size: 18px;
+    font-family: inherit;
+}
+
+
+.mat-step-header .mat-step-label, .mat-step-header .mat-step-optional {
+    font-size: 17px
+}
+
+.mat-horizontal-content-container {
+
+    padding: 20px 0px 24px 0px;
+}
+
+button.customBtn.mat-button.mat-button-base {
+
+    margin: 0px 0 0 35px;
+}
+
+.mat-form-field {
+
+    font-size: 14px;
+}
+

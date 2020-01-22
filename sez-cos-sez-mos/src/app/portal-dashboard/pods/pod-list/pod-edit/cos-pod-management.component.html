@@ -1,0 +1,803 @@
+<div class="card">
+        <span (click)="closePopup()" style="float:right;cursor: pointer;"><mat-icon>clear</mat-icon></span>
+            <mat-card-title class="flex m-l-20 m-r-20">
+                <h2>{{ pageTitle }}</h2>
+            </mat-card-title>
+                <div class="card-body">
+
+                                <div  class="">
+                                    <div  class="mat-form-field-infix m-l-30">
+                                        <form [formGroup]="podcreateForm"  class="edit-entity-form">
+                                                <table class="" width="100%">
+
+                                                          <tr>
+                                                            <td>
+                                                                <mat-form-field>
+                                                                        <input matInput [placeholder]="'Pod Name' "
+                                                                                formControlName="podName" required>
+                                                                        <mat-error *ngIf="podcreateForm.controls['podName'].hasError('required')">
+                                                                            {{"validation.required"   }}
+                                                                        </mat-error>
+                                                                </mat-form-field>
+                                                            </td>
+                                                           <td>&nbsp;&nbsp;</td>
+
+                                                            <td>
+                                                                <mat-form-field>
+                                                                    <input matInput [placeholder]="'POD ID' "
+                                                                            formControlName="podNotationId" required>
+                                                                    <mat-error *ngIf="podcreateForm.controls['podNotationId'].hasError('required')">
+                                                                        {{"validation.required"   }}
+                                                                    </mat-error>
+                                                                </mat-form-field>
+                                                            </td>
+                                                            <td>&nbsp;&nbsp;</td>
+
+                                                            <td>
+                                                                <mat-form-field>
+                                                                <mat-label>Datacenter</mat-label>
+                                                                    <mat-select [placeholder]="'Datacenter'" formControlName="dataCenterId">
+                                                                        <mat-option  value="">{{"Select"}}</mat-option>
+                                                                        <mat-option *ngFor="let datadenterele of dataCenters"
+                                                                            [value]="datadenterele.id"> {{datadenterele.name}} </mat-option>
+                                                                    </mat-select>
+                                                                </mat-form-field>
+                                                            </td>
+                                                          </tr>
+
+                                                      </table>
+
+                                                        <div style="width: 100%">
+
+                                                            <h5>Slotes</h5>
+
+                                                               <table [hidden]="hiddenTable" width="100%">
+                                                                   <tr>
+                                                                       <td>
+                                                                          <tr><td colspan="3"><h5>Max HW Cluster Slots #</h5></td></tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                 <mat-form-field>
+                                                                                     <input ng-pattern="/^[0-9]*$/"
+                                                                                      maxlength="2" matInput
+                                                                                      placeholder="" readonly formControlName="hwClustersCount">
+                                                                                  </mat-form-field>
+                                                                                </td>
+                                                                                <td height="20px">&nbsp;&nbsp;</td>
+                                                                                <td>
+                                                                                 <mat-form-field>
+                                                                                     <input ng-pattern="/^[0-9]*$/"
+                                                                                      maxlength="2" matInput
+                                                                                      placeholder="HW" formControlName="maximumHwClusters" required>
+                                                                                      <mat-error *ngIf="podcreateForm.controls['maximumHwClusters'].hasError('required')">
+                                                                                         {{"validation.required"   }}
+                                                                                     </mat-error>
+                                                                                  </mat-form-field>
+                                                                                </td>
+                                                                            </tr>
+                                                                       </td>
+                                                                       <td height="20px">&nbsp;&nbsp;</td>
+                                                                       <td>
+                                                                            <tr><td colspan="3"><h5>Max Tor Switches #</h5></td></tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                 <mat-form-field>
+                                                                                     <input ng-pattern="/^[0-9]*$/"
+                                                                                      maxlength="2" matInput
+                                                                                      placeholder="" readonly formControlName="torSwitchesCount">
+                                                                                  </mat-form-field>
+                                                                                </td>
+                                                                                <td height="20px">&nbsp;&nbsp;</td>
+                                                                                <td>
+                                                                                 <mat-form-field>
+                                                                                     <input ng-pattern="/^[0-9]*$/"
+                                                                                      maxlength="2" matInput
+                                                                                      placeholder="MSW*" formControlName="maximumHwClusters" required>
+                                                                                      <mat-error *ngIf="podcreateForm.controls['maxTorSwitches'].hasError('required')">
+                                                                                         {{"validation.required"   }}
+                                                                                     </mat-error>
+                                                                                  </mat-form-field>
+                                                                                </td>
+                                                                            </tr>
+                                                                       </td>
+                                                                       <td height="20px">&nbsp;&nbsp;</td>
+                                                                       <td>
+                                                                            <tr><td colspan="3"><h5>Max 10GB Switches #</h5></td></tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                 <mat-form-field>
+                                                                                     <input ng-pattern="/^[0-9]*$/"
+                                                                                      maxlength="2" matInput
+                                                                                      placeholder="" readonly formControlName="tenGBSwitchesCount">
+                                                                                  </mat-form-field>
+                                                                                </td>
+                                                                                <td height="20px">&nbsp;&nbsp;</td>
+                                                                                <td>
+                                                                                 <mat-form-field>
+                                                                                     <input ng-pattern="/^[0-9]*$/"
+                                                                                      maxlength="2" matInput
+                                                                                      placeholder="M10S*" formControlName="max10GBSwitches" required>
+                                                                                      <mat-error *ngIf="podcreateForm.controls['max10GBSwitches'].hasError('required')">
+                                                                                         {{"validation.required"   }}
+                                                                                     </mat-error>
+                                                                                  </mat-form-field>
+                                                                                </td>
+                                                                            </tr>
+                                                                       </td>
+                                                                   </tr>
+
+                                                                   <tr>
+                                                                        <td>
+                                                                           <tr><td colspan="3"><h5>Max IPMI Switches #</h5></td></tr>
+                                                                             <tr>
+                                                                                 <td>
+                                                                                  <mat-form-field>
+                                                                                      <input ng-pattern="/^[0-9]*$/"
+                                                                                       maxlength="2" matInput
+                                                                                       placeholder="" readonly formControlName="iPMISwitchesCount">
+                                                                                   </mat-form-field>
+                                                                                 </td>
+                                                                                 <td height="20px">&nbsp;&nbsp;</td>
+                                                                                 <td>
+                                                                                  <mat-form-field>
+                                                                                      <input ng-pattern="/^[0-9]*$/"
+                                                                                       maxlength="2" matInput
+                                                                                       placeholder="HW" formControlName="maxIPMISwitches" required>
+                                                                                       <mat-error *ngIf="podcreateForm.controls['maxIPMISwitches'].hasError('required')">
+                                                                                          {{"validation.required"   }}
+                                                                                      </mat-error>
+                                                                                   </mat-form-field>
+                                                                                 </td>
+                                                                             </tr>
+                                                                        </td>
+                                                                        <td height="20px">&nbsp;&nbsp;</td>
+                                                                        <td>
+                                                                             <tr><td colspan="3"><h5>Max Servers #</h5></td></tr>
+                                                                             <tr>
+                                                                                 <td>
+                                                                                  <mat-form-field>
+                                                                                      <input ng-pattern="/^[0-9]*$/"
+                                                                                       maxlength="2" matInput
+                                                                                       placeholder="" readonly formControlName="serversCount">
+                                                                                   </mat-form-field>
+                                                                                 </td>
+                                                                                 <td height="20px">&nbsp;&nbsp;</td>
+                                                                                 <td>
+                                                                                  <mat-form-field>
+                                                                                      <input ng-pattern="/^[0-9]*$/"
+                                                                                       maxlength="2" matInput
+                                                                                       placeholder="MSW*" formControlName="maxServers" required>
+                                                                                       <mat-error *ngIf="podcreateForm.controls['maxServers'].hasError('required')">
+                                                                                          {{"validation.required"   }}
+                                                                                      </mat-error>
+                                                                                   </mat-form-field>
+                                                                                 </td>
+                                                                             </tr>
+                                                                        </td>
+                                                                        <td height="20px">&nbsp;&nbsp;</td>
+                                                                        <td>
+                                                                             <tr><td colspan="3"><h5>Max Storage Clusters #</h5></td></tr>
+                                                                             <tr>
+                                                                                 <td>
+                                                                                  <mat-form-field>
+                                                                                      <input ng-pattern="/^[0-9]*$/"
+                                                                                       maxlength="2" matInput
+                                                                                       placeholder="" readonly formControlName="storageClustersCount">
+                                                                                   </mat-form-field>
+                                                                                 </td>
+                                                                                 <td height="20px">&nbsp;&nbsp;</td>
+                                                                                 <td>
+                                                                                  <mat-form-field>
+                                                                                      <input ng-pattern="/^[0-9]*$/"
+                                                                                       maxlength="2" matInput
+                                                                                       placeholder="M10S*" formControlName="maxStorageClusters" required>
+                                                                                       <mat-error *ngIf="podcreateForm.controls['maxStorageClusters'].hasError('required')">
+                                                                                          {{"validation.required"   }}
+                                                                                      </mat-error>
+                                                                                   </mat-form-field>
+                                                                                 </td>
+                                                                             </tr>
+                                                                        </td>
+                                                                    </tr>
+                                                                   <tr>
+                                                                       <td colspan="5">
+                                                                           <h5>Network Type {{markchecktoNetwork}}</h5>
+                                                                           <div [formGroup]="podcreateForm.controls['networkType']">
+                                                                                <!-- <div *ngFor="let item of networkTypeArr">
+                                                                                    <input type="checkbox" [formControlName]="item">
+                                                                                    <span>{{ item }}</span>
+                                                                                </div> -->
+                                                                                <mat-checkbox *ngFor="let networkEach of networkTypeArr;let i=index"
+                                                                                [formControlName]="networkEach">{{networkEach}}</mat-checkbox>
+                                                                            </div>
+
+
+                                                                           <!-- <mat-checkbox *ngFor="let networkEach of networkTypeArr;let i=index" (change)="checkValue(ckbox.value)"
+                                                                               #ckbox   [value]="networkEach" formControlName="networkType">{{networkEach}}</mat-checkbox> -->
+                                                                       </td>
+
+                                                                   </tr>
+                                                                  <tr><td colspan="5">&nbsp;</td></tr>
+                                                                 <tr>
+                                                                     <td>
+                                                                         <mat-form-field>
+                                                                            <mat-label>Environment</mat-label>
+                                                                            <mat-select [placeholder]="'Environment'" formControlName="environmentType">
+                                                                                <mat-option  value="Compliance">{{"Compliance"}}</mat-option>
+                                                                                <mat-option value="Non-Compliance"> {{"Non-Compliance"}} </mat-option>
+                                                                            </mat-select>
+                                                                        </mat-form-field>
+                                                                    </td>
+                                                                     <td>&nbsp;&nbsp;</td>
+                                                                     <td>
+                                                                        <mat-form-field>
+                                                                            <input matInput [placeholder]="'Vcenter Name' "
+                                                                                    formControlName="vCenter" required>
+                                                                            <mat-error *ngIf="podcreateForm.controls['vCenter'].hasError('required')">
+                                                                                {{"validation.required"   }}
+                                                                            </mat-error>
+                                                                        </mat-form-field>
+                                                                     </td>
+                                                                     <td>&nbsp;&nbsp;</td>
+                                                                     <td>
+                                                                    <mat-form-field>
+                                                                            <input matInput [placeholder]="'Vcenter Version' "
+                                                                                formControlName="version" required>
+                                                                        <mat-error *ngIf="podcreateForm.controls['version'].hasError('required')">
+                                                                            {{"validation.required"   }}
+                                                                        </mat-error>
+                                                                    </mat-form-field>
+                                                                     </td>
+
+                                                                 </tr>
+
+
+
+
+                                                                 <tr>
+                                                                        <td>
+                                                                            <mat-form-field>
+                                                                                <input matInput [placeholder]="'Vcenter URL' "
+                                                                                        formControlName="url" required>
+                                                                                <mat-error *ngIf="podcreateForm.controls['url'].hasError('required')">
+                                                                                    {{"validation.required" }}
+                                                                                </mat-error>
+                                                                           </mat-form-field>
+                                                                       </td>
+                                                                        <td>&nbsp;&nbsp;</td>
+                                                                        <td>
+                                                                                <mat-form-field>
+                                                                                        <input matInput [placeholder]="'Rack Units #' "
+                                                                                               formControlName="rackUnits" required>
+                                                                                        <mat-error *ngIf="podcreateForm.controls['rackUnits'].hasError('required')">
+                                                                                            {{"validation.required"   }}
+                                                                                        </mat-error>
+                                                                                    </mat-form-field>
+                                                                        </td>
+                                                                        <td>&nbsp;&nbsp;</td>
+                                                                        <td>
+                                                                        <mat-form-field>
+                                                                                <input matInput [placeholder]="'Datacenter Slot Number #' "
+                                                                                    formControlName="datacenterSlot" required>
+                                                                                <mat-error *ngIf="podcreateForm.controls['datacenterSlot'].hasError('required')">
+                                                                                    {{"validation.required"   }}
+                                                                                </mat-error>
+                                                                            </mat-form-field>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td>
+                                                                            <mat-form-field>
+                                                                                <textarea matInput placeholder="Additional Info" formControlName="additionalInfo"></textarea>
+                                                                             </mat-form-field>
+                                                                        </td>
+                                                                        <td>&nbsp;</td>
+                                                                        <td>
+                                                                            <mat-form-field>
+                                                                                <input matInput [placeholder]="'Management URL' "
+                                                                                  formControlName="managementUrl" required>
+                                                                                <mat-error *ngIf="podcreateForm.controls['managementUrl'].hasError('required')">
+                                                                                    {{"validation.required"   }}
+                                                                                </mat-error>
+                                                                            </mat-form-field>
+                                                                        </td>
+                                                                        <td colspan="2"></td>
+
+                                                                    </tr>
+                                                               </table>
+
+                                                        </div>
+
+
+
+
+ <!--Tor switches-->
+<div class="content pt10" fxLayout="row" fxLayout.xs="column" fxFlexFill></div>
+<div>
+               <div class="panel panel-default">
+                 <div class="panel-heading">
+                     <h4>Tor switches</h4>
+                    <div class="btn-group pod-btn pull-right">
+                        <button  class="btn green pull-right ng-scope" (click)="opentorSwitchedDialog(null)">Add New<i class="fa fa-plus"></i></button>
+                    </div>
+                  </div>
+                    <table class="pods-other-info" formArrayName="torSwitches" >
+                        <tr><td colspan="9" style="height: 10px;">&nbsp;</td></tr>
+                        <tr  *ngFor="let getAddress of torSwitches; let i=index"  [formGroupName]="i">
+                            <td>
+                                <div class="form-group">
+                                    <mat-form-field >
+                                        <input matInput [placeholder]="'Name'" formControlName="name" readonly>
+                                    </mat-form-field>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group ng-scope">
+                                    <mat-form-field >
+                                        <input matInput [placeholder]="'Make'"  formControlName="make" readonly>
+                                    </mat-form-field>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <mat-form-field >
+                                        <input matInput [placeholder]="'SWITCH ID'" formControlName="notationId" readonly>
+                                    </mat-form-field>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <mat-form-field >
+                                            <input matInput [placeholder]="'Model'"  formControlName="model" readonly>
+                                    </mat-form-field>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <mat-form-field >
+                                            <input matInput [placeholder]="'Serial Number'"  formControlName="serialNumber" readonly>
+                                    </mat-form-field>
+                                 </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <span class="small-input">
+                                    <mat-form-field >
+                                            <input matInput [placeholder]="'Ports Used'"  formControlName="usedPorts" readonly>
+                                    </mat-form-field>
+                                    <span class="back-slas">/</span></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                <span class="small-input">
+                                    <mat-form-field >
+                                            <input matInput [placeholder]="'Total Ports'" formControlName="totalPorts" readonly>
+                                    </mat-form-field>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                        <mat-form-field >
+                                                <input matInput [placeholder]="'Owner'"  formControlName="ownerName" readonly>
+                                        </mat-form-field>
+                                </div>
+                            </td>
+                            <td>
+
+                                        <a class="" href="javascript:void(0);"
+                                        title="EDIT" ng-if="vm.pageAuthority.update" (click)="opentorSwitchedDialog(getMydatatorswitches.value[i])">
+                                        <mat-icon role="img">edit</mat-icon></a>&nbsp;<a class=""
+                                            href="javascript:void(0);" title="DELETE"  (click)="deleteTor(i)"
+                                            >
+                                            <mat-icon role="img">delete</mat-icon>
+                                        </a>
+
+                            </td>
+                        </tr>
+                    </table>
+
+        </div>
+
+</div>
+
+<!--10GB Switches-->
+
+<div class="content pt10" fxLayout="row" fxLayout.xs="column" fxFlexFill></div>
+<div>
+     <div class="panel panel-default">
+       <div class="panel-heading">
+           <h4>10GB switches</h4>
+          <div class="btn-group pod-btn pull-right">
+              <button  class="btn green pull-right ng-scope" (click)="opentengbSwitchedDialog(null)">Add New<i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+          <table class="pods-other-info" formArrayName="tenGBSwitches" >
+              <tr><td colspan="9" style="height: 10px;">&nbsp;</td></tr>
+              <tr  *ngFor="let getAddress of tenGBSwitch; let j=index"  [formGroupName]="j">
+                  <td>
+                      <div class="form-group">
+                          <mat-form-field >
+                              <input matInput [placeholder]="'Name'" formControlName="name" readonly>
+                          </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group ng-scope">
+                          <mat-form-field >
+                              <input matInput [placeholder]="'Make'"  formControlName="make" readonly>
+                          </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                          <mat-form-field >
+                              <input matInput [placeholder]="'SWITCH ID'" formControlName="notationId" readonly>
+                          </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'Model'"  formControlName="model" readonly>
+                          </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'Serial Number'"  formControlName="serialNumber" readonly>
+                          </mat-form-field>
+                       </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                          <span class="small-input">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'Ports Used'"  formControlName="usedPorts" readonly>
+                          </mat-form-field>
+                          <span class="back-slas">/</span></span>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                      <span class="small-input">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'Total Ports'" formControlName="totalPorts" readonly>
+                          </mat-form-field>
+                          </span>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                              <mat-form-field >
+                                      <input matInput [placeholder]="'Owner'"  formControlName="ownerName" readonly>
+                              </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+
+                              <a class="" href="javascript:void(0);"
+                              title="EDIT" ng-if="vm.pageAuthority.update" (click)="opentengbSwitchedDialog(getMydata10Gbswitches.value[j])">
+                              <mat-icon role="img">edit</mat-icon></a>&nbsp;<a class=""
+                                  href="javascript:void(0);" title="DELETE"  (click)="deleteTengb(j)"
+                                  >
+                                  <mat-icon role="img">delete</mat-icon>
+                              </a>
+
+                  </td>
+              </tr>
+          </table>
+
+</div>
+
+</div>
+
+<!--IPMI Switches-->
+
+<div class="content pt10" fxLayout="row" fxLayout.xs="column" fxFlexFill></div>
+<div>
+     <div class="panel panel-default">
+       <div class="panel-heading">
+           <h4>IPMI switches</h4>
+          <div class="btn-group pod-btn pull-right">
+              <button  class="btn green pull-right ng-scope" (click)="openipmiSwitchedDialog(null)">Add New<i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+          <table class="pods-other-info" formArrayName="iPMISwitches" >
+              <tr><td colspan="9" style="height: 10px;">&nbsp;</td></tr>
+              <tr  *ngFor="let getAddress of getiPMISwitches; let k=index"  [formGroupName]="k">
+                  <td>
+                      <div class="form-group">
+                          <mat-form-field >
+                              <input matInput [placeholder]="'Name'" formControlName="name" readonly>
+                          </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group ng-scope">
+                          <mat-form-field >
+                              <input matInput [placeholder]="'Make'"  formControlName="make" readonly>
+                          </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                          <mat-form-field >
+                              <input matInput [placeholder]="'SWITCH ID'" formControlName="notationId" readonly>
+                          </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'Model'"  formControlName="model" readonly>
+                          </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'Serial Number'"  formControlName="serialNumber" readonly>
+                          </mat-form-field>
+                       </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                          <span class="small-input">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'Ports Used'"  formControlName="usedPorts" readonly>
+                          </mat-form-field>
+                          <span class="back-slas">/</span></span>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                      <span class="small-input">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'Total Ports'" formControlName="totalPorts" readonly>
+                          </mat-form-field>
+                          </span>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                              <mat-form-field >
+                                      <input matInput [placeholder]="'Owner'"  formControlName="ownerName" readonly>
+                              </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+
+                              <a class="" href="javascript:void(0);"
+                              title="EDIT" ng-if="vm.pageAuthority.update" (click)="openipmiSwitchedDialog(getMydataIPMIswitches.value[k])">
+                              <mat-icon role="img">edit</mat-icon></a>&nbsp;<a class=""
+                                  href="javascript:void(0);" title="DELETE"  (click)="deleteIpmi(k)"
+                                  >
+                                  <mat-icon role="img">delete</mat-icon>
+                              </a>
+
+                  </td>
+              </tr>
+          </table>
+</div>
+
+</div>
+
+<!--Pod Servers-->
+
+<div class="content pt10" fxLayout="row" fxLayout.xs="column" fxFlexFill></div>
+<div>
+     <div class="panel panel-default">
+       <div class="panel-heading">
+           <h4>Servers</h4>
+          <div class="btn-group pod-btn pull-right">
+              <button  class="btn green pull-right ng-scope" (click)="openServersDialog(null)">Add New<i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+          <table class="pods-other-info" formArrayName="servers" >
+              <tr><td colspan="10" style="height: 10px;">&nbsp;</td></tr>
+              <tr  *ngFor="let getAddress of getServers; let m=index"  [formGroupName]="m">
+                  <td>
+                      <div class="form-group">
+                          <mat-form-field >
+                              <input matInput [placeholder]="'Name'" formControlName="name" readonly>
+                          </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group ng-scope">
+                          <mat-form-field >
+                              <input matInput [placeholder]="'Make'"  formControlName="make" readonly>
+                          </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'Model'"  formControlName="model" readonly>
+                          </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'Serial Number'"  formControlName="serialNumber" readonly>
+                          </mat-form-field>
+                       </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                          <span class="small-input">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'RAM'"  formControlName="ram" readonly>
+                          </mat-form-field>
+                          <span class="back-slas">/</span></span>
+                      </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                        <span class="small-input">
+                        <mat-form-field >
+                                <input matInput [placeholder]="'CPU Type'"  formControlName="cpuName" readonly>
+                        </mat-form-field>
+                        <span class="back-slas">/</span></span>
+                    </div>
+                </td>
+                  <td>
+                      <div class="form-group">
+                      <span class="small-input">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'Cores'" formControlName="cores" readonly>
+                          </mat-form-field>
+                          </span>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                              <mat-form-field >
+                                      <input matInput [placeholder]="'Drives'"  formControlName="drives" readonly>
+                              </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                            <mat-form-field >
+                                    <input matInput [placeholder]="'Owner'"  formControlName="ownerName" readonly>
+                            </mat-form-field>
+                    </div>
+                </td>
+                  <td>
+
+                              <a class="" href="javascript:void(0);"
+                              title="EDIT" ng-if="vm.pageAuthority.update" (click)="openServersDialog(getMydataServers.value[m])">
+                              <mat-icon role="img">edit</mat-icon></a>&nbsp;<a class=""
+                                  href="javascript:void(0);" title="DELETE"  (click)="deleteServers(m)"
+                                  >
+                                  <mat-icon role="img">delete</mat-icon>
+                              </a>
+
+                  </td>
+              </tr>
+          </table>
+</div>
+
+</div>
+
+<!--Pod storageCluster-->
+
+<div class="content pt10" fxLayout="row" fxLayout.xs="column" fxFlexFill></div>
+<div >
+     <div class="panel panel-default">
+       <div class="panel-heading">
+           <h4>Storage</h4>
+          <div class="btn-group pod-btn pull-right">
+              <button  class="btn btn-primary" (click)="openStorageDialog(null)">Add New<i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+          <table class="pods-other-info" formArrayName="storageCluster" >
+              <tr><td colspan="10" style="height: 10px;">&nbsp;</td></tr>
+              <tr  *ngFor="let getAddress of storageCluster; let p=index"  [formGroupName]="p">
+                  <td>
+                      <div class="form-group">
+                          <mat-form-field >
+                              <input matInput [placeholder]="'Name'" formControlName="name" readonly>
+                          </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group ng-scope">
+                          <mat-form-field >
+                              <input matInput [placeholder]="'Make'"  formControlName="make" readonly>
+                          </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'Model'"  formControlName="model" readonly>
+                          </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'Serial Number'"  formControlName="serialNumber" readonly>
+                          </mat-form-field>
+                       </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                          <span class="small-input">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'RAM'"  formControlName="ram" readonly>
+                          </mat-form-field>
+                          <span class="back-slas">/</span></span>
+                      </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                        <span class="small-input">
+                        <mat-form-field >
+                                <input matInput [placeholder]="'CPU Type'"  formControlName="cpuName" readonly>
+                        </mat-form-field>
+                        <span class="back-slas">/</span></span>
+                    </div>
+                </td>
+                  <td>
+                      <div class="form-group">
+                      <span class="small-input">
+                          <mat-form-field >
+                                  <input matInput [placeholder]="'Cores'" formControlName="cores" readonly>
+                          </mat-form-field>
+                          </span>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="form-group">
+                              <mat-form-field >
+                                      <input matInput [placeholder]="'Drives'"  formControlName="drives" readonly>
+                              </mat-form-field>
+                      </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                            <mat-form-field >
+                                    <input matInput [placeholder]="'Owner'"  formControlName="ownerName" readonly>
+                            </mat-form-field>
+                    </div>
+                </td>
+                  <td>
+
+                              <a class="" href="javascript:void(0);"
+                              title="EDIT" ng-if="vm.pageAuthority.update" (click)="openStorageDialog(getMydataStorage.value[p])">
+                              <mat-icon role="img">edit</mat-icon></a>&nbsp;<a class=""
+                                  href="javascript:void(0);" title="DELETE"  (click)="deletestorageCluster(p)"
+                                  >
+                                  <mat-icon role="img">delete</mat-icon>
+                              </a>
+
+                  </td>
+              </tr>
+          </table>
+</div>
+
+</div>
+
+
+    <div mat-dialog-actions>
+
+        <button class="btn btn-primary btn-sm" type="button" (click)="savePoddata()" [disabled]="!podcreateForm.valid"  mat-button>{{'save' }}</button>
+        <button class="btn btn-link btn-sm" type="button" mat-dialog-close  mat-button>{{"cancel" }}</button>
+    </div>
+</form>
+
+        </div>
+    </div>
+
+
+     </div>
+ </div>
+

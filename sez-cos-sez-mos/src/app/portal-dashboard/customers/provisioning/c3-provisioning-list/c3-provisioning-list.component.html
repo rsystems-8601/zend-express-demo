@@ -1,0 +1,14 @@
+<!--Common selector for components -->
+<mat-card>
+    <app-data-table
+    [titleComponent]="provisionTitle"
+    [tableData]="provisionListConfiguration.data"
+    [columnHeader]="provisionQueueColumn"
+    [pageLength]="provisionListConfiguration.totalResult"
+    [pageSize]="provisionListConfiguration.pageSize"
+    (pageChanged)="provisioningPageChanged($event)"
+    [hasDelete]="true"
+    (clickCell)="cellClicked($event)"
+    >
+    </app-data-table>
+</mat-card>

@@ -1,0 +1,56 @@
+<dz-form [formGroup]="commentForm" class="comment-form" (onSubmit)="postComment(commentForm)">
+    <div class="row">
+        <div class="col-sm-21">
+            <mat-form-field class="w-100">
+                <textarea matInput
+                          (click)="commentInputFocused = true"
+                          [ngClass]="{'comment-focused' : commentInputFocused}"
+                          formControlName="text"
+                          placeholder="{{'writeComment' | translate}}"
+                          name="text"></textarea>
+            </mat-form-field>
+            <div class="m-t-15 comment-types" *ngIf="auth.isPortalAdmin()">
+                <label class="checkbox checkbox-inline m-r-20">
+                    <input type="checkbox" formControlName="isDiscussion">
+                    <i class="input-helper"></i>
+                    {{'discussion' | translate}}
+                </label>
+                <label class="checkbox checkbox-inline m-r-20">
+                    <input type="checkbox" formControlName="isInternal">
+                    <i class="input-helper"></i>
+                    {{'internal' | translate}}
+                </label>
+                <label class="checkbox checkbox-inline m-r-20">
+                    <input type="checkbox" formControlName="isResolution">
+                    <i class="input-helper"></i>
+                    {{'resolution' | translate}}
+                </label>
+            </div>
+            <div class="pull-right" *ngIf="initialStatus">
+                <mat-form-field floatPlaceholder="never">
+                    <mat-select formControlName="ticketStatus">
+                        <mat-option *ngFor="let status of board?.statuses" [value]="status">
+                            {{status | translate}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <button class="m-t-15 btn btn-primary">
+                {{"post" | translate}}
+            </button>
+        </div>
+    </div>
+    <div class="fileinput m-t-15">
+        <span class="btn btn-primary btn-file m-r-10">
+            <span class="fileinput-new">{{"attachFile" | translate}}</span>
+            <input class="file-upload" type="file"
+                   (change)="selectAttachment($event.target.files[0])">
+        </span>
+        <div *ngIf="attachment">
+            <span class="fileinput-filename">{{attachment.name}}</span>
+            <a class="close fileinput-exists" (click)="cancelFile()">&times;</a>
+        </div>
+    </div>
+</dz-form>

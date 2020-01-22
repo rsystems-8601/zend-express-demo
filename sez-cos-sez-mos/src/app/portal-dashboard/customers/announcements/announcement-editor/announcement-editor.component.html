@@ -1,0 +1,36 @@
+<div class="page-selector">
+    <div *ngFor="let page of pages; let pageIndex = index"
+         class="page" [ngClass]="{active: pageIndex == selectedPageIndex}">
+
+        <dz-html-thumbnail [content]="page"
+                           (mousedown)="$event.stopPropagation();selectPage(pageIndex)"></dz-html-thumbnail>
+
+        <ul class="actions">
+            <li dropdown class="dropdown">
+                <a dropdownToggle class="dropdown-toggle">
+                    <!-- <i class="zmdi zmdi-more-vert thumbnail-actions"></i> -->
+                    <mat-icon>more_vert</mat-icon>
+                </a>
+                <ul *dropdownMenu class="dropdown-menu dropdown-menu-right">
+                    <li><a (click)="removePage(pageIndex)">Remove</a></li>
+                    <li><a (click)="moveLeft(pageIndex)">Move left</a></li>
+                    <li><a (click)="moveRight(pageIndex)">Move right</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <button type="button"
+            (click)="addPage()"
+            class="btn btn-float"
+            title="{{'addPage' | translate}}">
+            <mat-icon>add</mat-icon>
+    </button>
+</div>
+<div [dz-spinner]="spinnerName">
+    <!-- <dz-ckeditor (ready)="Spinner.hide(spinnerName)"
+                 (change)="applyChanges()"
+                 [(ngModel)]="pages[selectedPageIndex]"
+                 [uploadUrl]="announcementService.getAttachmentUploadUrlFor(announcement.id)">
+    </dz-ckeditor> -->
+    <ck-editor name="editor1" #host></ck-editor>
+</div>

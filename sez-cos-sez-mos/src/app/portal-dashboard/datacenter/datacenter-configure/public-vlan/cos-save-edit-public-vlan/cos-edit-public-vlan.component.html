@@ -1,0 +1,36 @@
+<h1 matDialogTitle>{{ categoryTitle | translate }}</h1>
+<form [formGroup]="categoryForm"  class="edit-entity-form">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input matInput [placeholder]="'Customer name' "
+                   formControlName="categoryName" required>
+            <mat-error *ngIf="categoryForm.controls['categoryName'].hasError('required')">
+                {{"validation.required" | translate   }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+        <mat-select [placeholder]="'Category Definition' "
+                    formControlName="categoryDefinition" required (selectionChange)="countryStateInfo($event)">
+            <mat-option *ngFor="let countryone of categoryDefnition" [value]="countryone">{{countryone}}</mat-option>
+        </mat-select>
+            <mat-error *ngIf="categoryForm.controls['categoryDefinition'].hasError('required')">
+                {{"validation.required" }}
+            </mat-error>
+        </mat-form-field>
+
+        <div *ngIf="categoryStatus;else other_content">
+            <mat-form-field>
+                <mat-label>Notes</mat-label>
+                <textarea matInput formControlName="notes"  matTextareaAutosize
+                matAutosizeMinRows=5 matAutosizeMaxRows=5 required></textarea>
+                <mat-error *ngIf="categoryForm.controls['notes'].hasError('required')">{{"Required" }}</mat-error>
+            </mat-form-field>
+        </div>
+        <ng-template #other_content></ng-template> 
+    </div>
+    <div mat-dialog-actions>
+        <button class="btn btn-primary btn-sm" type="button" (click)="saveCategory()" [disabled]="!categoryForm.valid"  mat-button>{{'save' }}</button>
+        <button class="btn btn-link btn-sm" type="button" mat-dialog-close  mat-button>{{"cancel" }}</button>
+    </div>
+</form>

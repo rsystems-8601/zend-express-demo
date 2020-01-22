@@ -1,0 +1,101 @@
+<div class="calendar">
+<div class="fc calendar-widget card">
+    <div class="card-header ch-alt top-header">
+        <h2>{{currentDate | date:'fullDate'}}</h2>
+        <button *ngIf="auth.hasPermission(Permission.EDIT_NOTIFICATIONS)"
+                class="btn btn-float waves-effect waves-circle btn-add-ticket"
+                (click)="addEvent()">
+            <i class="zmdi zmdi-plus"></i>
+        </button>
+    </div>
+    <div class="fc-toolbar card-header bottom-header">
+        <div class="fc-left"></div>
+        <div class="fc-center">
+            <button type="button" (click)="previousMonth()"
+                    class="fc-prev-button ui-button ui-state-default ui-corner-left ui-corner-right">
+                <span class="ui-icon ui-icon-circle-triangle-w"></span>
+            </button>
+            <h2>{{firstDayOfMonth.toDate() | date:'MMMM y'}}</h2>
+            <button type="button" (click)="nextMonth()"
+                    class="fc-next-button ui-button ui-state-default ui-corner-left ui-corner-right">
+                <span class="ui-icon ui-icon-circle-triangle-e"></span>
+            </button>
+        </div>
+        <div class="fc-clear"></div>
+    </div>
+    <div class="fc-view-container">
+        <div class="fc-view fc-month-view fc-basic-view">
+            <table class="calendar-table">
+                <thead class="fc-head">
+                <tr>
+                    <td class="ui-widget-header">
+                        <div class="fc-row ui-widget-header">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th *ngFor="let dayName of dayNames()" class="fc-day-header ui-widget-header">
+                                        {{dayName | translate}}
+                                    </th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                </thead>
+                <tbody class="fc-body">
+                <tr>
+                    <td class="ui-widget-content">
+                        <div *ngFor="let row of rows; let rowIndex = index"
+                             class="fc-row fc-week ui-widget-content">
+                            <div class="fc-bg">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td *ngFor="let day of getDays(rowIndex)"
+                                            class="fc-day ui-widget-content fc-past">
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="fc-content-skeleton">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <td *ngFor="let day of getDays(rowIndex)" class="fc-day-number fc-past "
+                                            [ngClass]="{'fc-other-month': day.month() !== firstDayOfMonth.month(),
+                                                    'fc-today' : isToday(day)}">
+                                            {{day.date()}}
+                                        </td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let eventRow of rows[rowIndex].eventRows">
+                                        <td *ngFor="let eventContainer of eventRow.eventContainers"
+                                            class="fc-event-container"
+                                            [attr.colspan]="eventContainer.colspan">
+                                            <a *ngIf="eventContainer.event"
+                                               [title]="isMaintenance(eventContainer.event) ? eventContainer.event.title : eventContainer.event.message"
+                                               class="fc-day-grid-event fc-h-event fc-event fc-start fc-end"
+                                               [ngClass]="getColor(eventContainer.event)"
+                                               [routerLink]="isMaintenance(eventContainer.event) ? ['./maintenance', eventContainer.event.id] : []"
+                                               [queryParams]="isMaintenance(eventContainer.event) ? {startDate: getUtcStartDate(eventContainer.event)} : {}">
+                                                <div class="fc-content">
+                                                    <span class="fc-title">{{eventContainer.event.title}}</span>
+                                                </div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>

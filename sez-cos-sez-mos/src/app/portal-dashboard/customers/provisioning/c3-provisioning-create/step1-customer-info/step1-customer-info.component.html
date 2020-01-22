@@ -1,0 +1,235 @@
+
+<form [formGroup]="step1From">
+    <ng-content></ng-content>
+
+
+    <ul  fxLayout="row wrap" fxLayoutAlign="stretch"  fxLayoutGap="2%">
+        <li fxFlex="48" formGroupName="customer">
+            <dz-autocomplete [placeholder]="'searchCustomer' | translate"
+            [searchPlaceholder]="'search' | translate"
+            [searchFunction]="searchCustomer"
+            [displayWith]="organizationService.orgnaizationToString"
+            [enableToClear]="true"
+            formControlName="custId"
+            >
+            </dz-autocomplete>
+    </li>
+        <li fxFlex="48">
+            <mat-form-field>
+                <mat-select [placeholder]="'Sales Accont Manager'" formControlName="salesUserId">
+                 <mat-option *ngFor="let userRole of userRoles.userRoleSALES;" [value]="userRole.id">{{userRole.firstName}}</mat-option>
+                </mat-select>
+                <mat-error></mat-error>
+            </mat-form-field>
+        </li>
+        
+        <li fxFlex="48">
+            <mat-form-field>
+                <mat-select [placeholder]="'Sales Engineer'" formControlName="salesEngineerUserId">
+                <mat-option *ngFor="let userRole of userRoles.userRoleSALES;" [value]="userRole.id">{{userRole.firstName}}</mat-option>
+                </mat-select>
+                <mat-error></mat-error>
+            </mat-form-field>
+        </li>
+
+        <li fxFlex="48">
+            <mat-form-field>
+                <mat-select [placeholder]="'CRM'" formControlName="crmUserId">
+                <mat-option *ngFor="let userRole of userRoles.userRoleCRM;" [value]="userRole.id">{{userRole.firstName}}</mat-option>
+                </mat-select>
+                <mat-error></mat-error>
+            </mat-form-field>
+        </li>
+        <li fxFlex="48">
+            <mat-form-field>
+                <mat-select [placeholder]="'SDM'" formControlName="sdmUserId">
+                <mat-option *ngFor="let userRole of userRoles.userRoleSDM;" [value]="userRole.id">{{userRole.firstName}}</mat-option>
+                </mat-select>
+                <mat-error></mat-error>
+            </mat-form-field>
+        </li>
+        <li fxFlex="48">
+            <mat-form-field>
+                <mat-select [placeholder]="'Project Cordinator'" formControlName="projectCoordinatorUserId">
+                <mat-option *ngFor="let userRole of userRoles.userRolePCO;" [value]="userRole.id">{{userRole.firstName}}</mat-option>
+                </mat-select>
+                <mat-error></mat-error>
+            </mat-form-field>
+        </li>
+        <li fxFlex="48">
+            <mat-form-field>
+                <mat-select [placeholder]="'LOE'" formControlName="loeUserId">
+                <mat-option *ngFor="let userRole of userRoles.userRoleLOE;" [value]="userRole.id">{{userRole.firstName}}</mat-option>
+                </mat-select>
+                <mat-error></mat-error>
+            </mat-form-field>
+        </li>
+        <li fxFlex="48">
+            <mat-form-field>
+                <mat-select [placeholder]="'VSA'" formControlName="vsaUserId">
+                <mat-option *ngFor="let userRole of userRoles.userRoleVSA;" [value]="userRole.id">{{userRole.firstName}}</mat-option>
+                </mat-select>
+                <mat-error></mat-error>
+            </mat-form-field>
+        </li>
+        <li fxFlex="48">
+            <mat-form-field>
+                <mat-select [placeholder]="'VSE'" formControlName="vseUserId">
+                <mat-option *ngFor="let userRole of userRoles.userRoleVSE;" [value]="userRole.id">{{userRole.firstName}}</mat-option>
+                </mat-select>
+                <mat-error></mat-error>
+            </mat-form-field>
+        </li>
+        <li fxFlex="48">
+            <mat-form-field>
+                <input type="text" matInput [placeholder]="'Project Name'" formControlName="projectName">
+                <!-- <mat-error *ngIf="step1From.controls['projectName'].hasError()">
+                    {{step1From.controls['projectName'].hasError()}}
+                </mat-error> -->
+            </mat-form-field>
+        </li>
+        
+    </ul>
+    
+    <section style="width:100%">
+           <legend>Add New Contact </legend>
+           <button mat-fab><mat-icon (click)="addNewCustomerContact()">add</mat-icon></button>
+            <div formArrayName="customerContacts" *ngFor="let customerAddressGroup of customerContact.controls; let i = index;">
+           <div  [formGroupName]="i"  fxLayout="row wrap" fxLayoutAlign="left stretch"  fxLayoutGap="2%"> 
+            <div fxFlex="93">
+                <div fxLayout="row wrap" fxLayoutAlign="left stretch">
+                <mat-form-field fxFlex="100" >
+                    <mat-select [placeholder]="'Techincal Lead'" formControlName="contactType">
+                    <mat-option *ngFor="let addressType of addressContactType;" [value]="addressType">{{addressType.typeName}}</mat-option>
+                    </mat-select>
+                    <mat-error></mat-error>
+                </mat-form-field>
+              
+               </div>
+               <div fxLayout="row wrap" fxLayoutAlign="left stretch"  fxLayoutGap="2%">
+                <mat-form-field  fxFlex="48">
+                    <input type="text" matInput [placeholder]="'First Name'" formControlName="firstName" >
+                    <mat-error></mat-error>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="48">
+                    <input type="text" matInput [placeholder]="'Last Name'" formControlName="lastName">
+                    <mat-error></mat-error>
+                </mat-form-field> 
+                <mat-form-field fxFlex="48">
+                    <input type="text" matInput [placeholder]="'Email'" formControlName="email">
+                    <mat-error></mat-error>
+                </mat-form-field>
+
+                <section fxFlex="48">
+                    <dz-phone-input matInput [placeholder]="'Phone'" formControlName="phone"></dz-phone-input>
+                    <!-- <input type="text" matInput [placeholder]="'Phone'" formControlName="phone"> -->
+                    <mat-error></mat-error>
+                </section>
+           
+               </div>
+            </div>
+            
+            <div fxFlex="5"> 
+                <div class="delete-wraper" *ngIf="customerContact.length > 1"> 
+                    
+                    <button mat-fab (click)="removeCustomerContact(i)"><mat-icon>delete</mat-icon></button> </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    
+
+    <section formGroupName="address">
+        <legend>Business Address</legend>
+        <div fxLayout="row wrap" fxLayoutAlign="left stretch"  fxLayoutGap="2%">
+            <mat-form-field fxFlex="48">
+                <textarea matInput placeholder="Address1" formControlName="address1"></textarea>
+                <mat-error></mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="48">
+                <textarea matInput placeholder="Address2" formControlName="address2"></textarea>
+                <mat-error></mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="48">
+                <mat-select placeholder="Country">
+                    <mat-option value="option">Option</mat-option>
+                    
+                <mat-option *ngFor="let userRole of userRoles;" [value]="userRole.id">{{userRole.firstName}}</mat-option>
+                </mat-select>
+                <mat-error></mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="48">
+                <mat-select placeholder="City">
+                    <mat-option value="option">Option</mat-option>
+                    
+                <mat-option *ngFor="let userRole of userRoles;" [value]="userRole.id">{{userRole.firstName}}</mat-option>
+                </mat-select>
+                <mat-error></mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="48">
+                <mat-select placeholder="State">
+                    <mat-option value="option">Option</mat-option>
+                    
+                <mat-option *ngFor="let userRole of userRoles;" [value]="userRole.id">{{userRole.firstName}}</mat-option>
+                </mat-select>
+                <mat-error></mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="48">
+                <input type="text" placeholder="Post Code" matInput formControlName="zipCode">
+                <mat-error></mat-error>
+            </mat-form-field>
+        </div>
+    </section>
+        
+    <section>
+        <div fxLayout="row wrap" fxLayoutAlign="left stretch"  fxLayoutGap="2%">
+            <div fxFlex>
+                
+                <div class="fileinput">
+                    <span class="btn btn-primary btn-file m-r-10" mat-raised-button>
+                        <span class="fileinput-new">{{"selectFile" | translate}}</span>
+                        <input class="file-upload" type="file"  formControlName="fileControl" name="file" #fileUploadInput>
+                    </span>
+                <!--FIXME doesn't show up right after a file was selected - shows up only after click on the modal-->
+                </div>
+            </div>  
+        </div>
+    </section>
+    
+    <section>
+        <div fxLayout="row wrap" fxLayoutAlign="left stretch"  fxLayoutGap="2%">
+            <mat-form-field fxFlex="48"> 
+                <input matInput readonly [matDatepicker]="contractExecutionDate" [placeholder]="'contractExecutionDate' | translate"
+                   formControlName="contractExecutionDate">
+            <mat-datepicker-toggle matSuffix [for]="contractExecutionDate"></mat-datepicker-toggle>
+            <mat-datepicker #contractExecutionDate></mat-datepicker>
+            <!-- <mat-error *ngIf="form.controls['repeatUntil'].hasError('invalidRepeatUntil')">
+                {{"validation.repeat-until.before-start" | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['repeatUntil'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error> -->
+            </mat-form-field>
+            <mat-form-field fxFlex="48">
+                <input matInput readonly [matDatepicker]="dueDate" [placeholder]="'dueDate' | translate"
+                   formControlName="contractDueDate">
+            <mat-datepicker-toggle matSuffix [for]="dueDate"></mat-datepicker-toggle>
+            <mat-datepicker #dueDate></mat-datepicker>
+            <!-- <mat-error *ngIf="form.controls['repeatUntil'].hasError('invalidRepeatUntil')">
+                {{"validation.repeat-until.before-start" | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['repeatUntil'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error> -->
+            </mat-form-field>
+        </div>
+    </section>
+
+    
+    <div class="text-center">
+        <button mat-stroked-button color="primary">Save</button>
+        <button mat-stroked-button color="primary">Save and continue later</button>
+        <button mat-stroked-button color="primary" (click)="saveStep1()">Continue</button>
+    </div>
+</form>

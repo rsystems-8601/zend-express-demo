@@ -1,0 +1,72 @@
+[
+    {
+      "id": 71,
+      "podName": "PODEIGHT",
+      "networkType": [
+          "LEGACY"
+      ]
+  },
+  {
+      "id": 68,
+      "podName": "PODFIVE",
+      "networkType": [
+          "LEGACY"
+      ]
+  },
+  {
+      "id": 67,
+      "podName": "PODFOUR",
+      "networkType": [
+          "LEGACY"
+      ]
+  },
+  {
+      "id": 64,
+      "podName": "PODONE",
+      "networkType": [
+          "LEGACY"
+      ]
+  },
+  {
+      "id": 70,
+      "podName": "PODR",
+      "networkType": [
+          "LEGACY"
+      ]
+  },
+  {
+      "id": 69,
+      "podName": "PODS",
+      "networkType": [
+          "LEGACY"
+      ]
+  },
+  {
+      "id": 60,
+      "podName": "PODSEVEN",
+      "networkType": [
+          "LEGACY"
+      ]
+  },
+  {
+      "id": 63,
+      "podName": "PODSIX",
+      "networkType": [
+          "LEGACY"
+      ]
+  },
+  {
+      "id": 66,
+      "podName": "PODTHREE",
+      "networkType": [
+          "LEGACY"
+      ]
+  },
+  {
+      "id": 65,
+      "podName": "PODTWO",
+      "networkType": [
+          "LEGACY"
+      ]
+  }
+  ]

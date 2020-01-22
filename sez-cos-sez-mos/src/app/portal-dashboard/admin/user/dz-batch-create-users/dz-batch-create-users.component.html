@@ -1,0 +1,17 @@
+<h1 matDialogTitle>{{"batchCreation" | translate}}</h1>
+<div mat-dialog-content>
+    <p [innerHTML]="'userBatchSaveHelp' | translate"></p>
+    <div class="fileinput">
+            <span>
+                 <input class="file-upload hide" type="file" #batchFile ngModel name="file" id="batchFileInput" required>
+               <label for="batchFileInput" class="fS-width mat-button btn btn-primary" mat-button> {{"selectFile" | translate}} </label>
+
+            </span>
+        <!--FIXME doesn't show up right after a file was selected - shows up only after click on the modal-->
+        <span *ngIf="batchFile.files[0]" class="fileinput-filename">{{batchFile.files[0].name}}</span>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button class="btn btn-primary" mat-button (click)="batchCreate(batchFile.files[0])">{{'create' | translate}}</button>
+    <button class="btn btn-default" mat-button type="button" mat-dialog-close>{{"cancel" | translate}}</button>
+</div>

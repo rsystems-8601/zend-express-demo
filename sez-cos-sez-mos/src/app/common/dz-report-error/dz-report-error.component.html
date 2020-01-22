@@ -1,0 +1,19 @@
+<div mat-dialog-content>
+    <u>
+        <h5>
+            {{'reportError' | translate}}
+        </h5>
+    </u>
+        <br><br>
+    <mat-form-field style="width: 100%;" appearance="outline">
+        <textarea matInput placeholder="Please describe error" [(ngModel)]="reportErrorRequest.localizedMessage" ></textarea>
+      </mat-form-field>
+
+      <!-- <img width="100px" height="100px" style="cursor: pointer;" [src]="reportErrorRequest.image" (click)="openImage()" title="Open image in new window"> -->
+</div>
+<div mat-dialog-actions align="end">
+    <button type="button" class="btn btn-danger btn-sm" mat-button [matDialogClose]="reportErrorRequest">{{"submit" | translate}}
+    </button>
+    <button type="button" class="btn btn-link btn-sm" mat-button (click)="closeDialog()">{{"cancel" | translate}}
+    </button>
+</div>

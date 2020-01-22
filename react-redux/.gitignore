@@ -1,8 +1,65 @@
+._*
+.~lock.*
+.buildpath
+.DS_Store
+.idea
+.project
+.settings
+Thumbs.db
+phpunit.xml
+tmp/
+vendor/
+build/
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
 node_modules/
-shanaya/
-android/
-.gradle/
-yarn.lock
-__tests__
-ios
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/.ant_targets
+/.idea
+/.php_cs
+/.php_cs.cache
+/.phpunit.result.cache
+/build/documentation
+/build/logfiles
+/build/phar
+/build/phpdox
+/build/*.phar
+/build/*.phar.asc
+/build/binary-phar-autoload.php
+/cache.properties
+/composer.lock
+/tests/end-to-end/*.diff
+/tests/end-to-end/*.exp
+/tests/end-to-end/*.log
+/tests/end-to-end/*.out
+/tests/end-to-end/*.php
+/vendor
 package-lock.json

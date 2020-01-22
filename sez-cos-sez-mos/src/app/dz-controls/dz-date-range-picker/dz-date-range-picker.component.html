@@ -1,0 +1,62 @@
+<div dropdown [(isOpen)]="opened" [autoClose]="'disabled'"
+     #dropdownMenu
+     class="date-picker-range">
+
+    <button type="button" dropdownToggle class="btn btn-primary dropdown-toggle waves-effect">
+        {{ formatDate(startDate) + " - " + formatDate(endDate)}}
+        <span class="caret"></span>
+    </button>
+
+    <div class="dropdown-menu dropdown-menu-lg" *dropdownMenu>
+        <div class="block-from">
+            <div class="form-group row date-input">
+                <label for="startDate" class="col-sm-4 control-label">{{"from" | translate}}</label>
+                <div class="col-sm-20">
+                    <div class="input-group form-control form-group fg-line">
+                        <span class="input-group-addon"><i class="zmdi zmdi-calendar ma-icon"></i></span>
+                        <input type="text"
+                               id="startDate"
+                               class="form-control"
+                               [(ngModel)]="formattedStartDate"
+                               (ngModelChange)="setFormattedStart($event)"
+                               [textMask]="{mask: mask}">
+                        <span *ngIf="formattedStartDate"
+                              class="input-group-addon last "
+                              (click)="setFormattedStart(null)">
+                            <i class="zmdi zmdi-close"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <datepicker [(ngModel)]="startDate"
+                        (selectionDone)="setFormattedStart(formatDate($event))"
+                        [showWeeks]="false"></datepicker>
+        </div>
+
+        <div class="block-to m-l-50">
+            <div class="form-group row date-input">
+                <label for="endDate" class="col-sm-4 control-label">{{"to" | translate}}</label>
+                <div class="col-sm-20">
+                    <div class="input-group form-control form-group fg-line">
+                        <span class="input-group-addon"><i class="zmdi zmdi-calendar ma-icon"></i></span>
+                        <input type="text"
+                               id="endDate"
+                               class="form-control"
+                               [(ngModel)]="formattedEndDate"
+                               (ngModelChange)="setFormattedEnd($event)"
+                               [textMask]="{mask: mask}">
+                        <span *ngIf="formattedEndDate"
+                              class="input-group-addon last clear-date"
+                              (click)="setFormattedEnd(null)">
+                            <i class="zmdi zmdi-close"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <datepicker [(ngModel)]="endDate"
+                        (selectionDone)="setFormattedEnd(formatDate($event))"
+                        [showWeeks]="false"></datepicker>
+        </div>
+    </div>
+
+</div>

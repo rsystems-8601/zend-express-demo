@@ -1,0 +1,16 @@
+<div *ngIf="type === 0" class="toggle-switch">
+    <label [for]="inputElementId" class="ts-label">{{placeholder | translate}}</label>
+    <input [id]="inputElementId" class="checkbox-input" [disabled]="disabled" type="checkbox" [(ngModel)]="value"
+           (ngModelChange)="onNgModelChange($event)">
+    <label [for]="inputElementId" class="ts-helper" [ngClass]="{'disabled' : disabled}"></label>
+</div>
+<div *ngIf="type === 1" [ngClass]="{'has-error': !isValid()}">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" [(ngModel)]="value"
+                   (ngModelChange)="onNgModelChange($event)">
+            <i class="input-helper"></i>
+            {{placeholder | translate}}
+        </label>
+    </div>
+</div>

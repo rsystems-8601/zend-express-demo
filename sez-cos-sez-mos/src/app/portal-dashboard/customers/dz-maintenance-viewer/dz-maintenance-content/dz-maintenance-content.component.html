@@ -1,0 +1,163 @@
+<div *ngIf="maintenanceEvent" [dz-spinner]="'spinner'">
+    <h1 matDialogTitle>{{maintenanceEvent.title}}</h1>
+    <div mat-dialog-content>
+        <h5>
+            {{"maintenanceSchedule" | translate:{
+            start: maintenanceEvent.startDateTime | date:'short',
+            end:maintenanceEvent.endDateTime | date:'short'} }} {{timezone}}
+        </h5>
+        <h5>
+            {{"recurrence" | translate}}: {{cronDescription | translate: {date: recurrenceDate} }}
+            <ng-container *ngIf="maintenanceEvent.repeatUntil">
+                {{"until" | translate:{until:maintenanceEvent.repeatUntil} }}
+            </ng-container>
+        </h5>
+        <h5>
+            {{"approvalStatus."+maintenanceEvent.approvalStatus | translate}}
+            <ng-container *ngIf="maintenanceEvent.editable && approvalDetails">
+                <a (click)="showApprovalDetails = !showApprovalDetails">
+                    {{"details" | translate}}
+                    <i class="zmdi zmdi-chevron-down"></i>
+                </a>
+                <div *ngIf="showApprovalDetails" class="m-t-10 m-l-10">
+                    <ng-container *ngIf="maintenanceEvent.type !== 'CHANGE_FREEZE'">
+                        <ng-container *ngIf="approvalDetails.approvedOrganizationsList">
+                            {{"approved" | translate}}:
+                            <div class="m-l-10 m-b-10">{{approvalDetails.approvedOrganizationsList}}</div>
+                        </ng-container>
+                        <ng-container *ngIf="approvalDetails.rejectedOrganizations">
+                            {{"rejected" | translate}}:
+                            <div *ngFor="let org of approvalDetails.rejectedOrganizations" class="m-l-10 m-b-10">
+                                {{organizationService.organizationToString(org)}}:
+                                <div class="m-l-10">
+                                    {{"approvedByUsers" | translate}}:
+                                    {{approvalDetails.approvedUsersListByCid[org.customerId]}}
+                                </div>
+                                <div class="m-l-10">
+                                    {{"rejectedByUsers" | translate}}:
+                                    {{approvalDetails.rejectedUsersListByCid[org.customerId]}}
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="approvalDetails.pendingOrganizationsList">
+                            {{"pending" | translate}}:
+                            <div class="m-l-10">{{approvalDetails.pendingOrganizationsList}}</div>
+                        </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="maintenanceEvent.type === 'CHANGE_FREEZE'">
+                        <ng-container *ngIf="approvalDetails.approvedPortalAdminList">
+                            {{"approved" | translate}}:
+                            <div class="m-l-10 m-b-10">{{approvalDetails.approvedPortalAdminList}}</div>
+                        </ng-container>
+                        <ng-container *ngIf="approvalDetails.rejectedPortalAdminList">
+                            {{"rejected" | translate}}:
+                            <div class="m-l-10 m-b-10">{{approvalDetails.rejectedPortalAdminList}}</div>
+                        </ng-container>
+                        <ng-container *ngIf="approvalDetails.pendingPortalAdminList">
+                            {{"pending" | translate}}:
+                            <div class="m-l-10 m-b-10">{{approvalDetails.pendingPortalAdminList}}</div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </h5>
+        <h5 *ngIf="approvedByUser(maintenanceEvent)">
+            {{"youApprovedMaintenance" | translate}}
+        </h5>
+        <h5 *ngIf="rejectedByUser(maintenanceEvent)">
+            {{"youRejectedMaintenance" | translate}}
+        </h5>
+        <h5 *ngIf="auth.isPortalAdmin() && maintenanceEvent.progressStatus">
+            {{"progressStatus."+maintenanceEvent.progressStatus | translate}}
+            <ng-container *ngIf="maintenanceEvent.editable && progressTicketIds.length">
+                <a (click)="showProgressTicketIds = !showProgressTicketIds">
+                    {{"progressTicketIds" | translate}}
+                    <i class="zmdi zmdi-chevron-down"></i>
+                </a>
+                <div *ngIf="showProgressTicketIds" class="m-t-10 m-l-10">
+                    <div *ngFor="let ticketAndOrg of progressTicketIds">
+                        {{ticketAndOrg.organization}}:
+                        <a [routerLink]="['/console/tickets']" [queryParams]="{id: ticketAndOrg.ticketId}">
+                            {{ticketAndOrg.ticketId}}
+                        </a>
+                    </div>
+                </div>
+            </ng-container>
+        </h5>
+        <h5 *ngIf="auth.isPortalAdmin() && maintenanceEvent.type !== 'CHANGE_FREEZE'">
+            {{"assignedTo" | translate}}:
+            <dz-click-to-edit [value]="assignedUserToString(maintenanceEvent)">
+                <dz-autocomplete *dzClickToEditContent
+                                 class="assigned-user-selector"
+                                 [searchFunction]="ticketService.memberUserSearchFunction"
+                                 [searchPlaceholder]="'search' | translate"
+                                 [displayWith]="userService.userToString"
+                                 [(ngModel)]="maintenanceEvent.assignedUser"
+                                 (ngModelChange)="assignUser(maintenanceEvent, $event)">
+                </dz-autocomplete>
+            </dz-click-to-edit>
+        </h5>
+        <h5 *ngIf="auth.isPortalAdmin() && maintenanceEvent.approvalTicketId">
+            {{"approvalTicket" | translate}}:
+            <a [routerLink]="['/console/tickets']" [queryParams]="{id: maintenanceEvent.approvalTicketId}">
+                {{maintenanceEvent.approvalTicketId}}
+            </a>
+        </h5>
+
+        <div [innerHTML]="maintenanceEvent.message | safeHtml"></div>
+        <div>{{"contactYourSupportManager" | translate}}</div>
+
+        <ul *ngIf="attachments?.length" class="m-t-15">
+            <li *ngFor="let attachment of attachments">
+                <a (click)="getAttachment(attachment)">{{attachment.fileName}}</a>
+            </li>
+        </ul>
+
+        <div *ngIf="auth.isPortalAdmin() && maintenanceEvent.progressStatus != ProgressStatus.NOT_STARTED"
+             class="tv-comments m-t-20">
+            <tabset>
+                <tab *ngFor="let type of commentsByType | keys"
+                     [heading]="type | translate"
+                     (select)="selectCommentType(type, $event)">
+                    <dz-ticket-comments [comments]="commentsByType[type](comments)"
+                                        [showCommentForm]="maintenanceEvent.progressStatus == ProgressStatus.STARTED"
+                                        [commentFormValues]="ticketCommentFormValues"
+                                        (postComment)="comment($event)"></dz-ticket-comments>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" *ngIf="maintenanceEvent.editable"
+                class="btn btn-danger btn-sm" (click)="confirmDeletion(maintenanceEvent)">
+            {{"delete" | translate}}
+        </button>
+        <div class="m-l-a" *ngIf="maintenanceEvent.type !== 'CHANGE_FREEZE'">
+            <ng-container *ngIf="canApproveOrReject(maintenanceEvent)">
+                <button type="button" *ngIf="!approvedByUser(maintenanceEvent)" class="btn btn-primary btn-sm"
+                        (click)="approve()"  mat-button>
+                    {{"approve" | translate}}
+                </button>
+                <button type="button" *ngIf="!approvedByUser(maintenanceEvent) && !rejectedByUser(maintenanceEvent)"
+                        class="btn btn-link btn-sm" (click)="reject()"  mat-button>
+                    {{"reject" | translate}}
+                </button>
+            </ng-container>
+
+            <ng-container *ngIf="auth.isPortalAdmin() && maintenanceEvent.progressStatus">
+                <button type="button" *ngIf="maintenanceEvent.progressStatus == ProgressStatus.NOT_STARTED"
+                        class="btn btn-primary btn-sm" (click)="changeStatus(ProgressStatus.STARTED)"  mat-button>
+                    {{"start" | translate}}
+                </button>
+                <button type="button" *ngIf="maintenanceEvent.progressStatus == ProgressStatus.STARTED"
+                        class="btn btn-primary btn-sm" (click)="changeStatus(ProgressStatus.FINISHED)"  mat-button>
+                    {{"finish" | translate}}
+                </button>
+                <button type="button" *ngIf="!isInTerminalState(maintenanceEvent)"
+                        class="btn btn-link btn-sm" (click)="showFailReasonModal()" mat-button>
+                    {{"fail" | translate}}
+                </button>
+            </ng-container>
+        </div>
+    </div>
+</div>

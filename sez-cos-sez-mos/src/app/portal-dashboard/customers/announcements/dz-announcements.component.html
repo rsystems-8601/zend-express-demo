@@ -1,0 +1,105 @@
+<mat-card>
+    <mat-card-title class="flex m-l-20 m-r-20">
+        <h2>{{"announcementManagement" | translate}}
+            <ng-container *ngIf="!readonly">
+                <span class="flex-spacer"></span>
+                <button class="btn btn-primary btn-lg pull-right" (click)="openEditDialog()" mat-button>
+                    {{"addAnnouncement" | translate}}
+                </button>
+            </ng-container>
+
+        </h2>
+    </mat-card-title>
+    <mat-card-content>
+        <mat-table [dataSource]="dataSource" matSort class="management-table">
+            <ng-container matColumnDef="title">
+                <mat-header-cell *matHeaderCellDef>
+                    <div mat-sort-header>{{"title" | translate}}</div>
+                    <mat-form-field>
+                        <input matInput [placeholder]="'filterByTitle' | translate"
+                               ngModel (ngModelChange)="filterBy('title', Operator.CONTAINS, $event)">
+                    </mat-form-field>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let announcement">{{announcement.title}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="startDate">
+                <mat-header-cell *matHeaderCellDef>
+                    <div mat-sort-header>{{"startDate" | translate}}</div>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="startDatePicker" [placeholder]="'filterByDateTime' | translate"
+                               (dateInput)="filterBy('startDate', Operator.EQUAL, DateUtils.formatDate($event.value))">
+                        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #startDatePicker></mat-datepicker>
+                    </mat-form-field>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let announcement">{{announcement.startDate}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="endDate">
+                <mat-header-cell *matHeaderCellDef>
+                    <div mat-sort-header>{{"endDate" | translate}}</div>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="endDatePicker" [placeholder]="'filterByDateTime' | translate"
+                               (dateInput)="filterBy('endDate', Operator.EQUAL, DateUtils.formatDate($event.value))">
+                        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #endDatePicker></mat-datepicker>
+                    </mat-form-field>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let announcement">{{announcement.endDate}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="organizations">
+                <mat-header-cell *matHeaderCellDef>
+                    {{"organizations" | translate}}
+                    <dz-autocomplete
+                            [searchFunction]="organizationService.organizationsSearchFunction"
+                            [searchPlaceholder]="'nameOrCid' | translate"
+                            [placeholder]="'filterByOrgs' | translate"
+                            ngModel (ngModelChange)="filterByMultiple('organizations', $event)"
+                            [displayWith]="organizationService.organizationToString"
+                            [multiple]="true">
+                    </dz-autocomplete>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let announcement">
+                    {{organizationService.organizationsToString(announcement.organizations)}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="thumbnail">
+                <mat-header-cell *matHeaderCellDef>
+                    {{"firstPage" | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let announcement">
+                    <dz-html-thumbnail [content]="announcement.pages[0]"></dz-html-thumbnail>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let announcement">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="announcement.editable"
+                            class="row-menu-button">
+                            <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+                        <button mat-menu-item (click)="openEditDialog(announcement)">
+                                <mat-icon>edit</mat-icon>{{"edit" | translate}}
+                        </button>
+                        <button mat-menu-item (click)="confirmDeletion(announcement, 'announcementDeleteConfirmation', {title: announcement.title})">
+                                <mat-icon>delete</mat-icon>{{"delete" | translate}}
+                        </button>
+                    </mat-menu>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+        </mat-table>
+        <mat-paginator #paginator
+                       [pageSize]="10"
+                       [pageSizeOptions]="[10, 25, 50, 100]"
+                       [length]="totalElements">
+        </mat-paginator>
+    </mat-card-content>
+</mat-card>

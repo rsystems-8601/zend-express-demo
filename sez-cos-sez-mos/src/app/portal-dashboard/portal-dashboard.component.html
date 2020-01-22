@@ -1,0 +1,16 @@
+<app-header> </app-header>
+<div class="flex">
+    <div><app-sidebar></app-sidebar></div>
+    <div class="flex-grow">
+        <div fxLayout="row">
+            <app-breadcrumb fxFill></app-breadcrumb>
+        </div>
+        <div class="scrollable-height">
+        <ng-scrollbar track="all" class="scroll-event" thumbClass="white-scrollbars">
+            <mat-card>
+                <router-outlet></router-outlet>
+            </mat-card>
+        </ng-scrollbar>
+      </div>
+    </div>
+</div>

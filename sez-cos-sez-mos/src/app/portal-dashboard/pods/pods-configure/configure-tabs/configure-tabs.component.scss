@@ -1,0 +1,97 @@
+// /* Common list css */
+
+.services-links {
+    flex-wrap: wrap;
+    margin: 30px 0px 0 30px;
+  }
+  
+  .services-links a {
+    cursor: pointer;
+  }
+  
+  .service.active {
+    background: #8c8c8c!important;
+    color: #fff;
+  }
+  
+  .active {
+    color: #fff!important;
+  }
+  
+  
+  
+  .services-links .service span {
+  
+      display: inline-block;
+      font-size: 15px;
+      padding-top: 0px;
+      color: #333;
+      line-height: 19px;
+  
+  }
+  
+  .services-links .service:after {
+    position: absolute;
+    content: "";
+    background-image: url(../../../../../assets/images/datacenter-configure/service-browse.png);
+    width: 21px;
+    height: 21px;
+    right: 5px;
+    background-repeat: no-repeat;
+    top: calc(50% - 10px );
+  }
+  
+  .datacenter-tabs {
+    margin: 30px 0 0 32px;
+  }
+  
+  .bg-light {
+    margin: 0 auto 0 45px;
+    width: 100%;
+  }
+  
+  .services-links .service img {
+    vertical-align: top;
+    /* max-width: 20%; */
+    /* display: inline-block; */
+    width: 53px;
+    padding: 0px 6px 0 0;
+    position: relative;
+    top: -6px;
+  }
+  
+  h3.template__header.mdl-cell.mdl-cell--12-col.mdl-typography--body-2 {
+    padding: 30px 0 0 20px;
+    color: #4d505d;
+    font-size: 25px;
+    line-height: 30px;
+  }
+  
+  .mat-card-title {
+    width: auto;
+  }
+  
+  button.mat-sort-header-button {
+    text-transform: capitalize;
+  }
+  
+  .mat-card-title h2 {
+    font-size: 26px;
+    padding: 0 0 15px 17px;
+    /* border-bottom: 1px solid; */
+    width: auto;
+  }
+  
+  
+  .services-links .service {
+    background: #f7f7f7;
+    border-radius: 7px;
+    padding: 27px 30px 15px 7px;
+    margin-bottom: 15px;
+    width: 199px;
+    margin-right: 27px;
+    text-decoration: none;
+    position: relative;
+    /* height: 204px; */
+  }
+  

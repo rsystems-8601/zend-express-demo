@@ -1,0 +1,16 @@
+<!--Common selector for components -->
+<app-data-table
+[tableData]="tableData"
+[columnHeader]="columnHeader"
+[titleComponent]="titleComponent"
+[addbutton]="addbutton"
+[dataDialog]="updateComponent"
+[deleteDialog] = "deleteDialog"
+[pageLength]="pageLength"
+[pageSize]="pageSize"
+(pageChanged)= "pageChanged($event)"
+(searchValues)="searchValues($event)"
+[editButton]="true"
+[hasDelete]="true"
+>
+</app-data-table>

@@ -1,0 +1,68 @@
+<div class="services-links">
+
+                <a  class="service" [routerLink]="['./pod-details']"  [routerLinkActive]="['active']" [ngClass]="activeClass" mat-button>
+                    <img src="{{imagePath}}/icon-5.png" class="service-icon">
+                    <span>POD <br> Details</span>
+                </a>
+
+                <a class="service"  [routerLinkActive]="['active']" [ngClass]="" mat-button [routerLink]="['./customer-assignment']">
+                    <img src="{{imagePath}}/icon-8.png" class="service-icon">
+                    <span>Customer<br>Assignment</span>
+                </a>
+
+                <a class="service"  [routerLinkActive]="['active']" [ngClass]="" mat-button>
+                    <img src="{{imagePath}}/icon-8.png" class="service-icon">
+                    <span>Private <br>Cloud</span>
+                </a>
+
+                <a class="service" [routerLink]="['./hardware-cluster']"  [routerLinkActive]="['active']" [ngClass]="" mat-button>
+                    <img src="{{imagePath}}/icon-8.png" class="service-icon">
+                    <span>Hardware <br>Clusters</span>
+                </a>
+                <a class="service" [routerLink]="['./virtual-machines']"  [routerLinkActive]="['active']" [ngClass]="" mat-button>
+                    <img src="{{imagePath}}/icon-8.png" class="service-icon">
+                    <span>Virtual <br>Machines</span>
+                </a>
+
+                <a  class="service" [routerLink]="['./private-vlan']"  [routerLinkActive]="['active']" [ngClass]="" mat-button>
+                    <img src="{{imagePath}}/icon-7.png" class="service-icon">
+                    <span>Private <br> Vlans</span>
+                </a>
+
+                <a  class="service" [routerLink]="['./vrrp-group']"  [routerLinkActive]="['active']" [ngClass]="" mat-button>
+                    <img src="{{imagePath}}/icon-6.png" class="service-icon">
+                    <span>Vrrp <br> Groups</span>
+                </a>
+
+
+                <a style="cursor: text" [routerLink]="" class="service" mat-button>
+                    <img src="{{imagePath}}/icon-3.png" class="service-icon">
+                    <span>Global <br> Services</span>
+                </a>
+
+                <a class="service" [routerLink]="['./hardware/switch']"  [routerLinkActive]="['active']" [ngClass]="activeClass" mat-button>
+                    <img src="{{imagePath}}/icon-9.png" class="service-icon">
+                    <span>Switch <br> Hardware</span>
+                </a>
+
+                <a [routerLink]="['./hardware/server']"  [routerLinkActive]="['active']" [ngClass]="activeClass" class="service" mat-button>
+                    <img src="{{imagePath}}/icon-9.png" class="service-icon">
+                    <span>Server <br> Hardware</span>
+                </a>
+
+                <a  class="service" [routerLink]="['./hardware/array']"   [routerLinkActive]="['active']" [ngClass]="activeClass" mat-button>
+                    <img src="{{imagePath}}/icon-5.png" class="service-icon">
+                    <span>Array <br> Hardware</span>
+                </a>
+
+                <!-- <a [routerLink]="" class="service" mat-button>
+                    <img src="{{imagePath}}/icon-4.png" class="service-icon">
+                    <span>Network <br>Hardware</span>
+                </a>
+
+                <a [routerLink]="" class="service" mat-button>
+                        <img src="{{imagePath}}/icon-4.png" class="service-icon">
+                        <span>Firewall <br>Hardware</span>
+                    </a> -->
+                
+</div>

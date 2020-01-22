@@ -1,0 +1,17 @@
+<h3 matDialogTitle>{{ Title }}</h3>
+<form [formGroup]="hardwareclusterForm" class="edit-entity-form">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input matInput [placeholder]="'Cluster Name' " formControlName="name" required>
+
+            <mat-error *ngIf="hardwareclusterForm.controls['name'].hasError('required')">
+                {{"validation.required"  }}
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button class="btn btn-primary btn-sm" type="button" (click)="saveHardwarecluster()"
+            [disabled]="!hardwareclusterForm.valid" mat-button>{{'save' }}</button>
+        <button class="btn btn-link btn-sm" type="button" (click)="canceltoList()" mat-button>{{"cancel" }}</button>
+    </div>
+</form>

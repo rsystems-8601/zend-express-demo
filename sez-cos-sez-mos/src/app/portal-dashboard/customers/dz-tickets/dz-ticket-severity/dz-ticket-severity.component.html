@@ -1,0 +1,9 @@
+<mat-form-field class="col-sm-24">
+    <input matInput [placeholder]="placeholder" (click)="openDialog()" [(ngModel)]="displaySeverity" #inputVal="ngModel" [required]= "required" readonly="true"> 
+    <mat-error *ngIf="inputVal.hasError('required')">
+        {{"validation.required" | translate}}
+    </mat-error>
+</mat-form-field>
+<mat-form-field class="col-sm-24" *ngIf="showPriority">
+        <input matInput [ngModel]="displayPriority"  readonly="true" [placeholder]="placeholder ? getTranslation('priority') : ''"> 
+</mat-form-field>

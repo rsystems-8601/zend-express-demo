@@ -1,0 +1,36 @@
+<h1 matDialogTitle>{{(application ? "editApplication" : "newApplication") | translate}}</h1>
+<dz-form [formGroup]="form" (onSubmit)="save()" class="edit-entity-form">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input matInput [placeholder]="'name' | translate"
+                   formControlName="name" required>
+            <mat-error *ngIf="form.controls['name'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [placeholder]="'description' | translate"
+                   formControlName="description">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="URL"
+                   formControlName="url" required>
+            <mat-error *ngIf="form.controls['url'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-checkbox formControlName="horizon">Horizon</mat-checkbox>
+        <dz-autocomplete [searchFunction]="applicationGroupService.appGroupsForEditingSearch"
+                         [placeholder]="'applicationGroups' | translate"
+                         [searchPlaceholder]="'search' | translate"
+                         [displayWith]="applicationGroupService.applicationGroupToString"
+                         formControlName="applicationGroups"
+                         [multiple]="true"
+                         [required]="true">
+        </dz-autocomplete>
+    </div>
+    <div mat-dialog-actions>
+        <button class="btn btn-primary btn-sm" mat-button>{{'save' | translate}}</button>
+        <button class="btn btn-link btn-sm" type="button" (click)="redirectToParent()"  mat-button> {{"cancel" | translate}}</button>
+    </div>
+</dz-form>

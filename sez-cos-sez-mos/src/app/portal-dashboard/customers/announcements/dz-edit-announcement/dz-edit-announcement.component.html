@@ -1,0 +1,51 @@
+<h1 matDialogTitle>{{(!preCreated ? "editAnnouncement" : "newAnnouncement") | translate}}</h1>
+<dz-form *ngIf="form" [formGroup]="form" (onSubmit)="save()" class="edit-entity-form">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input matInput [placeholder]="'title' | translate"
+                   formControlName="title" required>
+            <mat-error *ngIf="form.controls['title'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="startDatePicker" [placeholder]="'startDate' | translate"
+                   formControlName="startDate" required>
+            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #startDatePicker></mat-datepicker>
+            <mat-error *ngIf="form.controls['startDate'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['startDate'].hasError('afterEndDate')">
+                {{"validation.start-date.afterEndDate" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="endDatePicker" [placeholder]="'endDate' | translate"
+                   formControlName="endDate" required>
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+            <mat-error *ngIf="form.controls['endDate'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['endDate'].hasError('beforeStartDate')">
+                {{"validation.end-date.beforeStartDate" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <dz-autocomplete *ngIf="!auth.isOrganizationAdmin()"
+                         [searchFunction]="organizationService.organizationsSearchFunction"
+                         [placeholder]="'organizations' | translate"
+                         [searchPlaceholder]="'nameOrCid' | translate"
+                         formControlName="organizations"
+                         [displayWith]="organizationService.organizationToString"
+                         [multiple]="true"
+                         [required]="true">
+        </dz-autocomplete>
+        <h4>{{"pages" | translate}}</h4>
+        <dz-announcement-editor [announcement]="announcement"></dz-announcement-editor>
+    </div>
+    <div mat-dialog-actions>
+        <button class="btn btn-primary btn-sm"  mat-button>{{'save' | translate}}</button>
+        <button class="btn btn-link btn-sm" type="button" (click)="cancel()"  mat-button>{{"cancel" | translate}}</button>
+    </div>
+</dz-form>

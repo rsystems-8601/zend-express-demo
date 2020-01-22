@@ -1,0 +1,84 @@
+<div mat-card-content class="masterconfig">
+    <h1 mat-card-title>{{ "Master Configuration" }}</h1>
+    <div>&nbsp;</div>
+    <form [formGroup]="editmasterconfigForm" class="edit-entity-form">
+        <mat-form-field>
+            <input matInput [placeholder]="'Git Hub URL' " formControlName="gitHubUrl" required>
+            <!-- <mat-error *ngIf="editmasterconfigForm.controls['gitHubUrl'].hasError('required')">
+                {{"validation.required" | translate   }}
+            </mat-error> -->
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [placeholder]="'Git Password' " formControlName="gitPassword" required>
+            <!-- <mat-error *ngIf="editmasterconfigForm.controls['gitPassword'].hasError('required')">
+                {{"validation.required" | translate   }}
+            </mat-error> -->
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [placeholder]="'Github Key' " formControlName="gitHubKey" required>
+            <!-- <mat-error *ngIf="editmasterconfigForm.controls['gitHubKey'].hasError('required')">
+                {{"validation.required" | translate   }}
+            </mat-error> -->
+        </mat-form-field>
+
+        <div class="podvarstable">
+            <div class="tittle">
+                <h2>GLOBAL VARS</h2>
+            </div>
+            <div class="addbtn">
+                <button class="btn btn-primary addnew" (click)="addSection()" *ngIf="addButton">Add Section</button>
+                <button class="btn btn-primary" (click)="removeSection()" *ngIf="removeButton">Close</button>
+            </div>
+
+            <!--Push Section Value-->
+            <div *ngIf="showSectiontextbox" class="textbox_button">
+                <div class="textboxdiv"><input type="text" #textBoxvalue matInput [placeholder]="'Please Select Section Name' "></div>
+                <div class="buttondiv"><button class="btn btn-info" (click)="addsectionValue(textBoxvalue.value)">Add+</button></div>
+            </div>
+        </div>
+
+        <!--Add Jobvar for each section-->
+        <div>&nbsp;</div>
+        <div>
+            <ng-container>
+                <table style="width: 100%">
+                    <tr>
+                        <td><label>Key</label></td>
+                        <td><label>Value</label></td>
+                        <td><label>Action</label></td>
+                    </tr>
+                    <tr style="width: 100%">
+                        <td colspan="3" style="background: #dad2d2;width: 100%">
+                            <div *ngFor="let eachsection of sectionData; let i = index;">
+                                <div class="tittle1">
+                                    <h3>{{ eachsection  }}</h3>
+                                </div>
+                                <tr formArrayName="sectionVars"
+                                *ngFor="let field of this.editmasterconfigForm.get('sectionVars')['controls']; let ind = index;">
+                                <ng-container [formGroupName]="ind" *ngIf= "sectionData[i] == sectionValues[ind].sectionName" >
+                                    <td >
+                                        <mat-form-field><input matInput formControlName="key"></mat-form-field>
+                                    </td>&nbsp;&nbsp;
+                                    <td>
+                                        <mat-form-field><input matInput formControlName="value"></mat-form-field>
+                                    </td>&nbsp;
+                                    <td *ngIf="ind > 0"><button class="btn btn-danger" (click)="removeRow(ind)" style="margin-top:30px;">Remove</button></td>
+                                </ng-container>
+                            </tr>
+                                <div class="addbtn1"><button class="btn btn-primary addnew" (click)="addPodvar()">Add New+</button></div>
+                            </div>
+
+                        </td>
+                    </tr>
+                </table>
+            </ng-container>
+        </div>
+        <div>&nbsp;</div>
+        <div mat-dialog-actions>
+            <button class="btn btn-primary btn-sm" type="button" (click)="savePoddata()" [disabled]="!editmasterconfigForm.valid"  mat-button>{{'save' }}</button>
+            <!-- <button class="btn btn-link btn-sm" type="button" mat-dialog-close>{{"cancel" }}</button> -->
+        </div>
+    </form>
+</div>

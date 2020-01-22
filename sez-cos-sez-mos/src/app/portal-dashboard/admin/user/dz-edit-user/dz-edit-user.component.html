@@ -1,0 +1,59 @@
+<mat-card-title class="flex m-l-20 m-r-20">
+      <h2>{{(user ? "editUser" : "newUser") | translate}} </h2>
+  </mat-card-title>
+
+<dz-form [formGroup]="userForm" NgForm class="edit-entity-form">
+    <div fxLayout="row wrap" fxLayoutGap="5%">
+        <mat-form-field  fxFlex="25%">
+            <input matInput [placeholder]="'firstName' | translate"
+                   formControlName="firstName" required>
+            <mat-error *ngIf="userForm.controls['firstName'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field  fxFlex="25%">
+            <input matInput [placeholder]="'lastName' | translate"
+                   formControlName="lastName" required>
+            <mat-error *ngIf="userForm.controls['lastName'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field  fxFlex="25%">
+            <input matInput [placeholder]="'email' | translate"
+                   formControlName="email" pattern=".+@.+" required>
+            <mat-error *ngIf="userForm.controls['email'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+            <mat-error *ngIf="userForm.controls['email'].hasError('pattern')">
+                {{"validation.email.pattern" | translate }}
+            </mat-error>
+            <mat-error *ngIf="userForm.controls['email'].hasError('duplicate')">
+                {{"validation.email.unique" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <dz-autocomplete  fxFlex="25%" *ngIf="!auth.isOrganizationAdmin()"
+                         [searchFunction]="organizationsSearchFunction"
+                         [placeholder]="'organization' | translate"
+                         [searchPlaceholder]="'nameOrCid' | translate"
+                         formControlName="organization" (ngModelChange)="updateOrganizationRoles($event.type)"
+                         [displayWith]="organizationService.orgnaizationToString"
+                         [required]="true">
+        </dz-autocomplete>
+        <dz-autocomplete  fxFlex="25%"
+                         [searchFunction]="roleService.roleSearchFunction"
+                         [placeholder]="'roles' | translate"
+                         [searchPlaceholder]="'roles' | translate"
+                         formControlName="roles"
+                         [displayWith]="roleService.roleToString"
+                         [required]="true"
+                         [multiple]="true">
+        </dz-autocomplete>
+        <dz-phone-input  fxFlex="25%" formControlName="mobilePhoneNumber"></dz-phone-input>
+        <dz-phone-input  fxFlex="25%" formControlName="workPhoneNumber" placeholder="workPhoneNumber"></dz-phone-input>
+    </div>
+    <div>
+        <button class="btn btn-primary btn-sm"   mat-button (click)="saveUser()"> {{'save' | translate}} </button>
+        <button class="btn btn-link btn-sm" type="button" mat-button (click)="cancelStep()"> {{"cancel" | translate}} </button>
+    </div>
+</dz-form>
+

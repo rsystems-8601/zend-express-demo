@@ -1,0 +1,48 @@
+<div bsModal #contactCreationModal="bs-modal" class="modal fade" tabindex="-1" [config]="{backdrop: false}">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">{{"helpDeskContact" | translate}}</h4>
+                <button type="button" class="close pull-right" aria-label="Close"
+                        (click)="contactCreationModal.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"
+                 [innerHtml]="'noHelpDeskContact' | translate:{email: userEmail, orgName: userOrgName}"></div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" type="button" (click)="approveContactCreation()"  mat-button>
+                    {{"yes" | translate}}
+                </button>
+                <button class="btn btn-link btn-sm" type="button" (click)="cancelContactCreation()"  mat-button>
+                    {{"cancel" | translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #defaultContactModal="bs-modal" class="modal fade" tabindex="-1" [config]="{backdrop: false}">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">{{"helpDeskContact" | translate}}</h4>
+                <button type="button" class="close pull-right" aria-label="Close"
+                        (click)="defaultContactModal.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" *ngIf="defaultContact"
+                 [innerHtml]="'submitAsDefaultHelpDeskContact' | translate:defaultContact"></div>
+            <div class="modal-body" *ngIf="!defaultContact">{{"submitWithoutHelpDeskContact" | translate}}</div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" type="button" (click)="approveDefaultOrNoContact()"  mat-button>
+                    {{"yes" | translate}}
+                </button>
+                <button class="btn btn-link btn-sm" type="button" (click)="cancelPosting()"  mat-button>
+                    {{"cancel" | translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="">
+    <div class="card">
+        <div class="card-body">
+            <div class="">
+                <div  class="col-lg-12 col-md-12 col-xs-12">
+                    <div>  
+                            <app-data-table 
+                                [tableData]="tableData" 
+                                [columnHeader]="columnHeader"
+                                [dataDialog]="updateComponent" 
+                                [titleComponent]="titleComponent"
+                                [deleteDialog] = "deleteDialog"
+                                [editButton]="true"
+                                [pageIndex]="pageIndex"
+                                [hasFilter]='true' [hasPaging]='false'>
+                             </app-data-table>
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,2 @@
+<ng-content *ngIf="!showNoItems"></ng-content>
+<div *ngIf="showNoItems" class="no-items">{{message || ("noItems" | translate)}}</div>

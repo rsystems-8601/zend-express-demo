@@ -1,0 +1,9 @@
+<div class="mat-main-div">
+    <h3 mat-line>{{ "Delete Ip Network"}}</h3>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions>
+        <div class="mat-card-header-text">Are you sure you want to delete this item?</div>
+        <button class="btn btn-primary btn-sm" (click)="deleteIp()" mat-dialog-close  mat-button>{{'Yes' }}</button>
+        <button class="btn btn-link btn-sm" type="button" mat-dialog-close  mat-button>{{ "No" }}</button>
+    </div>
+</div>

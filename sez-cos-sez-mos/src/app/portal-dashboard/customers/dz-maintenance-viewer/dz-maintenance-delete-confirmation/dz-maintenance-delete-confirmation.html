@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+    {{"maintenanceDeleteConfirmation" | translate:{
+    title: maintenanceEvent.title,
+    date: maintenanceEvent.startDateTime | date:"short"} }}
+</div>
+<div mat-dialog-actions align="end">
+    <button type="button" class="btn btn-danger btn-sm" [matDialogClose]="true"  mat-button>{{"delete" | translate}}
+    </button>
+    <button type="button" class="btn btn-link btn-sm" (click)="dialogRef.close()"  mat-button>{{"cancel" | translate}}
+    </button>
+</div>

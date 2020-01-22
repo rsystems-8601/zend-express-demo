@@ -1,0 +1,161 @@
+.mat-card-title h3 {
+    font-size: 22px;
+    padding: 20px 0 5px 36px;
+    /* border-bottom: 1px solid; */
+    width: auto;
+    font-weight: 100;
+}
+
+.card-details {
+    width: auto;
+    margin: 0 auto 0 34px;
+}
+
+
+
+.mat-form-field {
+    width: 51%;
+  }
+
+.masterconfig { padding: 20px 20px 30px 30px;background: #fff;width: 1100px;position: relative;display: block;left: 30px;border: 1px solid #ddd;
+margin: 0 auto; }
+.podvarstable {
+    padding: 10px;
+    margin: 0 auto;
+    position: relative;
+    height: 71px;
+    text-align: center;
+}
+.tittle  {
+    float: left;
+    top: 0;
+    left: 5px;
+    color: #4d505d;
+    text-align: left;
+    padding: 0 0 0 61px;
+}
+.addbtn {
+    display: block;
+    /* float: right; */
+    width: 86%;
+    position: relative;
+    right: 0;
+    margin: 10px 0 0 0;
+    text-align: right;
+}
+.tittle1 {float: left;width: 40%;display: block;position: relative;top: -7px;}
+
+.tittle1 h3 {font-size: 18px;padding: 5px 0 0 10px;}
+.textboxdiv { width: 50%;float: left; display: block;position: relative;padding: 10px;border: 1px solid #ddd;}
+.textbox_button { width: 100%;float: left; display: block; margin: 20px 0 0 0; }
+.buttondiv { float: left;position: relative;width: 40%;top: 3px;left: 29px;}
+.tittle h2 { font-size: 19px; }
+
+
+.podvartbl {
+    width: 90%;margin: 0 auto;text-align: left;
+}
+
+.container {
+    width: 90%;
+}
+
+
+table.podvartbl label {
+    text-align: left;
+    font-size: 15px;
+    font-weight: 600;
+    /* background: #333; */
+    padding: 3px 10px 4px 0px;
+    color: #4d505d;
+}
+
+
+
+
+
+
+li.copy_url span {
+    font-size: 14px;
+    position: relative;
+    top: -6px;
+    left: 13px;
+    text-decoration: underline;
+    color: #066e96;
+}
+
+
+.mat-stepper-horizontal, .mat-stepper-vertical {
+    font-size: 17px;
+}
+
+
+.mat-stepper-horizontal, .mat-stepper-vertical {
+    padding: 0 0 0 12px;
+}
+
+.mat-step-header .mat-step-label.mat-step-label-active {
+    font-size: 18px;
+    font-family: inherit;
+}
+
+
+.mat-step-header .mat-step-label, .mat-step-header .mat-step-optional {
+    font-size: 17px
+}
+
+.mat-horizontal-content-container {
+
+    padding: 20px 0px 24px 0px;
+}
+
+button.customBtn.mat-button.mat-button-base {
+
+    margin: 0px 0 0 35px;
+}
+
+.mat-form-field {
+
+    font-size: 14px;
+}
+
+.combobox-span {
+        float: right;
+        position: relative;
+        padding: 0 0 0 0px;
+        margin: 0;
+        height: 0px;
+        top: -22px;
+        right: 5px;
+        width: 14px;
+        cursor: pointer;
+}
+
+.evenClass:hover {
+    background: #c6c9d4;
+}
+
+.oddClass:hover {
+    background: #c6c9d4;
+}
+
+.ownerList {
+    width: 677px;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: -9px;
+    border: 1px solid #cccbcb;
+    left: 62px;
+    background-color: #fff;
+    z-index: 1;
+    overflow-y: auto;
+    height: 200px;
+}
+
+.ownerList .mat-list-item {
+    height: 32px;
+    font-size: 14px;
+    cursor: pointer;
+}
+

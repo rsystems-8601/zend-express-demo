@@ -1,0 +1,402 @@
+<div class="">
+    <mat-card-title class="flex m-l-20 m-r-20">
+        <h3>Add Organization</h3>
+    </mat-card-title>
+</div>
+<div class="container">
+    <mat-horizontal-stepper linear #stepper>
+
+        <mat-step [stepControl]="ft" errorMessage="Detail">
+            <form [formGroup]="ft" class="xs-form-wraper">
+                <ng-template matStepLabel>Detail</ng-template>
+                <mat-form-field>
+                    <input matInput [placeholder]="'name' | translate" formControlName="name" required>
+                    <mat-error *ngIf="ft.controls['name'].hasError('required')">
+                        {{"validation.required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="ft.controls['name'].hasError('duplicate')">
+                        {{"validation.organization.name.unique" | translate }}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput [placeholder]="'Short Name' | translate" formControlName="shortName" required>
+                    <mat-error *ngIf="ft.controls['shortName'].hasError('required')">
+                        {{"validation.required" | translate }}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field *ngIf="!organization">
+                    <mat-select [placeholder]="'type' | translate" (selectionChange)="onTypeChange($event)" formControlName="tenantTypeId" required>
+                        <!-- <mat-option *ngFor="let type of auth.getAuthentication().availableOrgTypes" [value]="type"> -->
+                        <mat-option *ngFor="let type of types" [value]="type.val">
+                            {{type.type}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="ft.controls['tenantTypeId'].hasError('required')">
+                        {{"validation.required" | translate }}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field *ngIf="selectedType===8">
+                    <mat-select [placeholder]="'partner' | translate" (selectionChange)="onPartnerChange($event)" 
+                        formControlName="partnerId" required >
+                        <!-- <mat-option *ngFor="let type of auth.getAuthentication().availableOrgTypes" [value]="type"> -->
+                        <mat-option *ngFor="let partner of allPartners" [value]="partner.organizationId">
+                            {{partner.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="ft.controls['partnerId'].hasError('required')">
+                        {{"validation.required" | translate }}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field >
+                    <mat-select [placeholder]="'parent' | translate" 
+                        formControlName="parentId" required>
+                        <!-- <mat-option *ngFor="let type of auth.getAuthentication().availableOrgTypes" [value]="type"> -->
+                        <mat-option *ngFor="let parent of allParents" [value]="parent.organizationId">
+                            {{parent.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="ft.controls['parentId'].hasError('required')">
+                        {{"validation.required" | translate }}
+                    </mat-error>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext class="btn-primary">Next</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step [stepControl]="sd" errorMessage="Contact Information">
+            <form [formGroup]="sd" class="">
+                <ng-template matStepLabel>Contact Information</ng-template>
+                <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px"
+                    fxLayoutGap.lt-md="0px">
+                    <mat-form-field>
+                        <input matInput [placeholder]="'First name' | translate" formControlName="firstName" required>
+                        <mat-error *ngIf="sd.controls['firstName'].hasError('required')">
+                            {{"validation.required" | translate }}
+                        </mat-error>
+
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput [placeholder]="'Last name' | translate" formControlName="lastName" required>
+                        <mat-error *ngIf="sd.controls['lastName'].hasError('required')">
+                            {{"validation.required" | translate }}
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+                <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px"
+                    fxLayoutGap.lt-md="0px">
+                    <mat-form-field>
+                        <input matInput [placeholder]="'email' | translate" formControlName="email" pattern=".+@.+"
+                            required>
+                        <mat-error *ngIf="sd.controls['email'].hasError('required')">
+                            {{"validation.required" | translate }}
+                        </mat-error>
+                        <mat-error *ngIf="sd.controls['email'].hasError('pattern')">
+                            {{"validation.email.pattern" | translate }}
+                        </mat-error>
+                        <mat-error *ngIf="sd.controls['email'].hasError('duplicate')">
+                            {{"validation.email.unique" | translate }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <dz-phone-input fxFlex="50%" formControlName="mobilePhoneNumber"></dz-phone-input>
+                </div>
+                <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px"
+                    fxLayoutGap.lt-md="0px">
+                    <dz-phone-input fxFlex="50%" formControlName="workPhoneNumber" placeholder="workPhoneNumber">
+                    </dz-phone-input>
+                </div>
+                <div>&nbsp;&nbsp;&nbsp;</div>
+                <div>
+                    <button mat-button matStepperPrevious class="btn-default"> Back </button>&nbsp;&nbsp;
+                    <button mat-button matStepperNext class="btn-primary">Next</button>
+                    
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step [stepControl]="th" errorMessage="Address">
+            <form [formGroup]="th">
+                <ng-template matStepLabel>Address</ng-template>
+                <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px"
+                    fxLayoutGap.lt-md="0px">
+                    <mat-form-field>
+                        <input matInput [placeholder]="'Address 1' | translate" formControlName="address1" required>
+                        <mat-error *ngIf="th.controls['address1'].hasError('required')">
+                            {{"validation.required" | translate }}
+                        </mat-error>
+
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput [placeholder]="'Address 2' | translate" formControlName="address2" required>
+                        <mat-error *ngIf="th.controls['address2'].hasError('required')">
+                            {{"validation.required" | translate }}
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+                <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px"
+                    fxLayoutGap.lt-md="0px">
+                    <mat-form-field>
+                        <mat-select [placeholder]="'country' | translate" (selectionChange)="onCountryChange($event)"
+                            formControlName="country" required>
+                            <!-- <mat-option *ngFor="let type of auth.getAuthentication().availableOrgTypes" [value]="type"> -->
+                            <mat-option *ngFor="let country of allCountry" [value]="country.countryId">
+                                {{country.countryName}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="th.controls['country'].hasError('required')">
+                            {{"validation.required" | translate }}
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-select [placeholder]="'state' | translate" (selectionChange)="onStateChange($event)"
+                            formControlName="state" required>
+                            <!-- <mat-option *ngFor="let type of auth.getAuthentication().availableOrgTypes" [value]="type"> -->
+                            <mat-option *ngFor="let state of allStates" [value]="state.stateId">
+                                {{state.stateName}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="th.controls['state'].hasError('required')">
+                            {{"validation.required" | translate }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px"
+                    fxLayoutGap.lt-md="0px">
+                    <mat-form-field>
+                        <mat-select [placeholder]="'city' | translate" (selectionChange)="onCityChange($event)"
+                            formControlName="city" required>
+                            <!-- <mat-option *ngFor="let type of auth.getAuthentication().availableOrgTypes" [value]="type"> -->
+                            <mat-option *ngFor="let city of allCities" [value]="city.cityId">
+                                {{city.cityName}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="th.controls['city'].hasError('required')">
+                            {{"validation.required" | translate }}
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-select [placeholder]="'zipcode' | translate" formControlName="zipCode" required>
+                            <!-- <mat-option *ngFor="let type of auth.getAuthentication().availableOrgTypes" [value]="type"> -->
+                            <mat-option *ngFor="let zipcode of allZipcodes" [value]="zipcode">
+                                {{zipcode}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="th.controls['zipCode'].hasError('required')">
+                            {{"validation.required" | translate }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button mat-button matStepperPrevious class="btn-default">Back</button>&nbsp;&nbsp;
+                    <button mat-button matStepperNext class="btn-primary">Next</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step [stepControl]="fr" errorMessage="Support Information">
+            <form [formGroup]="fr" class="">
+                <ng-template matStepLabel>Support Information</ng-template>
+
+                <dz-autocomplete [placeholder]="'customerRelationshipManager' | translate"
+                    [searchPlaceholder]="'search' | translate" [searchFunction]="searchSupportManagers"
+                    [displayWith]="userService.userToString" formControlName="customerRelationshipManager"
+                    [enableToClear]="true">
+                </dz-autocomplete>
+                <dz-autocomplete [placeholder]="'serviceDeliveryManager' | translate"
+                    [searchPlaceholder]="'search' | translate" [searchFunction]="searchSupportManagers"
+                    [displayWith]="userService.userToString" formControlName="serviceDeliveryManager"
+                    [enableToClear]="true">
+                </dz-autocomplete>
+
+                <!-- <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px"
+                    fxLayoutGap.lt-md="0px">
+                    <mat-form-field>
+                        <mat-select [placeholder]="'customerRelationshipManager' | translate"
+                            formControlName="customerRelationshipManager" required>
+
+                            <mat-option *ngFor="let user of users" [value]="user.id">
+                                {{user.name}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="fr.controls['customerRelationshipManager'].hasError('required')">
+                            {{"validation.required" | translate }}
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-select [placeholder]="'seviceDeliveryManager' | translate"
+                            formControlName="seviceDeliveryManager" required>
+
+                            <mat-option *ngFor="let user of users" [value]="user.id">
+                                {{user.name}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="fr.controls['seviceDeliveryManager'].hasError('required')">
+                            {{"validation.required" | translate }}
+                        </mat-error>
+                    </mat-form-field>
+                </div> -->
+                <div class="buttons">
+                    <button mat-button matStepperPrevious class="btn-default">Back</button>&nbsp;&nbsp;
+                    <button mat-button matStepperNext class="btn-primary">Next</button>
+
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step [stepControl]="fth" errorMessage="Support Information">
+            <form [formGroup]="fth" class="xs-form-wraper">
+                <ng-template matStepLabel>Support Information</ng-template>
+                <mat-form-field>
+                    <mat-select [placeholder]="'ticketing' | translate" formControlName="ticketing" required>
+                        <mat-option *ngFor="let state of ticketingStates" [value]="state">
+                            {{state | translate}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="fth.controls['ticketing'].hasError('required')">
+                        {{"validation.required" | translate }}
+                    </mat-error>
+                </mat-form-field>
+                <mat-checkbox formControlName="compliant" (ngModelChange)="updateTwoFactorAuth($event)">
+                    {{"compliant" | translate}}
+                </mat-checkbox>
+                <mat-checkbox formControlName="twoFactorAuth" (ngModelChange)="updateCompliant($event)" class="m-l-10">
+                    {{"twoFactorAuth" | translate}}
+                </mat-checkbox>
+
+
+
+                <div class="buttons">
+                    <button mat-button matStepperPrevious class="btn-default">Back</button>&nbsp;&nbsp;
+                    <button class="btn-primary" type="button" (click)="save()"> Save</button>
+
+                </div>
+            </form>
+        </mat-step>
+
+    </mat-horizontal-stepper>
+</div>
+
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+
+
+
+
+
+
+
+<!-- 
+<dz-form [formGroup]="form" (onSubmit)="save()" class="edit-entity-form">
+   
+        <mat-form-field>
+            <input matInput [placeholder]="'customerId' | translate"
+                   formControlName="customerId" required>
+            <mat-error *ngIf="form.controls['customerId'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['customerId'].hasError('duplicate')">
+                {{"validation.organization.customerId.unique" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [placeholder]="'name' | translate"
+                   formControlName="name" required>
+            <mat-error *ngIf="form.controls['name'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['name'].hasError('duplicate')">
+                {{"validation.organization.name.unique" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <dz-autocomplete *ngIf="!hideParentOrganization "
+                         [searchFunction]="searchParentOrganizations"
+                         [placeholder]="'parentInfo' | translate"
+                         [searchPlaceholder]="'nameOrCid' | translate"
+                         formControlName="parentOrganization"
+                         [displayWith]="organizationService.organizationToString"
+                         [required]="true">
+        </dz-autocomplete>
+        <mat-form-field *ngIf="!organization">
+            <mat-select [placeholder]="'type' | translate"
+                        formControlName="type" required>
+              //  <mat-option *ngFor="let type of auth.getAuthentication().availableOrgTypes" [value]="type">
+                    <mat-option *ngFor="let type of types" [value]="type">
+                    {{type | translate}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls['type'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select [placeholder]="'status' | translate"
+                        formControlName="status" required>
+                <mat-option *ngFor="let status of statusService.getStatuses()" [value]="status">
+                    {{status | translate}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls['status'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select [placeholder]="'ticketing' | translate"
+                        formControlName="ticketing" required>
+                <mat-option *ngFor="let state of TicketingStates" [value]="state">
+                    {{state | translate}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls['ticketing'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [placeholder]="'generalSupport' | translate"
+                   formControlName="supportPhoneNumber">
+            <mat-error *ngIf="form.controls['supportPhoneNumber'].hasError('required')">
+                {{"validation.required" | translate }}
+            </mat-error>
+        </mat-form-field>
+        <dz-autocomplete [placeholder]="'customerRelationshipManager' | translate"
+                         [searchPlaceholder]="'search' | translate"
+                         [searchFunction]="searchSupportManagers"
+                         [displayWith]="userService.userToString"
+                         formControlName="customerRelationshipManager"
+                         [enableToClear]="true">
+        </dz-autocomplete>
+        <dz-autocomplete [placeholder]="'serviceDeliveryManager' | translate"
+                         [searchPlaceholder]="'search' | translate"
+                         [searchFunction]="searchSupportManagers"
+                         [displayWith]="userService.userToString"
+                         formControlName="serviceDeliveryManager"
+                         [enableToClear]="true">
+        </dz-autocomplete>
+        <dz-autocomplete *ngIf="organization"
+                         [placeholder]="'starredApplications' | translate"
+                         [searchPlaceholder]="'search' | translate"
+                         [searchFunction]="searchOrganizationApplications"
+                         [displayWith]="applicationService.applicationToString"
+                         formControlName="starredApplications"
+                         [multiple]="true">
+        </dz-autocomplete>
+        <mat-checkbox formControlName="compliant" (ngModelChange)="updateTwoFactorAuth($event)">
+            {{"compliant" | translate}}
+        </mat-checkbox>
+        <mat-checkbox formControlName="twoFactorAuth" (ngModelChange)="updateCompliant($event)" class="m-l-10">
+            {{"twoFactorAuth" | translate}}
+        </mat-checkbox>
+
+
+        <button class="btn btn-primary btn-sm" (click)="save()" mat-button>{{'save' | translate}}</button>
+        <button class="btn btn-link btn-sm" type="button" mat-dialog-close (click)="toasty.clearAll()" mat-button>{{"cancel" |
+            translate}}
+        </button>
+
+</dz-form> -->

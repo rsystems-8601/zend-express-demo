@@ -1,0 +1,63 @@
+<form>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between">
+        <section fxFlex="48%">
+                <fieldset>
+                    <mat-form-field>
+                        <mat-label>Term</mat-label>
+                        <mat-select palceholder="'Term'"></mat-select>
+                        <mat-error></mat-error>
+                    </mat-form-field>
+                </fieldset>
+                <section>
+                    <legend>Deployment Schedule</legend>
+                    <fieldset>
+                        <mat-form-field>
+                            <mat-label>Type</mat-label>
+                            <mat-select palceholder="'Term'"></mat-select>
+                            <mat-error></mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Description</mat-label>
+                            <textarea  palceholder="'Description'" matInput></textarea>
+                            <mat-error></mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Product</mat-label>
+                            <mat-select palceholder="'Product'"></mat-select>
+                            <mat-error></mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Start Date</mat-label>
+                            <input palceholder="'Start Date'" matInput>
+                            <mat-error></mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>End Date</mat-label>
+                            <input palceholder="'Start Date'" matInput>
+                            <mat-error></mat-error>
+                        </mat-form-field>
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                               <section>
+                                    <label style="display:block">QTY</label>
+                                    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                                        <mat-button-toggle ><mat-icon>minimize</mat-icon></mat-button-toggle>
+                                        <mat-form-field><input palceholder="'Start Date'" matInput></mat-form-field>
+                                        <mat-button-toggle><mat-icon>add </mat-icon></mat-button-toggle>
+                                      </mat-button-toggle-group>
+                                </section>
+                               <section>
+                                   <button mat-fab><mat-icon>delete</mat-icon></button>
+                               </section>
+                        </div>
+                    </fieldset>
+                    <div>
+                        <button mat-raised-button ><mat-icon>add</mat-icon>Add Deployment Schedule</button>
+                    </div>
+                </section>
+        </section>
+        <section fxFlex="48%">
+            Contract Preview
+        </section>
+    </div>
+
+</form>

@@ -1,0 +1,43 @@
+<div mat-dialog-content>
+    <section *ngIf="!maintenanceEventChangeFreezeCheck.maintenanceEvents || maintenanceEventChangeFreezeCheck.maintenanceEvents.length === 0">
+        <h5>
+            This job is scheduled during a change freeze for "{{impactedOrganizations}}". 
+            Would you like to proceed? 
+            If so, approval will first be required from "{{approvers}}" before the approval email is sent to the customer(s).
+        </h5>
+    </section>
+    <section *ngIf="maintenanceEventChangeFreezeCheck.maintenanceEvents && maintenanceEventChangeFreezeCheck.maintenanceEvents.length > 0">
+        <h5>
+            This series has the following jobs scheduled during a change freeze for "{{impactedOrganizations}}": 
+        </h5>
+        <div class="mg-tp-bt-20">
+            <mat-divider></mat-divider>
+            <mat-list-item *ngFor="let job of maintenanceEvents" class="mg-tp-12">
+                
+                <h5 class="pd-10-20">
+                    <li>
+                    {{"maintenanceSchedule" | translate:{
+                        start: job.startDateTime | date:'short',
+                        end:job.endDateTime | date:'short'} }} {{timezone}}
+                    </li>
+                </h5>
+                <!-- <h5 class="pd-10-20">
+                    Organization(s): <span *ngFor="let org of job.organizations; let j = index">{{org.name}} ({{org.customerId}}) </span>
+                </h5> -->
+            </mat-list-item>
+            <mat-divider></mat-divider>
+        </div>
+        <h5>
+            If you click "OK", approval will first be required from "{{approvers}}" before the approval email is sent to the customer(s). 
+            If you would like to delete the jobs that fall during the change freeze from the series, click "Delete Impacted Jobs &amp; Continue". 
+        </h5>
+    </section>
+</div>
+<div mat-dialog-actions align="end">
+    <button type="button" class="btn btn-danger btn-sm" [matDialogClose]="false"  mat-button>{{"ok" | translate}}
+    </button>
+    <button type="button" *ngIf="maintenanceEventChangeFreezeCheck.maintenanceEvents && maintenanceEventChangeFreezeCheck.maintenanceEvents.length > 0" class="btn btn-danger btn-sm" [matDialogClose]="true"  mat-button>{{"Delete Impaceted Jobs &amp; Continue" | translate}}
+    </button>
+    <button type="button" class="btn btn-link btn-sm" (click)="dialogRef.close()"  mat-button>{{"cancel" | translate}}
+    </button>
+</div>

@@ -1,0 +1,27 @@
+.mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit{
+  background-color: #5eb6a6!important;
+  color: #fff;
+}
+
+.mat-select-panel{
+  padding:20px;
+}
+
+/** gloabl modal  **/
+.mat-dialog-actions{
+  min-height: 150px;
+}
+.mat-dialog-title{
+  font-weight: normal;
+}
+
+.mat-dialog-container h3{
+  margin-top: 0px;
+}
+
+.mat-dialog-content{
+  padding:30px 24px!important;
+  font-weight: normal;
+}

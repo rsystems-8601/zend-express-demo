@@ -1,0 +1,12 @@
+<dz-form (onSubmit)="failMaintenance(failReason.value)">
+    <div mat-dialog-content>
+        <mat-form-field [hideRequiredMarker]="true" class="w-100">
+            <input matInput [placeholder]="typePlaceHolder | translate"
+                   ngModel #failReason="ngModel" name="failReason" required autofocus>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button class="btn btn-primary btn-sm"  mat-button>{{"submit" | translate}}</button>
+        <button class="btn btn-link btn-sm" type="button" (click)="dialogRef.close()"  mat-button>{{"cancel" | translate}}</button>
+    </div>
+</dz-form>

@@ -1,0 +1,52 @@
+<div class="mat-main-div">
+    <h3 mat-line>{{ "Allocate IP Address"}}</h3>
+    <mat-divider></mat-divider>
+    <form [formGroup]="allocateIpForm" class="edit-entity-form">
+        <div mat-dialog-content>
+            <table class="" width="100%">
+                <tr>
+                    <td>
+                        <mat-form-field appearance="outline">
+                                <mat-label>Customer Name</mat-label>
+                            <input type="text" placeholder="Customer Name" matInput formControlName="custName" required
+                                [formControl]="searchCustomer" [matAutocomplete]="auto">
+                                <span class="search_icon"><i class="material-icons">search</i></span>
+                            <mat-autocomplete #auto="matAutocomplete">
+                                    
+                                <mat-option *ngFor="let cust of customerList" [value]="cust.custId" (onSelectionChange)="selectCustomer($event)" >
+                                    {{cust.custName}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <mat-error *ngIf="allocateIpForm.controls['custName'].hasError('required')">
+                                {{"validation.required"  }}
+                            </mat-error>
+                        </mat-form-field>
+                    </td>
+                    <td> 
+                        <mat-form-field appearance="outline">
+                                <mat-label>CID</mat-label>
+                            <input matInput [placeholder]="'CID' " formControlName="custCID" readonly>
+                            <!-- <mat-error *ngIf="allocateIpForm.controls['custCID'].hasError('required')">
+                                {{"validation.required"  }}
+                            </mat-error> -->
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr colspan="2">
+                        <mat-form-field appearance="outline">
+                                <mat-label>Purpose</mat-label>
+                        <input matInput [placeholder]="'Purpose' " formControlName="purpose" required>
+                        <mat-error *ngIf="allocateIpForm.controls['purpose'].hasError('required')">
+                            {{"validation.required"  }}
+                        </mat-error>
+                    </mat-form-field>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <div mat-dialog-actions>
+        <button class="btn btn-primary btn-sm" type="button" (click)="allocateIp()"
+            [disabled]="!allocateIpForm.valid" mat-dialog-close  mat-button>{{'Submit' }}</button>
+        <button class="btn btn-link btn-sm" type="button" mat-dialog-close mat-button>{{ "Cancel" }}</button>
+    </div>
+</div>

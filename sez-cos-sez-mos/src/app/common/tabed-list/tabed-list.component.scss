@@ -1,0 +1,171 @@
+.services-links {
+  flex-wrap: wrap;
+  display: flex;
+  margin-top: 50px;
+  padding: 24px;
+	.service {
+		background: #f7f7f7;
+		border-radius: 7px;
+		padding: 17px 8px;
+		margin-bottom: 19px;
+		width: 179px;
+		margin-right: 27px;
+		text-decoration: none;
+		position: relative;
+		&:hover {
+			text-decoration: none;
+		}
+		img {
+			vertical-align: top;
+			max-width: 24%;
+			display: inline-block;
+		}
+		span {
+			max-width: 54%;
+			display: inline-block;
+			color: #838383;
+			font-size: 15px;
+			padding-top: 3px;
+		}
+		&:after {
+			position: absolute;
+			content: "";
+		  // background: url("../../../assets/images/datacenter-configure/service-browse.png");
+			width: 21px;
+			height: 21px;
+			right: 19px;
+			background-repeat: no-repeat;
+			top: calc(50% - 10px );
+		}
+  }
+  .service.active {
+    background: #4f4f4f;
+    span{
+      color: #fff;
+    }
+  }
+
+}
+
+.datacenter-tabs {
+  margin-top: 33px;
+  padding: 0 24px 24px 24px;
+	.tab-content {
+		border: 0;
+		padding: 0;
+		margin-top: 40px;
+  }
+
+	.nav-tabs {
+    border-bottom: 0;
+    padding: 0;
+		.nav-link {
+			font-size: 12px;
+			border: 1px solid #bababa;
+			color: #808080;
+			border-right: 0;
+      position: relative;
+      padding: .75rem 1.5rem;
+      background: #f6f8fa;
+			&:hover {
+				background: #fff;
+        border-color: #bababa;
+        text-decoration: none;
+			}
+			&:focus {
+				background: #fff;
+				border-color: #bababa;
+			}
+		}
+		.nav-item {
+      margin-bottom: -1px;
+   		&:first-child {
+				.nav-link {
+					border-radius: 8px 0 0 8px;
+					font-weight: bold;
+				}
+			}
+			&:last-child {
+				.nav-link {
+					border-radius: 0 8px 8px 0;
+					border-right: 1px solid #bababa;
+				}
+			}
+		}
+		.nav-link.active {
+			border-color: #bababa;
+			&:after {
+				content: "";
+				display: inline-block;
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 16px 14px 0 14px;
+				border-color: #bababa transparent transparent transparent;
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				bottom: -16px;
+			}
+		}
+		.nav-item.show {
+			.nav-link {
+				border-color: #bababa;
+			}
+		}
+	}
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+
+.monitor-table {
+	.row {
+		border: 1px solid #f2f2f2;
+		margin-left: 0;
+		margin-right: 0;
+		background: #f2f2f2;
+		margin-bottom: 12px;
+		border-radius: 7px;
+		padding: 5px;
+		align-items: center;
+		font-size: 14px;
+		min-height: 42px;
+		&:hover {
+			background: #fff;
+			border: 1px solid #d4d4d4;
+		}
+	}
+	.row.head {
+		color: #4f4f4f;
+		font-size: 17px;
+		background: no-repeat;
+		border: none;
+	}
+	a.button {
+		background: #74958e;
+		color: #fff;
+		font-size: 11px;
+		padding: 4px 6px;
+		border-radius: 4px;
+		text-decoration: none;
+		white-space: nowrap;
+		text-align: center;
+		&:hover {
+			background: #5c7972;
+			text-decoration: none;
+		}
+	}
+}
+

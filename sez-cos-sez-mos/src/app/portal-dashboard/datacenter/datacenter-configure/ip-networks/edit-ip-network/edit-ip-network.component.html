@@ -1,0 +1,131 @@
+<h3 matDialogTitle>{{ Title }}</h3>
+<mat-divider></mat-divider>
+
+<form [formGroup]="privateipForm" class="edit-entity-form">
+    <div mat-dialog-content>
+
+        <ul fxLayout="row wrap" fxLayoutGap="2%" fxLayoutAlign="left stretch"  class="form-wraper">
+            <li fxFlex="31">
+                <mat-form-field appearance="outline" class="disabled">
+                    <mat-label>Network IP </mat-label>
+                    <input matInput [placeholder]="'IP NET' " formControlName="networkIp" required readonly>
+                    <mat-error *ngIf="privateipForm.controls['networkIp'].hasError('required')">
+                        {{"IP Net is mandatory"  }}
+                    </mat-error>
+                </mat-form-field>
+
+            </li>
+            <li fxFlex="31">
+                <mat-form-field appearance="outline" class="disabled">
+                    <mat-label>Cidr Number</mat-label>
+                    <input matInput [placeholder]="'CIDR' " formControlName="cidrNumber" required readonly>
+                    <mat-error *ngIf="privateipForm.controls['cidrNumber'].hasError('required')">
+                        {{"CIDR is mandatory"  }}
+                    </mat-error>
+                </mat-form-field>
+
+            </li>
+
+            <li fxFlex="31">
+                <mat-form-field appearance="outline" [ngClass]="{'disabled': isReadOnly}">
+                    <mat-label>Gateway</mat-label>
+                    <input matInput [placeholder]="'Gateway' " formControlName="gateway" required
+                        [readonly]="isReadOnly">
+                    <mat-error *ngIf="privateipForm.controls['gateway'].hasError('required')">
+                        {{ "Gateway is mandatory"}}
+                    </mat-error>
+                    <div class="error" *ngIf="gateway.value && gateway.invalid">
+                        {{ "Gateway is Invalid"}}
+                    </div>
+                </mat-form-field>
+
+            </li>
+
+            <li fxFlex="31">
+                <mat-form-field appearance="outline"  [ngClass]="{'disabled': !isPublicIp}">
+                    <mat-label>Subnet Mask</mat-label>
+                    <input matInput [placeholder]="'Subnet Mask' " formControlName="subnetMask" required
+                        [readonly]="!isPublicIp">
+                    <mat-error *ngIf="privateipForm.controls['subnetMask'].hasError('required')">
+                        {{ "Subnet Mask is mandatory"  }}
+                    </mat-error>
+                    <div class="error" *ngIf="subnetMask.value && subnetMask.invalid">
+                        {{ "Subnet Mask is Invalid"}}
+                    </div>
+                </mat-form-field>
+
+            </li>
+
+            <li fxFlex="31" id="vlantype">
+                <mat-form-field appearance="outline"  [ngClass]="{'disabled': isReadOnly}">
+                    <mat-label>Public Vlan</mat-label>
+                    <mat-select formControlName="vlanId" [placeholder]="'Public Vlan' " [disabled]="isReadOnly">
+                        <mat-option *ngFor="let vlan of publicVlanList" [value]="vlan.id">
+                            {{vlan.vlanIdString}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="privateipForm.controls['vlanId'].hasError('required')">
+                        {{"Please select Public Vlan"}}
+                    </mat-error>
+                </mat-form-field>
+
+            </li>
+            <li fxFlex="31"> </li>
+
+        </ul>
+        <div style="overflow-y: auto; max-height: 250px;" *ngIf="ipAddressList  &&  ipAddressList!==null">
+            <table class="custome-tabel" *ngIf="ipAddressList.length>0">
+                <tr>
+                    <th>IP ADDRESS</th>
+                    <th>Customer Name</th>
+                    <th>CID</th>
+                    <th>Purpose</th>
+                    <th *ngIf="!isPublicIp">VLAN ID</th>
+                    <!-- <ng-container *ngIf="isReadOnly"></ng-container> -->
+
+                    <div *ngIf="isReadOnly; else notShow"></div>
+                    <ng-template #notShow>
+                        <th *ngIf="isPublicIp">Actions</th>
+                    </ng-template>
+                </tr>
+                <ng-container *ngFor="let item of ipAddressList;let i=index"> 
+                        
+                    <tr [ngClass]="item.customerView?.custId ? 'freeRow' : 'reservedRow'" *ngIf="item.customerView">
+                        <td>{{item.ip}}</td>
+                        <td>{{item.customerView.custName}}</td>
+                        <td>{{item.customerView.custCID}}</td>
+                        <td>{{item.purpose}}</td>
+                        <td *ngIf="!isPublicIp"></td>
+                        <div *ngIf="isReadOnly; else notShow1"></div>
+                        <ng-template #notShow1>
+                            <td *ngIf="isPublicIp">
+                                <button class="btn btn-link btn-sm" type="button" (click)="reservePrivateIp(item.id)"
+                                    *ngIf="item.isFree" mat-button>
+                                    <i class="material-icons">power</i>&nbsp;{{"Reserve IP" }}</button>
+                                <button class="btn btn-link btn-sm" type="button" (click)="unreservePrivateIp(item.id)"
+                                    *ngIf="!item.isFree && !item.customerView.custName" mat-button>
+                                    <i class="material-icons"
+                                        style="font-size: 16px">delete_sweep</i>{{"Un-Reserve IP" }}</button>
+                                <button class="btn btn-link btn-sm" type="button"
+                                    (click)="openallocateIpDialog(item.id)"
+                                    *ngIf="!item.isFree && !item.customerView.custName" mat-button>
+                                    <i class="material-icons"
+                                        style="font-size: 16px">person_add</i>&nbsp;{{"Allocate IP" }}</button>
+                                <button class="btn btn-link btn-sm" type="button"
+                                    (click)="opendeallocateIpDialog(item.id)" *ngIf="item.customerView.custName"
+                                    mat-button>{{"De-Allocate IP" }}</button>
+                            </td>
+                        </ng-template>
+                    </tr>
+                </ng-container>
+            </table>
+<div  class="no-record text-center"> Record Not found </div>
+        </div>
+    </div>
+
+    <div *ngIf="!isReadOnly">
+        <button class="btn-primary" type="button" (click)="updatePrivateIp()" [disabled]="!privateipForm.valid"
+            mat-button>{{ 'Update' }}</button>
+        <!-- <button class="btn-primary" type="button"  mat-button>{{"cancel" }}</button> -->
+    </div>
+</form>

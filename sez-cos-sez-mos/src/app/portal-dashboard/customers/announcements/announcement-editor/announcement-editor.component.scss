@@ -1,0 +1,35 @@
+
+
+.page {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  &.active {
+    ::ng-deep .thumbnail {
+      background-color: #F4F4F4;
+    }
+  }
+
+  .actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    // background-color: ;
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
+  .thumbnail-actions {
+    color: #fff;
+  }
+}
+
+.page-selector {
+  position: relative;
+  margin-bottom: 10px;
+}

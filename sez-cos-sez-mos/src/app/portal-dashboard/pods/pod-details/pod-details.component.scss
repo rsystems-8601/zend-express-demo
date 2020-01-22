@@ -1,0 +1,60 @@
+.poddetails {
+    /* width: 1000px; */
+    position: relative;
+    /* margin: 0 auto; */
+    text-align: left;
+}
+
+.card-details{
+    width: 1200px;
+    /* margin: 0 auto; */
+    position: relative;
+    left: 20px;
+}
+
+.mat-card-title h3 {
+    font-size: 22px;
+    padding: 20px 0 5px 36px;
+    /* border-bottom: 1px solid; */
+    width: auto;
+    font-weight: 100;
+}
+
+.card-details label {
+    font-size: 14px;
+    padding: 0 10px 0 10px;
+    color: #272b31;
+}
+
+.editPod {
+    float: right;
+    position: relative;
+    right: 187px;
+    padding: 10px;
+}
+
+
+
+.card-details input {
+    font-size: 15px;
+}
+
+
+.mat-form-field {
+    width: 900px;
+}
+
+
+.mat-tab-label-content {
+    color: #24272d;
+    font-weight: 400;
+    font-size: 18px;
+    /* text-align: left; */
+}
+
+.error {
+    font-size: 12px;
+    line-height: 20px;
+    color: red;
+}
+

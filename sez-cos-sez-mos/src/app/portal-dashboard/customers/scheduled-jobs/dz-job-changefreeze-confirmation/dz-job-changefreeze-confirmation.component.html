@@ -1,0 +1,29 @@
+<div mat-dialog-content>
+    <h5>Below events already exists in selected Change Freeze window. You may need to reschedule or delete them.</h5>
+    <div class="mg-tp-bt-20">
+        <mat-list-item *ngFor="let job of jobs" class="mg-tp-12">
+            <mat-divider></mat-divider>
+            <h5 class="pd-10-20">
+                {{job.title}}  {{"maintenanceSchedule" | translate:{
+                    start: job.startDateTime | date:'short',
+                    end:job.endDateTime | date:'short'} }} {{timezone}}
+            </h5>
+            <h5 class="pd-10-20">
+                Organization(s): <span *ngFor="let org of job.organizations; let j = index">{{org.name}} ({{org.customerId}}) </span>
+            </h5>
+            <!-- <mat-chip-list>
+                <mat-chip *ngFor="let org of job.organizations; let j = index">
+                    {{org.name}} ({{org.customerId}})
+                </mat-chip>
+            </mat-chip-list> -->
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </div>
+    <h5>Do you to wish to continue with Change Freeze window ?</h5>
+</div>
+<div mat-dialog-actions align="end">
+    <button type="button" class="btn btn-danger btn-sm" [matDialogClose]="true"  mat-button>{{"ok" | translate}}
+    </button>
+    <button type="button" class="btn btn-link btn-sm" (click)="dialogRef.close()"  mat-button>{{"cancel" | translate}}
+    </button>
+</div>
